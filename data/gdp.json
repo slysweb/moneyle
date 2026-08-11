@@ -1,0 +1,1002 @@
+[
+  {
+    "name": "United States",
+    "iso2": "us",
+    "iso3": "USA",
+    "region": "North America",
+    "year": 2025,
+    "gdpUsd": 30769700000000,
+    "displayValue": "$30.8T",
+    "flagUrl": "https://flagcdn.com/w320/us.png"
+  },
+  {
+    "name": "China",
+    "iso2": "cn",
+    "iso3": "CHN",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 19498039388043,
+    "displayValue": "$19.5T",
+    "flagUrl": "https://flagcdn.com/w320/cn.png"
+  },
+  {
+    "name": "Germany",
+    "iso2": "de",
+    "iso3": "DEU",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 5050922925047,
+    "displayValue": "$5.05T",
+    "flagUrl": "https://flagcdn.com/w320/de.png"
+  },
+  {
+    "name": "Japan",
+    "iso2": "jp",
+    "iso3": "JPN",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 4435162999977,
+    "displayValue": "$4.44T",
+    "flagUrl": "https://flagcdn.com/w320/jp.png"
+  },
+  {
+    "name": "United Kingdom",
+    "iso2": "gb",
+    "iso3": "GBR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 4002587541846,
+    "displayValue": "$4.00T",
+    "flagUrl": "https://flagcdn.com/w320/gb.png"
+  },
+  {
+    "name": "India",
+    "iso2": "in",
+    "iso3": "IND",
+    "region": "South Asia",
+    "year": 2025,
+    "gdpUsd": 3956067115772,
+    "displayValue": "$3.96T",
+    "flagUrl": "https://flagcdn.com/w320/in.png"
+  },
+  {
+    "name": "France",
+    "iso2": "fr",
+    "iso3": "FRA",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 3366315927447,
+    "displayValue": "$3.37T",
+    "flagUrl": "https://flagcdn.com/w320/fr.png"
+  },
+  {
+    "name": "Russian Federation",
+    "iso2": "ru",
+    "iso3": "RUS",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 2561310169359,
+    "displayValue": "$2.56T",
+    "flagUrl": "https://flagcdn.com/w320/ru.png"
+  },
+  {
+    "name": "Italy",
+    "iso2": "it",
+    "iso3": "ITA",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 2551556954100,
+    "displayValue": "$2.55T",
+    "flagUrl": "https://flagcdn.com/w320/it.png"
+  },
+  {
+    "name": "Canada",
+    "iso2": "ca",
+    "iso3": "CAN",
+    "region": "North America",
+    "year": 2025,
+    "gdpUsd": 2319899772426,
+    "displayValue": "$2.32T",
+    "flagUrl": "https://flagcdn.com/w320/ca.png"
+  },
+  {
+    "name": "Brazil",
+    "iso2": "br",
+    "iso3": "BRA",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 2279920092492,
+    "displayValue": "$2.28T",
+    "flagUrl": "https://flagcdn.com/w320/br.png"
+  },
+  {
+    "name": "Spain",
+    "iso2": "es",
+    "iso3": "ESP",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 1906453309986,
+    "displayValue": "$1.91T",
+    "flagUrl": "https://flagcdn.com/w320/es.png"
+  },
+  {
+    "name": "Korea, Rep.",
+    "iso2": "kr",
+    "iso3": "KOR",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 1872374961553,
+    "displayValue": "$1.87T",
+    "flagUrl": "https://flagcdn.com/w320/kr.png"
+  },
+  {
+    "name": "Mexico",
+    "iso2": "mx",
+    "iso3": "MEX",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 1832641364776,
+    "displayValue": "$1.83T",
+    "flagUrl": "https://flagcdn.com/w320/mx.png"
+  },
+  {
+    "name": "Australia",
+    "iso2": "au",
+    "iso3": "AUS",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 1798518933689,
+    "displayValue": "$1.80T",
+    "flagUrl": "https://flagcdn.com/w320/au.png"
+  },
+  {
+    "name": "Turkiye",
+    "iso2": "tr",
+    "iso3": "TUR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 1597293229287,
+    "displayValue": "$1.60T",
+    "flagUrl": "https://flagcdn.com/w320/tr.png"
+  },
+  {
+    "name": "Indonesia",
+    "iso2": "id",
+    "iso3": "IDN",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 1445642584164,
+    "displayValue": "$1.45T",
+    "flagUrl": "https://flagcdn.com/w320/id.png"
+  },
+  {
+    "name": "Netherlands",
+    "iso2": "nl",
+    "iso3": "NLD",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 1332767651100,
+    "displayValue": "$1.33T",
+    "flagUrl": "https://flagcdn.com/w320/nl.png"
+  },
+  {
+    "name": "Saudi Arabia",
+    "iso2": "sa",
+    "iso3": "SAU",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 1276942933333,
+    "displayValue": "$1.28T",
+    "flagUrl": "https://flagcdn.com/w320/sa.png"
+  },
+  {
+    "name": "Switzerland",
+    "iso2": "ch",
+    "iso3": "CHE",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 1043529899251,
+    "displayValue": "$1.04T",
+    "flagUrl": "https://flagcdn.com/w320/ch.png"
+  },
+  {
+    "name": "Poland",
+    "iso2": "pl",
+    "iso3": "POL",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 1035491784197,
+    "displayValue": "$1.04T",
+    "flagUrl": "https://flagcdn.com/w320/pl.png"
+  },
+  {
+    "name": "Belgium",
+    "iso2": "be",
+    "iso3": "BEL",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 725466462860,
+    "displayValue": "$725B",
+    "flagUrl": "https://flagcdn.com/w320/be.png"
+  },
+  {
+    "name": "Ireland",
+    "iso2": "ie",
+    "iso3": "IRL",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 721701359046,
+    "displayValue": "$722B",
+    "flagUrl": "https://flagcdn.com/w320/ie.png"
+  },
+  {
+    "name": "Argentina",
+    "iso2": "ar",
+    "iso3": "ARG",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 683097891619,
+    "displayValue": "$683B",
+    "flagUrl": "https://flagcdn.com/w320/ar.png"
+  },
+  {
+    "name": "Sweden",
+    "iso2": "se",
+    "iso3": "SWE",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 668998664082,
+    "displayValue": "$669B",
+    "flagUrl": "https://flagcdn.com/w320/se.png"
+  },
+  {
+    "name": "Israel",
+    "iso2": "il",
+    "iso3": "ISR",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 610777842874,
+    "displayValue": "$611B",
+    "flagUrl": "https://flagcdn.com/w320/il.png"
+  },
+  {
+    "name": "Singapore",
+    "iso2": "sg",
+    "iso3": "SGP",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 603869516999,
+    "displayValue": "$604B",
+    "flagUrl": "https://flagcdn.com/w320/sg.png"
+  },
+  {
+    "name": "Austria",
+    "iso2": "at",
+    "iso3": "AUT",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 579470021095,
+    "displayValue": "$579B",
+    "flagUrl": "https://flagcdn.com/w320/at.png"
+  },
+  {
+    "name": "Thailand",
+    "iso2": "th",
+    "iso3": "THA",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 577009981112,
+    "displayValue": "$577B",
+    "flagUrl": "https://flagcdn.com/w320/th.png"
+  },
+  {
+    "name": "Norway",
+    "iso2": "no",
+    "iso3": "NOR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 530755719439,
+    "displayValue": "$531B",
+    "flagUrl": "https://flagcdn.com/w320/no.png"
+  },
+  {
+    "name": "Viet Nam",
+    "iso2": "vn",
+    "iso3": "VNM",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 514697215165,
+    "displayValue": "$515B",
+    "flagUrl": "https://flagcdn.com/w320/vn.png"
+  },
+  {
+    "name": "Philippines",
+    "iso2": "ph",
+    "iso3": "PHL",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 487086123720,
+    "displayValue": "$487B",
+    "flagUrl": "https://flagcdn.com/w320/ph.png"
+  },
+  {
+    "name": "Malaysia",
+    "iso2": "my",
+    "iso3": "MYS",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 472193128645,
+    "displayValue": "$472B",
+    "flagUrl": "https://flagcdn.com/w320/my.png"
+  },
+  {
+    "name": "Denmark",
+    "iso2": "dk",
+    "iso3": "DNK",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 462526660468,
+    "displayValue": "$463B",
+    "flagUrl": "https://flagcdn.com/w320/dk.png"
+  },
+  {
+    "name": "Colombia",
+    "iso2": "co",
+    "iso3": "COL",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 457410034203,
+    "displayValue": "$457B",
+    "flagUrl": "https://flagcdn.com/w320/co.png"
+  },
+  {
+    "name": "Bangladesh",
+    "iso2": "bd",
+    "iso3": "BGD",
+    "region": "South Asia",
+    "year": 2025,
+    "gdpUsd": 456319229256,
+    "displayValue": "$456B",
+    "flagUrl": "https://flagcdn.com/w320/bd.png"
+  },
+  {
+    "name": "Romania",
+    "iso2": "ro",
+    "iso3": "ROU",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 428677977855,
+    "displayValue": "$429B",
+    "flagUrl": "https://flagcdn.com/w320/ro.png"
+  },
+  {
+    "name": "Hong Kong SAR, China",
+    "iso2": "hk",
+    "iso3": "HKG",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 427310315922,
+    "displayValue": "$427B",
+    "flagUrl": "https://flagcdn.com/w320/hk.png"
+  },
+  {
+    "name": "South Africa",
+    "iso2": "za",
+    "iso3": "ZAF",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 427184325997,
+    "displayValue": "$427B",
+    "flagUrl": "https://flagcdn.com/w320/za.png"
+  },
+  {
+    "name": "Pakistan",
+    "iso2": "pk",
+    "iso3": "PAK",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 407307214476,
+    "displayValue": "$407B",
+    "flagUrl": "https://flagcdn.com/w320/pk.png"
+  },
+  {
+    "name": "Czechia",
+    "iso2": "cz",
+    "iso3": "CZE",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 391026962800,
+    "displayValue": "$391B",
+    "flagUrl": "https://flagcdn.com/w320/cz.png"
+  },
+  {
+    "name": "Egypt, Arab Rep.",
+    "iso2": "eg",
+    "iso3": "EGY",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 365254630180,
+    "displayValue": "$365B",
+    "flagUrl": "https://flagcdn.com/w320/eg.png"
+  },
+  {
+    "name": "Iran, Islamic Rep.",
+    "iso2": "ir",
+    "iso3": "IRN",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 362682115433,
+    "displayValue": "$363B",
+    "flagUrl": "https://flagcdn.com/w320/ir.png"
+  },
+  {
+    "name": "Chile",
+    "iso2": "cl",
+    "iso3": "CHL",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 357371159575,
+    "displayValue": "$357B",
+    "flagUrl": "https://flagcdn.com/w320/cl.png"
+  },
+  {
+    "name": "Portugal",
+    "iso2": "pt",
+    "iso3": "PRT",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 346639825142,
+    "displayValue": "$347B",
+    "flagUrl": "https://flagcdn.com/w320/pt.png"
+  },
+  {
+    "name": "Peru",
+    "iso2": "pe",
+    "iso3": "PER",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 334854659182,
+    "displayValue": "$335B",
+    "flagUrl": "https://flagcdn.com/w320/pe.png"
+  },
+  {
+    "name": "Finland",
+    "iso2": "fi",
+    "iso3": "FIN",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 317039368820,
+    "displayValue": "$317B",
+    "flagUrl": "https://flagcdn.com/w320/fi.png"
+  },
+  {
+    "name": "Kazakhstan",
+    "iso2": "kz",
+    "iso3": "KAZ",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 306239209650,
+    "displayValue": "$306B",
+    "flagUrl": "https://flagcdn.com/w320/kz.png"
+  },
+  {
+    "name": "Nigeria",
+    "iso2": "ng",
+    "iso3": "NGA",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 290794361542,
+    "displayValue": "$291B",
+    "flagUrl": "https://flagcdn.com/w320/ng.png"
+  },
+  {
+    "name": "Algeria",
+    "iso2": "dz",
+    "iso3": "DZA",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 287031225988,
+    "displayValue": "$287B",
+    "flagUrl": "https://flagcdn.com/w320/dz.png"
+  },
+  {
+    "name": "Greece",
+    "iso2": "gr",
+    "iso3": "GRC",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 280635521324,
+    "displayValue": "$281B",
+    "flagUrl": "https://flagcdn.com/w320/gr.png"
+  },
+  {
+    "name": "New Zealand",
+    "iso2": "nz",
+    "iso3": "NZL",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 264057413740,
+    "displayValue": "$264B",
+    "flagUrl": "https://flagcdn.com/w320/nz.png"
+  },
+  {
+    "name": "Iraq",
+    "iso2": "iq",
+    "iso3": "IRQ",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 254367293538,
+    "displayValue": "$254B",
+    "flagUrl": "https://flagcdn.com/w320/iq.png"
+  },
+  {
+    "name": "Hungary",
+    "iso2": "hu",
+    "iso3": "HUN",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 246490213513,
+    "displayValue": "$246B",
+    "flagUrl": "https://flagcdn.com/w320/hu.png"
+  },
+  {
+    "name": "Qatar",
+    "iso2": "qa",
+    "iso3": "QAT",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 215559615385,
+    "displayValue": "$216B",
+    "flagUrl": "https://flagcdn.com/w320/qa.png"
+  },
+  {
+    "name": "Ukraine",
+    "iso2": "ua",
+    "iso3": "UKR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 214233312784,
+    "displayValue": "$214B",
+    "flagUrl": "https://flagcdn.com/w320/ua.png"
+  },
+  {
+    "name": "Morocco",
+    "iso2": "ma",
+    "iso3": "MAR",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 182374250612,
+    "displayValue": "$182B",
+    "flagUrl": "https://flagcdn.com/w320/ma.png"
+  },
+  {
+    "name": "Kuwait",
+    "iso2": "kw",
+    "iso3": "KWT",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 157209026926,
+    "displayValue": "$157B",
+    "flagUrl": "https://flagcdn.com/w320/kw.png"
+  },
+  {
+    "name": "Slovak Republic",
+    "iso2": "sk",
+    "iso3": "SVK",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 154530066507,
+    "displayValue": "$155B",
+    "flagUrl": "https://flagcdn.com/w320/sk.png"
+  },
+  {
+    "name": "Uzbekistan",
+    "iso2": "uz",
+    "iso3": "UZB",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 147038081129,
+    "displayValue": "$147B",
+    "flagUrl": "https://flagcdn.com/w320/uz.png"
+  },
+  {
+    "name": "Kenya",
+    "iso2": "ke",
+    "iso3": "KEN",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 135941278879,
+    "displayValue": "$136B",
+    "flagUrl": "https://flagcdn.com/w320/ke.png"
+  },
+  {
+    "name": "Bulgaria",
+    "iso2": "bg",
+    "iso3": "BGR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 130777235530,
+    "displayValue": "$131B",
+    "flagUrl": "https://flagcdn.com/w320/bg.png"
+  },
+  {
+    "name": "Ecuador",
+    "iso2": "ec",
+    "iso3": "ECU",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 130320560400,
+    "displayValue": "$130B",
+    "flagUrl": "https://flagcdn.com/w320/ec.png"
+  },
+  {
+    "name": "Puerto Rico (US)",
+    "iso2": "pr",
+    "iso3": "PRI",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 129368484000,
+    "displayValue": "$129B",
+    "flagUrl": "https://flagcdn.com/w320/pr.png"
+  },
+  {
+    "name": "Dominican Republic",
+    "iso2": "do",
+    "iso3": "DOM",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 127407463759,
+    "displayValue": "$127B",
+    "flagUrl": "https://flagcdn.com/w320/do.png"
+  },
+  {
+    "name": "Ethiopia",
+    "iso2": "et",
+    "iso3": "ETH",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 126358758448,
+    "displayValue": "$126B",
+    "flagUrl": "https://flagcdn.com/w320/et.png"
+  },
+  {
+    "name": "Guatemala",
+    "iso2": "gt",
+    "iso3": "GTM",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 123306008821,
+    "displayValue": "$123B",
+    "flagUrl": "https://flagcdn.com/w320/gt.png"
+  },
+  {
+    "name": "Angola",
+    "iso2": "ao",
+    "iso3": "AGO",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 122174889424,
+    "displayValue": "$122B",
+    "flagUrl": "https://flagcdn.com/w320/ao.png"
+  },
+  {
+    "name": "Ghana",
+    "iso2": "gh",
+    "iso3": "GHA",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 114209905279,
+    "displayValue": "$114B",
+    "flagUrl": "https://flagcdn.com/w320/gh.png"
+  },
+  {
+    "name": "Oman",
+    "iso2": "om",
+    "iso3": "OMN",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 109604780696,
+    "displayValue": "$110B",
+    "flagUrl": "https://flagcdn.com/w320/om.png"
+  },
+  {
+    "name": "Sri Lanka",
+    "iso2": "lk",
+    "iso3": "LKA",
+    "region": "South Asia",
+    "year": 2025,
+    "gdpUsd": 108825231671,
+    "displayValue": "$109B",
+    "flagUrl": "https://flagcdn.com/w320/lk.png"
+  },
+  {
+    "name": "Croatia",
+    "iso2": "hr",
+    "iso3": "HRV",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 105060182186,
+    "displayValue": "$105B",
+    "flagUrl": "https://flagcdn.com/w320/hr.png"
+  },
+  {
+    "name": "Costa Rica",
+    "iso2": "cr",
+    "iso3": "CRI",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 102904921157,
+    "displayValue": "$103B",
+    "flagUrl": "https://flagcdn.com/w320/cr.png"
+  },
+  {
+    "name": "Luxembourg",
+    "iso2": "lu",
+    "iso3": "LUX",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 101157829491,
+    "displayValue": "$101B",
+    "flagUrl": "https://flagcdn.com/w320/lu.png"
+  },
+  {
+    "name": "Serbia",
+    "iso2": "rs",
+    "iso3": "SRB",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 99953324473,
+    "displayValue": "$100.0B",
+    "flagUrl": "https://flagcdn.com/w320/rs.png"
+  },
+  {
+    "name": "Cote d'Ivoire",
+    "iso2": "ci",
+    "iso3": "CIV",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 99773555666,
+    "displayValue": "$99.8B",
+    "flagUrl": "https://flagcdn.com/w320/ci.png"
+  },
+  {
+    "name": "Venezuela, RB",
+    "iso2": "ve",
+    "iso3": "VEN",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 99661244156,
+    "displayValue": "$99.7B",
+    "flagUrl": "https://flagcdn.com/w320/ve.png"
+  },
+  {
+    "name": "Lithuania",
+    "iso2": "lt",
+    "iso3": "LTU",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 95210150818,
+    "displayValue": "$95.2B",
+    "flagUrl": "https://flagcdn.com/w320/lt.png"
+  },
+  {
+    "name": "Belarus",
+    "iso2": "by",
+    "iso3": "BLR",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 93397215864,
+    "displayValue": "$93.4B",
+    "flagUrl": "https://flagcdn.com/w320/by.png"
+  },
+  {
+    "name": "Congo, Dem. Rep.",
+    "iso2": "cd",
+    "iso3": "COD",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 91030531317,
+    "displayValue": "$91.0B",
+    "flagUrl": "https://flagcdn.com/w320/cd.png"
+  },
+  {
+    "name": "Panama",
+    "iso2": "pa",
+    "iso3": "PAN",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 90462600000,
+    "displayValue": "$90.5B",
+    "flagUrl": "https://flagcdn.com/w320/pa.png"
+  },
+  {
+    "name": "Tanzania",
+    "iso2": "tz",
+    "iso3": "TZA",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 90143496090,
+    "displayValue": "$90.1B",
+    "flagUrl": "https://flagcdn.com/w320/tz.png"
+  },
+  {
+    "name": "Uruguay",
+    "iso2": "uy",
+    "iso3": "URY",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 85347696278,
+    "displayValue": "$85.3B",
+    "flagUrl": "https://flagcdn.com/w320/uy.png"
+  },
+  {
+    "name": "Myanmar",
+    "iso2": "mm",
+    "iso3": "MMR",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 81665773810,
+    "displayValue": "$81.7B",
+    "flagUrl": "https://flagcdn.com/w320/mm.png"
+  },
+  {
+    "name": "Slovenia",
+    "iso2": "si",
+    "iso3": "SVN",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 79648204979,
+    "displayValue": "$79.6B",
+    "flagUrl": "https://flagcdn.com/w320/si.png"
+  },
+  {
+    "name": "Azerbaijan",
+    "iso2": "az",
+    "iso3": "AZE",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 75937647059,
+    "displayValue": "$75.9B",
+    "flagUrl": "https://flagcdn.com/w320/az.png"
+  },
+  {
+    "name": "Bolivia",
+    "iso2": "bo",
+    "iso3": "BOL",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 64768947525,
+    "displayValue": "$64.8B",
+    "flagUrl": "https://flagcdn.com/w320/bo.png"
+  },
+  {
+    "name": "Uganda",
+    "iso2": "ug",
+    "iso3": "UGA",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 61985829288,
+    "displayValue": "$62.0B",
+    "flagUrl": "https://flagcdn.com/w320/ug.png"
+  },
+  {
+    "name": "Jordan",
+    "iso2": "jo",
+    "iso3": "JOR",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 61610052535,
+    "displayValue": "$61.6B",
+    "flagUrl": "https://flagcdn.com/w320/jo.png"
+  },
+  {
+    "name": "Sudan",
+    "iso2": "sd",
+    "iso3": "SDN",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 60162634574,
+    "displayValue": "$60.2B",
+    "flagUrl": "https://flagcdn.com/w320/sd.png"
+  },
+  {
+    "name": "Cameroon",
+    "iso2": "cm",
+    "iso3": "CMR",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 58933453924,
+    "displayValue": "$58.9B",
+    "flagUrl": "https://flagcdn.com/w320/cm.png"
+  },
+  {
+    "name": "Tunisia",
+    "iso2": "tn",
+    "iso3": "TUN",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 57502836548,
+    "displayValue": "$57.5B",
+    "flagUrl": "https://flagcdn.com/w320/tn.png"
+  },
+  {
+    "name": "Macao SAR, China",
+    "iso2": "mo",
+    "iso3": "MAC",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 52061007670,
+    "displayValue": "$52.1B",
+    "flagUrl": "https://flagcdn.com/w320/mo.png"
+  },
+  {
+    "name": "Cambodia",
+    "iso2": "kh",
+    "iso3": "KHM",
+    "region": "East Asia & Pacific",
+    "year": 2025,
+    "gdpUsd": 51267065843,
+    "displayValue": "$51.3B",
+    "flagUrl": "https://flagcdn.com/w320/kh.png"
+  },
+  {
+    "name": "Zimbabwe",
+    "iso2": "zw",
+    "iso3": "ZWE",
+    "region": "Sub-Saharan Africa",
+    "year": 2025,
+    "gdpUsd": 51215643906,
+    "displayValue": "$51.2B",
+    "flagUrl": "https://flagcdn.com/w320/zw.png"
+  },
+  {
+    "name": "Turkmenistan",
+    "iso2": "tm",
+    "iso3": "TKM",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 49828621356,
+    "displayValue": "$49.8B",
+    "flagUrl": "https://flagcdn.com/w320/tm.png"
+  },
+  {
+    "name": "Paraguay",
+    "iso2": "py",
+    "iso3": "PRY",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 49278227554,
+    "displayValue": "$49.3B",
+    "flagUrl": "https://flagcdn.com/w320/py.png"
+  },
+  {
+    "name": "Bahrain",
+    "iso2": "bh",
+    "iso3": "BHR",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 48965725532,
+    "displayValue": "$49.0B",
+    "flagUrl": "https://flagcdn.com/w320/bh.png"
+  },
+  {
+    "name": "Latvia",
+    "iso2": "lv",
+    "iso3": "LVA",
+    "region": "Europe & Central Asia",
+    "year": 2025,
+    "gdpUsd": 48618869160,
+    "displayValue": "$48.6B",
+    "flagUrl": "https://flagcdn.com/w320/lv.png"
+  },
+  {
+    "name": "Libya",
+    "iso2": "ly",
+    "iso3": "LBY",
+    "region": "Middle East, North Africa, Afghanistan & Pakistan",
+    "year": 2025,
+    "gdpUsd": 48098909614,
+    "displayValue": "$48.1B",
+    "flagUrl": "https://flagcdn.com/w320/ly.png"
+  }
+]
