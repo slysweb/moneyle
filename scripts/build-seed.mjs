@@ -1,5 +1,5 @@
 // Builds db/seed.sql from the processed data files in data/.
-// Run `npm run data:forbes` and `npm run data:gdp` first.
+// Run the data:* scripts first for each dataset you want refreshed.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -10,10 +10,15 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dataDir = path.join(root, "data");
 const outPath = path.join(root, "db", "seed.sql");
 
-const billionaires = JSON.parse(
-  fs.readFileSync(path.join(dataDir, "forbes-top100.json"), "utf8")
-);
-const gdp = JSON.parse(fs.readFileSync(path.join(dataDir, "gdp.json"), "utf8"));
+function load(name) {
+  return JSON.parse(fs.readFileSync(path.join(dataDir, name), "utf8"));
+}
+
+const billionaires = load("forbes-top100.json");
+const gdp = load("gdp.json");
+const athletes = load("athletes-top100.json");
+const movies = load("box-office-top100.json");
+const companies = load("market-cap-top100.json");
 
 const categories = [
   {
@@ -42,11 +47,11 @@ const categories = [
     slug: "player-salaries",
     title: "Player Salaries",
     metric_label: "annual salary",
-    description: "Which athlete earns more per year?",
+    description: "Which athlete earns more per year? Soccer, NBA and NFL stars.",
     icon: "trophy",
-    source_name: null,
-    source_url: null,
-    is_active: 0,
+    source_name: "Forbes / Spotrac / Capology",
+    source_url: "https://www.forbes.com/lists/athletes/",
+    is_active: 1,
     sort_order: 3,
   },
   {
@@ -66,9 +71,9 @@ const categories = [
     metric_label: "worldwide gross",
     description: "Which movie made more money at the box office?",
     icon: "film",
-    source_name: null,
-    source_url: null,
-    is_active: 0,
+    source_name: "Box Office Mojo",
+    source_url: "https://www.boxofficemojo.com/chart/ww_top_lifetime_gross/?area=XWW",
+    is_active: 1,
     sort_order: 5,
   },
   {
@@ -77,9 +82,9 @@ const categories = [
     metric_label: "market cap",
     description: "Which company is worth more on the stock market?",
     icon: "building",
-    source_name: null,
-    source_url: null,
-    is_active: 0,
+    source_name: "CompaniesMarketCap",
+    source_url: "https://companiesmarketcap.com/",
+    is_active: 1,
     sort_order: 6,
   },
 ];
@@ -155,9 +160,58 @@ for (const g of gdp) {
 }
 lines.push("");
 
+lines.push("-- Top athlete annual salaries (soccer / NBA / NFL)");
+for (const a of athletes) {
+  lines.push(
+    itemInsert("player-salaries", {
+      name: a.name,
+      subtitle: `${a.sport} · ${a.team}`,
+      value: a.salaryUsd,
+      displayValue: a.displayValue,
+      imageUrl: a.imageUrl,
+      meta: { rank: a.rank, sport: a.sport, team: a.team },
+    })
+  );
+}
+lines.push("");
+
+lines.push("-- All-time worldwide box office top 100");
+for (const m of movies) {
+  lines.push(
+    itemInsert("box-office", {
+      name: m.name,
+      subtitle: String(m.year),
+      value: m.worldwideGrossUsd,
+      displayValue: m.displayValue,
+      imageUrl: m.imageUrl,
+      meta: { rank: m.rank, year: m.year, imdbId: m.imdbId },
+    })
+  );
+}
+lines.push("");
+
+lines.push("-- Largest companies by market capitalization");
+for (const c of companies) {
+  lines.push(
+    itemInsert("market-cap", {
+      name: c.name,
+      subtitle: c.ticker,
+      value: c.marketCapUsd,
+      displayValue: c.displayValue,
+      imageUrl: c.imageUrl,
+      meta: { rank: c.rank, ticker: c.ticker },
+    })
+  );
+}
+lines.push("");
+
 fs.writeFileSync(outPath, lines.join("\n"));
+const total =
+  billionaires.length +
+  gdp.length +
+  athletes.length +
+  movies.length +
+  companies.length;
 console.log(
-  `Wrote ${outPath}: ${categories.length} categories, ${
-    billionaires.length + gdp.length
-  } items`
+  `Wrote ${outPath}: ${categories.length} categories, ${total} items`
 );

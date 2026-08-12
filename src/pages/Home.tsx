@@ -4,9 +4,8 @@ export default function Home() {
   return (
     <main className="page">
       <section className="hero">
-        <h1>
-          Games about <span className="accent">money</span>.
-        </h1>
+        <h1 className="brand-hero">MoneyGames</h1>
+        <p className="hero-tagline">Games about money.</p>
         <p className="hero-sub">
           Quick, free browser games that test your intuition for the numbers
           behind wealth, economies and markets.
@@ -18,10 +17,10 @@ export default function Home() {
           <div className="game-card-badge">Play now</div>
           <h2>More/Less</h2>
           <p>
-            Two cards, one question: is it worth more or less? Guess right to
-            keep your streak alive. Billionaires, GDP and more.
+            Five levels of money comparisons — billionaires, market caps,
+            salaries, box office and GDP. Tap the higher one each round.
           </p>
-          <span className="game-card-cta">Play More/Less</span>
+          <span className="game-card-cta">Play More/Less →</span>
         </Link>
 
         <div className="game-card soon">

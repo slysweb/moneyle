@@ -1,0 +1,802 @@
+[
+  {
+    "rank": 1,
+    "name": "NVIDIA",
+    "ticker": "NVDA",
+    "marketCapUsd": 5268067319808,
+    "displayValue": "$5.27T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVDA.png"
+  },
+  {
+    "rank": 2,
+    "name": "Apple",
+    "ticker": "AAPL",
+    "marketCapUsd": 4449911701504,
+    "displayValue": "$4.45T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AAPL.png"
+  },
+  {
+    "rank": 3,
+    "name": "Alphabet (Google)",
+    "ticker": "GOOG",
+    "marketCapUsd": 4194867609600,
+    "displayValue": "$4.19T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/GOOG.png"
+  },
+  {
+    "rank": 4,
+    "name": "Microsoft",
+    "ticker": "MSFT",
+    "marketCapUsd": 3741064101888,
+    "displayValue": "$3.74T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MSFT.png"
+  },
+  {
+    "rank": 5,
+    "name": "Amazon",
+    "ticker": "AMZN",
+    "marketCapUsd": 2936789270528,
+    "displayValue": "$2.94T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMZN.png"
+  },
+  {
+    "rank": 6,
+    "name": "TSMC",
+    "ticker": "TSM",
+    "marketCapUsd": 2189003194368,
+    "displayValue": "$2.19T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TSM.png"
+  },
+  {
+    "rank": 7,
+    "name": "Broadcom",
+    "ticker": "AVGO",
+    "marketCapUsd": 1979533885440,
+    "displayValue": "$1.98T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AVGO.png"
+  },
+  {
+    "rank": 8,
+    "name": "SpaceX",
+    "ticker": "SPCX",
+    "marketCapUsd": 1755987312640,
+    "displayValue": "$1.76T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SPCX.png"
+  },
+  {
+    "rank": 9,
+    "name": "Saudi Aramco",
+    "ticker": "2222.SR",
+    "marketCapUsd": 1712630091419,
+    "displayValue": "$1.71T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/2222.SR.png"
+  },
+  {
+    "rank": 10,
+    "name": "Meta Platforms (Facebook)",
+    "ticker": "META",
+    "marketCapUsd": 1526261874688,
+    "displayValue": "$1.53T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/META.png"
+  },
+  {
+    "rank": 11,
+    "name": "Tesla",
+    "ticker": "TSLA",
+    "marketCapUsd": 1314448867328,
+    "displayValue": "$1.31T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TSLA.png"
+  },
+  {
+    "rank": 12,
+    "name": "Samsung",
+    "ticker": "005930.KS",
+    "marketCapUsd": 1185099310986,
+    "displayValue": "$1.19T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/005930.KS.png"
+  },
+  {
+    "rank": 13,
+    "name": "Berkshire Hathaway",
+    "ticker": "BRK-B",
+    "marketCapUsd": 1105419698176,
+    "displayValue": "$1.11T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/BRK-B.png"
+  },
+  {
+    "rank": 14,
+    "name": "Eli Lilly",
+    "ticker": "LLY",
+    "marketCapUsd": 1083016675328,
+    "displayValue": "$1.08T",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/LLY.png"
+  },
+  {
+    "rank": 15,
+    "name": "Micron Technology",
+    "ticker": "MU",
+    "marketCapUsd": 980900577280,
+    "displayValue": "$981B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MU.png"
+  },
+  {
+    "rank": 16,
+    "name": "JPMorgan Chase",
+    "ticker": "JPM",
+    "marketCapUsd": 962369748992,
+    "displayValue": "$962B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/JPM.png"
+  },
+  {
+    "rank": 17,
+    "name": "Walmart",
+    "ticker": "WMT",
+    "marketCapUsd": 901332074496,
+    "displayValue": "$901B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/WMT.png"
+  },
+  {
+    "rank": 18,
+    "name": "AMD",
+    "ticker": "AMD",
+    "marketCapUsd": 774315573248,
+    "displayValue": "$774B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMD.png"
+  },
+  {
+    "rank": 19,
+    "name": "SK Hynix",
+    "ticker": "000660.KS",
+    "marketCapUsd": 754124639578,
+    "displayValue": "$754B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/000660.KS.png"
+  },
+  {
+    "rank": 20,
+    "name": "ASML",
+    "ticker": "ASML",
+    "marketCapUsd": 691141869568,
+    "displayValue": "$691B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ASML.png"
+  },
+  {
+    "rank": 21,
+    "name": "Visa",
+    "ticker": "V",
+    "marketCapUsd": 677402116096,
+    "displayValue": "$677B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/V.png"
+  },
+  {
+    "rank": 22,
+    "name": "Exxon Mobil",
+    "ticker": "XOM",
+    "marketCapUsd": 657083531264,
+    "displayValue": "$657B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/XOM.png"
+  },
+  {
+    "rank": 23,
+    "name": "Johnson & Johnson",
+    "ticker": "JNJ",
+    "marketCapUsd": 626091622400,
+    "displayValue": "$626B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/JNJ.png"
+  },
+  {
+    "rank": 24,
+    "name": "CXMT",
+    "ticker": "688825.SS",
+    "marketCapUsd": 562134308261,
+    "displayValue": "$562B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/688825.SS.png"
+  },
+  {
+    "rank": 25,
+    "name": "Tencent",
+    "ticker": "TCEHY",
+    "marketCapUsd": 535776952320,
+    "displayValue": "$536B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TCEHY.png"
+  },
+  {
+    "rank": 26,
+    "name": "Intel",
+    "ticker": "INTC",
+    "marketCapUsd": 492849201152,
+    "displayValue": "$493B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/INTC.png"
+  },
+  {
+    "rank": 27,
+    "name": "Mastercard",
+    "ticker": "MA",
+    "marketCapUsd": 491827003392,
+    "displayValue": "$492B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MA.png"
+  },
+  {
+    "rank": 28,
+    "name": "Cisco",
+    "ticker": "CSCO",
+    "marketCapUsd": 474666958848,
+    "displayValue": "$475B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/CSCO.png"
+  },
+  {
+    "rank": 29,
+    "name": "Bank of America",
+    "ticker": "BAC",
+    "marketCapUsd": 447535906816,
+    "displayValue": "$448B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/BAC.png"
+  },
+  {
+    "rank": 30,
+    "name": "AbbVie",
+    "ticker": "ABBV",
+    "marketCapUsd": 441938345984,
+    "displayValue": "$442B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ABBV.png"
+  },
+  {
+    "rank": 31,
+    "name": "Palantir",
+    "ticker": "PLTR",
+    "marketCapUsd": 420391059456,
+    "displayValue": "$420B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/PLTR.png"
+  },
+  {
+    "rank": 32,
+    "name": "Oracle",
+    "ticker": "ORCL",
+    "marketCapUsd": 419050913792,
+    "displayValue": "$419B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ORCL.png"
+  },
+  {
+    "rank": 33,
+    "name": "Costco",
+    "ticker": "COST",
+    "marketCapUsd": 418785918976,
+    "displayValue": "$419B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/COST.png"
+  },
+  {
+    "rank": 34,
+    "name": "Applied Materials",
+    "ticker": "AMAT",
+    "marketCapUsd": 417312997376,
+    "displayValue": "$417B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMAT.png"
+  },
+  {
+    "rank": 35,
+    "name": "China Construction Bank",
+    "ticker": "601939.SS",
+    "marketCapUsd": 397316598852,
+    "displayValue": "$397B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/601939.SS.png"
+  },
+  {
+    "rank": 36,
+    "name": "Lam Research",
+    "ticker": "LRCX",
+    "marketCapUsd": 389673877504,
+    "displayValue": "$390B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/LRCX.png"
+  },
+  {
+    "rank": 37,
+    "name": "Caterpillar",
+    "ticker": "CAT",
+    "marketCapUsd": 387676012544,
+    "displayValue": "$388B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/CAT.png"
+  },
+  {
+    "rank": 38,
+    "name": "Chevron",
+    "ticker": "CVX",
+    "marketCapUsd": 385768914944,
+    "displayValue": "$386B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/CVX.png"
+  },
+  {
+    "rank": 39,
+    "name": "General Electric",
+    "ticker": "GE",
+    "marketCapUsd": 381885251584,
+    "displayValue": "$382B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/GE.png"
+  },
+  {
+    "rank": 40,
+    "name": "Coca-Cola",
+    "ticker": "KO",
+    "marketCapUsd": 372084441088,
+    "displayValue": "$372B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/KO.png"
+  },
+  {
+    "rank": 41,
+    "name": "Roche",
+    "ticker": "RO.SW",
+    "marketCapUsd": 361092030303,
+    "displayValue": "$361B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/RO.SW.png"
+  },
+  {
+    "rank": 42,
+    "name": "UnitedHealth",
+    "ticker": "UNH",
+    "marketCapUsd": 361003646976,
+    "displayValue": "$361B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/UNH.png"
+  },
+  {
+    "rank": 43,
+    "name": "HSBC",
+    "ticker": "HSBC",
+    "marketCapUsd": 354703114240,
+    "displayValue": "$355B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/HSBC.png"
+  },
+  {
+    "rank": 44,
+    "name": "Home Depot",
+    "ticker": "HD",
+    "marketCapUsd": 353457930240,
+    "displayValue": "$353B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/HD.png"
+  },
+  {
+    "rank": 45,
+    "name": "Procter & Gamble",
+    "ticker": "PG",
+    "marketCapUsd": 338135875584,
+    "displayValue": "$338B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/PG.png"
+  },
+  {
+    "rank": 46,
+    "name": "Morgan Stanley",
+    "ticker": "MS",
+    "marketCapUsd": 338090065920,
+    "displayValue": "$338B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MS.png"
+  },
+  {
+    "rank": 47,
+    "name": "Agricultural Bank of China",
+    "ticker": "601288.SS",
+    "marketCapUsd": 334296048079,
+    "displayValue": "$334B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/601288.SS.png"
+  },
+  {
+    "rank": 48,
+    "name": "ICBC",
+    "ticker": "1398.HK",
+    "marketCapUsd": 325214707075,
+    "displayValue": "$325B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/1398.HK.png"
+  },
+  {
+    "rank": 49,
+    "name": "Merck",
+    "ticker": "MRK",
+    "marketCapUsd": 321768521728,
+    "displayValue": "$322B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MRK.png"
+  },
+  {
+    "rank": 50,
+    "name": "Palo Alto Networks",
+    "ticker": "PANW",
+    "marketCapUsd": 312797003776,
+    "displayValue": "$313B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/PANW.png"
+  },
+  {
+    "rank": 51,
+    "name": "Netflix",
+    "ticker": "NFLX",
+    "marketCapUsd": 311421042688,
+    "displayValue": "$311B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/NFLX.png"
+  },
+  {
+    "rank": 52,
+    "name": "Alibaba",
+    "ticker": "BABA",
+    "marketCapUsd": 306440306688,
+    "displayValue": "$306B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/BABA.png"
+  },
+  {
+    "rank": 53,
+    "name": "RTX",
+    "ticker": "RTX",
+    "marketCapUsd": 301709131776,
+    "displayValue": "$302B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/RTX.png"
+  },
+  {
+    "rank": 54,
+    "name": "Goldman Sachs",
+    "ticker": "GS",
+    "marketCapUsd": 301190610944,
+    "displayValue": "$301B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/GS.png"
+  },
+  {
+    "rank": 55,
+    "name": "Novartis",
+    "ticker": "NVS",
+    "marketCapUsd": 293869518848,
+    "displayValue": "$294B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVS.png"
+  },
+  {
+    "rank": 56,
+    "name": "Royal Bank Of Canada",
+    "ticker": "RY",
+    "marketCapUsd": 292190388224,
+    "displayValue": "$292B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/RY.png"
+  },
+  {
+    "rank": 57,
+    "name": "Philip Morris International",
+    "ticker": "PM",
+    "marketCapUsd": 290244984832,
+    "displayValue": "$290B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/PM.png"
+  },
+  {
+    "rank": 58,
+    "name": "Arm Holdings",
+    "ticker": "ARM",
+    "marketCapUsd": 287216861184,
+    "displayValue": "$287B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ARM.png"
+  },
+  {
+    "rank": 59,
+    "name": "Dell",
+    "ticker": "DELL",
+    "marketCapUsd": 284929425408,
+    "displayValue": "$285B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/DELL.png"
+  },
+  {
+    "rank": 60,
+    "name": "Bank of China",
+    "ticker": "601988.SS",
+    "marketCapUsd": 278473434426,
+    "displayValue": "$278B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/601988.SS.png"
+  },
+  {
+    "rank": 61,
+    "name": "CATL",
+    "ticker": "300750.SZ",
+    "marketCapUsd": 270323941245,
+    "displayValue": "$270B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/300750.SZ.png"
+  },
+  {
+    "rank": 62,
+    "name": "GE Vernova",
+    "ticker": "GEV",
+    "marketCapUsd": 269497630720,
+    "displayValue": "$269B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/GEV.png"
+  },
+  {
+    "rank": 63,
+    "name": "LVMH",
+    "ticker": "MC.PA",
+    "marketCapUsd": 267615385856,
+    "displayValue": "$268B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MC.PA.png"
+  },
+  {
+    "rank": 64,
+    "name": "Wells Fargo",
+    "ticker": "WFC",
+    "marketCapUsd": 264448720896,
+    "displayValue": "$264B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/WFC.png"
+  },
+  {
+    "rank": 65,
+    "name": "KLA",
+    "ticker": "KLAC",
+    "marketCapUsd": 261923438592,
+    "displayValue": "$262B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/KLAC.png"
+  },
+  {
+    "rank": 66,
+    "name": "Texas Instruments",
+    "ticker": "TXN",
+    "marketCapUsd": 256841760768,
+    "displayValue": "$257B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TXN.png"
+  },
+  {
+    "rank": 67,
+    "name": "Nestlé",
+    "ticker": "NESN.SW",
+    "marketCapUsd": 251222411428,
+    "displayValue": "$251B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/NESN.SW.png"
+  },
+  {
+    "rank": 68,
+    "name": "Shell",
+    "ticker": "SHEL",
+    "marketCapUsd": 249966297088,
+    "displayValue": "$250B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SHEL.png"
+  },
+  {
+    "rank": 69,
+    "name": "Arista Networks",
+    "ticker": "ANET",
+    "marketCapUsd": 249533317120,
+    "displayValue": "$250B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ANET.png"
+  },
+  {
+    "rank": 70,
+    "name": "Mitsubishi UFJ Financial",
+    "ticker": "MUFG",
+    "marketCapUsd": 249444433920,
+    "displayValue": "$249B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/MUFG.png"
+  },
+  {
+    "rank": 71,
+    "name": "Kweichow Moutai",
+    "ticker": "600519.SS",
+    "marketCapUsd": 248878504442,
+    "displayValue": "$249B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/600519.SS.png"
+  },
+  {
+    "rank": 72,
+    "name": "Siemens",
+    "ticker": "SIE.DE",
+    "marketCapUsd": 248248045356,
+    "displayValue": "$248B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SIE.DE.png"
+  },
+  {
+    "rank": 73,
+    "name": "AstraZeneca",
+    "ticker": "AZN",
+    "marketCapUsd": 246203138048,
+    "displayValue": "$246B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AZN.png"
+  },
+  {
+    "rank": 74,
+    "name": "SAP",
+    "ticker": "SAP",
+    "marketCapUsd": 242013552640,
+    "displayValue": "$242B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SAP.png"
+  },
+  {
+    "rank": 75,
+    "name": "L'Oréal",
+    "ticker": "OR.PA",
+    "marketCapUsd": 235297595237,
+    "displayValue": "$235B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/OR.PA.png"
+  },
+  {
+    "rank": 76,
+    "name": "American Express",
+    "ticker": "AXP",
+    "marketCapUsd": 230152339456,
+    "displayValue": "$230B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AXP.png"
+  },
+  {
+    "rank": 77,
+    "name": "BHP Group",
+    "ticker": "BHP",
+    "marketCapUsd": 228681859072,
+    "displayValue": "$229B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/BHP.png"
+  },
+  {
+    "rank": 78,
+    "name": "Citigroup",
+    "ticker": "C",
+    "marketCapUsd": 227745595392,
+    "displayValue": "$228B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/C.png"
+  },
+  {
+    "rank": 79,
+    "name": "Linde",
+    "ticker": "LIN",
+    "marketCapUsd": 226124595200,
+    "displayValue": "$226B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/LIN.png"
+  },
+  {
+    "rank": 80,
+    "name": "CrowdStrike",
+    "ticker": "CRWD",
+    "marketCapUsd": 225951727616,
+    "displayValue": "$226B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/CRWD.png"
+  },
+  {
+    "rank": 81,
+    "name": "China Mobile",
+    "ticker": "0941.HK",
+    "marketCapUsd": 225363497264,
+    "displayValue": "$225B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/0941.HK.png"
+  },
+  {
+    "rank": 82,
+    "name": "Toyota",
+    "ticker": "TM",
+    "marketCapUsd": 224766853120,
+    "displayValue": "$225B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TM.png"
+  },
+  {
+    "rank": 83,
+    "name": "IBM",
+    "ticker": "IBM",
+    "marketCapUsd": 224623689728,
+    "displayValue": "$225B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/IBM.png"
+  },
+  {
+    "rank": 84,
+    "name": "International Holding Company",
+    "ticker": "IHC.AE",
+    "marketCapUsd": 223982976275,
+    "displayValue": "$224B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/IHC.AE.png"
+  },
+  {
+    "rank": 85,
+    "name": "Thermo Fisher Scientific",
+    "ticker": "TMO",
+    "marketCapUsd": 223697108992,
+    "displayValue": "$224B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TMO.png"
+  },
+  {
+    "rank": 86,
+    "name": "Amgen",
+    "ticker": "AMGN",
+    "marketCapUsd": 223601131520,
+    "displayValue": "$224B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMGN.png"
+  },
+  {
+    "rank": 87,
+    "name": "PetroChina",
+    "ticker": "0857.HK",
+    "marketCapUsd": 221816191984,
+    "displayValue": "$222B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/0857.HK.png"
+  },
+  {
+    "rank": 88,
+    "name": "Santander",
+    "ticker": "SAN",
+    "marketCapUsd": 209861459968,
+    "displayValue": "$210B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SAN.png"
+  },
+  {
+    "rank": 89,
+    "name": "Inditex",
+    "ticker": "ITX.MC",
+    "marketCapUsd": 209809168731,
+    "displayValue": "$210B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/ITX.MC.png"
+  },
+  {
+    "rank": 90,
+    "name": "Novo Nordisk",
+    "ticker": "NVO",
+    "marketCapUsd": 206658846720,
+    "displayValue": "$207B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVO.png"
+  },
+  {
+    "rank": 91,
+    "name": "Amphenol",
+    "ticker": "APH",
+    "marketCapUsd": 206191820800,
+    "displayValue": "$206B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/APH.png"
+  },
+  {
+    "rank": 92,
+    "name": "Commonwealth Bank",
+    "ticker": "CBA.AX",
+    "marketCapUsd": 204105462848,
+    "displayValue": "$204B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/CBA.AX.png"
+  },
+  {
+    "rank": 93,
+    "name": "Schneider Electric",
+    "ticker": "SU.PA",
+    "marketCapUsd": 200732912704,
+    "displayValue": "$201B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SU.PA.png"
+  },
+  {
+    "rank": 94,
+    "name": "Toronto Dominion Bank",
+    "ticker": "TD",
+    "marketCapUsd": 200509423616,
+    "displayValue": "$201B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/TD.png"
+  },
+  {
+    "rank": 95,
+    "name": "Prosus",
+    "ticker": "PRX.AS",
+    "marketCapUsd": 199111769042,
+    "displayValue": "$199B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/PRX.AS.png"
+  },
+  {
+    "rank": 96,
+    "name": "MediaTek",
+    "ticker": "2454.TW",
+    "marketCapUsd": 199040808427,
+    "displayValue": "$199B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/2454.TW.png"
+  },
+  {
+    "rank": 97,
+    "name": "SoftBank Group Corp.",
+    "ticker": "9984.T",
+    "marketCapUsd": 197613276971,
+    "displayValue": "$198B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/9984.T.png"
+  },
+  {
+    "rank": 98,
+    "name": "Verizon",
+    "ticker": "VZ",
+    "marketCapUsd": 196396236800,
+    "displayValue": "$196B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/VZ.png"
+  },
+  {
+    "rank": 99,
+    "name": "Shopify",
+    "ticker": "SHOP",
+    "marketCapUsd": 196354736128,
+    "displayValue": "$196B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/SHOP.png"
+  },
+  {
+    "rank": 100,
+    "name": "Airbus",
+    "ticker": "AIR.PA",
+    "marketCapUsd": 196089165930,
+    "displayValue": "$196B",
+    "imageUrl": "https://companiesmarketcap.com/img/company-logos/256/AIR.PA.png"
+  }
+]

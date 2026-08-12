@@ -1,8 +1,39 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { fetchRound, type GameItem, type RoundResponse } from "../lib/api";
+import { Link } from "react-router-dom";
+import { fetchRound, type GameItem } from "../lib/api";
+import HowToPlay from "../components/HowToPlay";
 
-type Phase = "guessing" | "revealing" | "correct" | "wrong" | "sliding";
+type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding";
+type Side = "left" | "right";
+
+const ROUNDS_PER_LEVEL = 5;
+
+const LEVELS = [
+  { slug: "billionaires", short: "Billionaires", title: "Forbes Billionaires" },
+  { slug: "market-cap", short: "Market Cap", title: "Company Market Cap" },
+  { slug: "player-salaries", short: "Salaries", title: "Player Salaries" },
+  { slug: "box-office", short: "Box Office", title: "Movie Box Office" },
+  { slug: "country-gdp", short: "GDP", title: "Country GDP" },
+] as const;
+
+interface LevelData {
+  slug: string;
+  title: string;
+  short: string;
+  metricLabel: string;
+  /** Chained items: round i compares chain[i] vs chain[i+1]. */
+  chain: GameItem[];
+}
+
+interface AnswerRecord {
+  levelIndex: number;
+  levelShort: string;
+  metricLabel: string;
+  left: GameItem;
+  right: GameItem;
+  picked: Side;
+  correct: boolean;
+}
 
 function shuffle<T>(arr: T[]): T[] {
   const out = [...arr];
@@ -13,7 +44,36 @@ function shuffle<T>(arr: T[]): T[] {
   return out;
 }
 
-function useCountUp(target: number, running: boolean, duration = 800): number {
+/** Build a continuous chain of N+1 items for N rounds (right becomes next left). */
+function buildChain(items: GameItem[], rounds: number): GameItem[] {
+  const need = rounds + 1;
+  const pool = shuffle(items);
+  const chain: GameItem[] = [];
+
+  for (const item of pool) {
+    if (chain.length === 0) {
+      chain.push(item);
+      continue;
+    }
+    if (item.id === chain[chain.length - 1].id) continue;
+    if (item.value === chain[chain.length - 1].value) continue;
+    chain.push(item);
+    if (chain.length >= need) break;
+  }
+
+  // Fallback: fill remaining even if values match.
+  if (chain.length < need) {
+    for (const item of shuffle(items)) {
+      if (chain.some((c) => c.id === item.id)) continue;
+      chain.push(item);
+      if (chain.length >= need) break;
+    }
+  }
+
+  return chain.slice(0, need);
+}
+
+function useCountUp(target: number, running: boolean, duration = 1200): number {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!running) {
@@ -35,7 +95,6 @@ function useCountUp(target: number, running: boolean, duration = 800): number {
 }
 
 function formatCounting(value: number, finalDisplay: string): string {
-  // Match the magnitude of the final formatted value (e.g. "$27.4T").
   const suffix = finalDisplay.replace(/[^TBM]/g, "").slice(-1);
   const divisor = suffix === "T" ? 1e12 : suffix === "B" ? 1e9 : suffix === "M" ? 1e6 : 1;
   const n = value / divisor;
@@ -43,13 +102,9 @@ function formatCounting(value: number, finalDisplay: string): string {
   return `$${n.toFixed(digits)}${suffix === "$" ? "" : suffix}`;
 }
 
-function bestScoreKey(slug: string): string {
-  return `moneygames.moreless.best.${slug}`;
-}
-
-function CardMedia({ item }: { item: GameItem }) {
+function CardMedia({ item, mode = "cover" }: { item: GameItem; mode?: "cover" | "logo" }) {
   return (
-    <div className="card-media">
+    <div className={`card-media${mode === "logo" ? " logo" : ""}`}>
       {item.imageUrl ? (
         <img src={item.imageUrl} alt={item.name} loading="eager" />
       ) : (
@@ -59,100 +114,176 @@ function CardMedia({ item }: { item: GameItem }) {
   );
 }
 
+function cardClass(
+  side: Side,
+  phase: Phase,
+  selected: Side | null,
+  correctSide: Side | null
+): string {
+  const classes = ["card", "pickable", side];
+  if (phase === "guessing") classes.push("clickable");
+  if (selected === side && (phase === "selected" || phase === "revealing")) {
+    classes.push("selected");
+  }
+  const showResult = phase === "correct" || phase === "wrong" || phase === "sliding";
+  if (showResult && selected === side) {
+    classes.push(selected === correctSide ? "correct" : "wrong");
+  }
+  if (phase === "wrong" && correctSide === side && selected !== side) {
+    classes.push("reveal-winner");
+  }
+  return classes.join(" ");
+}
+
 export default function Game() {
-  const { slug = "" } = useParams();
-  const [round, setRound] = useState<RoundResponse | null>(null);
+  const [levels, setLevels] = useState<LevelData[] | null>(null);
   const [error, setError] = useState(false);
-  const [deck, setDeck] = useState<GameItem[]>([]);
-  const [index, setIndex] = useState(0); // left card = deck[index]
+  const [levelIndex, setLevelIndex] = useState(0);
+  const [roundIndex, setRoundIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>("guessing");
-  const [score, setScore] = useState(0);
-  const [best, setBest] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  const [selected, setSelected] = useState<Side | null>(null);
+  const [answers, setAnswers] = useState<AnswerRecord[]>([]);
+  const [finished, setFinished] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
+  const [runKey, setRunKey] = useState(0);
   const timers = useRef<number[]>([]);
 
-  const left = deck[index];
-  const right = deck[index + 1];
-  const revealing = phase !== "guessing";
-  const counted = useCountUp(right?.value ?? 0, revealing);
-
   useEffect(() => {
-    setBest(Number(localStorage.getItem(bestScoreKey(slug)) || 0));
-    fetchRound(slug)
-      .then((data) => {
-        setRound(data);
-        setDeck(shuffle(data.items));
+    let cancelled = false;
+    setError(false);
+    setLevels(null);
+    Promise.all(LEVELS.map((lvl) => fetchRound(lvl.slug)))
+      .then((results) => {
+        if (cancelled) return;
+        setLevels(
+          results.map((res, i) => ({
+            slug: LEVELS[i].slug,
+            title: LEVELS[i].title,
+            short: LEVELS[i].short,
+            metricLabel: res.category.metricLabel,
+            chain: buildChain(res.items, ROUNDS_PER_LEVEL),
+          }))
+        );
       })
-      .catch(() => setError(true));
-    return () => timers.current.forEach(clearTimeout);
-  }, [slug]);
+      .catch(() => {
+        if (!cancelled) setError(true);
+      });
+    return () => {
+      cancelled = true;
+      timers.current.forEach(clearTimeout);
+    };
+  }, [runKey]);
 
-  const guess = useCallback(
-    (choice: "more" | "less") => {
+  const clearTimers = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+  };
+
+  const level = levels?.[levelIndex] ?? null;
+  const left = level?.chain?.[roundIndex];
+  const right = level?.chain?.[roundIndex + 1];
+
+  const revealing =
+    phase === "revealing" || phase === "correct" || phase === "wrong" || phase === "sliding";
+  const rightCounted = useCountUp(right?.value ?? 0, revealing);
+  const correctSide: Side | null =
+    left && right ? (left.value >= right.value ? "left" : "right") : null;
+
+  const advance = useCallback(
+    (wasCorrect: boolean, picked: Side, currentLeft: GameItem, currentRight: GameItem) => {
+      if (!level) return;
+      const record: AnswerRecord = {
+        levelIndex,
+        levelShort: level.short,
+        metricLabel: level.metricLabel,
+        left: currentLeft,
+        right: currentRight,
+        picked,
+        correct: wasCorrect,
+      };
+      setAnswers((prev) => [...prev, record]);
+
+      const nextRound = roundIndex + 1;
+      const isLastRound = nextRound >= ROUNDS_PER_LEVEL;
+      const isLastLevel = levelIndex >= LEVELS.length - 1;
+
+      // Within a level: slide the revealed right card into the left slot.
+      if (!isLastRound) {
+        setPhase("sliding");
+        timers.current.push(
+          window.setTimeout(() => {
+            setRoundIndex(nextRound);
+            setSelected(null);
+            setPhase("guessing");
+          }, 450)
+        );
+        return;
+      }
+
+      // Next level / finish: hard cut (no shared card to carry over).
+      setSelected(null);
+      if (!isLastLevel) {
+        setLevelIndex((i) => i + 1);
+        setRoundIndex(0);
+        setPhase("guessing");
+        return;
+      }
+      setFinished(true);
+    },
+    [level, levelIndex, roundIndex]
+  );
+
+  const pick = useCallback(
+    (side: Side) => {
       if (phase !== "guessing" || !left || !right) return;
-      const isMore = right.value >= left.value;
-      const correct = choice === "more" ? isMore : !isMore;
-      setPhase("revealing");
+      clearTimers();
+      setSelected(side);
+      setPhase("selected");
+
+      const isCorrect =
+        side === "left" ? left.value >= right.value : right.value >= left.value;
 
       timers.current.push(
         window.setTimeout(() => {
-          setPhase(correct ? "correct" : "wrong");
-          if (correct) {
-            const newScore = score + 1;
-            setScore(newScore);
-            if (newScore > best) {
-              setBest(newScore);
-              localStorage.setItem(bestScoreKey(slug), String(newScore));
-            }
-            timers.current.push(
-              window.setTimeout(() => {
-                setPhase("sliding");
-                timers.current.push(
-                  window.setTimeout(() => {
-                    // Advance; reshuffle when the deck runs out.
-                    if (index + 2 >= deck.length - 1) {
-                      const current = deck[index + 1];
-                      const rest = shuffle(deck.filter((i) => i.id !== current.id));
-                      setDeck([current, ...rest]);
-                      setIndex(0);
-                    } else {
-                      setIndex((i) => i + 1);
-                    }
-                    setPhase("guessing");
-                  }, 450)
-                );
-              }, 900)
-            );
-          } else {
-            timers.current.push(
-              window.setTimeout(() => setGameOver(true), 1100)
-            );
-          }
-        }, 850)
+          setPhase("revealing");
+          timers.current.push(
+            window.setTimeout(() => {
+              setPhase(isCorrect ? "correct" : "wrong");
+              timers.current.push(
+                window.setTimeout(() => {
+                  advance(isCorrect, side, left, right);
+                }, 900)
+              );
+            }, 1300)
+          );
+        }, 700)
       );
     },
-    [phase, left, right, score, best, slug, index, deck]
+    [phase, left, right, advance]
   );
 
   const restart = useCallback(() => {
-    setDeck((d) => shuffle(d));
-    setIndex(0);
-    setScore(0);
-    setGameOver(false);
+    clearTimers();
+    setLevelIndex(0);
+    setRoundIndex(0);
     setPhase("guessing");
+    setSelected(null);
+    setAnswers([]);
+    setFinished(false);
+    setRunKey((k) => k + 1);
   }, []);
 
   if (error) {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load this category. <Link to="/moreless">Back to categories</Link>
+          Could not load the game. <Link to="/">Back home</Link>
         </p>
       </main>
     );
   }
 
-  if (!round || !left || !right) {
+  if (!levels || !level || !left || !right) {
     return (
       <main className="page">
         <p className="status-msg">Loading…</p>
@@ -160,41 +291,118 @@ export default function Game() {
     );
   }
 
-  const metric = round.category.metricLabel;
+  if (finished) {
+    const total = answers.length;
+    const correctCount = answers.filter((a) => a.correct).length;
+    const byLevel = LEVELS.map((lvl, i) => {
+      const rows = answers.filter((a) => a.levelIndex === i);
+      return {
+        short: lvl.short,
+        correct: rows.filter((r) => r.correct).length,
+        total: rows.length,
+      };
+    });
+
+    return (
+      <main className="game-page">
+        <div className="review-screen">
+          <h1>Run complete</h1>
+          <p className="review-score">
+            <strong>{correctCount}</strong>
+            <span> / {total}</span>
+          </p>
+          <p className="review-sub">Here&apos;s how you did across all five levels.</p>
+          <ul className="review-levels">
+            {byLevel.map((row) => (
+              <li key={row.short}>
+                <span>{row.short}</span>
+                <strong>
+                  {row.correct}/{row.total}
+                </strong>
+              </li>
+            ))}
+          </ul>
+          <div className="overlay-actions">
+            <button className="btn primary" onClick={restart}>
+              Play again
+            </button>
+            <Link className="btn ghost" to="/">
+              Home
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const metric = level.metricLabel;
+  const mediaMode = level.slug === "market-cap" ? "logo" : "cover";
   const verdictClass =
-    phase === "correct" || (phase === "sliding" && !gameOver)
+    phase === "correct" || (phase === "sliding" && selected === correctSide)
       ? "correct"
-      : phase === "wrong"
+      : phase === "wrong" || (phase === "sliding" && selected && selected !== correctSide)
         ? "wrong"
         : "";
+
+  const rightValue = () => {
+    if (!revealing) return <span className="card-value hidden">?</span>;
+    if (phase === "revealing") {
+      return (
+        <span className="card-value counting">
+          {formatCounting(rightCounted, right.displayValue)}
+        </span>
+      );
+    }
+    return <span className="card-value">{right.displayValue}</span>;
+  };
 
   return (
     <main className="game-page">
       <div className="game-topbar">
-        <Link to="/moreless" className="back-link">
-          &larr; Categories
-        </Link>
-        <span className="game-title">{round.category.title}</span>
-        <div className="scores">
-          <span>
-            Score <strong>{score}</strong>
+        <h1 className="game-heading">More/Less</h1>
+        <div className="topbar-right">
+          <span className="round-chip">
+            {roundIndex + 1}/{ROUNDS_PER_LEVEL}
           </span>
-          <span>
-            Best <strong>{best}</strong>
-          </span>
+          <button
+            type="button"
+            className="help-btn"
+            onClick={() => setShowHelp(true)}
+            aria-label="How to play"
+            title="How to play"
+          >
+            ?
+          </button>
         </div>
       </div>
 
+      <div className="level-progress" aria-label="Levels">
+        {LEVELS.map((lvl, i) => {
+          const state =
+            i < levelIndex ? "done" : i === levelIndex ? "current" : "todo";
+          return (
+            <div key={lvl.slug} className={`level-pill ${state}`}>
+              {state === "current" ? lvl.short : i + 1}
+            </div>
+          );
+        })}
+      </div>
+
       <div className={`board ${phase === "sliding" ? "sliding" : ""}`}>
-        <section className="card known">
-          <CardMedia item={left} />
+        <button
+          type="button"
+          className={cardClass("left", phase, selected, correctSide)}
+          onClick={() => pick("left")}
+          disabled={phase !== "guessing"}
+        >
+          <CardMedia item={left} mode={mediaMode} />
           <div className="card-body">
             <h2>{left.name}</h2>
             {left.subtitle && <p className="card-sub">{left.subtitle}</p>}
             <p className="card-metric">{metric}</p>
-            <p className="card-value">{left.displayValue}</p>
+            <span className="card-value">{left.displayValue}</span>
           </div>
-        </section>
+        </button>
 
         <div className={`vs-badge ${verdictClass}`}>
           {verdictClass === "correct" ? (
@@ -206,66 +414,27 @@ export default function Game() {
               <path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4L13.4 12z" />
             </svg>
           ) : (
-            "VS"
+            "vs"
           )}
         </div>
 
-        <section className={`card mystery ${verdictClass}`}>
-          <CardMedia item={right} />
+        <button
+          type="button"
+          className={cardClass("right", phase, selected, correctSide)}
+          onClick={() => pick("right")}
+          disabled={phase !== "guessing"}
+        >
+          <CardMedia item={right} mode={mediaMode} />
           <div className="card-body">
             <h2>{right.name}</h2>
             {right.subtitle && <p className="card-sub">{right.subtitle}</p>}
             <p className="card-metric">{metric}</p>
-            {revealing ? (
-              <p className="card-value">
-                {phase === "revealing"
-                  ? formatCounting(counted, right.displayValue)
-                  : right.displayValue}
-              </p>
-            ) : (
-              <div className="guess-buttons">
-                <button className="btn more" onClick={() => guess("more")}>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M12 5 4 15h16z" />
-                  </svg>
-                  More
-                </button>
-                <button className="btn less" onClick={() => guess("less")}>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                    <path d="M12 19 4 9h16z" />
-                  </svg>
-                  Less
-                </button>
-              </div>
-            )}
+            {rightValue()}
           </div>
-        </section>
+        </button>
       </div>
 
-      <p className="game-hint">
-        Does <strong>{right.name}</strong> have a higher {metric} than{" "}
-        <strong>{left.name}</strong>?
-      </p>
-
-      {gameOver && (
-        <div className="overlay">
-          <div className="overlay-card">
-            <h2>Game over</h2>
-            <p className="final-score">{score}</p>
-            <p className="overlay-sub">
-              {score >= best && score > 0 ? "New best score!" : `Best: ${best}`}
-            </p>
-            <div className="overlay-actions">
-              <button className="btn primary" onClick={restart}>
-                Play again
-              </button>
-              <Link className="btn ghost" to="/moreless">
-                Change category
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+      {showHelp && <HowToPlay onClose={() => setShowHelp(false)} />}
     </main>
   );
 }

@@ -1,6 +1,5 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import CategorySelect from "./pages/CategorySelect";
 import Game from "./pages/Game";
 
 export default function App() {
@@ -13,8 +12,8 @@ export default function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/moreless" element={<CategorySelect />} />
-        <Route path="/moreless/:slug" element={<Game />} />
+        <Route path="/moreless" element={<Game />} />
+        <Route path="/moreless/:slug" element={<Navigate to="/moreless" replace />} />
       </Routes>
     </div>
   );
