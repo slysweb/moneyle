@@ -5,6 +5,9 @@
 
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS denominations;
+DROP TABLE IF EXISTS currencies;
+DROP TABLE IF EXISTS daily_puzzles;
 
 CREATE TABLE categories (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,3 +42,42 @@ CREATE TABLE items (
 );
 
 CREATE INDEX idx_items_category_active ON items (category_id, is_active);
+
+-- Money Guessr: currency denominations (bills and coins) used to build memory puzzles.
+CREATE TABLE currencies (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug       TEXT NOT NULL UNIQUE,
+  name       TEXT NOT NULL,
+  code       TEXT NOT NULL,
+  symbol     TEXT NOT NULL,
+  minor_digits INTEGER NOT NULL DEFAULT 2,     -- 0 for JPY / KRW
+  country    TEXT,
+  is_active  INTEGER NOT NULL DEFAULT 1,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  created_at    TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE denominations (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  currency_id INTEGER NOT NULL REFERENCES currencies(id) ON DELETE CASCADE,
+  slug        TEXT NOT NULL,
+  kind        TEXT NOT NULL CHECK (kind IN ('bill', 'coin')),
+  name        TEXT NOT NULL,
+  value_cents INTEGER NOT NULL,                 -- minor units (cents, yen, won, …)
+  image_url   TEXT NOT NULL,
+  sort_order  INTEGER NOT NULL DEFAULT 0,
+  is_active   INTEGER NOT NULL DEFAULT 1,
+  UNIQUE (currency_id, slug)
+);
+
+CREATE INDEX idx_denoms_currency_active ON denominations (currency_id, is_active, sort_order);
+
+-- One shared puzzle per game per America/Denver calendar day.
+CREATE TABLE daily_puzzles (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  game        TEXT NOT NULL CHECK (game IN ('moreless', 'guessr', 'moneyle')),
+  puzzle_date TEXT NOT NULL,                    -- YYYY-MM-DD in America/Denver
+  payload     TEXT NOT NULL,                    -- JSON
+  created_at  TEXT NOT NULL DEFAULT (datetime('now')),
+  UNIQUE (game, puzzle_date)
+);

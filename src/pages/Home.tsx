@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import { usePageMeta } from "../lib/usePageMeta";
 
 export default function Home() {
+  usePageMeta(
+    "MoneyGames — Games about money",
+    "Free browser games about money. Play More/Less, Money Guessr, and Moneyle — test your intuition for wealth, cash, and currencies."
+  );
+
   return (
     <main className="page">
       <section className="hero">
@@ -8,7 +14,8 @@ export default function Home() {
         <p className="hero-tagline">Games about money.</p>
         <p className="hero-sub">
           Quick, free browser games that test your intuition for the numbers
-          behind wealth, economies and markets.
+          behind wealth, economies and markets. New puzzles every day at
+          midnight Denver time — the same ones for everyone.
         </p>
       </section>
 
@@ -23,13 +30,25 @@ export default function Home() {
           <span className="game-card-cta">Play More/Less →</span>
         </Link>
 
-        <div className="game-card soon">
-          <div className="game-card-badge">Coming soon</div>
-          <h2>More games</h2>
+        <Link to="/guessr" className="game-card playable">
+          <div className="game-card-badge">Play now</div>
+          <h2>Money Guessr</h2>
           <p>
-            New money games are in the works. Follow along as MoneyGames grows.
+            A pile of bills and coins flashes for five seconds. How much was
+            it? Five rounds, scored by how close your guess is.
           </p>
-        </div>
+          <span className="game-card-cta">Play Money Guessr →</span>
+        </Link>
+
+        <Link to="/moneyle" className="game-card playable">
+          <div className="game-card-badge">Play now</div>
+          <h2>Moneyle</h2>
+          <p>
+            A frosted banknote and six guesses. Use live exchange rates to
+            home in on the hidden currency.
+          </p>
+          <span className="game-card-cta">Play Moneyle →</span>
+        </Link>
       </section>
 
       <footer className="site-footer">

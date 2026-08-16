@@ -1,29 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchRound, type GameItem } from "../lib/api";
+import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/api";
 import HowToPlay from "../components/HowToPlay";
+import { usePageMeta } from "../lib/usePageMeta";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding";
 type Side = "left" | "right";
 
 const ROUNDS_PER_LEVEL = 5;
-
-const LEVELS = [
-  { slug: "billionaires", short: "Billionaires", title: "Forbes Billionaires" },
-  { slug: "market-cap", short: "Market Cap", title: "Company Market Cap" },
-  { slug: "player-salaries", short: "Salaries", title: "Player Salaries" },
-  { slug: "box-office", short: "Box Office", title: "Movie Box Office" },
-  { slug: "country-gdp", short: "GDP", title: "Country GDP" },
-] as const;
-
-interface LevelData {
-  slug: string;
-  title: string;
-  short: string;
-  metricLabel: string;
-  /** Chained items: round i compares chain[i] vs chain[i+1]. */
-  chain: GameItem[];
-}
 
 interface AnswerRecord {
   levelIndex: number;
@@ -33,44 +17,6 @@ interface AnswerRecord {
   right: GameItem;
   picked: Side;
   correct: boolean;
-}
-
-function shuffle<T>(arr: T[]): T[] {
-  const out = [...arr];
-  for (let i = out.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [out[i], out[j]] = [out[j], out[i]];
-  }
-  return out;
-}
-
-/** Build a continuous chain of N+1 items for N rounds (right becomes next left). */
-function buildChain(items: GameItem[], rounds: number): GameItem[] {
-  const need = rounds + 1;
-  const pool = shuffle(items);
-  const chain: GameItem[] = [];
-
-  for (const item of pool) {
-    if (chain.length === 0) {
-      chain.push(item);
-      continue;
-    }
-    if (item.id === chain[chain.length - 1].id) continue;
-    if (item.value === chain[chain.length - 1].value) continue;
-    chain.push(item);
-    if (chain.length >= need) break;
-  }
-
-  // Fallback: fill remaining even if values match.
-  if (chain.length < need) {
-    for (const item of shuffle(items)) {
-      if (chain.some((c) => c.id === item.id)) continue;
-      chain.push(item);
-      if (chain.length >= need) break;
-    }
-  }
-
-  return chain.slice(0, need);
 }
 
 function useCountUp(target: number, running: boolean, duration = 1200): number {
@@ -136,7 +82,12 @@ function cardClass(
 }
 
 export default function Game() {
-  const [levels, setLevels] = useState<LevelData[] | null>(null);
+  usePageMeta(
+    "More/Less — MoneyGames",
+    "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition."
+  );
+
+  const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
   const [error, setError] = useState(false);
   const [levelIndex, setLevelIndex] = useState(0);
   const [roundIndex, setRoundIndex] = useState(0);
@@ -152,18 +103,10 @@ export default function Game() {
     let cancelled = false;
     setError(false);
     setLevels(null);
-    Promise.all(LEVELS.map((lvl) => fetchRound(lvl.slug)))
-      .then((results) => {
+    fetchMorelessToday()
+      .then((res) => {
         if (cancelled) return;
-        setLevels(
-          results.map((res, i) => ({
-            slug: LEVELS[i].slug,
-            title: LEVELS[i].title,
-            short: LEVELS[i].short,
-            metricLabel: res.category.metricLabel,
-            chain: buildChain(res.items, ROUNDS_PER_LEVEL),
-          }))
-        );
+        setLevels(res.levels);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -205,7 +148,7 @@ export default function Game() {
 
       const nextRound = roundIndex + 1;
       const isLastRound = nextRound >= ROUNDS_PER_LEVEL;
-      const isLastLevel = levelIndex >= LEVELS.length - 1;
+      const isLastLevel = levelIndex >= (levels?.length ?? 1) - 1;
 
       // Within a level: slide the revealed right card into the left slot.
       if (!isLastRound) {
@@ -230,7 +173,7 @@ export default function Game() {
       }
       setFinished(true);
     },
-    [level, levelIndex, roundIndex]
+    [level, levelIndex, roundIndex, levels]
   );
 
   const pick = useCallback(
@@ -294,7 +237,7 @@ export default function Game() {
   if (finished) {
     const total = answers.length;
     const correctCount = answers.filter((a) => a.correct).length;
-    const byLevel = LEVELS.map((lvl, i) => {
+    const byLevel = (levels ?? []).map((lvl, i) => {
       const rows = answers.filter((a) => a.levelIndex === i);
       return {
         short: lvl.short,
@@ -377,7 +320,7 @@ export default function Game() {
       </div>
 
       <div className="level-progress" aria-label="Levels">
-        {LEVELS.map((lvl, i) => {
+        {levels.map((lvl, i) => {
           const state =
             i < levelIndex ? "done" : i === levelIndex ? "current" : "todo";
           return (

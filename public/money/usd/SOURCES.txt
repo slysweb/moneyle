@@ -1,0 +1,10 @@
+USD cash images used by Money Guessr
+=====================================
+
+Bills: bill-1.jpg, bill-2.jpg, bill-5.jpg, bill-10.jpg,
+       bill-20.jpg, bill-50.jpg, bill-100.jpg
+Coins: coin-penny.png, coin-nickel.png, coin-dime.png,
+       coin-quarter.png, coin-half.png, coin-dollar.png
+
+Illustrations are one-sided and shown smaller than 3/4 of actual note
+dimensions, per 31 CFR 411.

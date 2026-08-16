@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 
-const ELON_IMG =
-  "https://specials-images.forbesimg.com/imageserve/62d700cd6094d2c180f269b9/416x416.jpg?background=000000&cropX1=0&cropX2=959&cropY1=0&cropY2=959";
-const BEZOS_IMG =
-  "https://specials-images.forbesimg.com/imageserve/67531eb2b5f7c9e191f632d7/416x416.jpg?background=000000&cropX1=316&cropX2=1027&cropY1=125&cropY2=838";
+const ELON_IMG = "/moreless/billionaires/elon-musk.jpg";
+const BEZOS_IMG = "/moreless/billionaires/jeff-bezos.jpg";
 
 interface HowToPlayProps {
   onClose: () => void;
@@ -46,7 +44,7 @@ export default function HowToPlay({ onClose }: HowToPlayProps) {
               <span>Jeff Bezos</span>
             </div>
           </div>
-          <p className="howto-rounds">Go through 5 levels, 5 rounds each.</p>
+          <p className="howto-rounds">Five levels, five rounds each. A new set every day at midnight Denver time.</p>
           <div className="howto-verdicts">
             <span className="howto-correct">
               <span className="howto-icon correct" aria-hidden="true">

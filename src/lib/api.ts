@@ -21,9 +21,40 @@ export interface GameItem {
   imageUrl: string | null;
 }
 
-export interface RoundResponse {
-  category: { slug: string; title: string; metricLabel: string };
-  items: GameItem[];
+export interface MorelessLevel {
+  slug: string;
+  title: string;
+  short: string;
+  metricLabel: string;
+  chain: GameItem[];
+}
+
+export interface MorelessTodayResponse {
+  date: string;
+  levels: MorelessLevel[];
+}
+
+export interface GuessrPiece {
+  denominationId: number;
+  slug: string;
+  kind: "bill" | "coin";
+  name: string;
+  valueCents: number;
+  imageUrl: string;
+}
+
+export interface GuessrCurrency {
+  slug: string;
+  name: string;
+  code: string;
+  symbol: string;
+  minorDigits: number;
+}
+
+export interface GuessrTodayResponse {
+  date: string;
+  currency: GuessrCurrency;
+  puzzles: { pieces: GuessrPiece[] }[];
 }
 
 async function getJson<T>(url: string): Promise<T> {
@@ -36,6 +67,42 @@ export function fetchCategories(): Promise<{ categories: Category[] }> {
   return getJson("/api/categories");
 }
 
-export function fetchRound(slug: string): Promise<RoundResponse> {
-  return getJson(`/api/round?category=${encodeURIComponent(slug)}&count=200`);
+export function fetchMorelessToday(): Promise<MorelessTodayResponse> {
+  return getJson("/api/moreless/today");
+}
+
+export function fetchGuessrToday(): Promise<GuessrTodayResponse> {
+  return getJson("/api/guessr/today");
+}
+
+export interface MoneyleCurrency {
+  code: string;
+  name: string;
+  country: string;
+}
+
+export interface MoneylePuzzleResponse {
+  date: string;
+  imageUrl: string;
+  maxGuesses: number;
+  currencies: MoneyleCurrency[];
+}
+
+export interface MoneyleGuessResult {
+  correct: boolean;
+  remaining: number;
+  closeness: number;
+  stronger: boolean;
+  rateDisplay: string;
+  target: MoneyleCurrency | null;
+}
+
+export function fetchMoneylePuzzle(): Promise<MoneylePuzzleResponse> {
+  return getJson("/api/moneyle/puzzle");
+}
+
+export function fetchMoneyleGuess(code: string, attempt?: number): Promise<MoneyleGuessResult> {
+  const params = new URLSearchParams({ code });
+  if (attempt != null) params.set("attempt", String(attempt));
+  return getJson(`/api/moneyle/guess?${params.toString()}`);
 }

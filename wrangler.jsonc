@@ -1,24 +1,38 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "moneygames",
-  "main": "worker/index.ts",
-  "compatibility_date": "2026-08-01",
-  "assets": {
-    "binding": "ASSETS",
-    "not_found_handling": "single-page-application"
-  },
-  "observability": {
-    "enabled": true
-  },
-  // Custom domain is attached after first deploy:
-  //   wrangler deploy && add route in dashboard, or uncomment below.
-  // "routes": [{ "pattern": "moneygames.cc", "custom_domain": true }],
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "moneygames-db",
-      // Replace with the real ID from `wrangler d1 create moneygames-db`.
-      "database_id": "00000000-0000-0000-0000-000000000000"
-    }
-  ]
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "moneygames",
+	"main": "worker/index.ts",
+	"compatibility_date": "2026-08-01",
+	"assets": {
+		"binding": "ASSETS",
+		"not_found_handling": "single-page-application"
+	},
+	"observability": {
+		"enabled": true
+	},
+	// America/Denver midnight: 07:00 UTC in MST, 06:00 UTC in MDT.
+	"triggers": {
+		"crons": [
+			"0 6 * * *",
+			"0 7 * * *"
+		]
+	},
+	"routes": [
+		{ "pattern": "moneygames.cc", "custom_domain": true },
+		{ "pattern": "www.moneygames.cc", "custom_domain": true }
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "moneygames-db",
+			// Replace with the real ID from `wrangler d1 create moneygames-db`.
+			"database_id": "c956e4e8-8335-4bca-a75c-f7ddd2ec0834"
+		},
+		{
+			"binding": "moneygames_db",
+			"database_name": "moneygames-db",
+			"database_id": "c956e4e8-8335-4bca-a75c-f7ddd2ec0834",
+			"remote": true
+		}
+	]
 }

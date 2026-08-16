@@ -6,7 +6,8 @@
     "displayValue": "$834B",
     "source": "Tesla, SpaceX",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/62d700cd6094d2c180f269b9/416x416.jpg?background=000000&cropX1=0&cropX2=959&cropY1=0&cropY2=959"
+    "imageUrl": "/moreless/billionaires/elon-musk.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/62d700cd6094d2c180f269b9/416x416.jpg?background=000000&cropX1=0&cropX2=959&cropY1=0&cropY2=959"
   },
   {
     "rank": 2,
@@ -15,7 +16,8 @@
     "displayValue": "$288B",
     "source": "Google",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c76bcaaa7ea43100043c836/416x416.jpg?background=000000&cropX1=227&cropX2=2022&cropY1=22&cropY2=1817"
+    "imageUrl": "/moreless/billionaires/larry-page.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c76bcaaa7ea43100043c836/416x416.jpg?background=000000&cropX1=227&cropX2=2022&cropY1=22&cropY2=1817"
   },
   {
     "rank": 3,
@@ -24,7 +26,8 @@
     "displayValue": "$280B",
     "source": "Amazon",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/67531eb2b5f7c9e191f632d7/416x416.jpg?background=000000&cropX1=316&cropX2=1027&cropY1=125&cropY2=838"
+    "imageUrl": "/moreless/billionaires/jeff-bezos.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/67531eb2b5f7c9e191f632d7/416x416.jpg?background=000000&cropX1=316&cropX2=1027&cropY1=125&cropY2=838"
   },
   {
     "rank": 4,
@@ -33,7 +36,8 @@
     "displayValue": "$265B",
     "source": "Google",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c7d7c254bbe6f78090d831f/416x416.jpg?background=000000&cropX1=475&cropX2=2887&cropY1=168&cropY2=2582"
+    "imageUrl": "/moreless/billionaires/sergey-brin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c7d7c254bbe6f78090d831f/416x416.jpg?background=000000&cropX1=475&cropX2=2887&cropY1=168&cropY2=2582"
   },
   {
     "rank": 5,
@@ -42,7 +46,8 @@
     "displayValue": "$246B",
     "source": "Dell Technologies",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/615c93f9da61f2ff5b9ecf9b/416x416.jpg?background=000000&cropX1=0&cropX2=1678&cropY1=118&cropY2=1797"
+    "imageUrl": "/moreless/billionaires/michael-dell.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/615c93f9da61f2ff5b9ecf9b/416x416.jpg?background=000000&cropX1=0&cropX2=1678&cropY1=118&cropY2=1797"
   },
   {
     "rank": 6,
@@ -51,7 +56,8 @@
     "displayValue": "$209B",
     "source": "Facebook",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b7d331358e35dd2773a9/416x416.jpg?background=000000&cropX1=0&cropX2=4401&cropY1=0&cropY2=4401"
+    "imageUrl": "/moreless/billionaires/mark-zuckerberg.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b7d331358e35dd2773a9/416x416.jpg?background=000000&cropX1=0&cropX2=4401&cropY1=0&cropY2=4401"
   },
   {
     "rank": 7,
@@ -60,7 +66,8 @@
     "displayValue": "$189B",
     "source": "Semiconductors",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/68750a2d250de42ce7c5301b/416x416.jpg?background=000000&cropX1=832&cropX2=2632&cropY1=152&cropY2=1951"
+    "imageUrl": "/moreless/billionaires/jensen-huang.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/68750a2d250de42ce7c5301b/416x416.jpg?background=000000&cropX1=832&cropX2=2632&cropY1=152&cropY2=1951"
   },
   {
     "rank": 8,
@@ -69,7 +76,8 @@
     "displayValue": "$186B",
     "source": "Oracle",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e8b62cfc095010007bffea0/416x416.jpg?background=000000&cropX1=0&cropX2=4529&cropY1=652&cropY2=5184"
+    "imageUrl": "/moreless/billionaires/larry-ellison.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e8b62cfc095010007bffea0/416x416.jpg?background=000000&cropX1=0&cropX2=4529&cropY1=652&cropY2=5184"
   },
   {
     "rank": 9,
@@ -78,7 +86,8 @@
     "displayValue": "$154B",
     "source": "Microsoft",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/59d50c47a7ea436b47b36d66/416x416.jpg?background=000000&cropX1=553&cropX2=2940&cropY1=322&cropY2=2708"
+    "imageUrl": "/moreless/billionaires/steve-ballmer.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/59d50c47a7ea436b47b36d66/416x416.jpg?background=000000&cropX1=553&cropX2=2940&cropY1=322&cropY2=2708"
   },
   {
     "rank": 10,
@@ -87,7 +96,8 @@
     "displayValue": "$149B",
     "source": "Zara",
     "country": "Spain",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b94131358e35dd27748e/416x416.jpg?background=000000&cropX1=179&cropX2=2232&cropY1=216&cropY2=2269"
+    "imageUrl": "/moreless/billionaires/amancio-ortega.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b94131358e35dd27748e/416x416.jpg?background=000000&cropX1=179&cropX2=2232&cropY1=216&cropY2=2269"
   },
   {
     "rank": 11,
@@ -96,7 +106,8 @@
     "displayValue": "$148B",
     "source": "LVMH",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5dc05518ca425400079c659f/416x416.jpg?background=000000&cropX1=0&cropX2=4000&cropY1=1209&cropY2=5212"
+    "imageUrl": "/moreless/billionaires/bernard-arnault-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5dc05518ca425400079c659f/416x416.jpg?background=000000&cropX1=0&cropX2=4000&cropY1=1209&cropY2=5212"
   },
   {
     "rank": 12,
@@ -105,7 +116,8 @@
     "displayValue": "$148B",
     "source": "Berkshire Hathaway",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5babb7f1a7ea4342a948b79a/416x416.jpg?background=000000&cropX1=748&cropX2=3075&cropY1=1753&cropY2=4082"
+    "imageUrl": "/moreless/billionaires/warren-buffett.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5babb7f1a7ea4342a948b79a/416x416.jpg?background=000000&cropX1=748&cropX2=3075&cropY1=1753&cropY2=4082"
   },
   {
     "rank": 13,
@@ -114,7 +126,8 @@
     "displayValue": "$134B",
     "source": "Walmart",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/59d50a9e4bbe6f37dd9ff712/416x416.jpg?background=000000&cropX1=244&cropX2=1841&cropY1=60&cropY2=1658"
+    "imageUrl": "/moreless/billionaires/rob-walton-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/59d50a9e4bbe6f37dd9ff712/416x416.jpg?background=000000&cropX1=244&cropX2=1841&cropY1=60&cropY2=1658"
   },
   {
     "rank": 14,
@@ -123,7 +136,8 @@
     "displayValue": "$133B",
     "source": "Walmart",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c7ef2fea7ea434b351bca5a/416x416.jpg?background=000000&cropX1=49&cropX2=934&cropY1=65&cropY2=951"
+    "imageUrl": "/moreless/billionaires/jim-walton-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c7ef2fea7ea434b351bca5a/416x416.jpg?background=000000&cropX1=49&cropX2=934&cropY1=65&cropY2=951"
   },
   {
     "rank": 15,
@@ -132,7 +146,8 @@
     "displayValue": "$123B",
     "source": "Walmart",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c7ef270a7ea434b351bca52/416x416.jpg?background=000000&cropX1=232&cropX2=998&cropY1=222&cropY2=988"
+    "imageUrl": "/moreless/billionaires/alice-walton.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c7ef270a7ea434b351bca52/416x416.jpg?background=000000&cropX1=232&cropX2=998&cropY1=222&cropY2=988"
   },
   {
     "rank": 16,
@@ -141,7 +156,8 @@
     "displayValue": "$122B",
     "source": "Telecom",
     "country": "Mexico",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c76ba144bbe6f24ad99c613/416x416.jpg?background=000000&cropX1=0&cropX2=3005&cropY1=389&cropY2=3395"
+    "imageUrl": "/moreless/billionaires/carlos-slim-helu-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c76ba144bbe6f24ad99c613/416x416.jpg?background=000000&cropX1=0&cropX2=3005&cropY1=389&cropY2=3395"
   },
   {
     "rank": 17,
@@ -150,7 +166,8 @@
     "displayValue": "$110B",
     "source": "Cryptocurrency exchange",
     "country": "Canada",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/61115ac5b4c5d23845419c4e/416x416.jpg?background=000000&cropX1=0&cropX2=911&cropY1=0&cropY2=911"
+    "imageUrl": "/moreless/billionaires/changpeng-zhao.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/61115ac5b4c5d23845419c4e/416x416.jpg?background=000000&cropX1=0&cropX2=911&cropY1=0&cropY2=911"
   },
   {
     "rank": 18,
@@ -159,7 +176,8 @@
     "displayValue": "$109B",
     "source": "Bloomberg LP",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b4104bbe6f24ad99c35d/416x416.jpg?background=000000&cropX1=165&cropX2=5613&cropY1=321&cropY2=5769"
+    "imageUrl": "/moreless/billionaires/michael-bloomberg.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c76b4104bbe6f24ad99c35d/416x416.jpg?background=000000&cropX1=165&cropX2=5613&cropY1=321&cropY2=5769"
   },
   {
     "rank": 19,
@@ -168,7 +186,8 @@
     "displayValue": "$109B",
     "source": "Microsoft",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/62d599ede3ff49f348f9b9b4/416x416.jpg?background=000000&cropX1=155&cropX2=976&cropY1=340&cropY2=1161"
+    "imageUrl": "/moreless/billionaires/bill-gates.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/62d599ede3ff49f348f9b9b4/416x416.jpg?background=000000&cropX1=155&cropX2=976&cropY1=340&cropY2=1161"
   },
   {
     "rank": 20,
@@ -177,7 +196,8 @@
     "displayValue": "$104B",
     "source": "Discount brokerage",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5d8a5c6218444200084e6532/416x416.jpg?background=000000&cropX1=466&cropX2=1132&cropY1=297&cropY2=962"
+    "imageUrl": "/moreless/billionaires/thomas-peterffy.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5d8a5c6218444200084e6532/416x416.jpg?background=000000&cropX1=466&cropX2=1132&cropY1=297&cropY2=962"
   },
   {
     "rank": 21,
@@ -186,7 +206,8 @@
     "displayValue": "$95.2B",
     "source": "L'Oréal",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/605e26e3c65f7c2596bd3e15/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
+    "imageUrl": "/moreless/billionaires/francoise-bettencourt-meyers-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/605e26e3c65f7c2596bd3e15/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
   },
   {
     "rank": 22,
@@ -195,7 +216,8 @@
     "displayValue": "$90.9B",
     "source": "Diversified",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c7d7829a7ea434b351ba0b6/416x416.jpg?background=000000&cropX1=206&cropX2=2043&cropY1=250&cropY2=2089"
+    "imageUrl": "/moreless/billionaires/mukesh-ambani.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c7d7829a7ea434b351ba0b6/416x416.jpg?background=000000&cropX1=206&cropX2=2043&cropY1=250&cropY2=2089"
   },
   {
     "rank": 23,
@@ -213,7 +235,8 @@
     "displayValue": "$84.0B",
     "source": "Infrastructure, commodities",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/68e693f20b749254082e47fe/416x416.jpg?background=000000&cropX1=0&cropX2=2041&cropY1=161&cropY2=2203"
+    "imageUrl": "/moreless/billionaires/gautam-adani.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/68e693f20b749254082e47fe/416x416.jpg?background=000000&cropX1=0&cropX2=2041&cropY1=161&cropY2=2203"
   },
   {
     "rank": 25,
@@ -222,7 +245,8 @@
     "displayValue": "$81.2B",
     "source": "Koch, Inc.",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6601ce61b79552a97c9e786c/416x416.jpg?background=000000&cropX1=0&cropX2=2583&cropY1=522&cropY2=3106"
+    "imageUrl": "/moreless/billionaires/julia-koch-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6601ce61b79552a97c9e786c/416x416.jpg?background=000000&cropX1=0&cropX2=2583&cropY1=522&cropY2=3106"
   },
   {
     "rank": 26,
@@ -231,7 +255,8 @@
     "displayValue": "$73.8B",
     "source": "Koch, Inc.",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/615c94bd2aac2936a52682d1/416x416.jpg?background=000000&cropX1=286&cropX2=848&cropY1=110&cropY2=672"
+    "imageUrl": "/moreless/billionaires/charles-koch-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/615c94bd2aac2936a52682d1/416x416.jpg?background=000000&cropX1=286&cropX2=848&cropY1=110&cropY2=672"
   },
   {
     "rank": 27,
@@ -240,7 +265,8 @@
     "displayValue": "$69.3B",
     "source": "TikTok",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/618e91e427fcd6441f93c0c6/416x416.jpg?background=000000&cropX1=227&cropX2=1294&cropY1=14&cropY2=1080"
+    "imageUrl": "/moreless/billionaires/zhang-yiming.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/618e91e427fcd6441f93c0c6/416x416.jpg?background=000000&cropX1=227&cropX2=1294&cropY1=14&cropY2=1080"
   },
   {
     "rank": 28,
@@ -249,7 +275,8 @@
     "displayValue": "$68.1B",
     "source": "Mining",
     "country": "Mexico",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/597a47174bbe6f3eb800b6b8/416x416.jpg?background=000000&cropX1=1901&cropX2=3603&cropY1=368&cropY2=2069"
+    "imageUrl": "/moreless/billionaires/german-larrea-mota-velasco-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/597a47174bbe6f3eb800b6b8/416x416.jpg?background=000000&cropX1=1901&cropX2=3603&cropY1=368&cropY2=2069"
   },
   {
     "rank": 29,
@@ -258,7 +285,8 @@
     "displayValue": "$67.8B",
     "source": "Fashion retail",
     "country": "Japan",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6a270dc0b83c3d14714e1f9e/416x416.jpg?background=000000&cropX1=1405&cropX2=3346&cropY1=84&cropY2=2024"
+    "imageUrl": "/moreless/billionaires/tadashi-yanai-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6a270dc0b83c3d14714e1f9e/416x416.jpg?background=000000&cropX1=1405&cropX2=3346&cropY1=84&cropY2=2024"
   },
   {
     "rank": 30,
@@ -267,7 +295,8 @@
     "displayValue": "$67.4B",
     "source": "Trading, investments",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/60649a21472ae5b09dad20b1/416x416.jpg?background=000000&cropX1=3&cropX2=819&cropY1=0&cropY2=816"
+    "imageUrl": "/moreless/billionaires/jeff-yass.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/60649a21472ae5b09dad20b1/416x416.jpg?background=000000&cropX1=3&cropX2=819&cropY1=0&cropY2=816"
   },
   {
     "rank": 31,
@@ -276,7 +305,8 @@
     "displayValue": "$66.5B",
     "source": "Telecom, Investments",
     "country": "Japan",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e8b632801879f000703e485/416x416.jpg?background=000000&cropX1=0&cropX2=4500&cropY1=833&cropY2=5330"
+    "imageUrl": "/moreless/billionaires/masayoshi-son.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e8b632801879f000703e485/416x416.jpg?background=000000&cropX1=0&cropX2=4500&cropY1=833&cropY2=5330"
   },
   {
     "rank": 32,
@@ -285,7 +315,8 @@
     "displayValue": "$64.4B",
     "source": "Retail",
     "country": "Germany",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6050f48ca1ab099ed6e290cc/416x416.jpg?background=000000&cropX1=0&cropX2=800&cropY1=0&cropY2=800"
+    "imageUrl": "/moreless/billionaires/dieter-schwarz.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6050f48ca1ab099ed6e290cc/416x416.jpg?background=000000&cropX1=0&cropX2=800&cropY1=0&cropY2=800"
   },
   {
     "rank": 33,
@@ -294,7 +325,8 @@
     "displayValue": "$61.5B",
     "source": "Beverages, pharmaceuticals",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/60380e390357bc1fbfc0bc32/416x416.jpg?background=000000&cropX1=116&cropX2=1327&cropY1=201&cropY2=1413"
+    "imageUrl": "/moreless/billionaires/zhong-shanshan.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/60380e390357bc1fbfc0bc32/416x416.jpg?background=000000&cropX1=116&cropX2=1327&cropY1=201&cropY2=1413"
   },
   {
     "rank": 34,
@@ -303,7 +335,8 @@
     "displayValue": "$61.4B",
     "source": "Batteries",
     "country": "Hong Kong",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/690239904c2185472de3db28/416x416.jpg?background=000000&cropX1=305&cropX2=1307&cropY1=145&cropY2=1147"
+    "imageUrl": "/moreless/billionaires/robin-zeng.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/690239904c2185472de3db28/416x416.jpg?background=000000&cropX1=305&cropX2=1307&cropY1=145&cropY2=1147"
   },
   {
     "rank": 35,
@@ -312,7 +345,8 @@
     "displayValue": "$52.0B",
     "source": "Hedge funds",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6247575a5af6af682d503f2f/416x416.jpg?background=000000&cropX1=0&cropX2=1966&cropY1=0&cropY2=1966"
+    "imageUrl": "/moreless/billionaires/ken-griffin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6247575a5af6af682d503f2f/416x416.jpg?background=000000&cropX1=0&cropX2=1966&cropY1=0&cropY2=1966"
   },
   {
     "rank": 36,
@@ -321,7 +355,8 @@
     "displayValue": "$50.3B",
     "source": "Mining",
     "country": "Chile",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c6db2974bbe6f0ec75418f0/416x416.jpg?background=000000&cropX1=124&cropX2=491&cropY1=0&cropY2=367"
+    "imageUrl": "/moreless/billionaires/iris-fontbona-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c6db2974bbe6f0ec75418f0/416x416.jpg?background=000000&cropX1=124&cropX2=491&cropY1=0&cropY2=367"
   },
   {
     "rank": 37,
@@ -330,7 +365,8 @@
     "displayValue": "$49.7B",
     "source": "Online games",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/605e23c0f0986f688fbd3e15/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
+    "imageUrl": "/moreless/billionaires/ma-huateng.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/605e23c0f0986f688fbd3e15/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
   },
   {
     "rank": 38,
@@ -339,7 +375,8 @@
     "displayValue": "$49.5B",
     "source": "Diversified",
     "country": "Hong Kong",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/65d4c4432a6eece8368e841b/416x416.jpg?background=000000&cropX1=250&cropX2=1494&cropY1=226&cropY2=1471"
+    "imageUrl": "/moreless/billionaires/li-ka-shing.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/65d4c4432a6eece8368e841b/416x416.jpg?background=000000&cropX1=250&cropX2=1494&cropY1=226&cropY2=1471"
   },
   {
     "rank": 39,
@@ -348,7 +385,8 @@
     "displayValue": "$47.7B",
     "source": "Nutella, chocolates",
     "country": "Italy",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5b11bc5ca7ea436b547f29cb/416x416.jpg?background=000000&cropX1=622&cropX2=1844&cropY1=361&cropY2=1582"
+    "imageUrl": "/moreless/billionaires/giovanni-ferrero.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5b11bc5ca7ea436b547f29cb/416x416.jpg?background=000000&cropX1=622&cropX2=1844&cropY1=361&cropY2=1582"
   },
   {
     "rank": 40,
@@ -357,7 +395,8 @@
     "displayValue": "$46.1B",
     "source": "Shipping",
     "country": "Switzerland",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e77ceeac7b02d000666de20/416x416.jpg?background=000000&cropX1=1096&cropX2=5302&cropY1=46&cropY2=4249"
+    "imageUrl": "/moreless/billionaires/gianluigi-aponte.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e77ceeac7b02d000666de20/416x416.jpg?background=000000&cropX1=1096&cropX2=5302&cropY1=46&cropY2=4249"
   },
   {
     "rank": 40,
@@ -375,7 +414,8 @@
     "displayValue": "$46.0B",
     "source": "Walmart ",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5d89f3c36de3150009a4e5bd/416x416.jpg?background=000000&cropX1=122&cropX2=576&cropY1=26&cropY2=480"
+    "imageUrl": "/moreless/billionaires/lukas-walton.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5d89f3c36de3150009a4e5bd/416x416.jpg?background=000000&cropX1=122&cropX2=576&cropY1=26&cropY2=480"
   },
   {
     "rank": 43,
@@ -384,7 +424,8 @@
     "displayValue": "$46.0B",
     "source": "Investments",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5d89f4d318444200084e5265/416x416.jpg?background=000000&cropX1=1911&cropX2=5305&cropY1=26&cropY2=3418"
+    "imageUrl": "/moreless/billionaires/stephen-schwarzman.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5d89f4d318444200084e5265/416x416.jpg?background=000000&cropX1=1911&cropX2=5305&cropY1=26&cropY2=3418"
   },
   {
     "rank": 44,
@@ -393,7 +434,8 @@
     "displayValue": "$44.8B",
     "source": "Red Bull",
     "country": "Austria",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/642b2ae09caa113a6ce1c15e/416x416.jpg?background=000000&cropX1=898&cropX2=3376&cropY1=239&cropY2=2714"
+    "imageUrl": "/moreless/billionaires/mark-mateschitz.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/642b2ae09caa113a6ce1c15e/416x416.jpg?background=000000&cropX1=898&cropX2=3376&cropY1=239&cropY2=2714"
   },
   {
     "rank": 45,
@@ -402,7 +444,8 @@
     "displayValue": "$43.0B",
     "source": "Candy, pet food",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/59d50d06a7ea436b47b36d84/416x416.jpg?background=000000&cropX1=147&cropX2=1649&cropY1=377&cropY2=1879"
+    "imageUrl": "/moreless/billionaires/jacqueline-mars.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/59d50d06a7ea436b47b36d84/416x416.jpg?background=000000&cropX1=147&cropX2=1649&cropY1=377&cropY2=1879"
   },
   {
     "rank": 45,
@@ -411,7 +454,8 @@
     "displayValue": "$43.0B",
     "source": "Candy, pet food",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5ba41e08a7ea434e4c6948eb/416x416.jpg?background=000000&cropX1=53&cropX2=1401&cropY1=9&cropY2=1357"
+    "imageUrl": "/moreless/billionaires/john-mars.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5ba41e08a7ea434e4c6948eb/416x416.jpg?background=000000&cropX1=53&cropX2=1401&cropY1=9&cropY2=1357"
   },
   {
     "rank": 47,
@@ -420,7 +464,8 @@
     "displayValue": "$41.9B",
     "source": "Online games",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/65496210455fdb2807b461fc/416x416.jpg?background=000000&cropX1=376&cropX2=1713&cropY1=341&cropY2=1679"
+    "imageUrl": "/moreless/billionaires/william-ding.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/65496210455fdb2807b461fc/416x416.jpg?background=000000&cropX1=376&cropX2=1713&cropY1=341&cropY2=1679"
   },
   {
     "rank": 48,
@@ -429,7 +474,8 @@
     "displayValue": "$41.7B",
     "source": "Financial software",
     "country": "Italy",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/660c251294ad0b108cfcdf06/416x416.jpg?background=000000&cropX1=711&cropX2=2015&cropY1=56&cropY2=1360"
+    "imageUrl": "/moreless/billionaires/andrea-pignataro.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/660c251294ad0b108cfcdf06/416x416.jpg?background=000000&cropX1=711&cropX2=2015&cropY1=56&cropY2=1360"
   },
   {
     "rank": 49,
@@ -438,7 +484,8 @@
     "displayValue": "$41.6B",
     "source": "Fidelity",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6333a5b13de1fff2da377afb/416x416.jpg?background=000000&cropX1=0&cropX2=1077&cropY1=3&cropY2=1080"
+    "imageUrl": "/moreless/billionaires/abigail-johnson.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6333a5b13de1fff2da377afb/416x416.jpg?background=000000&cropX1=0&cropX2=1077&cropY1=3&cropY2=1080"
   },
   {
     "rank": 50,
@@ -447,7 +494,8 @@
     "displayValue": "$41.4B",
     "source": "Shipping",
     "country": "Germany",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e762e4fc7b02d000666c89b/416x416.jpg?background=000000&cropX1=792&cropX2=4141&cropY1=0&cropY2=3347"
+    "imageUrl": "/moreless/billionaires/klaus-michael-kuehne.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e762e4fc7b02d000666c89b/416x416.jpg?background=000000&cropX1=792&cropX2=4141&cropY1=0&cropY2=3347"
   },
   {
     "rank": 51,
@@ -456,7 +504,8 @@
     "displayValue": "$39.7B",
     "source": "Google",
     "country": "Germany",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e761636d8e1ae0007b718e0/416x416.jpg?background=000000&cropX1=240&cropX2=1726&cropY1=407&cropY2=1894"
+    "imageUrl": "/moreless/billionaires/andreas-von-bechtolsheim-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e761636d8e1ae0007b718e0/416x416.jpg?background=000000&cropX1=240&cropX2=1726&cropY1=407&cropY2=1894"
   },
   {
     "rank": 52,
@@ -465,7 +514,8 @@
     "displayValue": "$39.6B",
     "source": "AI, hedge fund",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/67e5dca4efa69302e39783b9/416x416.jpg?background=000000&cropX1=1196&cropX2=2171&cropY1=293&cropY2=1268"
+    "imageUrl": "/moreless/billionaires/liang-wenfeng.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/67e5dca4efa69302e39783b9/416x416.jpg?background=000000&cropX1=1196&cropX2=2171&cropY1=293&cropY2=1268"
   },
   {
     "rank": 53,
@@ -474,7 +524,8 @@
     "displayValue": "$39.4B",
     "source": "Chanel",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/645d0add2a0a83a54a9aa149/416x416.jpg?background=000000&cropX1=0&cropX2=2730&cropY1=100&cropY2=2831"
+    "imageUrl": "/moreless/billionaires/alain-wertheimer.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/645d0add2a0a83a54a9aa149/416x416.jpg?background=000000&cropX1=0&cropX2=2730&cropY1=100&cropY2=2831"
   },
   {
     "rank": 53,
@@ -483,7 +534,8 @@
     "displayValue": "$39.4B",
     "source": "Chanel",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/645d02e2c7d39022642796dd/416x416.jpg?background=000000&cropX1=1150&cropX2=4216&cropY1=0&cropY2=3068"
+    "imageUrl": "/moreless/billionaires/gerard-wertheimer.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/645d02e2c7d39022642796dd/416x416.jpg?background=000000&cropX1=1150&cropX2=4216&cropY1=0&cropY2=3068"
   },
   {
     "rank": 55,
@@ -492,7 +544,8 @@
     "displayValue": "$39.2B",
     "source": "Steel",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/55f77874e4b0ffa7afe4940e/416x416.jpg?background=000000&cropX1=90&cropX2=676&cropY1=53&cropY2=640"
+    "imageUrl": "/moreless/billionaires/savitri-jindal-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/55f77874e4b0ffa7afe4940e/416x416.jpg?background=000000&cropX1=90&cropX2=676&cropY1=53&cropY2=640"
   },
   {
     "rank": 56,
@@ -501,7 +554,8 @@
     "displayValue": "$39.0B",
     "source": "Semiconductors",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5d8aa0fd6de3150009a5030b/416x416.jpg?background=000000&cropX1=376&cropX2=1438&cropY1=38&cropY2=1100"
+    "imageUrl": "/moreless/billionaires/henry-samueli.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5d8aa0fd6de3150009a5030b/416x416.jpg?background=000000&cropX1=376&cropX2=1438&cropY1=38&cropY2=1100"
   },
   {
     "rank": 57,
@@ -510,7 +564,8 @@
     "displayValue": "$39.0B",
     "source": "Google",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5f4526a6f048a75b8e14e6b2/416x416.jpg?background=000000&cropX1=0&cropX2=3235&cropY1=381&cropY2=3615"
+    "imageUrl": "/moreless/billionaires/eric-schmidt.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5f4526a6f048a75b8e14e6b2/416x416.jpg?background=000000&cropX1=0&cropX2=3235&cropY1=381&cropY2=3615"
   },
   {
     "rank": 58,
@@ -528,7 +583,8 @@
     "displayValue": "$38.0B",
     "source": "Cryptocurrency",
     "country": "Italy",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/661827e969e40f255f3c6d0a/416x416.jpg?background=000000&cropX1=941&cropX2=1761&cropY1=336&cropY2=1156"
+    "imageUrl": "/moreless/billionaires/paolo-ardoino.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/661827e969e40f255f3c6d0a/416x416.jpg?background=000000&cropX1=941&cropX2=1761&cropY1=336&cropY2=1156"
   },
   {
     "rank": 60,
@@ -537,7 +593,8 @@
     "displayValue": "$36.9B",
     "source": "Steel, investments",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e87b07fbf94c200067fcf57/416x416.jpg?background=000000&cropX1=1002&cropX2=4157&cropY1=163&cropY2=3318"
+    "imageUrl": "/moreless/billionaires/alexey-mordashov-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e87b07fbf94c200067fcf57/416x416.jpg?background=000000&cropX1=1002&cropX2=4157&cropY1=163&cropY2=3318"
   },
   {
     "rank": 61,
@@ -546,7 +603,8 @@
     "displayValue": "$35.8B",
     "source": "Home appliances",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5f88aa3c6e0f7a6ca036fc64/416x416.jpg?background=000000&cropX1=1462&cropX2=2567&cropY1=1200&cropY2=2305"
+    "imageUrl": "/moreless/billionaires/he-xiangjian-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5f88aa3c6e0f7a6ca036fc64/416x416.jpg?background=000000&cropX1=1462&cropX2=2567&cropY1=1200&cropY2=2305"
   },
   {
     "rank": 62,
@@ -555,7 +613,8 @@
     "displayValue": "$35.4B",
     "source": "Real estate, shipping",
     "country": "Israel",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/660c1a1c7931863e499fb8c4/416x416.jpg?background=000000&cropX1=137&cropX2=1211&cropY1=52&cropY2=1127"
+    "imageUrl": "/moreless/billionaires/eyal-ofer.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/660c1a1c7931863e499fb8c4/416x416.jpg?background=000000&cropX1=137&cropX2=1211&cropY1=52&cropY2=1127"
   },
   {
     "rank": 63,
@@ -564,7 +623,8 @@
     "displayValue": "$34.1B",
     "source": "Steel",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/65256679cd4895fa7365b15a/416x416.jpg?background=000000&cropX1=672&cropX2=1309&cropY1=40&cropY2=678"
+    "imageUrl": "/moreless/billionaires/lakshmi-mittal.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/65256679cd4895fa7365b15a/416x416.jpg?background=000000&cropX1=672&cropX2=1309&cropY1=40&cropY2=678"
   },
   {
     "rank": 64,
@@ -573,7 +633,8 @@
     "displayValue": "$34.0B",
     "source": "Casinos",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6488d2e2af4e79d11875c367/416x416.jpg?background=000000&cropX1=741&cropX2=1624&cropY1=351&cropY2=1233"
+    "imageUrl": "/moreless/billionaires/miriam-adelson-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6488d2e2af4e79d11875c367/416x416.jpg?background=000000&cropX1=741&cropX2=1624&cropY1=351&cropY2=1233"
   },
   {
     "rank": 65,
@@ -582,7 +643,8 @@
     "displayValue": "$33.9B",
     "source": "Facebook",
     "country": "Brazil",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/61114d7c57eb065321419c4e/416x416.jpg?background=000000&cropX1=0&cropX2=2236&cropY1=0&cropY2=2235"
+    "imageUrl": "/moreless/billionaires/eduardo-saverin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/61114d7c57eb065321419c4e/416x416.jpg?background=000000&cropX1=0&cropX2=2236&cropY1=0&cropY2=2235"
   },
   {
     "rank": 66,
@@ -591,7 +653,8 @@
     "displayValue": "$33.7B",
     "source": "Amazon",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/63325f33de0e387de2dd5389/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
+    "imageUrl": "/moreless/billionaires/mackenzie-scott.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/63325f33de0e387de2dd5389/416x416.jpg?background=000000&cropX1=0&cropX2=1080&cropY1=0&cropY2=1080"
   },
   {
     "rank": 67,
@@ -600,7 +663,8 @@
     "displayValue": "$32.9B",
     "source": "Hospitals",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/ee825ff539047091cda533423b10d65b/416x416.jpg?background=000000&cropX1=16&cropX2=947&cropY1=153&cropY2=1084"
+    "imageUrl": "/moreless/billionaires/thomas-frist-jr-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/ee825ff539047091cda533423b10d65b/416x416.jpg?background=000000&cropX1=16&cropX2=947&cropY1=153&cropY2=1084"
   },
   {
     "rank": 68,
@@ -609,7 +673,8 @@
     "displayValue": "$32.9B",
     "source": "Oil & gas",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/66fb2bd596806737569ab7ef/416x416.jpg?background=000000&cropX1=0&cropX2=2143&cropY1=180&cropY2=2323"
+    "imageUrl": "/moreless/billionaires/lyndal-stephens-greth-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/66fb2bd596806737569ab7ef/416x416.jpg?background=000000&cropX1=0&cropX2=2143&cropY1=180&cropY2=2323"
   },
   {
     "rank": 69,
@@ -618,7 +683,8 @@
     "displayValue": "$32.5B",
     "source": "Hedge funds",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/66fb374ccc56f1359fc8a29f/416x416.jpg?background=000000&cropX1=415&cropX2=1146&cropY1=156&cropY2=886"
+    "imageUrl": "/moreless/billionaires/marilyn-simons-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/66fb374ccc56f1359fc8a29f/416x416.jpg?background=000000&cropX1=415&cropX2=1146&cropY1=156&cropY2=886"
   },
   {
     "rank": 70,
@@ -627,7 +693,8 @@
     "displayValue": "$32.5B",
     "source": "Diversified",
     "country": "Vietnam",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/64e7640cfb10a26d2f4af6bf/416x416.jpg?background=000000&cropX1=389&cropX2=1225&cropY1=106&cropY2=944"
+    "imageUrl": "/moreless/billionaires/pham-nhat-vuong.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/64e7640cfb10a26d2f4af6bf/416x416.jpg?background=000000&cropX1=389&cropX2=1225&cropY1=106&cropY2=944"
   },
   {
     "rank": 71,
@@ -636,7 +703,8 @@
     "displayValue": "$32.3B",
     "source": "Shipping",
     "country": "Israel",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e76cd8010380d0006fbb808/416x416.jpg?background=000000&cropX1=25&cropX2=1096&cropY1=93&cropY2=1164"
+    "imageUrl": "/moreless/billionaires/idan-ofer.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e76cd8010380d0006fbb808/416x416.jpg?background=000000&cropX1=25&cropX2=1096&cropY1=93&cropY2=1164"
   },
   {
     "rank": 72,
@@ -645,7 +713,8 @@
     "displayValue": "$32.1B",
     "source": "Facebook, investments",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5a836fff31358e4955ad6549/416x416.jpg?background=000000&cropX1=234&cropX2=790&cropY1=7&cropY2=563"
+    "imageUrl": "/moreless/billionaires/peter-thiel.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5a836fff31358e4955ad6549/416x416.jpg?background=000000&cropX1=234&cropX2=790&cropY1=7&cropY2=563"
   },
   {
     "rank": 73,
@@ -654,7 +723,8 @@
     "displayValue": "$32.0B",
     "source": "E-commerce",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5dc0500b3195ed0007eab3f7/416x416.jpg?background=000000&cropX1=1059&cropX2=3699&cropY1=45&cropY2=2683"
+    "imageUrl": "/moreless/billionaires/colin-huang.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5dc0500b3195ed0007eab3f7/416x416.jpg?background=000000&cropX1=1059&cropX2=3699&cropY1=45&cropY2=2683"
   },
   {
     "rank": 74,
@@ -663,7 +733,8 @@
     "displayValue": "$31.7B",
     "source": "Wireless networking",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5f1f2df0e0da1e7313d9879a/416x416.jpg?background=000000&cropX1=217&cropX2=1125&cropY1=71&cropY2=980"
+    "imageUrl": "/moreless/billionaires/robert-pera.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5f1f2df0e0da1e7313d9879a/416x416.jpg?background=000000&cropX1=217&cropX2=1125&cropY1=71&cropY2=980"
   },
   {
     "rank": 75,
@@ -672,7 +743,8 @@
     "displayValue": "$31.3B",
     "source": "Music, chemicals",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c745d7b4bbe6f072958dac9/416x416.jpg?background=000000&cropX1=473&cropX2=2103&cropY1=123&cropY2=1753"
+    "imageUrl": "/moreless/billionaires/len-blavatnik.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c745d7b4bbe6f072958dac9/416x416.jpg?background=000000&cropX1=473&cropX2=2103&cropY1=123&cropY2=1753"
   },
   {
     "rank": 76,
@@ -690,7 +762,8 @@
     "displayValue": "$30.5B",
     "source": "Microsoft",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/667c353f73ede9cb9df2aefe/416x416.jpg?background=000000&cropX1=371&cropX2=1022&cropY1=145&cropY2=796"
+    "imageUrl": "/moreless/billionaires/melinda-french-gates.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/667c353f73ede9cb9df2aefe/416x416.jpg?background=000000&cropX1=371&cropX2=1022&cropY1=145&cropY2=796"
   },
   {
     "rank": 78,
@@ -699,7 +772,8 @@
     "displayValue": "$30.2B",
     "source": "Cement, sugar",
     "country": "Nigeria",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5c33a1554bbe6f7020fb2fd2/416x416.jpg?background=000000&cropX1=865&cropX2=2774&cropY1=206&cropY2=2115"
+    "imageUrl": "/moreless/billionaires/aliko-dangote.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5c33a1554bbe6f7020fb2fd2/416x416.jpg?background=000000&cropX1=865&cropX2=2774&cropY1=206&cropY2=2115"
   },
   {
     "rank": 79,
@@ -708,7 +782,8 @@
     "displayValue": "$30.1B",
     "source": "Software services",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/68e696c624e6cebf6aa2b00a/416x416.jpg?background=000000&cropX1=693&cropX2=1633&cropY1=144&cropY2=1083"
+    "imageUrl": "/moreless/billionaires/shiv-nadar.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/68e696c624e6cebf6aa2b00a/416x416.jpg?background=000000&cropX1=693&cropX2=1633&cropY1=144&cropY2=1083"
   },
   {
     "rank": 80,
@@ -717,7 +792,8 @@
     "displayValue": "$30.0B",
     "source": "Fasteners",
     "country": "Germany",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e76350710380d0006fbadf8/416x416.jpg?background=000000&cropX1=2132&cropX2=5568&cropY1=0&cropY2=3434"
+    "imageUrl": "/moreless/billionaires/reinhold-wuerth-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e76350710380d0006fbadf8/416x416.jpg?background=000000&cropX1=2132&cropX2=5568&cropY1=0&cropY2=3434"
   },
   {
     "rank": 81,
@@ -726,7 +802,8 @@
     "displayValue": "$29.9B",
     "source": "Samsung",
     "country": "South Korea",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/69d92071f818bcd1553283ed/416x416.jpg?background=000000&cropX1=141&cropX2=1440&cropY1=78&cropY2=1378"
+    "imageUrl": "/moreless/billionaires/jay-y-lee.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/69d92071f818bcd1553283ed/416x416.jpg?background=000000&cropX1=141&cropX2=1440&cropY1=78&cropY2=1378"
   },
   {
     "rank": 82,
@@ -735,7 +812,8 @@
     "displayValue": "$29.7B",
     "source": "Metals",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e87ae86582b5d00068ce78c/416x416.jpg?background=000000&cropX1=1187&cropX2=4259&cropY1=272&cropY2=3347"
+    "imageUrl": "/moreless/billionaires/vladimir-potanin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e87ae86582b5d00068ce78c/416x416.jpg?background=000000&cropX1=1187&cropX2=4259&cropY1=272&cropY2=3347"
   },
   {
     "rank": 83,
@@ -744,7 +822,8 @@
     "displayValue": "$29.5B",
     "source": "Oil",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/62291dbe5c22ffeaf37a7528/416x416.jpg?background=000000&cropX1=232&cropX2=1762&cropY1=83&cropY2=1614"
+    "imageUrl": "/moreless/billionaires/vagit-alekperov.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/62291dbe5c22ffeaf37a7528/416x416.jpg?background=000000&cropX1=232&cropX2=1762&cropY1=83&cropY2=1614"
   },
   {
     "rank": 84,
@@ -753,7 +832,8 @@
     "displayValue": "$29.1B",
     "source": "Vaccines",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6345b0f307bca24e9e6bc226/416x416.jpg?background=000000&cropX1=303&cropX2=2284&cropY1=451&cropY2=2434"
+    "imageUrl": "/moreless/billionaires/cyrus-poonawalla.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6345b0f307bca24e9e6bc226/416x416.jpg?background=000000&cropX1=303&cropX2=2284&cropY1=451&cropY2=2434"
   },
   {
     "rank": 85,
@@ -762,7 +842,8 @@
     "displayValue": "$29.0B",
     "source": "Luxury goods",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5f1eeca8e77f92a058fb1a81/416x416.jpg?background=000000&cropX1=1806&cropX2=3901&cropY1=36&cropY2=2133"
+    "imageUrl": "/moreless/billionaires/francois-pinault-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5f1eeca8e77f92a058fb1a81/416x416.jpg?background=000000&cropX1=1806&cropX2=3901&cropY1=36&cropY2=2133"
   },
   {
     "rank": 86,
@@ -771,7 +852,8 @@
     "displayValue": "$28.9B",
     "source": "Semiconductors",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/690240ad85f168b25a40e248/416x416.jpg?background=000000&cropX1=316&cropX2=1020&cropY1=54&cropY2=758"
+    "imageUrl": "/moreless/billionaires/chen-tianshi.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/690240ad85f168b25a40e248/416x416.jpg?background=000000&cropX1=316&cropX2=1020&cropY1=54&cropY2=758"
   },
   {
     "rank": 87,
@@ -780,7 +862,8 @@
     "displayValue": "$28.3B",
     "source": "Gas, chemicals",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6229141941920264022edc8a/416x416.jpg?background=000000&cropX1=81&cropX2=3456&cropY1=941&cropY2=4318"
+    "imageUrl": "/moreless/billionaires/leonid-mikhelson-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6229141941920264022edc8a/416x416.jpg?background=000000&cropX1=81&cropX2=3456&cropY1=941&cropY2=4318"
   },
   {
     "rank": 88,
@@ -789,7 +872,8 @@
     "displayValue": "$28.1B",
     "source": "Batteries",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6724f66a677dfa37e85e605f/416x416.jpg?background=000000&cropX1=2&cropX2=800&cropY1=2&cropY2=800"
+    "imageUrl": "/moreless/billionaires/huang-shilin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6724f66a677dfa37e85e605f/416x416.jpg?background=000000&cropX1=2&cropX2=800&cropY1=2&cropY2=800"
   },
   {
     "rank": 89,
@@ -798,7 +882,8 @@
     "displayValue": "$27.7B",
     "source": "E-commerce",
     "country": "China",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/69023fd7dbc29e6c2ee6b085/416x416.jpg?background=000000&cropX1=151&cropX2=1610&cropY1=279&cropY2=1737"
+    "imageUrl": "/moreless/billionaires/jack-ma.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/69023fd7dbc29e6c2ee6b085/416x416.jpg?background=000000&cropX1=151&cropX2=1610&cropY1=279&cropY2=1737"
   },
   {
     "rank": 90,
@@ -807,7 +892,8 @@
     "displayValue": "$27.6B",
     "source": "Hedge funds",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5d8a74d16de3150009a4fafc/416x416.jpg?background=000000&cropX1=0&cropX2=770&cropY1=122&cropY2=892"
+    "imageUrl": "/moreless/billionaires/israel-englander.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5d8a74d16de3150009a4fafc/416x416.jpg?background=000000&cropX1=0&cropX2=770&cropY1=122&cropY2=892"
   },
   {
     "rank": 91,
@@ -816,7 +902,8 @@
     "displayValue": "$27.4B",
     "source": "Pharmaceuticals",
     "country": "India",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/68e6977871d3d968e2192572/416x416.jpg?background=000000&cropX1=441&cropX2=1576&cropY1=630&cropY2=1766"
+    "imageUrl": "/moreless/billionaires/dilip-shanghvi.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/68e6977871d3d968e2192572/416x416.jpg?background=000000&cropX1=441&cropX2=1576&cropY1=630&cropY2=1766"
   },
   {
     "rank": 92,
@@ -825,7 +912,8 @@
     "displayValue": "$27.2B",
     "source": "Computer hardware",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/a8e97df48d0b22d58aa783577ec6c714/416x416.jpg?background=000000&cropX1=3&cropX2=744&cropY1=63&cropY2=804"
+    "imageUrl": "/moreless/billionaires/john-tu.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/a8e97df48d0b22d58aa783577ec6c714/416x416.jpg?background=000000&cropX1=3&cropX2=744&cropY1=63&cropY2=804"
   },
   {
     "rank": 93,
@@ -834,7 +922,8 @@
     "displayValue": "$27.2B",
     "source": "Computer hardware",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/56dbf33ff9a34972aa0637c95ea9c36b/416x416.jpg?background=000000&cropX1=0&cropX2=744&cropY1=85&cropY2=829"
+    "imageUrl": "/moreless/billionaires/david-sun.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/56dbf33ff9a34972aa0637c95ea9c36b/416x416.jpg?background=000000&cropX1=0&cropX2=744&cropY1=85&cropY2=829"
   },
   {
     "rank": 94,
@@ -852,7 +941,8 @@
     "displayValue": "$26.7B",
     "source": "Cheese",
     "country": "France",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e759e31c7b02d000666c445/416x416.jpg?background=000000&cropX1=283&cropX2=1696&cropY1=1002&cropY2=2414"
+    "imageUrl": "/moreless/billionaires/emmanuel-besnier.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e759e31c7b02d000666c445/416x416.jpg?background=000000&cropX1=283&cropX2=1696&cropY1=1002&cropY2=2414"
   },
   {
     "rank": 96,
@@ -861,7 +951,8 @@
     "displayValue": "$26.7B",
     "source": "Nike",
     "country": "United States",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/6488d5874961598251b12f50/416x416.jpg?background=000000&cropX1=598&cropX2=3344&cropY1=0&cropY2=2747"
+    "imageUrl": "/moreless/billionaires/phil-knight-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/6488d5874961598251b12f50/416x416.jpg?background=000000&cropX1=598&cropX2=3344&cropY1=0&cropY2=2747"
   },
   {
     "rank": 97,
@@ -870,7 +961,8 @@
     "displayValue": "$25.7B",
     "source": "Gold",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/62471d5c3ff014e6ce2b15f6/416x416.jpg?background=000000&cropX1=146&cropX2=2785&cropY1=0&cropY2=2639"
+    "imageUrl": "/moreless/billionaires/suleiman-kerimov-and-family.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/62471d5c3ff014e6ce2b15f6/416x416.jpg?background=000000&cropX1=146&cropX2=2785&cropY1=0&cropY2=2639"
   },
   {
     "rank": 98,
@@ -879,7 +971,8 @@
     "displayValue": "$25.5B",
     "source": "Steel, transport",
     "country": "Russia",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5e77914ec7b02d000666d900/416x416.jpg?background=000000&cropX1=825&cropX2=3235&cropY1=50&cropY2=2459"
+    "imageUrl": "/moreless/billionaires/vladimir-lisin.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5e77914ec7b02d000666d900/416x416.jpg?background=000000&cropX1=825&cropX2=3235&cropY1=50&cropY2=2459"
   },
   {
     "rank": 99,
@@ -888,7 +981,8 @@
     "displayValue": "$25.4B",
     "source": "Sensors",
     "country": "Japan",
-    "imageUrl": "https://specials-images.forbesimg.com/imageserve/5eaa4141ed706b0007e62bd7/416x416.jpg?background=000000&cropX1=1310&cropX2=2754&cropY1=224&cropY2=1667"
+    "imageUrl": "/moreless/billionaires/takemitsu-takizaki.jpg",
+    "sourceImageUrl": "https://specials-images.forbesimg.com/imageserve/5eaa4141ed706b0007e62bd7/416x416.jpg?background=000000&cropX1=1310&cropX2=2754&cropY1=224&cropY2=1667"
   },
   {
     "rank": 100,

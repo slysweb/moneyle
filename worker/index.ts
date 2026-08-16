@@ -1,3 +1,7 @@
+import { denverDate } from "./denver";
+import { ensureAllDailyPuzzles, ensureGuessr, ensureMoneyle, ensureMoreless } from "./daily";
+import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
+
 interface Env {
   DB: D1Database;
   ASSETS: Fetcher;
@@ -16,15 +20,6 @@ interface CategoryRow {
   source_url: string | null;
   is_active: number;
   item_count: number;
-}
-
-interface ItemRow {
-  id: number;
-  name: string;
-  subtitle: string | null;
-  value: number;
-  display_value: string;
-  image_url: string | null;
 }
 
 function json(data: unknown, init: ResponseInit = {}): Response {
@@ -68,49 +63,65 @@ async function handleCategories(env: Env): Promise<Response> {
   );
 }
 
-async function handleRound(env: Env, url: URL): Promise<Response> {
-  const slug = url.searchParams.get("category");
-  if (!slug) return json({ error: "Missing 'category' parameter" }, { status: 400 });
+const noStore = { headers: { "cache-control": "no-store" } };
 
-  const count = Math.min(
-    Math.max(Number(url.searchParams.get("count")) || 100, 10),
-    200
+async function handleMorelessToday(env: Env): Promise<Response> {
+  const date = denverDate();
+  const puzzle = await ensureMoreless(env.DB, date);
+  return json({ date, ...puzzle }, noStore);
+}
+
+async function handleGuessrToday(env: Env): Promise<Response> {
+  const date = denverDate();
+  const puzzle = await ensureGuessr(env.DB, date);
+  return json({ date, ...puzzle }, noStore);
+}
+
+async function handleMoneylePuzzle(env: Env): Promise<Response> {
+  const date = denverDate();
+  const puzzle = await ensureMoneyle(env.DB, date);
+  return json(
+    {
+      date,
+      imageUrl: puzzle.imageUrl,
+      maxGuesses: 6,
+      currencies: FX_CURRENCIES,
+    },
+    noStore
   );
+}
 
-  const category = await env.DB.prepare(
-    `SELECT id, slug, title, metric_label FROM categories
-     WHERE slug = ? AND is_active = 1`
-  )
-    .bind(slug)
-    .first<{ id: number; slug: string; title: string; metric_label: string }>();
+async function handleMoneyleGuess(env: Env, url: URL): Promise<Response> {
+  const raw = url.searchParams.get("code");
+  if (!raw) return json({ error: "Missing 'code' parameter" }, { status: 400 });
+  const guess = findCurrency(raw);
+  if (!guess) return json({ error: "Unknown currency" }, { status: 400 });
 
-  if (!category) return json({ error: "Category not found" }, { status: 404 });
+  const date = denverDate();
+  const puzzle = await ensureMoneyle(env.DB, date);
+  const target = puzzle.target;
+  const attempt = Math.min(Math.max(Number(url.searchParams.get("attempt")) || 1, 1), 6);
+  const correct = guess.code === target.code;
 
-  const { results } = await env.DB.prepare(
-    `SELECT id, name, subtitle, value, display_value, image_url
-     FROM items WHERE category_id = ? AND is_active = 1
-     ORDER BY RANDOM() LIMIT ?`
-  )
-    .bind(category.id, count)
-    .all<ItemRow>();
+  const rates = await fxRates(target.code);
+  const unitsOfGuessPerTarget = rates[guess.code];
+  if (unitsOfGuessPerTarget == null || !(unitsOfGuessPerTarget > 0)) {
+    return json({ error: "No rate for that currency" }, { status: 404 });
+  }
+  const unitsOfTargetPerGuess = 1 / unitsOfGuessPerTarget;
+  const remaining = correct ? 0 : 6 - attempt;
+  const showTarget = correct || remaining <= 0;
 
   return json(
     {
-      category: {
-        slug: category.slug,
-        title: category.title,
-        metricLabel: category.metric_label,
-      },
-      items: results.map((i) => ({
-        id: i.id,
-        name: i.name,
-        subtitle: i.subtitle,
-        value: i.value,
-        displayValue: i.display_value,
-        imageUrl: i.image_url,
-      })),
+      correct,
+      remaining,
+      closeness: correct ? 100 : closenessPct(unitsOfTargetPerGuess),
+      stronger: unitsOfTargetPerGuess > 1,
+      rateDisplay: formatRate(unitsOfTargetPerGuess),
+      target: showTarget ? target : null,
     },
-    { headers: { "cache-control": "no-store" } }
+    noStore
   );
 }
 
@@ -124,7 +135,10 @@ export default {
       }
       try {
         if (url.pathname === "/api/categories") return await handleCategories(env);
-        if (url.pathname === "/api/round") return await handleRound(env, url);
+        if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env);
+        if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env);
+        if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env);
+        if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, url);
       } catch (err) {
         console.error("API error", err);
         return json({ error: "Internal error" }, { status: 500 });
@@ -132,7 +146,18 @@ export default {
       return json({ error: "Not found" }, { status: 404 });
     }
 
-    // Non-API, non-asset requests fall through to the SPA (index.html).
     return env.ASSETS.fetch(request);
+  },
+
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(
+      (async () => {
+        const date = await ensureAllDailyPuzzles(env.DB, new Date(controller.scheduledTime));
+        console.log(`Daily puzzles ready for ${date} (cron ${controller.cron})`);
+      })().catch((err) => {
+        console.error("scheduled failed", err);
+        throw err;
+      })
+    );
   },
 } satisfies ExportedHandler<Env>;

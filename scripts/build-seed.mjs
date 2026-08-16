@@ -96,6 +96,7 @@ const lines = [
   "DELETE FROM items;",
   "DELETE FROM categories;",
   "DELETE FROM sqlite_sequence WHERE name IN ('items','categories');",
+  "DELETE FROM daily_puzzles WHERE game = 'moreless';",
   "",
 ];
 

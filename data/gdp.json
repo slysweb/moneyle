@@ -7,7 +7,8 @@
     "year": 2025,
     "gdpUsd": 30769700000000,
     "displayValue": "$30.8T",
-    "flagUrl": "https://flagcdn.com/w320/us.png"
+    "flagUrl": "/moreless/flags/us.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/us.png"
   },
   {
     "name": "China",
@@ -17,7 +18,8 @@
     "year": 2025,
     "gdpUsd": 19498039388043,
     "displayValue": "$19.5T",
-    "flagUrl": "https://flagcdn.com/w320/cn.png"
+    "flagUrl": "/moreless/flags/cn.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cn.png"
   },
   {
     "name": "Germany",
@@ -27,7 +29,8 @@
     "year": 2025,
     "gdpUsd": 5050922925047,
     "displayValue": "$5.05T",
-    "flagUrl": "https://flagcdn.com/w320/de.png"
+    "flagUrl": "/moreless/flags/de.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/de.png"
   },
   {
     "name": "Japan",
@@ -37,7 +40,8 @@
     "year": 2025,
     "gdpUsd": 4435162999977,
     "displayValue": "$4.44T",
-    "flagUrl": "https://flagcdn.com/w320/jp.png"
+    "flagUrl": "/moreless/flags/jp.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/jp.png"
   },
   {
     "name": "United Kingdom",
@@ -47,7 +51,8 @@
     "year": 2025,
     "gdpUsd": 4002587541846,
     "displayValue": "$4.00T",
-    "flagUrl": "https://flagcdn.com/w320/gb.png"
+    "flagUrl": "/moreless/flags/gb.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/gb.png"
   },
   {
     "name": "India",
@@ -57,7 +62,8 @@
     "year": 2025,
     "gdpUsd": 3956067115772,
     "displayValue": "$3.96T",
-    "flagUrl": "https://flagcdn.com/w320/in.png"
+    "flagUrl": "/moreless/flags/in.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/in.png"
   },
   {
     "name": "France",
@@ -67,7 +73,8 @@
     "year": 2025,
     "gdpUsd": 3366315927447,
     "displayValue": "$3.37T",
-    "flagUrl": "https://flagcdn.com/w320/fr.png"
+    "flagUrl": "/moreless/flags/fr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/fr.png"
   },
   {
     "name": "Russian Federation",
@@ -77,7 +84,8 @@
     "year": 2025,
     "gdpUsd": 2561310169359,
     "displayValue": "$2.56T",
-    "flagUrl": "https://flagcdn.com/w320/ru.png"
+    "flagUrl": "/moreless/flags/ru.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ru.png"
   },
   {
     "name": "Italy",
@@ -87,7 +95,8 @@
     "year": 2025,
     "gdpUsd": 2551556954100,
     "displayValue": "$2.55T",
-    "flagUrl": "https://flagcdn.com/w320/it.png"
+    "flagUrl": "/moreless/flags/it.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/it.png"
   },
   {
     "name": "Canada",
@@ -97,7 +106,8 @@
     "year": 2025,
     "gdpUsd": 2319899772426,
     "displayValue": "$2.32T",
-    "flagUrl": "https://flagcdn.com/w320/ca.png"
+    "flagUrl": "/moreless/flags/ca.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ca.png"
   },
   {
     "name": "Brazil",
@@ -107,7 +117,8 @@
     "year": 2025,
     "gdpUsd": 2279920092492,
     "displayValue": "$2.28T",
-    "flagUrl": "https://flagcdn.com/w320/br.png"
+    "flagUrl": "/moreless/flags/br.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/br.png"
   },
   {
     "name": "Spain",
@@ -117,7 +128,8 @@
     "year": 2025,
     "gdpUsd": 1906453309986,
     "displayValue": "$1.91T",
-    "flagUrl": "https://flagcdn.com/w320/es.png"
+    "flagUrl": "/moreless/flags/es.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/es.png"
   },
   {
     "name": "Korea, Rep.",
@@ -127,7 +139,8 @@
     "year": 2025,
     "gdpUsd": 1872374961553,
     "displayValue": "$1.87T",
-    "flagUrl": "https://flagcdn.com/w320/kr.png"
+    "flagUrl": "/moreless/flags/kr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/kr.png"
   },
   {
     "name": "Mexico",
@@ -137,7 +150,8 @@
     "year": 2025,
     "gdpUsd": 1832641364776,
     "displayValue": "$1.83T",
-    "flagUrl": "https://flagcdn.com/w320/mx.png"
+    "flagUrl": "/moreless/flags/mx.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/mx.png"
   },
   {
     "name": "Australia",
@@ -147,7 +161,8 @@
     "year": 2025,
     "gdpUsd": 1798518933689,
     "displayValue": "$1.80T",
-    "flagUrl": "https://flagcdn.com/w320/au.png"
+    "flagUrl": "/moreless/flags/au.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/au.png"
   },
   {
     "name": "Turkiye",
@@ -157,7 +172,8 @@
     "year": 2025,
     "gdpUsd": 1597293229287,
     "displayValue": "$1.60T",
-    "flagUrl": "https://flagcdn.com/w320/tr.png"
+    "flagUrl": "/moreless/flags/tr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/tr.png"
   },
   {
     "name": "Indonesia",
@@ -167,7 +183,8 @@
     "year": 2025,
     "gdpUsd": 1445642584164,
     "displayValue": "$1.45T",
-    "flagUrl": "https://flagcdn.com/w320/id.png"
+    "flagUrl": "/moreless/flags/id.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/id.png"
   },
   {
     "name": "Netherlands",
@@ -177,7 +194,8 @@
     "year": 2025,
     "gdpUsd": 1332767651100,
     "displayValue": "$1.33T",
-    "flagUrl": "https://flagcdn.com/w320/nl.png"
+    "flagUrl": "/moreless/flags/nl.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/nl.png"
   },
   {
     "name": "Saudi Arabia",
@@ -187,7 +205,8 @@
     "year": 2025,
     "gdpUsd": 1276942933333,
     "displayValue": "$1.28T",
-    "flagUrl": "https://flagcdn.com/w320/sa.png"
+    "flagUrl": "/moreless/flags/sa.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/sa.png"
   },
   {
     "name": "Switzerland",
@@ -197,7 +216,8 @@
     "year": 2025,
     "gdpUsd": 1043529899251,
     "displayValue": "$1.04T",
-    "flagUrl": "https://flagcdn.com/w320/ch.png"
+    "flagUrl": "/moreless/flags/ch.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ch.png"
   },
   {
     "name": "Poland",
@@ -207,7 +227,8 @@
     "year": 2025,
     "gdpUsd": 1035491784197,
     "displayValue": "$1.04T",
-    "flagUrl": "https://flagcdn.com/w320/pl.png"
+    "flagUrl": "/moreless/flags/pl.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pl.png"
   },
   {
     "name": "Belgium",
@@ -217,7 +238,8 @@
     "year": 2025,
     "gdpUsd": 725466462860,
     "displayValue": "$725B",
-    "flagUrl": "https://flagcdn.com/w320/be.png"
+    "flagUrl": "/moreless/flags/be.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/be.png"
   },
   {
     "name": "Ireland",
@@ -227,7 +249,8 @@
     "year": 2025,
     "gdpUsd": 721701359046,
     "displayValue": "$722B",
-    "flagUrl": "https://flagcdn.com/w320/ie.png"
+    "flagUrl": "/moreless/flags/ie.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ie.png"
   },
   {
     "name": "Argentina",
@@ -237,7 +260,8 @@
     "year": 2025,
     "gdpUsd": 683097891619,
     "displayValue": "$683B",
-    "flagUrl": "https://flagcdn.com/w320/ar.png"
+    "flagUrl": "/moreless/flags/ar.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ar.png"
   },
   {
     "name": "Sweden",
@@ -247,7 +271,8 @@
     "year": 2025,
     "gdpUsd": 668998664082,
     "displayValue": "$669B",
-    "flagUrl": "https://flagcdn.com/w320/se.png"
+    "flagUrl": "/moreless/flags/se.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/se.png"
   },
   {
     "name": "Israel",
@@ -257,7 +282,8 @@
     "year": 2025,
     "gdpUsd": 610777842874,
     "displayValue": "$611B",
-    "flagUrl": "https://flagcdn.com/w320/il.png"
+    "flagUrl": "/moreless/flags/il.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/il.png"
   },
   {
     "name": "Singapore",
@@ -267,7 +293,8 @@
     "year": 2025,
     "gdpUsd": 603869516999,
     "displayValue": "$604B",
-    "flagUrl": "https://flagcdn.com/w320/sg.png"
+    "flagUrl": "/moreless/flags/sg.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/sg.png"
   },
   {
     "name": "Austria",
@@ -277,7 +304,8 @@
     "year": 2025,
     "gdpUsd": 579470021095,
     "displayValue": "$579B",
-    "flagUrl": "https://flagcdn.com/w320/at.png"
+    "flagUrl": "/moreless/flags/at.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/at.png"
   },
   {
     "name": "Thailand",
@@ -287,7 +315,8 @@
     "year": 2025,
     "gdpUsd": 577009981112,
     "displayValue": "$577B",
-    "flagUrl": "https://flagcdn.com/w320/th.png"
+    "flagUrl": "/moreless/flags/th.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/th.png"
   },
   {
     "name": "Norway",
@@ -297,7 +326,8 @@
     "year": 2025,
     "gdpUsd": 530755719439,
     "displayValue": "$531B",
-    "flagUrl": "https://flagcdn.com/w320/no.png"
+    "flagUrl": "/moreless/flags/no.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/no.png"
   },
   {
     "name": "Viet Nam",
@@ -307,7 +337,8 @@
     "year": 2025,
     "gdpUsd": 514697215165,
     "displayValue": "$515B",
-    "flagUrl": "https://flagcdn.com/w320/vn.png"
+    "flagUrl": "/moreless/flags/vn.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/vn.png"
   },
   {
     "name": "Philippines",
@@ -317,7 +348,8 @@
     "year": 2025,
     "gdpUsd": 487086123720,
     "displayValue": "$487B",
-    "flagUrl": "https://flagcdn.com/w320/ph.png"
+    "flagUrl": "/moreless/flags/ph.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ph.png"
   },
   {
     "name": "Malaysia",
@@ -327,7 +359,8 @@
     "year": 2025,
     "gdpUsd": 472193128645,
     "displayValue": "$472B",
-    "flagUrl": "https://flagcdn.com/w320/my.png"
+    "flagUrl": "/moreless/flags/my.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/my.png"
   },
   {
     "name": "Denmark",
@@ -337,7 +370,8 @@
     "year": 2025,
     "gdpUsd": 462526660468,
     "displayValue": "$463B",
-    "flagUrl": "https://flagcdn.com/w320/dk.png"
+    "flagUrl": "/moreless/flags/dk.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/dk.png"
   },
   {
     "name": "Colombia",
@@ -347,7 +381,8 @@
     "year": 2025,
     "gdpUsd": 457410034203,
     "displayValue": "$457B",
-    "flagUrl": "https://flagcdn.com/w320/co.png"
+    "flagUrl": "/moreless/flags/co.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/co.png"
   },
   {
     "name": "Bangladesh",
@@ -357,7 +392,8 @@
     "year": 2025,
     "gdpUsd": 456319229256,
     "displayValue": "$456B",
-    "flagUrl": "https://flagcdn.com/w320/bd.png"
+    "flagUrl": "/moreless/flags/bd.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/bd.png"
   },
   {
     "name": "Romania",
@@ -367,7 +403,8 @@
     "year": 2025,
     "gdpUsd": 428677977855,
     "displayValue": "$429B",
-    "flagUrl": "https://flagcdn.com/w320/ro.png"
+    "flagUrl": "/moreless/flags/ro.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ro.png"
   },
   {
     "name": "Hong Kong SAR, China",
@@ -377,7 +414,8 @@
     "year": 2025,
     "gdpUsd": 427310315922,
     "displayValue": "$427B",
-    "flagUrl": "https://flagcdn.com/w320/hk.png"
+    "flagUrl": "/moreless/flags/hk.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/hk.png"
   },
   {
     "name": "South Africa",
@@ -387,7 +425,8 @@
     "year": 2025,
     "gdpUsd": 427184325997,
     "displayValue": "$427B",
-    "flagUrl": "https://flagcdn.com/w320/za.png"
+    "flagUrl": "/moreless/flags/za.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/za.png"
   },
   {
     "name": "Pakistan",
@@ -397,7 +436,8 @@
     "year": 2025,
     "gdpUsd": 407307214476,
     "displayValue": "$407B",
-    "flagUrl": "https://flagcdn.com/w320/pk.png"
+    "flagUrl": "/moreless/flags/pk.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pk.png"
   },
   {
     "name": "Czechia",
@@ -407,7 +447,8 @@
     "year": 2025,
     "gdpUsd": 391026962800,
     "displayValue": "$391B",
-    "flagUrl": "https://flagcdn.com/w320/cz.png"
+    "flagUrl": "/moreless/flags/cz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cz.png"
   },
   {
     "name": "Egypt, Arab Rep.",
@@ -417,7 +458,8 @@
     "year": 2025,
     "gdpUsd": 365254630180,
     "displayValue": "$365B",
-    "flagUrl": "https://flagcdn.com/w320/eg.png"
+    "flagUrl": "/moreless/flags/eg.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/eg.png"
   },
   {
     "name": "Iran, Islamic Rep.",
@@ -427,7 +469,8 @@
     "year": 2025,
     "gdpUsd": 362682115433,
     "displayValue": "$363B",
-    "flagUrl": "https://flagcdn.com/w320/ir.png"
+    "flagUrl": "/moreless/flags/ir.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ir.png"
   },
   {
     "name": "Chile",
@@ -437,7 +480,8 @@
     "year": 2025,
     "gdpUsd": 357371159575,
     "displayValue": "$357B",
-    "flagUrl": "https://flagcdn.com/w320/cl.png"
+    "flagUrl": "/moreless/flags/cl.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cl.png"
   },
   {
     "name": "Portugal",
@@ -447,7 +491,8 @@
     "year": 2025,
     "gdpUsd": 346639825142,
     "displayValue": "$347B",
-    "flagUrl": "https://flagcdn.com/w320/pt.png"
+    "flagUrl": "/moreless/flags/pt.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pt.png"
   },
   {
     "name": "Peru",
@@ -457,7 +502,8 @@
     "year": 2025,
     "gdpUsd": 334854659182,
     "displayValue": "$335B",
-    "flagUrl": "https://flagcdn.com/w320/pe.png"
+    "flagUrl": "/moreless/flags/pe.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pe.png"
   },
   {
     "name": "Finland",
@@ -467,7 +513,8 @@
     "year": 2025,
     "gdpUsd": 317039368820,
     "displayValue": "$317B",
-    "flagUrl": "https://flagcdn.com/w320/fi.png"
+    "flagUrl": "/moreless/flags/fi.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/fi.png"
   },
   {
     "name": "Kazakhstan",
@@ -477,7 +524,8 @@
     "year": 2025,
     "gdpUsd": 306239209650,
     "displayValue": "$306B",
-    "flagUrl": "https://flagcdn.com/w320/kz.png"
+    "flagUrl": "/moreless/flags/kz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/kz.png"
   },
   {
     "name": "Nigeria",
@@ -487,7 +535,8 @@
     "year": 2025,
     "gdpUsd": 290794361542,
     "displayValue": "$291B",
-    "flagUrl": "https://flagcdn.com/w320/ng.png"
+    "flagUrl": "/moreless/flags/ng.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ng.png"
   },
   {
     "name": "Algeria",
@@ -497,7 +546,8 @@
     "year": 2025,
     "gdpUsd": 287031225988,
     "displayValue": "$287B",
-    "flagUrl": "https://flagcdn.com/w320/dz.png"
+    "flagUrl": "/moreless/flags/dz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/dz.png"
   },
   {
     "name": "Greece",
@@ -507,7 +557,8 @@
     "year": 2025,
     "gdpUsd": 280635521324,
     "displayValue": "$281B",
-    "flagUrl": "https://flagcdn.com/w320/gr.png"
+    "flagUrl": "/moreless/flags/gr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/gr.png"
   },
   {
     "name": "New Zealand",
@@ -517,7 +568,8 @@
     "year": 2025,
     "gdpUsd": 264057413740,
     "displayValue": "$264B",
-    "flagUrl": "https://flagcdn.com/w320/nz.png"
+    "flagUrl": "/moreless/flags/nz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/nz.png"
   },
   {
     "name": "Iraq",
@@ -527,7 +579,8 @@
     "year": 2025,
     "gdpUsd": 254367293538,
     "displayValue": "$254B",
-    "flagUrl": "https://flagcdn.com/w320/iq.png"
+    "flagUrl": "/moreless/flags/iq.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/iq.png"
   },
   {
     "name": "Hungary",
@@ -537,7 +590,8 @@
     "year": 2025,
     "gdpUsd": 246490213513,
     "displayValue": "$246B",
-    "flagUrl": "https://flagcdn.com/w320/hu.png"
+    "flagUrl": "/moreless/flags/hu.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/hu.png"
   },
   {
     "name": "Qatar",
@@ -547,7 +601,8 @@
     "year": 2025,
     "gdpUsd": 215559615385,
     "displayValue": "$216B",
-    "flagUrl": "https://flagcdn.com/w320/qa.png"
+    "flagUrl": "/moreless/flags/qa.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/qa.png"
   },
   {
     "name": "Ukraine",
@@ -557,7 +612,8 @@
     "year": 2025,
     "gdpUsd": 214233312784,
     "displayValue": "$214B",
-    "flagUrl": "https://flagcdn.com/w320/ua.png"
+    "flagUrl": "/moreless/flags/ua.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ua.png"
   },
   {
     "name": "Morocco",
@@ -567,7 +623,8 @@
     "year": 2025,
     "gdpUsd": 182374250612,
     "displayValue": "$182B",
-    "flagUrl": "https://flagcdn.com/w320/ma.png"
+    "flagUrl": "/moreless/flags/ma.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ma.png"
   },
   {
     "name": "Kuwait",
@@ -577,7 +634,8 @@
     "year": 2025,
     "gdpUsd": 157209026926,
     "displayValue": "$157B",
-    "flagUrl": "https://flagcdn.com/w320/kw.png"
+    "flagUrl": "/moreless/flags/kw.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/kw.png"
   },
   {
     "name": "Slovak Republic",
@@ -587,7 +645,8 @@
     "year": 2025,
     "gdpUsd": 154530066507,
     "displayValue": "$155B",
-    "flagUrl": "https://flagcdn.com/w320/sk.png"
+    "flagUrl": "/moreless/flags/sk.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/sk.png"
   },
   {
     "name": "Uzbekistan",
@@ -597,7 +656,8 @@
     "year": 2025,
     "gdpUsd": 147038081129,
     "displayValue": "$147B",
-    "flagUrl": "https://flagcdn.com/w320/uz.png"
+    "flagUrl": "/moreless/flags/uz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/uz.png"
   },
   {
     "name": "Kenya",
@@ -607,7 +667,8 @@
     "year": 2025,
     "gdpUsd": 135941278879,
     "displayValue": "$136B",
-    "flagUrl": "https://flagcdn.com/w320/ke.png"
+    "flagUrl": "/moreless/flags/ke.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ke.png"
   },
   {
     "name": "Bulgaria",
@@ -617,7 +678,8 @@
     "year": 2025,
     "gdpUsd": 130777235530,
     "displayValue": "$131B",
-    "flagUrl": "https://flagcdn.com/w320/bg.png"
+    "flagUrl": "/moreless/flags/bg.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/bg.png"
   },
   {
     "name": "Ecuador",
@@ -627,7 +689,8 @@
     "year": 2025,
     "gdpUsd": 130320560400,
     "displayValue": "$130B",
-    "flagUrl": "https://flagcdn.com/w320/ec.png"
+    "flagUrl": "/moreless/flags/ec.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ec.png"
   },
   {
     "name": "Puerto Rico (US)",
@@ -637,7 +700,8 @@
     "year": 2025,
     "gdpUsd": 129368484000,
     "displayValue": "$129B",
-    "flagUrl": "https://flagcdn.com/w320/pr.png"
+    "flagUrl": "/moreless/flags/pr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pr.png"
   },
   {
     "name": "Dominican Republic",
@@ -647,7 +711,8 @@
     "year": 2025,
     "gdpUsd": 127407463759,
     "displayValue": "$127B",
-    "flagUrl": "https://flagcdn.com/w320/do.png"
+    "flagUrl": "/moreless/flags/do.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/do.png"
   },
   {
     "name": "Ethiopia",
@@ -657,7 +722,8 @@
     "year": 2025,
     "gdpUsd": 126358758448,
     "displayValue": "$126B",
-    "flagUrl": "https://flagcdn.com/w320/et.png"
+    "flagUrl": "/moreless/flags/et.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/et.png"
   },
   {
     "name": "Guatemala",
@@ -667,7 +733,8 @@
     "year": 2025,
     "gdpUsd": 123306008821,
     "displayValue": "$123B",
-    "flagUrl": "https://flagcdn.com/w320/gt.png"
+    "flagUrl": "/moreless/flags/gt.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/gt.png"
   },
   {
     "name": "Angola",
@@ -677,7 +744,8 @@
     "year": 2025,
     "gdpUsd": 122174889424,
     "displayValue": "$122B",
-    "flagUrl": "https://flagcdn.com/w320/ao.png"
+    "flagUrl": "/moreless/flags/ao.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ao.png"
   },
   {
     "name": "Ghana",
@@ -687,7 +755,8 @@
     "year": 2025,
     "gdpUsd": 114209905279,
     "displayValue": "$114B",
-    "flagUrl": "https://flagcdn.com/w320/gh.png"
+    "flagUrl": "/moreless/flags/gh.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/gh.png"
   },
   {
     "name": "Oman",
@@ -697,7 +766,8 @@
     "year": 2025,
     "gdpUsd": 109604780696,
     "displayValue": "$110B",
-    "flagUrl": "https://flagcdn.com/w320/om.png"
+    "flagUrl": "/moreless/flags/om.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/om.png"
   },
   {
     "name": "Sri Lanka",
@@ -707,7 +777,8 @@
     "year": 2025,
     "gdpUsd": 108825231671,
     "displayValue": "$109B",
-    "flagUrl": "https://flagcdn.com/w320/lk.png"
+    "flagUrl": "/moreless/flags/lk.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/lk.png"
   },
   {
     "name": "Croatia",
@@ -717,7 +788,8 @@
     "year": 2025,
     "gdpUsd": 105060182186,
     "displayValue": "$105B",
-    "flagUrl": "https://flagcdn.com/w320/hr.png"
+    "flagUrl": "/moreless/flags/hr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/hr.png"
   },
   {
     "name": "Costa Rica",
@@ -727,7 +799,8 @@
     "year": 2025,
     "gdpUsd": 102904921157,
     "displayValue": "$103B",
-    "flagUrl": "https://flagcdn.com/w320/cr.png"
+    "flagUrl": "/moreless/flags/cr.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cr.png"
   },
   {
     "name": "Luxembourg",
@@ -737,7 +810,8 @@
     "year": 2025,
     "gdpUsd": 101157829491,
     "displayValue": "$101B",
-    "flagUrl": "https://flagcdn.com/w320/lu.png"
+    "flagUrl": "/moreless/flags/lu.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/lu.png"
   },
   {
     "name": "Serbia",
@@ -747,7 +821,8 @@
     "year": 2025,
     "gdpUsd": 99953324473,
     "displayValue": "$100.0B",
-    "flagUrl": "https://flagcdn.com/w320/rs.png"
+    "flagUrl": "/moreless/flags/rs.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/rs.png"
   },
   {
     "name": "Cote d'Ivoire",
@@ -757,7 +832,8 @@
     "year": 2025,
     "gdpUsd": 99773555666,
     "displayValue": "$99.8B",
-    "flagUrl": "https://flagcdn.com/w320/ci.png"
+    "flagUrl": "/moreless/flags/ci.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ci.png"
   },
   {
     "name": "Venezuela, RB",
@@ -767,7 +843,8 @@
     "year": 2025,
     "gdpUsd": 99661244156,
     "displayValue": "$99.7B",
-    "flagUrl": "https://flagcdn.com/w320/ve.png"
+    "flagUrl": "/moreless/flags/ve.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ve.png"
   },
   {
     "name": "Lithuania",
@@ -777,7 +854,8 @@
     "year": 2025,
     "gdpUsd": 95210150818,
     "displayValue": "$95.2B",
-    "flagUrl": "https://flagcdn.com/w320/lt.png"
+    "flagUrl": "/moreless/flags/lt.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/lt.png"
   },
   {
     "name": "Belarus",
@@ -787,7 +865,8 @@
     "year": 2025,
     "gdpUsd": 93397215864,
     "displayValue": "$93.4B",
-    "flagUrl": "https://flagcdn.com/w320/by.png"
+    "flagUrl": "/moreless/flags/by.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/by.png"
   },
   {
     "name": "Congo, Dem. Rep.",
@@ -797,7 +876,8 @@
     "year": 2025,
     "gdpUsd": 91030531317,
     "displayValue": "$91.0B",
-    "flagUrl": "https://flagcdn.com/w320/cd.png"
+    "flagUrl": "/moreless/flags/cd.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cd.png"
   },
   {
     "name": "Panama",
@@ -807,7 +887,8 @@
     "year": 2025,
     "gdpUsd": 90462600000,
     "displayValue": "$90.5B",
-    "flagUrl": "https://flagcdn.com/w320/pa.png"
+    "flagUrl": "/moreless/flags/pa.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/pa.png"
   },
   {
     "name": "Tanzania",
@@ -817,7 +898,8 @@
     "year": 2025,
     "gdpUsd": 90143496090,
     "displayValue": "$90.1B",
-    "flagUrl": "https://flagcdn.com/w320/tz.png"
+    "flagUrl": "/moreless/flags/tz.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/tz.png"
   },
   {
     "name": "Uruguay",
@@ -827,7 +909,8 @@
     "year": 2025,
     "gdpUsd": 85347696278,
     "displayValue": "$85.3B",
-    "flagUrl": "https://flagcdn.com/w320/uy.png"
+    "flagUrl": "/moreless/flags/uy.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/uy.png"
   },
   {
     "name": "Myanmar",
@@ -837,7 +920,8 @@
     "year": 2025,
     "gdpUsd": 81665773810,
     "displayValue": "$81.7B",
-    "flagUrl": "https://flagcdn.com/w320/mm.png"
+    "flagUrl": "/moreless/flags/mm.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/mm.png"
   },
   {
     "name": "Slovenia",
@@ -847,7 +931,8 @@
     "year": 2025,
     "gdpUsd": 79648204979,
     "displayValue": "$79.6B",
-    "flagUrl": "https://flagcdn.com/w320/si.png"
+    "flagUrl": "/moreless/flags/si.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/si.png"
   },
   {
     "name": "Azerbaijan",
@@ -857,7 +942,8 @@
     "year": 2025,
     "gdpUsd": 75937647059,
     "displayValue": "$75.9B",
-    "flagUrl": "https://flagcdn.com/w320/az.png"
+    "flagUrl": "/moreless/flags/az.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/az.png"
   },
   {
     "name": "Bolivia",
@@ -867,7 +953,8 @@
     "year": 2025,
     "gdpUsd": 64768947525,
     "displayValue": "$64.8B",
-    "flagUrl": "https://flagcdn.com/w320/bo.png"
+    "flagUrl": "/moreless/flags/bo.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/bo.png"
   },
   {
     "name": "Uganda",
@@ -877,7 +964,8 @@
     "year": 2025,
     "gdpUsd": 61985829288,
     "displayValue": "$62.0B",
-    "flagUrl": "https://flagcdn.com/w320/ug.png"
+    "flagUrl": "/moreless/flags/ug.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ug.png"
   },
   {
     "name": "Jordan",
@@ -887,7 +975,8 @@
     "year": 2025,
     "gdpUsd": 61610052535,
     "displayValue": "$61.6B",
-    "flagUrl": "https://flagcdn.com/w320/jo.png"
+    "flagUrl": "/moreless/flags/jo.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/jo.png"
   },
   {
     "name": "Sudan",
@@ -897,7 +986,8 @@
     "year": 2025,
     "gdpUsd": 60162634574,
     "displayValue": "$60.2B",
-    "flagUrl": "https://flagcdn.com/w320/sd.png"
+    "flagUrl": "/moreless/flags/sd.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/sd.png"
   },
   {
     "name": "Cameroon",
@@ -907,7 +997,8 @@
     "year": 2025,
     "gdpUsd": 58933453924,
     "displayValue": "$58.9B",
-    "flagUrl": "https://flagcdn.com/w320/cm.png"
+    "flagUrl": "/moreless/flags/cm.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/cm.png"
   },
   {
     "name": "Tunisia",
@@ -917,7 +1008,8 @@
     "year": 2025,
     "gdpUsd": 57502836548,
     "displayValue": "$57.5B",
-    "flagUrl": "https://flagcdn.com/w320/tn.png"
+    "flagUrl": "/moreless/flags/tn.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/tn.png"
   },
   {
     "name": "Macao SAR, China",
@@ -927,7 +1019,8 @@
     "year": 2025,
     "gdpUsd": 52061007670,
     "displayValue": "$52.1B",
-    "flagUrl": "https://flagcdn.com/w320/mo.png"
+    "flagUrl": "/moreless/flags/mo.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/mo.png"
   },
   {
     "name": "Cambodia",
@@ -937,7 +1030,8 @@
     "year": 2025,
     "gdpUsd": 51267065843,
     "displayValue": "$51.3B",
-    "flagUrl": "https://flagcdn.com/w320/kh.png"
+    "flagUrl": "/moreless/flags/kh.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/kh.png"
   },
   {
     "name": "Zimbabwe",
@@ -947,7 +1041,8 @@
     "year": 2025,
     "gdpUsd": 51215643906,
     "displayValue": "$51.2B",
-    "flagUrl": "https://flagcdn.com/w320/zw.png"
+    "flagUrl": "/moreless/flags/zw.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/zw.png"
   },
   {
     "name": "Turkmenistan",
@@ -957,7 +1052,8 @@
     "year": 2025,
     "gdpUsd": 49828621356,
     "displayValue": "$49.8B",
-    "flagUrl": "https://flagcdn.com/w320/tm.png"
+    "flagUrl": "/moreless/flags/tm.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/tm.png"
   },
   {
     "name": "Paraguay",
@@ -967,7 +1063,8 @@
     "year": 2025,
     "gdpUsd": 49278227554,
     "displayValue": "$49.3B",
-    "flagUrl": "https://flagcdn.com/w320/py.png"
+    "flagUrl": "/moreless/flags/py.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/py.png"
   },
   {
     "name": "Bahrain",
@@ -977,7 +1074,8 @@
     "year": 2025,
     "gdpUsd": 48965725532,
     "displayValue": "$49.0B",
-    "flagUrl": "https://flagcdn.com/w320/bh.png"
+    "flagUrl": "/moreless/flags/bh.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/bh.png"
   },
   {
     "name": "Latvia",
@@ -987,7 +1085,8 @@
     "year": 2025,
     "gdpUsd": 48618869160,
     "displayValue": "$48.6B",
-    "flagUrl": "https://flagcdn.com/w320/lv.png"
+    "flagUrl": "/moreless/flags/lv.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/lv.png"
   },
   {
     "name": "Libya",
@@ -997,6 +1096,7 @@
     "year": 2025,
     "gdpUsd": 48098909614,
     "displayValue": "$48.1B",
-    "flagUrl": "https://flagcdn.com/w320/ly.png"
+    "flagUrl": "/moreless/flags/ly.png",
+    "sourceImageUrl": "https://flagcdn.com/w320/ly.png"
   }
 ]
