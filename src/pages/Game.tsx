@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/api";
 import HowToPlay from "../components/HowToPlay";
 import { usePageMeta } from "../lib/usePageMeta";
+import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding";
 type Side = "left" | "right";
@@ -88,6 +89,7 @@ export default function Game() {
   );
 
   const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
+  const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [levelIndex, setLevelIndex] = useState(0);
   const [roundIndex, setRoundIndex] = useState(0);
@@ -95,6 +97,7 @@ export default function Game() {
   const [selected, setSelected] = useState<Side | null>(null);
   const [answers, setAnswers] = useState<AnswerRecord[]>([]);
   const [finished, setFinished] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [runKey, setRunKey] = useState(0);
   const timers = useRef<number[]>([]);
@@ -107,6 +110,7 @@ export default function Game() {
       .then((res) => {
         if (cancelled) return;
         setLevels(res.levels);
+        setPuzzleDate(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -213,6 +217,7 @@ export default function Game() {
     setSelected(null);
     setAnswers([]);
     setFinished(false);
+    setCopied(false);
     setRunKey((k) => k + 1);
   }, []);
 
@@ -241,10 +246,25 @@ export default function Game() {
       const rows = answers.filter((a) => a.levelIndex === i);
       return {
         short: lvl.short,
-        correct: rows.filter((r) => r.correct).length,
-        total: rows.length,
+        marks: resultSquares(rows.map((r) => r.correct)),
       };
     });
+    const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
+    const shareText = [
+      number != null ? `More/Less #${number} — ${correctCount}/${total}` : `More/Less — ${correctCount}/${total}`,
+      "",
+      ...byLevel.map((row) => `${row.short} ${row.marks}`),
+      "",
+      "Play Today's Game: https://moneygames.cc/moreless",
+    ].join("\n");
+
+    const share = async () => {
+      const ok = await copyText(shareText);
+      if (ok) {
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 2000);
+      }
+    };
 
     return (
       <main className="game-page">
@@ -259,15 +279,18 @@ export default function Game() {
             {byLevel.map((row) => (
               <li key={row.short}>
                 <span>{row.short}</span>
-                <strong>
-                  {row.correct}/{row.total}
-                </strong>
+                <span className="review-marks" aria-label={row.marks}>
+                  {row.marks}
+                </span>
               </li>
             ))}
           </ul>
           <div className="overlay-actions">
             <button className="btn primary" onClick={restart}>
               Play again
+            </button>
+            <button className="btn ghost" type="button" onClick={() => void share()}>
+              {copied ? "Copied!" : "Share"}
             </button>
             <Link className="btn ghost" to="/">
               Home

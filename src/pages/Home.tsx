@@ -45,8 +45,8 @@ export default function Home() {
           <div className="game-card-badge">Play now</div>
           <h2>Moneyle</h2>
           <p>
-            A frosted banknote and six guesses. Use live exchange rates to
-            home in on the hidden currency.
+            A frosted banknote and six guesses. Use exchange-rate clues and
+            the note’s blurred outline to deduce the hidden currency.
           </p>
           <span className="game-card-cta">Play Moneyle →</span>
         </Link>
