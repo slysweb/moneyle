@@ -106,3 +106,20 @@ export function fetchMoneyleGuess(code: string, attempt?: number): Promise<Money
   if (attempt != null) params.set("attempt", String(attempt));
   return getJson(`/api/moneyle/guess?${params.toString()}`);
 }
+
+export type FeedbackCategory = "bug" | "suggestion";
+
+export async function submitFeedback(input: {
+  category: FeedbackCategory;
+  message: string;
+  page?: string;
+  website?: string;
+}): Promise<void> {
+  const res = await fetch("/api/feedback", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  const data = (await res.json().catch(() => ({}))) as { error?: string };
+  if (!res.ok) throw new Error(data.error || `Request failed: ${res.status}`);
+}

@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS denominations;
 DROP TABLE IF EXISTS currencies;
 DROP TABLE IF EXISTS daily_puzzles;
+DROP TABLE IF EXISTS feedback;
 
 CREATE TABLE categories (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -81,3 +82,15 @@ CREATE TABLE daily_puzzles (
   created_at  TEXT NOT NULL DEFAULT (datetime('now')),
   UNIQUE (game, puzzle_date)
 );
+
+CREATE TABLE feedback (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  category    TEXT NOT NULL CHECK (category IN ('bug', 'suggestion')),
+  message     TEXT NOT NULL,
+  page        TEXT,
+  user_agent  TEXT,
+  ip          TEXT,
+  created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX idx_feedback_ip_created ON feedback (ip, created_at);

@@ -53,6 +53,8 @@ a {
   padding: 18px 24px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .logo {
@@ -77,6 +79,24 @@ a {
   color: #fff;
   font-family: var(--font-mono);
   font-weight: 700;
+}
+
+.header-feedback {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.header-feedback:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
 }
 
 /* ---------- Generic page ---------- */
@@ -196,6 +216,121 @@ a {
   color: var(--text-dim);
   font-size: 0.85rem;
   padding: 24px 0;
+}
+
+.site-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  margin: 0 0 10px;
+}
+
+.site-footer-nav a {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.site-footer-nav a:hover,
+.site-footer-nav a.active,
+.site-footer-nav button:hover {
+  color: var(--text);
+}
+
+.site-footer-nav button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.text-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-dark);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.info-page {
+  max-width: 720px;
+}
+
+.info-kicker {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.info-kicker a {
+  color: var(--text-dim);
+}
+
+.info-kicker a:hover {
+  color: var(--text);
+}
+
+.info-page h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.04em;
+  margin: 0 0 8px;
+}
+
+.info-updated {
+  margin: 0 0 28px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.info-body {
+  margin-top: 12px;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.info-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  margin: 28px 0 10px;
+}
+
+.info-body p {
+  margin: 0 0 14px;
+}
+
+.info-body ul {
+  margin: 0 0 16px;
+  padding-left: 1.2em;
+}
+
+.info-body li + li {
+  margin-top: 6px;
+}
+
+.info-body li,
+.info-body p {
+  color: var(--text);
+}
+
+.changelog-entry {
+  margin-bottom: 8px;
+}
+
+.changelog-entry time {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent-dark);
 }
 
 /* ---------- Game ---------- */
@@ -595,6 +730,138 @@ button.card:disabled {
 
 .howto-close:hover {
   color: var(--text);
+}
+
+.feedback-overlay {
+  z-index: 30;
+}
+
+.feedback-modal {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 32px 28px 24px;
+  width: min(520px, 100%);
+  text-align: left;
+  box-shadow: 0 24px 80px rgba(20, 36, 28, 0.18);
+  color: var(--text);
+}
+
+.feedback-modal h2 {
+  margin: 0 36px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.feedback-modal .howto-sub {
+  text-align: left;
+  margin: 8px 0 22px;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.feedback-label {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.feedback-cats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.feedback-cats button {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feedback-cats button.on {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.feedback-box {
+  position: relative;
+}
+
+.feedback-box textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  padding: 12px 12px 28px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  line-height: 1.45;
+}
+
+.feedback-box textarea:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.feedback-count {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+.feedback-error {
+  margin: 10px 0 0;
+  color: var(--red);
+  font-size: 0.9rem;
+}
+
+.feedback-alt {
+  margin: 12px 0 0;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+
+.feedback-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.feedback-thanks {
+  text-align: center;
+  padding: 8px 0 4px;
+}
+
+.feedback-thanks p {
+  margin: 0 0 18px;
+  color: var(--text-dim);
 }
 
 .howto-modal h2 {
@@ -1090,22 +1357,29 @@ button.card:disabled {
   overflow: hidden;
   background: #163d28;
   box-shadow: var(--shadow);
+  --frost-blur: 28px;
+  --frost-tint: 0.42;
+  --frost-scale: 1.12;
 }
 
 .moneyle-note img {
   display: block;
   width: 100%;
   height: auto;
+  filter: blur(var(--frost-blur));
+  transform: scale(var(--frost-scale));
+  transform-origin: center;
+  transition: filter 0.45s ease, transform 0.45s ease;
 }
 
 .moneyle-frost {
   position: absolute;
   inset: 0;
-  background: rgba(236, 244, 239, var(--frost-tint, 0.42));
-  backdrop-filter: blur(var(--frost-blur, 28px));
-  -webkit-backdrop-filter: blur(var(--frost-blur, 28px));
-  transition: background 0.45s ease, backdrop-filter 0.45s ease;
+  z-index: 1;
+  background: #d7e8de;
+  opacity: var(--frost-tint);
   pointer-events: none;
+  transition: opacity 0.45s ease;
 }
 
 .moneyle-badge {
@@ -1233,7 +1507,7 @@ button.card:disabled {
   border-radius: 12px;
   box-shadow: 0 16px 40px rgba(20, 36, 28, 0.16);
   z-index: 8;
-  max-height: 280px;
+  max-height: 360px;
   overflow: auto;
 }
 
@@ -1367,5 +1641,13 @@ button.card:disabled {
 
   .moneyle-hist-rate {
     display: none;
+  }
+
+  .feedback-cats {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-modal {
+    padding: 28px 18px 18px;
   }
 }

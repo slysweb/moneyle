@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SiteFooter from "../components/SiteFooter";
 import { usePageMeta } from "../lib/usePageMeta";
 
 export default function Home() {
@@ -51,9 +52,7 @@ export default function Home() {
         </Link>
       </section>
 
-      <footer className="site-footer">
-        <p>moneygames.cc — data from public sources, refreshed regularly.</p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

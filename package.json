@@ -30,6 +30,8 @@
     "db:guessr:remote": "wrangler d1 execute moneygames-db --remote --file=db/money.sql",
     "db:money:local": "wrangler d1 execute moneygames-db --local --file=db/money.sql",
     "db:money:remote": "wrangler d1 execute moneygames-db --remote --file=db/money.sql",
+    "db:feedback:local": "wrangler d1 execute moneygames-db --local --file=db/feedback.sql",
+    "db:feedback:remote": "wrangler d1 execute moneygames-db --remote --file=db/feedback.sql",
     "data:money-seed": "node scripts/build-money-seed.mjs"
   },
   "dependencies": {

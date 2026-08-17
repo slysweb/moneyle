@@ -1,5 +1,6 @@
 import { denverDate } from "./denver";
 import { ensureAllDailyPuzzles, ensureGuessr, ensureMoneyle, ensureMoreless } from "./daily";
+import { handleFeedback } from "./feedback";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 
 interface Env {
@@ -130,10 +131,16 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith("/api/")) {
-      if (request.method !== "GET") {
-        return json({ error: "Method not allowed" }, { status: 405 });
-      }
       try {
+        if (url.pathname === "/api/feedback") {
+          if (request.method !== "POST") {
+            return json({ error: "Method not allowed" }, { status: 405 });
+          }
+          return await handleFeedback(env.DB, request);
+        }
+        if (request.method !== "GET") {
+          return json({ error: "Method not allowed" }, { status: 405 });
+        }
         if (url.pathname === "/api/categories") return await handleCategories(env);
         if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env);
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env);

@@ -89,7 +89,7 @@ export default function Moneyle() {
           c.country.toLowerCase().includes(q)
         );
       })
-      .slice(0, 8);
+      .slice(0, 24);
   }, [currencies, guessedCodes, query]);
 
   const submitCode = useCallback(
@@ -178,15 +178,16 @@ export default function Moneyle() {
       </div>
 
       <div className="moneyle-note-wrap">
-        <div className="moneyle-note">
+        <div
+          className="moneyle-note"
+          style={{
+            ["--frost-blur" as string]: `${frost.blur}px`,
+            ["--frost-tint" as string]: String(frost.tint),
+            ["--frost-scale" as string]: revealed ? "1" : "1.12",
+          }}
+        >
           <img src={imageUrl} alt={revealed && answer ? answer.name : "Hidden banknote"} />
-          <div
-            className="moneyle-frost"
-            style={{
-              ["--frost-blur" as string]: `${frost.blur}px`,
-              ["--frost-tint" as string]: String(frost.tint),
-            }}
-          />
+          <div className="moneyle-frost" />
         </div>
         {revealed && answer && (
           <div className={`moneyle-badge ${won ? "win" : "lose"}`}>
@@ -224,7 +225,7 @@ export default function Moneyle() {
             ref={inputRef}
             type="text"
             value={query}
-            placeholder="Guess a currency…"
+            placeholder="Search name, country, or code…"
             autoComplete="off"
             spellCheck={false}
             disabled={busy}
