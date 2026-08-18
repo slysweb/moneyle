@@ -147,7 +147,7 @@ export default {
         if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env);
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, url);
       } catch (err) {
-        console.error("API error", err);
+        console.error("API error", err instanceof Error ? err.message : err);
         return json({ error: "Internal error" }, { status: 500 });
       }
       return json({ error: "Not found" }, { status: 404 });

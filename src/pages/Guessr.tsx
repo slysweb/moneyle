@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchGuessrToday, type GuessrCurrency, type GuessrPiece } from "../lib/api";
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
 import { usePageMeta } from "../lib/usePageMeta";
+import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
 
 const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
@@ -54,6 +55,42 @@ function pctClass(pct: number): string {
   return "far";
 }
 
+function guessrQuip(pct: number, roundIndex: number): string {
+  const abs = Math.abs(pct);
+  const pick = (lines: string[]) => lines[roundIndex % lines.length];
+
+  if (abs < 1) {
+    return pick([
+      "Spot on. Did you used to work a supermarket till?",
+      "That’s a cashier’s eye. The vault would hire you.",
+      "Perfect count. Save some talent for the next pile.",
+    ]);
+  }
+  if (abs <= 5) {
+    return pick([
+      "Very close — you’ve got a keen nose for money.",
+      "A hair off. Your money sense is sharp.",
+      "Almost nailed it. Banknotes fear you.",
+    ]);
+  }
+  if (roundIndex === 0) {
+    return "Easy now — this is only the opening pile.";
+  }
+  if (abs <= 15) {
+    return pick([
+      "How long has it been since you last counted cash?",
+      "In the ballpark… if the ballpark were a little bigger.",
+      "Not terrible. Not a promotion either.",
+    ]);
+  }
+  return pick([
+    "Way off. This currency might not be your everyday.",
+    "How long has it been since you last counted cash?",
+    "That’s a different zip code of money.",
+    "The pile and your guess are barely on speaking terms.",
+  ]);
+}
+
 function groupStacks(pieces: GuessrPiece[]): GuessrPiece[][] {
   const map = new Map<string, GuessrPiece[]>();
   for (const p of pieces) {
@@ -78,9 +115,11 @@ function coinPx(value: number, min: number, max: number): number {
 function MoneyPile({
   pieces,
   hidden,
+  quip,
 }: {
   pieces: GuessrPiece[];
   hidden: boolean;
+  quip?: string;
 }) {
   const stacks = groupStacks(pieces);
   const bills = stacks.filter((s) => s[0].kind === "bill");
@@ -90,7 +129,7 @@ function MoneyPile({
   const coinMax = coinValues.length ? Math.max(...coinValues) : 0;
 
   return (
-    <div className={`guessr-table${hidden ? " hidden" : ""}`} aria-hidden={hidden}>
+    <div className={`guessr-table${hidden ? " hidden" : ""}${quip ? " with-quip" : ""}`} aria-hidden={hidden}>
       {bills.length > 0 && (
         <div className="guessr-row bills">
           {bills.map((stack, si) => (
@@ -110,6 +149,7 @@ function MoneyPile({
           ))}
         </div>
       )}
+      {quip ? <p className="guessr-quip">{quip}</p> : null}
     </div>
   );
 }
@@ -167,12 +207,14 @@ export default function Guessr() {
 
   const [puzzles, setPuzzles] = useState<GuessrPiece[][] | null>(null);
   const [currency, setCurrency] = useState<GuessrCurrency | null>(null);
+  const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [round, setRound] = useState(0);
   const [phase, setPhase] = useState<Phase>("memorize");
   const [guess, setGuess] = useState("");
   const [results, setResults] = useState<RoundResult[]>([]);
   const [finished, setFinished] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [runKey, setRunKey] = useState(0);
   const [remainingMs, setRemainingMs] = useState(MEMORIZE_MS);
@@ -193,6 +235,7 @@ export default function Guessr() {
         if (cancelled) return;
         setCurrency(res.currency);
         setPuzzles(res.puzzles.map((p) => p.pieces));
+        setPuzzleDate(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -263,6 +306,7 @@ export default function Guessr() {
     setGuess("");
     setResults([]);
     setFinished(false);
+    setCopied(false);
     setRunKey((k) => k + 1);
   }, []);
 
@@ -287,6 +331,24 @@ export default function Guessr() {
   if (finished) {
     const avgAbs =
       results.reduce((sum, r) => sum + Math.abs(r.pct), 0) / Math.max(results.length, 1);
+    const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
+    const avgLabel = `${avgAbs.toFixed(1)}%`;
+    const shareText = [
+      number != null ? `Money Guessr #${number} — ${avgLabel}` : `Money Guessr — ${avgLabel}`,
+      "",
+      ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
+      "",
+      "Play Today's Game: https://moneygames.cc/guessr",
+    ].join("\n");
+
+    const share = async () => {
+      const ok = await copyText(shareText);
+      if (ok) {
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 2000);
+      }
+    };
+
     return (
       <main className="game-page">
         <div className="review-screen guessr-review">
@@ -311,6 +373,9 @@ export default function Guessr() {
           <div className="overlay-actions">
             <button className="btn primary" onClick={restart}>
               Play again
+            </button>
+            <button className="btn ghost" type="button" onClick={() => void share()}>
+              {copied ? "Copied!" : "Share"}
             </button>
             <Link className="btn ghost" to="/">
               Home
@@ -354,7 +419,11 @@ export default function Guessr() {
           </div>
         )}
 
-        <MoneyPile pieces={pieces} hidden={phase === "guess"} />
+        <MoneyPile
+          pieces={pieces}
+          hidden={phase === "guess"}
+          quip={phase === "reveal" && last ? guessrQuip(last.pct, round) : undefined}
+        />
 
         <div className="guessr-dock">
           {phase === "memorize" && (

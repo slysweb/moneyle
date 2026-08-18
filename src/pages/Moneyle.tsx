@@ -8,6 +8,7 @@ import {
 } from "../lib/api";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import { usePageMeta } from "../lib/usePageMeta";
+import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
 
 const MAX_GUESSES = 6;
 
@@ -40,6 +41,7 @@ export default function Moneyle() {
 
   const [currencies, setCurrencies] = useState<MoneyleCurrency[]>([]);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -51,6 +53,7 @@ export default function Moneyle() {
   const [lost, setLost] = useState(false);
   const [answer, setAnswer] = useState<MoneyleCurrency | null>(null);
   const [showHelp, setShowHelp] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [runKey, setRunKey] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -66,6 +69,7 @@ export default function Moneyle() {
         if (cancelled) return;
         setCurrencies(res.currencies);
         setImageUrl(res.imageUrl);
+        setPuzzleDate(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -135,9 +139,31 @@ export default function Moneyle() {
     setLost(false);
     setAnswer(null);
     setGuessError(null);
+    setCopied(false);
     setImageUrl(null);
     setRunKey((k) => k + 1);
   }, []);
+
+  const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
+  const score = won ? `${history.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
+  const shareText = [
+    number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
+    "",
+    ...history.map((row) => {
+      const sq = closenessSquare(row.closeness, row.correct);
+      return row.correct ? sq : `${sq}${row.stronger ? "↑" : "↓"}`;
+    }),
+    "",
+    "Play Today's Game: https://moneygames.cc/moneyle",
+  ].join("\n");
+
+  const share = async () => {
+    const ok = await copyText(shareText);
+    if (ok) {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   if (error) {
     return (
@@ -278,6 +304,9 @@ export default function Moneyle() {
         <div className="overlay-actions moneyle-end">
           <button className="btn primary" onClick={restart}>
             Play again
+          </button>
+          <button className="btn ghost" type="button" onClick={() => void share()}>
+            {copied ? "Copied!" : "Share"}
           </button>
           <Link className="btn ghost" to="/">
             Home

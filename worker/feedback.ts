@@ -1,7 +1,6 @@
 const MAX_MESSAGE = 2000;
 const MIN_MESSAGE = 8;
 const RATE_MAX = 5;
-const RATE_WINDOW_MINUTES = 60;
 
 function json(data: unknown, init: ResponseInit = {}): Response {
   return new Response(JSON.stringify(data), {
@@ -58,26 +57,13 @@ export async function handleFeedback(db: D1Database, request: Request): Promise<
   const ip = clientIp(request).slice(0, 64);
   const userAgent = (request.headers.get("user-agent") ?? "").slice(0, 300);
 
-  await db.exec(`CREATE TABLE IF NOT EXISTS feedback (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  category TEXT NOT NULL CHECK (category IN ('bug', 'suggestion')),
-  message TEXT NOT NULL,
-  page TEXT,
-  user_agent TEXT,
-  ip TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
-)`);
-  await db.exec(
-    `CREATE INDEX IF NOT EXISTS idx_feedback_ip_created ON feedback (ip, created_at)`
-  );
-
   if (ip) {
     const recent = await db
       .prepare(
         `SELECT COUNT(*) AS n FROM feedback
-         WHERE ip = ? AND created_at >= datetime('now', ?)`
+         WHERE ip = ? AND created_at >= datetime('now', '-60 minutes')`
       )
-      .bind(ip, `-${RATE_WINDOW_MINUTES} minutes`)
+      .bind(ip)
       .first<{ n: number }>();
     if ((recent?.n ?? 0) >= RATE_MAX) {
       return json({ error: "Too many submissions. Try again later." }, { status: 429 });

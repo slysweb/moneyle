@@ -12,6 +12,19 @@ export function resultSquares(correct: boolean[]): string {
   return correct.map((ok) => (ok ? "🟩" : "🟥")).join("");
 }
 
+export function errorSquare(pct: number): string {
+  const abs = Math.abs(pct);
+  if (abs <= 5) return "🟩";
+  if (abs <= 15) return "🟨";
+  return "🟥";
+}
+
+export function closenessSquare(closeness: number, correct: boolean): string {
+  if (correct) return "🟩";
+  if (closeness >= 50) return "🟨";
+  return "🟥";
+}
+
 export async function copyText(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);
