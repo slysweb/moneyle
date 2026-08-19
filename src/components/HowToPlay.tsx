@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
-const ELON_IMG = "/moreless/billionaires/elon-musk.jpg";
-const BEZOS_IMG = "/moreless/billionaires/jeff-bezos.jpg";
+const ELON_IMG = "/moreless/billionaires/elon-musk.webp";
+const BEZOS_IMG = "/moreless/billionaires/jeff-bezos.webp";
 
 interface HowToPlayProps {
   onClose: () => void;

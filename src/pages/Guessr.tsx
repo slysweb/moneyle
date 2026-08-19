@@ -4,6 +4,7 @@ import { fetchGuessrToday, type GuessrCurrency, type GuessrPiece } from "../lib/
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
 import { usePageMeta } from "../lib/usePageMeta";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
+import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
 const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
@@ -14,6 +15,10 @@ interface RoundResult {
   guessCents: number;
   actualCents: number;
   pct: number;
+}
+
+interface SavedRun {
+  results: RoundResult[];
 }
 
 function totalCents(pieces: GuessrPiece[]): number {
@@ -226,6 +231,18 @@ export default function Guessr() {
     timers.current = [];
   };
 
+  // A submitted guess is a finished round, so the round to resume at is simply
+  // however many results are already banked.
+  const restore = useCallback((date: string) => {
+    const saved = loadProgress<SavedRun>("guessr", date);
+    if (!saved?.results?.length) return;
+    const results = saved.results.slice(0, ROUNDS);
+    setResults(results);
+    setRound(Math.min(results.length, ROUNDS - 1));
+    setFinished(results.length >= ROUNDS);
+    setPhase("memorize");
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     setError(false);
@@ -236,6 +253,7 @@ export default function Guessr() {
         setCurrency(res.currency);
         setPuzzles(res.puzzles.map((p) => p.pieces));
         setPuzzleDate(res.date);
+        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -244,7 +262,12 @@ export default function Guessr() {
       cancelled = true;
       clearTimers();
     };
-  }, [runKey]);
+  }, [runKey, restore]);
+
+  useEffect(() => {
+    if (results.length === 0) return;
+    saveProgress<SavedRun>("guessr", puzzleDate, { results });
+  }, [puzzleDate, results]);
 
   const pieces = puzzles?.[round] ?? [];
   const actual = totalCents(pieces);
@@ -301,6 +324,7 @@ export default function Guessr() {
 
   const restart = useCallback(() => {
     clearTimers();
+    clearProgress("guessr");
     setRound(0);
     setPhase("memorize");
     setGuess("");

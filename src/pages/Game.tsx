@@ -4,6 +4,7 @@ import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/ap
 import HowToPlay from "../components/HowToPlay";
 import { usePageMeta } from "../lib/usePageMeta";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
+import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding";
 type Side = "left" | "right";
@@ -18,6 +19,10 @@ interface AnswerRecord {
   right: GameItem;
   picked: Side;
   correct: boolean;
+}
+
+interface SavedRun {
+  answers: AnswerRecord[];
 }
 
 function useCountUp(target: number, running: boolean, duration = 1200): number {
@@ -102,6 +107,20 @@ export default function Game() {
   const [runKey, setRunKey] = useState(0);
   const timers = useRef<number[]>([]);
 
+  // Position in the run is derived from the answer log rather than saved next
+  // to it: a level is always exactly ROUNDS_PER_LEVEL answers, so the two can
+  // never drift apart if the app dies mid-animation.
+  const restore = useCallback((date: string, loaded: MorelessLevel[]) => {
+    const saved = loadProgress<SavedRun>("moreless", date);
+    if (!saved?.answers?.length) return;
+    const total = loaded.length * ROUNDS_PER_LEVEL;
+    const done = Math.min(saved.answers.length, total);
+    setAnswers(saved.answers.slice(0, done));
+    setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
+    setRoundIndex(done % ROUNDS_PER_LEVEL);
+    setFinished(done >= total);
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     setError(false);
@@ -111,6 +130,7 @@ export default function Game() {
         if (cancelled) return;
         setLevels(res.levels);
         setPuzzleDate(res.date);
+        restore(res.date, res.levels);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -119,7 +139,12 @@ export default function Game() {
       cancelled = true;
       timers.current.forEach(clearTimeout);
     };
-  }, [runKey]);
+  }, [runKey, restore]);
+
+  useEffect(() => {
+    if (answers.length === 0) return;
+    saveProgress<SavedRun>("moreless", puzzleDate, { answers });
+  }, [puzzleDate, answers]);
 
   const clearTimers = () => {
     timers.current.forEach(clearTimeout);
@@ -211,6 +236,7 @@ export default function Game() {
 
   const restart = useCallback(() => {
     clearTimers();
+    clearProgress("moreless");
     setLevelIndex(0);
     setRoundIndex(0);
     setPhase("guessing");

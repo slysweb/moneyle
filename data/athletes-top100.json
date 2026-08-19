@@ -6,7 +6,7 @@
     "sport": "Soccer",
     "salaryUsd": 230000000,
     "displayValue": "$230M",
-    "imageUrl": "/moreless/athletes/cristiano-ronaldo.jpg",
+    "imageUrl": "/moreless/athletes/cristiano-ronaldo.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/bkre241600892282.jpg"
   },
   {
@@ -16,7 +16,7 @@
     "sport": "Soccer",
     "salaryUsd": 100000000,
     "displayValue": "$100M",
-    "imageUrl": "/moreless/athletes/karim-benzema.jpg",
+    "imageUrl": "/moreless/athletes/karim-benzema.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/0bzer81704623143.jpg"
   },
   {
@@ -26,7 +26,7 @@
     "sport": "Soccer",
     "salaryUsd": 70000000,
     "displayValue": "$70.0M",
-    "imageUrl": "/moreless/athletes/kylian-mbappe.jpg",
+    "imageUrl": "/moreless/athletes/kylian-mbappe.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/v08cj31778816426.jpg"
   },
   {
@@ -36,7 +36,7 @@
     "sport": "NFL",
     "salaryUsd": 63100000,
     "displayValue": "$63.1M",
-    "imageUrl": "/moreless/athletes/patrick-mahomes.jpg",
+    "imageUrl": "/moreless/athletes/patrick-mahomes.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/xgf1c51599781948.jpg"
   },
   {
@@ -46,7 +46,7 @@
     "sport": "NBA",
     "salaryUsd": 62590000,
     "displayValue": "$62.6M",
-    "imageUrl": "/moreless/athletes/stephen-curry.jpg",
+    "imageUrl": "/moreless/athletes/stephen-curry.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/z8zjkl1770406863.jpg"
   },
   {
@@ -56,7 +56,7 @@
     "sport": "Soccer",
     "salaryUsd": 60000000,
     "displayValue": "$60.0M",
-    "imageUrl": "/moreless/athletes/lionel-messi.jpg",
+    "imageUrl": "/moreless/athletes/lionel-messi.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/kpfsvp1725295651.jpg"
   },
   {
@@ -66,7 +66,7 @@
     "sport": "Soccer",
     "salaryUsd": 60000000,
     "displayValue": "$60.0M",
-    "imageUrl": "/moreless/athletes/erling-haaland.jpg",
+    "imageUrl": "/moreless/athletes/erling-haaland.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/bb1agj1727415216.jpg"
   },
   {
@@ -76,7 +76,7 @@
     "sport": "NFL",
     "salaryUsd": 60000000,
     "displayValue": "$60.0M",
-    "imageUrl": "/moreless/athletes/dak-prescott.jpg",
+    "imageUrl": "/moreless/athletes/dak-prescott.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6ystf31662995206.jpg"
   },
   {
@@ -86,7 +86,7 @@
     "sport": "NBA",
     "salaryUsd": 59030000,
     "displayValue": "$59.0M",
-    "imageUrl": "/moreless/athletes/nikola-jokic.jpg",
+    "imageUrl": "/moreless/athletes/nikola-jokic.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/y3wiuy1769268771.jpg"
   },
   {
@@ -96,7 +96,7 @@
     "sport": "NBA",
     "salaryUsd": 58460000,
     "displayValue": "$58.5M",
-    "imageUrl": "/moreless/athletes/giannis-antetokounmpo.jpg",
+    "imageUrl": "/moreless/athletes/giannis-antetokounmpo.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/t1yafh1550408393.jpg"
   },
   {
@@ -106,7 +106,7 @@
     "sport": "NBA",
     "salaryUsd": 58460000,
     "displayValue": "$58.5M",
-    "imageUrl": "/moreless/athletes/anthony-davis.jpg",
+    "imageUrl": "/moreless/athletes/anthony-davis.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/wl1r3t1590323246.jpg"
   },
   {
@@ -116,7 +116,7 @@
     "sport": "NBA",
     "salaryUsd": 58460000,
     "displayValue": "$58.5M",
-    "imageUrl": "/moreless/athletes/jayson-tatum.jpg",
+    "imageUrl": "/moreless/athletes/jayson-tatum.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6vwd9t1761828797.jpg"
   },
   {
@@ -126,7 +126,7 @@
     "sport": "NBA",
     "salaryUsd": 57990000,
     "displayValue": "$58.0M",
-    "imageUrl": "/moreless/athletes/joel-embiid.jpg",
+    "imageUrl": "/moreless/athletes/joel-embiid.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/el4kug1520970407.jpg"
   },
   {
@@ -136,7 +136,7 @@
     "sport": "NBA",
     "salaryUsd": 57080000,
     "displayValue": "$57.1M",
-    "imageUrl": "/moreless/athletes/devin-booker.jpg",
+    "imageUrl": "/moreless/athletes/devin-booker.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/dvly2r1514996188.jpg"
   },
   {
@@ -146,7 +146,7 @@
     "sport": "NBA",
     "salaryUsd": 57080000,
     "displayValue": "$57.1M",
-    "imageUrl": "/moreless/athletes/jaylen-brown.jpg",
+    "imageUrl": "/moreless/athletes/jaylen-brown.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/u8u0421769268435.jpg"
   },
   {
@@ -156,7 +156,7 @@
     "sport": "NBA",
     "salaryUsd": 57080000,
     "displayValue": "$57.1M",
-    "imageUrl": "/moreless/athletes/karl-anthony-towns.jpg",
+    "imageUrl": "/moreless/athletes/karl-anthony-towns.webp",
     "sourceImageUrl": "https://www.thesportsdb.com/images/media/player/thumb/o98xnn1783026970.jpg"
   },
   {
@@ -166,7 +166,7 @@
     "sport": "NBA",
     "salaryUsd": 56830000,
     "displayValue": "$56.8M",
-    "imageUrl": "/moreless/athletes/jimmy-butler.jpg",
+    "imageUrl": "/moreless/athletes/jimmy-butler.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/8gpa041592468306.jpg"
   },
   {
@@ -176,7 +176,7 @@
     "sport": "NFL",
     "salaryUsd": 55000000,
     "displayValue": "$55.0M",
-    "imageUrl": "/moreless/athletes/matthew-stafford.jpg",
+    "imageUrl": "/moreless/athletes/matthew-stafford.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/va54081662626736.jpg"
   },
   {
@@ -186,7 +186,7 @@
     "sport": "NFL",
     "salaryUsd": 55000000,
     "displayValue": "$55.0M",
-    "imageUrl": "/moreless/athletes/josh-allen.jpg",
+    "imageUrl": "/moreless/athletes/josh-allen.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/c8tibk1601974191.jpg"
   },
   {
@@ -196,7 +196,7 @@
     "sport": "NFL",
     "salaryUsd": 55000000,
     "displayValue": "$55.0M",
-    "imageUrl": "/moreless/athletes/jordan-love.jpg",
+    "imageUrl": "/moreless/athletes/jordan-love.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/gox8581756719514.jpg"
   },
   {
@@ -206,7 +206,7 @@
     "sport": "NFL",
     "salaryUsd": 55000000,
     "displayValue": "$55.0M",
-    "imageUrl": "/moreless/athletes/trevor-lawrence.jpg",
+    "imageUrl": "/moreless/athletes/trevor-lawrence.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ebjdho1636457593.jpg"
   },
   {
@@ -216,7 +216,7 @@
     "sport": "NFL",
     "salaryUsd": 55000000,
     "displayValue": "$55.0M",
-    "imageUrl": "/moreless/athletes/joe-burrow.jpg",
+    "imageUrl": "/moreless/athletes/joe-burrow.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/7uf2zs1688554220.jpg"
   },
   {
@@ -226,7 +226,7 @@
     "sport": "NBA",
     "salaryUsd": 54800000,
     "displayValue": "$54.8M",
-    "imageUrl": "/moreless/athletes/kevin-durant.jpg",
+    "imageUrl": "/moreless/athletes/kevin-durant.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/1cdw8b1767382881.jpg"
   },
   {
@@ -236,7 +236,7 @@
     "sport": "NBA",
     "salaryUsd": 54130000,
     "displayValue": "$54.1M",
-    "imageUrl": "/moreless/athletes/paul-george.jpg",
+    "imageUrl": "/moreless/athletes/paul-george.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/asb26m1513015980.jpg"
   },
   {
@@ -246,7 +246,7 @@
     "sport": "NFL",
     "salaryUsd": 53000000,
     "displayValue": "$53.0M",
-    "imageUrl": "/moreless/athletes/brock-purdy.jpg",
+    "imageUrl": "/moreless/athletes/brock-purdy.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/w66mps1726942837.jpg"
   },
   {
@@ -256,7 +256,7 @@
     "sport": "NFL",
     "salaryUsd": 53000000,
     "displayValue": "$53.0M",
-    "imageUrl": "/moreless/athletes/jared-goff.jpg",
+    "imageUrl": "/moreless/athletes/jared-goff.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/65r9061663337118.jpg"
   },
   {
@@ -266,7 +266,7 @@
     "sport": "NBA",
     "salaryUsd": 52800000,
     "displayValue": "$52.8M",
-    "imageUrl": "/moreless/athletes/lebron-james.jpg",
+    "imageUrl": "/moreless/athletes/lebron-james.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/xqnfa51723398837.jpg"
   },
   {
@@ -276,7 +276,7 @@
     "sport": "NFL",
     "salaryUsd": 52500000,
     "displayValue": "$52.5M",
-    "imageUrl": "/moreless/athletes/justin-herbert.jpg",
+    "imageUrl": "/moreless/athletes/justin-herbert.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/s9abdw1699960399.jpg"
   },
   {
@@ -286,7 +286,7 @@
     "sport": "NFL",
     "salaryUsd": 52000000,
     "displayValue": "$52.0M",
-    "imageUrl": "/moreless/athletes/lamar-jackson.jpg",
+    "imageUrl": "/moreless/athletes/lamar-jackson.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/pv4x3s1662403042.jpg"
   },
   {
@@ -296,7 +296,7 @@
     "sport": "NFL",
     "salaryUsd": 51000000,
     "displayValue": "$51.0M",
-    "imageUrl": "/moreless/athletes/jalen-hurts.jpg",
+    "imageUrl": "/moreless/athletes/jalen-hurts.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6myn7t1676327525.jpg"
   },
   {
@@ -306,7 +306,7 @@
     "sport": "NBA",
     "salaryUsd": 50300000,
     "displayValue": "$50.3M",
-    "imageUrl": "/moreless/athletes/kawhi-leonard.jpg",
+    "imageUrl": "/moreless/athletes/kawhi-leonard.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/0l1q5e1593418410.jpg"
   },
   {
@@ -316,7 +316,7 @@
     "sport": "NBA",
     "salaryUsd": 50110000,
     "displayValue": "$50.1M",
-    "imageUrl": "/moreless/athletes/cade-cunningham.jpg",
+    "imageUrl": "/moreless/athletes/cade-cunningham.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/0d9ck81696756328.jpg"
   },
   {
@@ -326,7 +326,7 @@
     "sport": "NBA",
     "salaryUsd": 50110000,
     "displayValue": "$50.1M",
-    "imageUrl": "/moreless/athletes/donovan-mitchell.jpg",
+    "imageUrl": "/moreless/athletes/donovan-mitchell.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/i68upd1673097260.jpg"
   },
   {
@@ -336,7 +336,7 @@
     "sport": "NBA",
     "salaryUsd": 50110000,
     "displayValue": "$50.1M",
-    "imageUrl": "/moreless/athletes/evan-mobley.jpg",
+    "imageUrl": "/moreless/athletes/evan-mobley.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/fysgxk1697893641.jpg"
   },
   {
@@ -346,7 +346,7 @@
     "sport": "NBA",
     "salaryUsd": 50110000,
     "displayValue": "$50.1M",
-    "imageUrl": "/moreless/athletes/jamal-murray.jpg",
+    "imageUrl": "/moreless/athletes/jamal-murray.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/7r4tfp1767883251.jpg"
   },
   {
@@ -356,7 +356,7 @@
     "sport": "Soccer",
     "salaryUsd": 50000000,
     "displayValue": "$50.0M",
-    "imageUrl": "/moreless/athletes/sadio-mane.jpg",
+    "imageUrl": "/moreless/athletes/sadio-mane.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6w592f1704365738.jpg"
   },
   {
@@ -366,7 +366,7 @@
     "sport": "NFL",
     "salaryUsd": 50000000,
     "displayValue": "$50.0M",
-    "imageUrl": "/moreless/athletes/will-anderson-jr.png",
+    "imageUrl": "/moreless/athletes/will-anderson-jr.webp",
     "sourceImageUrl": "https://a.espncdn.com/i/headshots/nfl/players/full/4430807.png"
   },
   {
@@ -376,7 +376,7 @@
     "sport": "NBA",
     "salaryUsd": 49500000,
     "displayValue": "$49.5M",
-    "imageUrl": "/moreless/athletes/bam-adebayo.jpg",
+    "imageUrl": "/moreless/athletes/bam-adebayo.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/rcdwmh1601974714.jpg"
   },
   {
@@ -386,7 +386,7 @@
     "sport": "NBA",
     "salaryUsd": 49500000,
     "displayValue": "$49.5M",
-    "imageUrl": "/moreless/athletes/luka-doncic.jpg",
+    "imageUrl": "/moreless/athletes/luka-doncic.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/picis31757887514.jpg"
   },
   {
@@ -396,7 +396,7 @@
     "sport": "NBA",
     "salaryUsd": 49500000,
     "displayValue": "$49.5M",
-    "imageUrl": "/moreless/athletes/de-aaron-fox.jpg",
+    "imageUrl": "/moreless/athletes/de-aaron-fox.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/xniz9s1702380671.jpg"
   },
   {
@@ -406,7 +406,7 @@
     "sport": "NBA",
     "salaryUsd": 49500000,
     "displayValue": "$49.5M",
-    "imageUrl": "/moreless/athletes/trae-young.jpg",
+    "imageUrl": "/moreless/athletes/trae-young.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/qzdt9y1545508263.jpg"
   },
   {
@@ -416,7 +416,7 @@
     "sport": "NBA",
     "salaryUsd": 49000000,
     "displayValue": "$49.0M",
-    "imageUrl": "/moreless/athletes/jaren-jackson-jr.jpg",
+    "imageUrl": "/moreless/athletes/jaren-jackson-jr.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/z7qwzb1703951573.jpg"
   },
   {
@@ -426,7 +426,7 @@
     "sport": "NBA",
     "salaryUsd": 48970000,
     "displayValue": "$49.0M",
-    "imageUrl": "/moreless/athletes/zach-lavine.jpg",
+    "imageUrl": "/moreless/athletes/zach-lavine.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ntmcyi1770389327.jpg"
   },
   {
@@ -436,7 +436,7 @@
     "sport": "NBA",
     "salaryUsd": 48920000,
     "displayValue": "$48.9M",
-    "imageUrl": "/moreless/athletes/anthony-edwards.jpg",
+    "imageUrl": "/moreless/athletes/anthony-edwards.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6vvdna1723398774.jpg"
   },
   {
@@ -446,7 +446,7 @@
     "sport": "NBA",
     "salaryUsd": 48920000,
     "displayValue": "$48.9M",
-    "imageUrl": "/moreless/athletes/tyrese-haliburton.jpg",
+    "imageUrl": "/moreless/athletes/tyrese-haliburton.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/1n6xps1676101744.jpg"
   },
   {
@@ -456,7 +456,7 @@
     "sport": "NBA",
     "salaryUsd": 48920000,
     "displayValue": "$48.9M",
-    "imageUrl": "/moreless/athletes/pascal-siakam.jpg",
+    "imageUrl": "/moreless/athletes/pascal-siakam.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/085co11709885632.jpg"
   },
   {
@@ -466,7 +466,7 @@
     "sport": "NFL",
     "salaryUsd": 46500000,
     "displayValue": "$46.5M",
-    "imageUrl": "/moreless/athletes/micah-parsons.jpg",
+    "imageUrl": "/moreless/athletes/micah-parsons.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ir5opm1666521000.jpg"
   },
   {
@@ -476,7 +476,7 @@
     "sport": "NBA",
     "salaryUsd": 46000000,
     "displayValue": "$46.0M",
-    "imageUrl": "/moreless/athletes/shai-gilgeous-alexander.jpg",
+    "imageUrl": "/moreless/athletes/shai-gilgeous-alexander.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/cql6cf1769333082.jpg"
   },
   {
@@ -486,7 +486,7 @@
     "sport": "NFL",
     "salaryUsd": 46000000,
     "displayValue": "$46.0M",
-    "imageUrl": "/moreless/athletes/deshaun-watson.jpg",
+    "imageUrl": "/moreless/athletes/deshaun-watson.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/lmexr01665144261.jpg"
   },
   {
@@ -496,7 +496,7 @@
     "sport": "NFL",
     "salaryUsd": 45000000,
     "displayValue": "$45.0M",
-    "imageUrl": "/moreless/athletes/aidan-hutchinson.jpg",
+    "imageUrl": "/moreless/athletes/aidan-hutchinson.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/relber1756931293.jpg"
   },
   {
@@ -506,7 +506,7 @@
     "sport": "NFL",
     "salaryUsd": 44000000,
     "displayValue": "$44.0M",
-    "imageUrl": "/moreless/athletes/daniel-jones.jpg",
+    "imageUrl": "/moreless/athletes/daniel-jones.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/vt5y621545394579.jpg"
   },
   {
@@ -516,7 +516,7 @@
     "sport": "NFL",
     "salaryUsd": 42150000,
     "displayValue": "$42.1M",
-    "imageUrl": "/moreless/athletes/jaxon-smith-njigba.jpg",
+    "imageUrl": "/moreless/athletes/jaxon-smith-njigba.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/syloll1770647762.jpg"
   },
   {
@@ -526,7 +526,7 @@
     "sport": "NBA",
     "salaryUsd": 42000000,
     "displayValue": "$42.0M",
-    "imageUrl": "/moreless/athletes/ja-morant.jpg",
+    "imageUrl": "/moreless/athletes/ja-morant.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/2op2ze1503155122.jpg"
   },
   {
@@ -536,7 +536,7 @@
     "sport": "NFL",
     "salaryUsd": 41640000,
     "displayValue": "$41.6M",
-    "imageUrl": "/moreless/athletes/myles-garrett.jpg",
+    "imageUrl": "/moreless/athletes/myles-garrett.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/269m8j1662724993.jpg"
   },
   {
@@ -546,7 +546,7 @@
     "sport": "NFL",
     "salaryUsd": 41000000,
     "displayValue": "$41.0M",
-    "imageUrl": "/moreless/athletes/t-j-watt.jpg",
+    "imageUrl": "/moreless/athletes/t-j-watt.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/k2wcp71608466522.jpg"
   },
   {
@@ -556,7 +556,7 @@
     "sport": "NFL",
     "salaryUsd": 40250000,
     "displayValue": "$40.3M",
-    "imageUrl": "/moreless/athletes/ja-marr-chase.jpg",
+    "imageUrl": "/moreless/athletes/ja-marr-chase.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/73w3gv1688554669.jpg"
   },
   {
@@ -566,7 +566,7 @@
     "sport": "NFL",
     "salaryUsd": 40100000,
     "displayValue": "$40.1M",
-    "imageUrl": "/moreless/athletes/danielle-hunter.jpg",
+    "imageUrl": "/moreless/athletes/danielle-hunter.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/93ljcc1665140205.jpg"
   },
   {
@@ -576,7 +576,7 @@
     "sport": "Soccer",
     "salaryUsd": 40000000,
     "displayValue": "$40.0M",
-    "imageUrl": "/moreless/athletes/vinicius-jr.jpg",
+    "imageUrl": "/moreless/athletes/vinicius-jr.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/lxf1he1771264845.jpg"
   },
   {
@@ -586,7 +586,7 @@
     "sport": "NBA",
     "salaryUsd": 40000000,
     "displayValue": "$40.0M",
-    "imageUrl": "/moreless/athletes/zion-williamson.jpg",
+    "imageUrl": "/moreless/athletes/zion-williamson.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/a17o8d1709062672.jpg"
   },
   {
@@ -596,7 +596,7 @@
     "sport": "NBA",
     "salaryUsd": 39000000,
     "displayValue": "$39.0M",
-    "imageUrl": "/moreless/athletes/paolo-banchero.jpg",
+    "imageUrl": "/moreless/athletes/paolo-banchero.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/rihl9j1704299846.jpg"
   },
   {
@@ -606,7 +606,7 @@
     "sport": "NBA",
     "salaryUsd": 39000000,
     "displayValue": "$39.0M",
-    "imageUrl": "/moreless/athletes/chet-holmgren.jpg",
+    "imageUrl": "/moreless/athletes/chet-holmgren.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/40z2sp1769333236.jpg"
   },
   {
@@ -616,7 +616,7 @@
     "sport": "NBA",
     "salaryUsd": 39000000,
     "displayValue": "$39.0M",
-    "imageUrl": "/moreless/athletes/jalen-williams.jpg",
+    "imageUrl": "/moreless/athletes/jalen-williams.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ofbkvf1709411619.jpg"
   },
   {
@@ -626,7 +626,7 @@
     "sport": "NBA",
     "salaryUsd": 38000000,
     "displayValue": "$38.0M",
-    "imageUrl": "/moreless/athletes/scottie-barnes.jpg",
+    "imageUrl": "/moreless/athletes/scottie-barnes.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/wkf0k21651252897.jpg"
   },
   {
@@ -636,7 +636,7 @@
     "sport": "NBA",
     "salaryUsd": 38000000,
     "displayValue": "$38.0M",
-    "imageUrl": "/moreless/athletes/franz-wagner.jpg",
+    "imageUrl": "/moreless/athletes/franz-wagner.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/tam21v1662315399.jpg"
   },
   {
@@ -646,7 +646,7 @@
     "sport": "NFL",
     "salaryUsd": 38000000,
     "displayValue": "$38.0M",
-    "imageUrl": "/moreless/athletes/jalen-carter.jpg",
+    "imageUrl": "/moreless/athletes/jalen-carter.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/i7ws8o1756680369.jpg"
   },
   {
@@ -656,7 +656,7 @@
     "sport": "Soccer",
     "salaryUsd": 37000000,
     "displayValue": "$37.0M",
-    "imageUrl": "/moreless/athletes/kalidou-koulibaly.jpg",
+    "imageUrl": "/moreless/athletes/kalidou-koulibaly.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/fplctn1669799779.jpg"
   },
   {
@@ -666,7 +666,7 @@
     "sport": "NFL",
     "salaryUsd": 35500000,
     "displayValue": "$35.5M",
-    "imageUrl": "/moreless/athletes/maxx-crosby.jpg",
+    "imageUrl": "/moreless/athletes/maxx-crosby.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/oc7hci1756718643.jpg"
   },
   {
@@ -676,7 +676,7 @@
     "sport": "NFL",
     "salaryUsd": 35300000,
     "displayValue": "$35.3M",
-    "imageUrl": "/moreless/athletes/quinnen-williams.jpg",
+    "imageUrl": "/moreless/athletes/quinnen-williams.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/m8xb851726777400.jpg"
   },
   {
@@ -686,7 +686,7 @@
     "sport": "Soccer",
     "salaryUsd": 35000000,
     "displayValue": "$35.0M",
-    "imageUrl": "/moreless/athletes/mohamed-salah.jpg",
+    "imageUrl": "/moreless/athletes/mohamed-salah.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/o7y57t1718438615.jpg"
   },
   {
@@ -696,7 +696,7 @@
     "sport": "Soccer",
     "salaryUsd": 33000000,
     "displayValue": "$33.0M",
-    "imageUrl": "/moreless/athletes/lamine-yamal.jpg",
+    "imageUrl": "/moreless/athletes/lamine-yamal.webp",
     "sourceImageUrl": "https://www.thesportsdb.com/images/media/player/thumb/cdjnqt1786385175.jpg"
   },
   {
@@ -706,7 +706,7 @@
     "sport": "Soccer",
     "salaryUsd": 29000000,
     "displayValue": "$29.0M",
-    "imageUrl": "/moreless/athletes/jude-bellingham.jpg",
+    "imageUrl": "/moreless/athletes/jude-bellingham.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/rfg8xd1771263826.jpg"
   },
   {
@@ -716,7 +716,7 @@
     "sport": "Soccer",
     "salaryUsd": 28000000,
     "displayValue": "$28.0M",
-    "imageUrl": "/moreless/athletes/sergej-milinkovic-savic.jpg",
+    "imageUrl": "/moreless/athletes/sergej-milinkovic-savic.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/iq30bq1750761696.jpg"
   },
   {
@@ -726,7 +726,7 @@
     "sport": "Soccer",
     "salaryUsd": 28000000,
     "displayValue": "$28.0M",
-    "imageUrl": "/moreless/athletes/ivan-toney.jpg",
+    "imageUrl": "/moreless/athletes/ivan-toney.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/1enhi91777238548.jpg"
   },
   {
@@ -736,7 +736,7 @@
     "sport": "Soccer",
     "salaryUsd": 27000000,
     "displayValue": "$27.0M",
-    "imageUrl": "/moreless/athletes/harry-kane.jpg",
+    "imageUrl": "/moreless/athletes/harry-kane.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/0w9up71770542636.jpg"
   },
   {
@@ -746,7 +746,7 @@
     "sport": "Soccer",
     "salaryUsd": 25000000,
     "displayValue": "$25.0M",
-    "imageUrl": "/moreless/athletes/neymar.jpg",
+    "imageUrl": "/moreless/athletes/neymar.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/j60pdx1741319053.jpg"
   },
   {
@@ -756,7 +756,7 @@
     "sport": "Soccer",
     "salaryUsd": 25000000,
     "displayValue": "$25.0M",
-    "imageUrl": "/moreless/athletes/jamal-musiala.jpg",
+    "imageUrl": "/moreless/athletes/jamal-musiala.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/y998n31779384099.jpg"
   },
   {
@@ -766,7 +766,7 @@
     "sport": "Soccer",
     "salaryUsd": 24000000,
     "displayValue": "$24.0M",
-    "imageUrl": "/moreless/athletes/darwin-nunez.jpg",
+    "imageUrl": "/moreless/athletes/darwin-nunez.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/6b6yhd1718090345.jpg"
   },
   {
@@ -776,7 +776,7 @@
     "sport": "Soccer",
     "salaryUsd": 23000000,
     "displayValue": "$23.0M",
-    "imageUrl": "/moreless/athletes/virgil-van-dijk.jpg",
+    "imageUrl": "/moreless/athletes/virgil-van-dijk.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/9fe0tn1720452118.jpg"
   },
   {
@@ -786,7 +786,7 @@
     "sport": "Soccer",
     "salaryUsd": 22000000,
     "displayValue": "$22.0M",
-    "imageUrl": "/moreless/athletes/kevin-de-bruyne.jpg",
+    "imageUrl": "/moreless/athletes/kevin-de-bruyne.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/627wh81779038446.jpg"
   },
   {
@@ -796,7 +796,7 @@
     "sport": "Soccer",
     "salaryUsd": 22000000,
     "displayValue": "$22.0M",
-    "imageUrl": "/moreless/athletes/robert-lewandowski.jpg",
+    "imageUrl": "/moreless/athletes/robert-lewandowski.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/1ogy3i1771254580.jpg"
   },
   {
@@ -806,7 +806,7 @@
     "sport": "Soccer",
     "salaryUsd": 22000000,
     "displayValue": "$22.0M",
-    "imageUrl": "/moreless/athletes/victor-osimhen.jpg",
+    "imageUrl": "/moreless/athletes/victor-osimhen.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/snhzzq1702566147.jpg"
   },
   {
@@ -816,7 +816,7 @@
     "sport": "Soccer",
     "salaryUsd": 21000000,
     "displayValue": "$21.0M",
-    "imageUrl": "/moreless/athletes/bruno-fernandes.jpg",
+    "imageUrl": "/moreless/athletes/bruno-fernandes.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/1kfayc1700821747.jpg"
   },
   {
@@ -826,7 +826,7 @@
     "sport": "Soccer",
     "salaryUsd": 20000000,
     "displayValue": "$20.0M",
-    "imageUrl": "/moreless/athletes/marcus-rashford.jpg",
+    "imageUrl": "/moreless/athletes/marcus-rashford.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/rb4hx61669799682.jpg"
   },
   {
@@ -836,7 +836,7 @@
     "sport": "Soccer",
     "salaryUsd": 20000000,
     "displayValue": "$20.0M",
-    "imageUrl": "/moreless/athletes/casemiro.jpg",
+    "imageUrl": "/moreless/athletes/casemiro.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/0g0bxh1706525357.jpg"
   },
   {
@@ -846,7 +846,7 @@
     "sport": "Soccer",
     "salaryUsd": 20000000,
     "displayValue": "$20.0M",
-    "imageUrl": "/moreless/athletes/phil-foden.jpg",
+    "imageUrl": "/moreless/athletes/phil-foden.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/19o7yc1749157221.jpg"
   },
   {
@@ -856,7 +856,7 @@
     "sport": "Soccer",
     "salaryUsd": 20000000,
     "displayValue": "$20.0M",
-    "imageUrl": "/moreless/athletes/ousmane-dembele.jpg",
+    "imageUrl": "/moreless/athletes/ousmane-dembele.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/2w39ps1778803599.jpg"
   },
   {
@@ -866,7 +866,7 @@
     "sport": "Soccer",
     "salaryUsd": 18000000,
     "displayValue": "$18.0M",
-    "imageUrl": "/moreless/athletes/bukayo-saka.jpg",
+    "imageUrl": "/moreless/athletes/bukayo-saka.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/axl31b1769332282.jpg"
   },
   {
@@ -876,7 +876,7 @@
     "sport": "Soccer",
     "salaryUsd": 18000000,
     "displayValue": "$18.0M",
-    "imageUrl": "/moreless/athletes/rodri.jpg",
+    "imageUrl": "/moreless/athletes/rodri.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/r6vlwa1545242094.jpg"
   },
   {
@@ -886,7 +886,7 @@
     "sport": "Soccer",
     "salaryUsd": 18000000,
     "displayValue": "$18.0M",
-    "imageUrl": "/moreless/athletes/bernardo-silva.jpg",
+    "imageUrl": "/moreless/athletes/bernardo-silva.webp",
     "sourceImageUrl": "https://www.thesportsdb.com/images/media/player/thumb/kv4bed1786031511.jpg"
   },
   {
@@ -896,7 +896,7 @@
     "sport": "Soccer",
     "salaryUsd": 18000000,
     "displayValue": "$18.0M",
-    "imageUrl": "/moreless/athletes/lautaro-martinez.jpg",
+    "imageUrl": "/moreless/athletes/lautaro-martinez.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/y9j7e11719034723.jpg"
   },
   {
@@ -906,7 +906,7 @@
     "sport": "Soccer",
     "salaryUsd": 17000000,
     "displayValue": "$17.0M",
-    "imageUrl": "/moreless/athletes/declan-rice.jpg",
+    "imageUrl": "/moreless/athletes/declan-rice.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ty3z7g1705918131.jpg"
   },
   {
@@ -916,7 +916,7 @@
     "sport": "Soccer",
     "salaryUsd": 16000000,
     "displayValue": "$16.0M",
-    "imageUrl": "/moreless/athletes/martin-degaard.jpg",
+    "imageUrl": "/moreless/athletes/martin-degaard.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/ttlff21727415365.jpg"
   },
   {
@@ -926,7 +926,7 @@
     "sport": "Soccer",
     "salaryUsd": 16000000,
     "displayValue": "$16.0M",
-    "imageUrl": "/moreless/athletes/pedri.jpg",
+    "imageUrl": "/moreless/athletes/pedri.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/vvvc1w1626791033.jpg"
   },
   {
@@ -936,7 +936,7 @@
     "sport": "Soccer",
     "salaryUsd": 16000000,
     "displayValue": "$16.0M",
-    "imageUrl": "/moreless/athletes/antonio-rudiger.jpg",
+    "imageUrl": "/moreless/athletes/antonio-rudiger.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/qtv86p1779385132.jpg"
   },
   {
@@ -946,7 +946,7 @@
     "sport": "Soccer",
     "salaryUsd": 15000000,
     "displayValue": "$15.0M",
-    "imageUrl": "/moreless/athletes/gavi.jpg",
+    "imageUrl": "/moreless/athletes/gavi.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/uvkoy51521477385.jpg"
   },
   {
@@ -956,7 +956,7 @@
     "sport": "Soccer",
     "salaryUsd": 15000000,
     "displayValue": "$15.0M",
-    "imageUrl": "/moreless/athletes/rafael-leao.jpg",
+    "imageUrl": "/moreless/athletes/rafael-leao.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/m1sh9x1549742563.jpg"
   },
   {
@@ -966,7 +966,7 @@
     "sport": "Soccer",
     "salaryUsd": 15000000,
     "displayValue": "$15.0M",
-    "imageUrl": "/moreless/athletes/khvicha-kvaratskhelia.jpg",
+    "imageUrl": "/moreless/athletes/khvicha-kvaratskhelia.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/l1gq7e1770217076.jpg"
   },
   {
@@ -976,7 +976,7 @@
     "sport": "Soccer",
     "salaryUsd": 15000000,
     "displayValue": "$15.0M",
-    "imageUrl": "/moreless/athletes/federico-valverde.jpg",
+    "imageUrl": "/moreless/athletes/federico-valverde.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/38ndp21771266409.jpg"
   },
   {
@@ -986,7 +986,7 @@
     "sport": "Soccer",
     "salaryUsd": 14000000,
     "displayValue": "$14.0M",
-    "imageUrl": "/moreless/athletes/thibaut-courtois.jpg",
+    "imageUrl": "/moreless/athletes/thibaut-courtois.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/54zonn1779039115.jpg"
   },
   {
@@ -996,7 +996,7 @@
     "sport": "Soccer",
     "salaryUsd": 14000000,
     "displayValue": "$14.0M",
-    "imageUrl": "/moreless/athletes/alisson-becker.jpg",
+    "imageUrl": "/moreless/athletes/alisson-becker.webp",
     "sourceImageUrl": "https://r2.thesportsdb.com/images/media/player/thumb/yi6dt21746034945.jpg"
   }
 ]

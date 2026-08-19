@@ -5,7 +5,7 @@
     "ticker": "NVDA",
     "marketCapUsd": 5268067319808,
     "displayValue": "$5.27T",
-    "imageUrl": "/moreless/logos/nvda.png",
+    "imageUrl": "/moreless/logos/nvda.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVDA.png"
   },
   {
@@ -14,7 +14,7 @@
     "ticker": "AAPL",
     "marketCapUsd": 4449911701504,
     "displayValue": "$4.45T",
-    "imageUrl": "/moreless/logos/aapl.png",
+    "imageUrl": "/moreless/logos/aapl.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AAPL.png"
   },
   {
@@ -23,7 +23,7 @@
     "ticker": "GOOG",
     "marketCapUsd": 4194867609600,
     "displayValue": "$4.19T",
-    "imageUrl": "/moreless/logos/goog.png",
+    "imageUrl": "/moreless/logos/goog.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/GOOG.png"
   },
   {
@@ -32,7 +32,7 @@
     "ticker": "MSFT",
     "marketCapUsd": 3741064101888,
     "displayValue": "$3.74T",
-    "imageUrl": "/moreless/logos/msft.png",
+    "imageUrl": "/moreless/logos/msft.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MSFT.png"
   },
   {
@@ -41,7 +41,7 @@
     "ticker": "AMZN",
     "marketCapUsd": 2936789270528,
     "displayValue": "$2.94T",
-    "imageUrl": "/moreless/logos/amzn.png",
+    "imageUrl": "/moreless/logos/amzn.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMZN.png"
   },
   {
@@ -50,7 +50,7 @@
     "ticker": "TSM",
     "marketCapUsd": 2189003194368,
     "displayValue": "$2.19T",
-    "imageUrl": "/moreless/logos/tsm.png",
+    "imageUrl": "/moreless/logos/tsm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TSM.png"
   },
   {
@@ -59,7 +59,7 @@
     "ticker": "AVGO",
     "marketCapUsd": 1979533885440,
     "displayValue": "$1.98T",
-    "imageUrl": "/moreless/logos/avgo.png",
+    "imageUrl": "/moreless/logos/avgo.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AVGO.png"
   },
   {
@@ -68,7 +68,7 @@
     "ticker": "SPCX",
     "marketCapUsd": 1755987312640,
     "displayValue": "$1.76T",
-    "imageUrl": "/moreless/logos/spcx.png",
+    "imageUrl": "/moreless/logos/spcx.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SPCX.png"
   },
   {
@@ -77,7 +77,7 @@
     "ticker": "2222.SR",
     "marketCapUsd": 1712630091419,
     "displayValue": "$1.71T",
-    "imageUrl": "/moreless/logos/2222-sr.png",
+    "imageUrl": "/moreless/logos/2222-sr.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/2222.SR.png"
   },
   {
@@ -86,7 +86,7 @@
     "ticker": "META",
     "marketCapUsd": 1526261874688,
     "displayValue": "$1.53T",
-    "imageUrl": "/moreless/logos/meta.png",
+    "imageUrl": "/moreless/logos/meta.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/META.png"
   },
   {
@@ -95,7 +95,7 @@
     "ticker": "TSLA",
     "marketCapUsd": 1314448867328,
     "displayValue": "$1.31T",
-    "imageUrl": "/moreless/logos/tsla.png",
+    "imageUrl": "/moreless/logos/tsla.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TSLA.png"
   },
   {
@@ -104,7 +104,7 @@
     "ticker": "005930.KS",
     "marketCapUsd": 1185099310986,
     "displayValue": "$1.19T",
-    "imageUrl": "/moreless/logos/005930-ks.png",
+    "imageUrl": "/moreless/logos/005930-ks.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/005930.KS.png"
   },
   {
@@ -113,7 +113,7 @@
     "ticker": "BRK-B",
     "marketCapUsd": 1105419698176,
     "displayValue": "$1.11T",
-    "imageUrl": "/moreless/logos/brk-b.png",
+    "imageUrl": "/moreless/logos/brk-b.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/BRK-B.png"
   },
   {
@@ -122,7 +122,7 @@
     "ticker": "LLY",
     "marketCapUsd": 1083016675328,
     "displayValue": "$1.08T",
-    "imageUrl": "/moreless/logos/lly.png",
+    "imageUrl": "/moreless/logos/lly.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/LLY.png"
   },
   {
@@ -131,7 +131,7 @@
     "ticker": "MU",
     "marketCapUsd": 980900577280,
     "displayValue": "$981B",
-    "imageUrl": "/moreless/logos/mu.png",
+    "imageUrl": "/moreless/logos/mu.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MU.png"
   },
   {
@@ -140,7 +140,7 @@
     "ticker": "JPM",
     "marketCapUsd": 962369748992,
     "displayValue": "$962B",
-    "imageUrl": "/moreless/logos/jpm.png",
+    "imageUrl": "/moreless/logos/jpm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/JPM.png"
   },
   {
@@ -149,7 +149,7 @@
     "ticker": "WMT",
     "marketCapUsd": 901332074496,
     "displayValue": "$901B",
-    "imageUrl": "/moreless/logos/wmt.png",
+    "imageUrl": "/moreless/logos/wmt.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/WMT.png"
   },
   {
@@ -158,7 +158,7 @@
     "ticker": "AMD",
     "marketCapUsd": 774315573248,
     "displayValue": "$774B",
-    "imageUrl": "/moreless/logos/amd.png",
+    "imageUrl": "/moreless/logos/amd.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMD.png"
   },
   {
@@ -167,7 +167,7 @@
     "ticker": "000660.KS",
     "marketCapUsd": 754124639578,
     "displayValue": "$754B",
-    "imageUrl": "/moreless/logos/000660-ks.png",
+    "imageUrl": "/moreless/logos/000660-ks.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/000660.KS.png"
   },
   {
@@ -176,7 +176,7 @@
     "ticker": "ASML",
     "marketCapUsd": 691141869568,
     "displayValue": "$691B",
-    "imageUrl": "/moreless/logos/asml.png",
+    "imageUrl": "/moreless/logos/asml.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ASML.png"
   },
   {
@@ -185,7 +185,7 @@
     "ticker": "V",
     "marketCapUsd": 677402116096,
     "displayValue": "$677B",
-    "imageUrl": "/moreless/logos/v.png",
+    "imageUrl": "/moreless/logos/v.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/V.png"
   },
   {
@@ -194,7 +194,7 @@
     "ticker": "XOM",
     "marketCapUsd": 657083531264,
     "displayValue": "$657B",
-    "imageUrl": "/moreless/logos/xom.png",
+    "imageUrl": "/moreless/logos/xom.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/XOM.png"
   },
   {
@@ -203,7 +203,7 @@
     "ticker": "JNJ",
     "marketCapUsd": 626091622400,
     "displayValue": "$626B",
-    "imageUrl": "/moreless/logos/jnj.png",
+    "imageUrl": "/moreless/logos/jnj.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/JNJ.png"
   },
   {
@@ -212,7 +212,7 @@
     "ticker": "688825.SS",
     "marketCapUsd": 562134308261,
     "displayValue": "$562B",
-    "imageUrl": "/moreless/logos/688825-ss.png",
+    "imageUrl": "/moreless/logos/688825-ss.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/688825.SS.png"
   },
   {
@@ -221,7 +221,7 @@
     "ticker": "TCEHY",
     "marketCapUsd": 535776952320,
     "displayValue": "$536B",
-    "imageUrl": "/moreless/logos/tcehy.png",
+    "imageUrl": "/moreless/logos/tcehy.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TCEHY.png"
   },
   {
@@ -230,7 +230,7 @@
     "ticker": "INTC",
     "marketCapUsd": 492849201152,
     "displayValue": "$493B",
-    "imageUrl": "/moreless/logos/intc.png",
+    "imageUrl": "/moreless/logos/intc.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/INTC.png"
   },
   {
@@ -239,7 +239,7 @@
     "ticker": "MA",
     "marketCapUsd": 491827003392,
     "displayValue": "$492B",
-    "imageUrl": "/moreless/logos/ma.png",
+    "imageUrl": "/moreless/logos/ma.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MA.png"
   },
   {
@@ -248,7 +248,7 @@
     "ticker": "CSCO",
     "marketCapUsd": 474666958848,
     "displayValue": "$475B",
-    "imageUrl": "/moreless/logos/csco.png",
+    "imageUrl": "/moreless/logos/csco.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/CSCO.png"
   },
   {
@@ -257,7 +257,7 @@
     "ticker": "BAC",
     "marketCapUsd": 447535906816,
     "displayValue": "$448B",
-    "imageUrl": "/moreless/logos/bac.png",
+    "imageUrl": "/moreless/logos/bac.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/BAC.png"
   },
   {
@@ -266,7 +266,7 @@
     "ticker": "ABBV",
     "marketCapUsd": 441938345984,
     "displayValue": "$442B",
-    "imageUrl": "/moreless/logos/abbv.png",
+    "imageUrl": "/moreless/logos/abbv.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ABBV.png"
   },
   {
@@ -275,7 +275,7 @@
     "ticker": "PLTR",
     "marketCapUsd": 420391059456,
     "displayValue": "$420B",
-    "imageUrl": "/moreless/logos/pltr.png",
+    "imageUrl": "/moreless/logos/pltr.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/PLTR.png"
   },
   {
@@ -284,7 +284,7 @@
     "ticker": "ORCL",
     "marketCapUsd": 419050913792,
     "displayValue": "$419B",
-    "imageUrl": "/moreless/logos/orcl.png",
+    "imageUrl": "/moreless/logos/orcl.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ORCL.png"
   },
   {
@@ -293,7 +293,7 @@
     "ticker": "COST",
     "marketCapUsd": 418785918976,
     "displayValue": "$419B",
-    "imageUrl": "/moreless/logos/cost.png",
+    "imageUrl": "/moreless/logos/cost.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/COST.png"
   },
   {
@@ -302,7 +302,7 @@
     "ticker": "AMAT",
     "marketCapUsd": 417312997376,
     "displayValue": "$417B",
-    "imageUrl": "/moreless/logos/amat.png",
+    "imageUrl": "/moreless/logos/amat.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMAT.png"
   },
   {
@@ -311,7 +311,7 @@
     "ticker": "601939.SS",
     "marketCapUsd": 397316598852,
     "displayValue": "$397B",
-    "imageUrl": "/moreless/logos/601939-ss.png",
+    "imageUrl": "/moreless/logos/601939-ss.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/601939.SS.png"
   },
   {
@@ -320,7 +320,7 @@
     "ticker": "LRCX",
     "marketCapUsd": 389673877504,
     "displayValue": "$390B",
-    "imageUrl": "/moreless/logos/lrcx.png",
+    "imageUrl": "/moreless/logos/lrcx.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/LRCX.png"
   },
   {
@@ -329,7 +329,7 @@
     "ticker": "CAT",
     "marketCapUsd": 387676012544,
     "displayValue": "$388B",
-    "imageUrl": "/moreless/logos/cat.png",
+    "imageUrl": "/moreless/logos/cat.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/CAT.png"
   },
   {
@@ -338,7 +338,7 @@
     "ticker": "CVX",
     "marketCapUsd": 385768914944,
     "displayValue": "$386B",
-    "imageUrl": "/moreless/logos/cvx.png",
+    "imageUrl": "/moreless/logos/cvx.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/CVX.png"
   },
   {
@@ -347,7 +347,7 @@
     "ticker": "GE",
     "marketCapUsd": 381885251584,
     "displayValue": "$382B",
-    "imageUrl": "/moreless/logos/ge.png",
+    "imageUrl": "/moreless/logos/ge.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/GE.png"
   },
   {
@@ -356,7 +356,7 @@
     "ticker": "KO",
     "marketCapUsd": 372084441088,
     "displayValue": "$372B",
-    "imageUrl": "/moreless/logos/ko.png",
+    "imageUrl": "/moreless/logos/ko.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/KO.png"
   },
   {
@@ -365,7 +365,7 @@
     "ticker": "RO.SW",
     "marketCapUsd": 361092030303,
     "displayValue": "$361B",
-    "imageUrl": "/moreless/logos/ro-sw.png",
+    "imageUrl": "/moreless/logos/ro-sw.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/RO.SW.png"
   },
   {
@@ -374,7 +374,7 @@
     "ticker": "UNH",
     "marketCapUsd": 361003646976,
     "displayValue": "$361B",
-    "imageUrl": "/moreless/logos/unh.png",
+    "imageUrl": "/moreless/logos/unh.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/UNH.png"
   },
   {
@@ -383,7 +383,7 @@
     "ticker": "HSBC",
     "marketCapUsd": 354703114240,
     "displayValue": "$355B",
-    "imageUrl": "/moreless/logos/hsbc.png",
+    "imageUrl": "/moreless/logos/hsbc.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/HSBC.png"
   },
   {
@@ -392,7 +392,7 @@
     "ticker": "HD",
     "marketCapUsd": 353457930240,
     "displayValue": "$353B",
-    "imageUrl": "/moreless/logos/hd.png",
+    "imageUrl": "/moreless/logos/hd.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/HD.png"
   },
   {
@@ -401,7 +401,7 @@
     "ticker": "PG",
     "marketCapUsd": 338135875584,
     "displayValue": "$338B",
-    "imageUrl": "/moreless/logos/pg.png",
+    "imageUrl": "/moreless/logos/pg.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/PG.png"
   },
   {
@@ -410,7 +410,7 @@
     "ticker": "MS",
     "marketCapUsd": 338090065920,
     "displayValue": "$338B",
-    "imageUrl": "/moreless/logos/ms.png",
+    "imageUrl": "/moreless/logos/ms.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MS.png"
   },
   {
@@ -419,7 +419,7 @@
     "ticker": "601288.SS",
     "marketCapUsd": 334296048079,
     "displayValue": "$334B",
-    "imageUrl": "/moreless/logos/601288-ss.png",
+    "imageUrl": "/moreless/logos/601288-ss.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/601288.SS.png"
   },
   {
@@ -428,7 +428,7 @@
     "ticker": "1398.HK",
     "marketCapUsd": 325214707075,
     "displayValue": "$325B",
-    "imageUrl": "/moreless/logos/1398-hk.png",
+    "imageUrl": "/moreless/logos/1398-hk.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/1398.HK.png"
   },
   {
@@ -437,7 +437,7 @@
     "ticker": "MRK",
     "marketCapUsd": 321768521728,
     "displayValue": "$322B",
-    "imageUrl": "/moreless/logos/mrk.png",
+    "imageUrl": "/moreless/logos/mrk.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MRK.png"
   },
   {
@@ -446,7 +446,7 @@
     "ticker": "PANW",
     "marketCapUsd": 312797003776,
     "displayValue": "$313B",
-    "imageUrl": "/moreless/logos/panw.png",
+    "imageUrl": "/moreless/logos/panw.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/PANW.png"
   },
   {
@@ -455,7 +455,7 @@
     "ticker": "NFLX",
     "marketCapUsd": 311421042688,
     "displayValue": "$311B",
-    "imageUrl": "/moreless/logos/nflx.png",
+    "imageUrl": "/moreless/logos/nflx.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/NFLX.png"
   },
   {
@@ -464,7 +464,7 @@
     "ticker": "BABA",
     "marketCapUsd": 306440306688,
     "displayValue": "$306B",
-    "imageUrl": "/moreless/logos/baba.png",
+    "imageUrl": "/moreless/logos/baba.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/BABA.png"
   },
   {
@@ -473,7 +473,7 @@
     "ticker": "RTX",
     "marketCapUsd": 301709131776,
     "displayValue": "$302B",
-    "imageUrl": "/moreless/logos/rtx.png",
+    "imageUrl": "/moreless/logos/rtx.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/RTX.png"
   },
   {
@@ -482,7 +482,7 @@
     "ticker": "GS",
     "marketCapUsd": 301190610944,
     "displayValue": "$301B",
-    "imageUrl": "/moreless/logos/gs.png",
+    "imageUrl": "/moreless/logos/gs.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/GS.png"
   },
   {
@@ -491,7 +491,7 @@
     "ticker": "NVS",
     "marketCapUsd": 293869518848,
     "displayValue": "$294B",
-    "imageUrl": "/moreless/logos/nvs.png",
+    "imageUrl": "/moreless/logos/nvs.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVS.png"
   },
   {
@@ -500,7 +500,7 @@
     "ticker": "RY",
     "marketCapUsd": 292190388224,
     "displayValue": "$292B",
-    "imageUrl": "/moreless/logos/ry.png",
+    "imageUrl": "/moreless/logos/ry.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/RY.png"
   },
   {
@@ -509,7 +509,7 @@
     "ticker": "PM",
     "marketCapUsd": 290244984832,
     "displayValue": "$290B",
-    "imageUrl": "/moreless/logos/pm.png",
+    "imageUrl": "/moreless/logos/pm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/PM.png"
   },
   {
@@ -518,7 +518,7 @@
     "ticker": "ARM",
     "marketCapUsd": 287216861184,
     "displayValue": "$287B",
-    "imageUrl": "/moreless/logos/arm.png",
+    "imageUrl": "/moreless/logos/arm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ARM.png"
   },
   {
@@ -527,7 +527,7 @@
     "ticker": "DELL",
     "marketCapUsd": 284929425408,
     "displayValue": "$285B",
-    "imageUrl": "/moreless/logos/dell.png",
+    "imageUrl": "/moreless/logos/dell.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/DELL.png"
   },
   {
@@ -536,7 +536,7 @@
     "ticker": "601988.SS",
     "marketCapUsd": 278473434426,
     "displayValue": "$278B",
-    "imageUrl": "/moreless/logos/601988-ss.png",
+    "imageUrl": "/moreless/logos/601988-ss.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/601988.SS.png"
   },
   {
@@ -545,7 +545,7 @@
     "ticker": "300750.SZ",
     "marketCapUsd": 270323941245,
     "displayValue": "$270B",
-    "imageUrl": "/moreless/logos/300750-sz.png",
+    "imageUrl": "/moreless/logos/300750-sz.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/300750.SZ.png"
   },
   {
@@ -554,7 +554,7 @@
     "ticker": "GEV",
     "marketCapUsd": 269497630720,
     "displayValue": "$269B",
-    "imageUrl": "/moreless/logos/gev.png",
+    "imageUrl": "/moreless/logos/gev.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/GEV.png"
   },
   {
@@ -563,7 +563,7 @@
     "ticker": "MC.PA",
     "marketCapUsd": 267615385856,
     "displayValue": "$268B",
-    "imageUrl": "/moreless/logos/mc-pa.png",
+    "imageUrl": "/moreless/logos/mc-pa.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MC.PA.png"
   },
   {
@@ -572,7 +572,7 @@
     "ticker": "WFC",
     "marketCapUsd": 264448720896,
     "displayValue": "$264B",
-    "imageUrl": "/moreless/logos/wfc.png",
+    "imageUrl": "/moreless/logos/wfc.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/WFC.png"
   },
   {
@@ -581,7 +581,7 @@
     "ticker": "KLAC",
     "marketCapUsd": 261923438592,
     "displayValue": "$262B",
-    "imageUrl": "/moreless/logos/klac.png",
+    "imageUrl": "/moreless/logos/klac.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/KLAC.png"
   },
   {
@@ -590,7 +590,7 @@
     "ticker": "TXN",
     "marketCapUsd": 256841760768,
     "displayValue": "$257B",
-    "imageUrl": "/moreless/logos/txn.png",
+    "imageUrl": "/moreless/logos/txn.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TXN.png"
   },
   {
@@ -599,7 +599,7 @@
     "ticker": "NESN.SW",
     "marketCapUsd": 251222411428,
     "displayValue": "$251B",
-    "imageUrl": "/moreless/logos/nesn-sw.png",
+    "imageUrl": "/moreless/logos/nesn-sw.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/NESN.SW.png"
   },
   {
@@ -608,7 +608,7 @@
     "ticker": "SHEL",
     "marketCapUsd": 249966297088,
     "displayValue": "$250B",
-    "imageUrl": "/moreless/logos/shel.png",
+    "imageUrl": "/moreless/logos/shel.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SHEL.png"
   },
   {
@@ -617,7 +617,7 @@
     "ticker": "ANET",
     "marketCapUsd": 249533317120,
     "displayValue": "$250B",
-    "imageUrl": "/moreless/logos/anet.png",
+    "imageUrl": "/moreless/logos/anet.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ANET.png"
   },
   {
@@ -626,7 +626,7 @@
     "ticker": "MUFG",
     "marketCapUsd": 249444433920,
     "displayValue": "$249B",
-    "imageUrl": "/moreless/logos/mufg.png",
+    "imageUrl": "/moreless/logos/mufg.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/MUFG.png"
   },
   {
@@ -635,7 +635,7 @@
     "ticker": "600519.SS",
     "marketCapUsd": 248878504442,
     "displayValue": "$249B",
-    "imageUrl": "/moreless/logos/600519-ss.png",
+    "imageUrl": "/moreless/logos/600519-ss.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/600519.SS.png"
   },
   {
@@ -644,7 +644,7 @@
     "ticker": "SIE.DE",
     "marketCapUsd": 248248045356,
     "displayValue": "$248B",
-    "imageUrl": "/moreless/logos/sie-de.png",
+    "imageUrl": "/moreless/logos/sie-de.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SIE.DE.png"
   },
   {
@@ -653,7 +653,7 @@
     "ticker": "AZN",
     "marketCapUsd": 246203138048,
     "displayValue": "$246B",
-    "imageUrl": "/moreless/logos/azn.png",
+    "imageUrl": "/moreless/logos/azn.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AZN.png"
   },
   {
@@ -662,7 +662,7 @@
     "ticker": "SAP",
     "marketCapUsd": 242013552640,
     "displayValue": "$242B",
-    "imageUrl": "/moreless/logos/sap.png",
+    "imageUrl": "/moreless/logos/sap.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SAP.png"
   },
   {
@@ -671,7 +671,7 @@
     "ticker": "OR.PA",
     "marketCapUsd": 235297595237,
     "displayValue": "$235B",
-    "imageUrl": "/moreless/logos/or-pa.png",
+    "imageUrl": "/moreless/logos/or-pa.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/OR.PA.png"
   },
   {
@@ -680,7 +680,7 @@
     "ticker": "AXP",
     "marketCapUsd": 230152339456,
     "displayValue": "$230B",
-    "imageUrl": "/moreless/logos/axp.png",
+    "imageUrl": "/moreless/logos/axp.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AXP.png"
   },
   {
@@ -689,7 +689,7 @@
     "ticker": "BHP",
     "marketCapUsd": 228681859072,
     "displayValue": "$229B",
-    "imageUrl": "/moreless/logos/bhp.png",
+    "imageUrl": "/moreless/logos/bhp.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/BHP.png"
   },
   {
@@ -698,7 +698,7 @@
     "ticker": "C",
     "marketCapUsd": 227745595392,
     "displayValue": "$228B",
-    "imageUrl": "/moreless/logos/c.png",
+    "imageUrl": "/moreless/logos/c.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/C.png"
   },
   {
@@ -707,7 +707,7 @@
     "ticker": "LIN",
     "marketCapUsd": 226124595200,
     "displayValue": "$226B",
-    "imageUrl": "/moreless/logos/lin.png",
+    "imageUrl": "/moreless/logos/lin.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/LIN.png"
   },
   {
@@ -716,7 +716,7 @@
     "ticker": "CRWD",
     "marketCapUsd": 225951727616,
     "displayValue": "$226B",
-    "imageUrl": "/moreless/logos/crwd.png",
+    "imageUrl": "/moreless/logos/crwd.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/CRWD.png"
   },
   {
@@ -725,7 +725,7 @@
     "ticker": "0941.HK",
     "marketCapUsd": 225363497264,
     "displayValue": "$225B",
-    "imageUrl": "/moreless/logos/0941-hk.png",
+    "imageUrl": "/moreless/logos/0941-hk.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/0941.HK.png"
   },
   {
@@ -734,7 +734,7 @@
     "ticker": "TM",
     "marketCapUsd": 224766853120,
     "displayValue": "$225B",
-    "imageUrl": "/moreless/logos/tm.png",
+    "imageUrl": "/moreless/logos/tm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TM.png"
   },
   {
@@ -743,7 +743,7 @@
     "ticker": "IBM",
     "marketCapUsd": 224623689728,
     "displayValue": "$225B",
-    "imageUrl": "/moreless/logos/ibm.png",
+    "imageUrl": "/moreless/logos/ibm.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/IBM.png"
   },
   {
@@ -752,7 +752,7 @@
     "ticker": "IHC.AE",
     "marketCapUsd": 223982976275,
     "displayValue": "$224B",
-    "imageUrl": "/moreless/logos/ihc-ae.png",
+    "imageUrl": "/moreless/logos/ihc-ae.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/IHC.AE.png"
   },
   {
@@ -761,7 +761,7 @@
     "ticker": "TMO",
     "marketCapUsd": 223697108992,
     "displayValue": "$224B",
-    "imageUrl": "/moreless/logos/tmo.png",
+    "imageUrl": "/moreless/logos/tmo.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TMO.png"
   },
   {
@@ -770,7 +770,7 @@
     "ticker": "AMGN",
     "marketCapUsd": 223601131520,
     "displayValue": "$224B",
-    "imageUrl": "/moreless/logos/amgn.png",
+    "imageUrl": "/moreless/logos/amgn.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AMGN.png"
   },
   {
@@ -779,7 +779,7 @@
     "ticker": "0857.HK",
     "marketCapUsd": 221816191984,
     "displayValue": "$222B",
-    "imageUrl": "/moreless/logos/0857-hk.png",
+    "imageUrl": "/moreless/logos/0857-hk.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/0857.HK.png"
   },
   {
@@ -788,7 +788,7 @@
     "ticker": "SAN",
     "marketCapUsd": 209861459968,
     "displayValue": "$210B",
-    "imageUrl": "/moreless/logos/san.png",
+    "imageUrl": "/moreless/logos/san.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SAN.png"
   },
   {
@@ -797,7 +797,7 @@
     "ticker": "ITX.MC",
     "marketCapUsd": 209809168731,
     "displayValue": "$210B",
-    "imageUrl": "/moreless/logos/itx-mc.png",
+    "imageUrl": "/moreless/logos/itx-mc.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/ITX.MC.png"
   },
   {
@@ -806,7 +806,7 @@
     "ticker": "NVO",
     "marketCapUsd": 206658846720,
     "displayValue": "$207B",
-    "imageUrl": "/moreless/logos/nvo.png",
+    "imageUrl": "/moreless/logos/nvo.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/NVO.png"
   },
   {
@@ -815,7 +815,7 @@
     "ticker": "APH",
     "marketCapUsd": 206191820800,
     "displayValue": "$206B",
-    "imageUrl": "/moreless/logos/aph.png",
+    "imageUrl": "/moreless/logos/aph.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/APH.png"
   },
   {
@@ -824,7 +824,7 @@
     "ticker": "CBA.AX",
     "marketCapUsd": 204105462848,
     "displayValue": "$204B",
-    "imageUrl": "/moreless/logos/cba-ax.png",
+    "imageUrl": "/moreless/logos/cba-ax.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/CBA.AX.png"
   },
   {
@@ -833,7 +833,7 @@
     "ticker": "SU.PA",
     "marketCapUsd": 200732912704,
     "displayValue": "$201B",
-    "imageUrl": "/moreless/logos/su-pa.png",
+    "imageUrl": "/moreless/logos/su-pa.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SU.PA.png"
   },
   {
@@ -842,7 +842,7 @@
     "ticker": "TD",
     "marketCapUsd": 200509423616,
     "displayValue": "$201B",
-    "imageUrl": "/moreless/logos/td.png",
+    "imageUrl": "/moreless/logos/td.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/TD.png"
   },
   {
@@ -851,7 +851,7 @@
     "ticker": "PRX.AS",
     "marketCapUsd": 199111769042,
     "displayValue": "$199B",
-    "imageUrl": "/moreless/logos/prx-as.png",
+    "imageUrl": "/moreless/logos/prx-as.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/PRX.AS.png"
   },
   {
@@ -860,7 +860,7 @@
     "ticker": "2454.TW",
     "marketCapUsd": 199040808427,
     "displayValue": "$199B",
-    "imageUrl": "/moreless/logos/2454-tw.png",
+    "imageUrl": "/moreless/logos/2454-tw.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/2454.TW.png"
   },
   {
@@ -869,7 +869,7 @@
     "ticker": "9984.T",
     "marketCapUsd": 197613276971,
     "displayValue": "$198B",
-    "imageUrl": "/moreless/logos/9984-t.png",
+    "imageUrl": "/moreless/logos/9984-t.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/9984.T.png"
   },
   {
@@ -878,7 +878,7 @@
     "ticker": "VZ",
     "marketCapUsd": 196396236800,
     "displayValue": "$196B",
-    "imageUrl": "/moreless/logos/vz.png",
+    "imageUrl": "/moreless/logos/vz.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/VZ.png"
   },
   {
@@ -887,7 +887,7 @@
     "ticker": "SHOP",
     "marketCapUsd": 196354736128,
     "displayValue": "$196B",
-    "imageUrl": "/moreless/logos/shop.png",
+    "imageUrl": "/moreless/logos/shop.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/SHOP.png"
   },
   {
@@ -896,7 +896,7 @@
     "ticker": "AIR.PA",
     "marketCapUsd": 196089165930,
     "displayValue": "$196B",
-    "imageUrl": "/moreless/logos/air-pa.png",
+    "imageUrl": "/moreless/logos/air-pa.webp",
     "sourceImageUrl": "https://companiesmarketcap.com/img/company-logos/256/AIR.PA.png"
   }
 ]

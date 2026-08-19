@@ -20,7 +20,9 @@
     "data:usd-money": "node scripts/fetch-usd-money.mjs",
     "data:usd-optimize": "python scripts/optimize-usd-images.py",
     "data:moreless-images": "node scripts/fetch-moreless-images.mjs",
-    "data:all": "npm run data:forbes && npm run data:gdp && npm run data:athletes && npm run data:athlete-images && npm run data:box-office && npm run data:movie-posters && npm run data:market-cap && npm run data:moreless-images && npm run data:seed",
+    "data:fonts": "node scripts/fetch-fonts.mjs",
+    "data:webp": "node scripts/convert-images-webp.mjs",
+    "data:all": "npm run data:forbes && npm run data:gdp && npm run data:athletes && npm run data:athlete-images && npm run data:box-office && npm run data:movie-posters && npm run data:market-cap && npm run data:moreless-images && npm run data:webp && npm run data:seed",
     "data:seed": "node scripts/build-seed.mjs",
     "db:schema:local": "wrangler d1 execute moneygames-db --local --file=db/schema.sql",
     "db:seed:local": "wrangler d1 execute moneygames-db --local --file=db/seed.sql",
@@ -45,6 +47,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.5",
+    "sharp": "^0.35.3",
     "typescript": "^7.0.2",
     "vite": "^8.2.1",
     "wrangler": "^4.120.1"

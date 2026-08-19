@@ -9,6 +9,7 @@ import {
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import { usePageMeta } from "../lib/usePageMeta";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
+import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
 const MAX_GUESSES = 6;
 
@@ -18,6 +19,12 @@ interface HistoryRow {
   stronger: boolean;
   closeness: number;
   correct: boolean;
+}
+
+interface SavedRun {
+  history: HistoryRow[];
+  // Only the server knows the answer, so unlike win/loss it can't be re-derived.
+  answer: MoneyleCurrency | null;
 }
 
 function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: number } {
@@ -61,6 +68,17 @@ export default function Moneyle() {
   const remaining = MAX_GUESSES - history.length;
   const frost = frostFor(history.length, revealed);
 
+  const restore = useCallback((date: string) => {
+    const saved = loadProgress<SavedRun>("moneyle", date);
+    if (!saved?.history?.length) return;
+    const history = saved.history.slice(0, MAX_GUESSES);
+    const solved = history.some((row) => row.correct);
+    setHistory(history);
+    setAnswer(saved.answer ?? null);
+    setWon(solved);
+    setLost(!solved && history.length >= MAX_GUESSES);
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     setError(false);
@@ -70,6 +88,7 @@ export default function Moneyle() {
         setCurrencies(res.currencies);
         setImageUrl(res.imageUrl);
         setPuzzleDate(res.date);
+        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -77,7 +96,12 @@ export default function Moneyle() {
     return () => {
       cancelled = true;
     };
-  }, [runKey]);
+  }, [runKey, restore]);
+
+  useEffect(() => {
+    if (history.length === 0) return;
+    saveProgress<SavedRun>("moneyle", puzzleDate, { history, answer });
+  }, [puzzleDate, history, answer]);
 
   const guessedCodes = useMemo(() => new Set(history.map((h) => h.currency.code)), [history]);
 
@@ -133,6 +157,7 @@ export default function Moneyle() {
   );
 
   const restart = useCallback(() => {
+    clearProgress("moneyle");
     setQuery("");
     setHistory([]);
     setWon(false);
