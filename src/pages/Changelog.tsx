@@ -2,6 +2,17 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 19, 2026",
+    iso: "2026-08-19",
+    items: [
+      "Launched MoneyConnections: a daily 4×4 grid of flags, cash, GDP, and currency names. Group four tiles that belong to the same country. Four mistakes, no custom puzzles, no infinity mode.",
+      "Self-hosted the three UI fonts (Outfit, Space Grotesk, IBM Plex Mono) instead of loading Google Fonts at runtime.",
+      "Converted game art to WebP and shrank the image bundle by about 70%.",
+      "Daily progress for More/Less, Money Guessr, Moneyle, and MoneyConnections now survives a closed tab.",
+      "Layout respects iPhone notches and the home-indicator safe area.",
+    ],
+  },
+  {
     date: "August 17, 2026",
     iso: "2026-08-17",
     items: [

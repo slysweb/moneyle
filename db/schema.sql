@@ -76,7 +76,7 @@ CREATE INDEX idx_denoms_currency_active ON denominations (currency_id, is_active
 -- One shared puzzle per game per America/Denver calendar day.
 CREATE TABLE daily_puzzles (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
-  game        TEXT NOT NULL CHECK (game IN ('moreless', 'guessr', 'moneyle')),
+  game        TEXT NOT NULL CHECK (game IN ('moreless', 'guessr', 'moneyle', 'connections')),
   puzzle_date TEXT NOT NULL,                    -- YYYY-MM-DD in America/Denver
   payload     TEXT NOT NULL,                    -- JSON
   created_at  TEXT NOT NULL DEFAULT (datetime('now')),

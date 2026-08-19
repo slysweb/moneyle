@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Guessr from "./pages/Guessr";
 import Moneyle from "./pages/Moneyle";
+import Connections from "./pages/Connections";
 import About from "./pages/About";
 import Changelog from "./pages/Changelog";
 import Terms from "./pages/Terms";
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/moreless/:slug" element={<Navigate to="/moreless" replace />} />
           <Route path="/guessr" element={<Guessr />} />
           <Route path="/moneyle" element={<Moneyle />} />
+          <Route path="/connections" element={<Connections />} />
           <Route path="/about" element={<About />} />
           <Route path="/changelog" element={<Changelog />} />
           <Route path="/terms" element={<Terms />} />

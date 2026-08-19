@@ -1,5 +1,11 @@
 import { denverDate } from "./denver";
-import { ensureAllDailyPuzzles, ensureGuessr, ensureMoneyle, ensureMoreless } from "./daily";
+import {
+  ensureAllDailyPuzzles,
+  ensureConnections,
+  ensureGuessr,
+  ensureMoneyle,
+  ensureMoreless,
+} from "./daily";
 import { handleFeedback } from "./feedback";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 
@@ -78,6 +84,12 @@ async function handleGuessrToday(env: Env): Promise<Response> {
   return json({ date, ...puzzle }, noStore);
 }
 
+async function handleConnectionsToday(env: Env): Promise<Response> {
+  const date = denverDate();
+  const puzzle = await ensureConnections(env.DB, date);
+  return json({ date, ...puzzle }, noStore);
+}
+
 async function handleMoneylePuzzle(env: Env): Promise<Response> {
   const date = denverDate();
   const puzzle = await ensureMoneyle(env.DB, date);
@@ -146,6 +158,7 @@ export default {
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env);
         if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env);
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, url);
+        if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env);
       } catch (err) {
         console.error("API error", err instanceof Error ? err.message : err);
         return json({ error: "Internal error" }, { status: 500 });

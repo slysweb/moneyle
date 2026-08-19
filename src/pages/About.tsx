@@ -10,7 +10,7 @@ export default function About() {
     <InfoPage
       title="About us"
       description="MoneyGames is a small collection of free browser games about money, wealth, and currencies."
-      updated="August 17, 2026"
+      updated="August 19, 2026"
     >
       <p>
         MoneyGames is a free site of short browser games about money. No accounts, no
@@ -30,6 +30,11 @@ export default function About() {
         <li>
           <Link to="/moneyle">Moneyle</Link> — a frosted banknote and six guesses. Use
           mid-market exchange rates to home in on the hidden currency.
+        </li>
+        <li>
+          <Link to="/connections">MoneyConnections</Link> — a 4×4 grid of flags, bills
+          or coins, GDP, and currency names. Group the four tiles that belong to the
+          same country.
         </li>
       </ul>
 

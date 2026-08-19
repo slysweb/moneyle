@@ -9,9 +9,10 @@ import {
   type MorelessLevelPuzzle,
 } from "./moreless";
 import { FX_CURRENCIES, type FxCurrency } from "./moneyle";
+import { generateConnections, type ConnectionsDailyPayload } from "./connections";
 import { refreshLiveStats } from "./refresh";
 
-export type DailyGame = "moreless" | "guessr" | "moneyle";
+export type DailyGame = "moreless" | "guessr" | "moneyle" | "connections";
 
 export interface MorelessDailyPayload {
   levels: MorelessLevelPuzzle[];
@@ -26,6 +27,8 @@ export interface MoneyleDailyPayload {
   target: FxCurrency;
   imageUrl: string;
 }
+
+export type { ConnectionsDailyPayload };
 
 interface CurrencyRow {
   id: number;
@@ -191,8 +194,17 @@ export async function ensureMoneyle(db: D1Database, date: string): Promise<Money
   return ensureGame(db, "moneyle", date, () => generateMoneyle(db, date));
 }
 
+export async function ensureConnections(db: D1Database, date: string): Promise<ConnectionsDailyPayload> {
+  return ensureGame(db, "connections", date, () => generateConnections(db, rngFor(`${date}:connections`)));
+}
+
 export async function ensureAllDailyPuzzles(db: D1Database, at: Date = new Date()): Promise<string> {
   const date = denverDate(at);
-  await Promise.all([ensureMoreless(db, date), ensureGuessr(db, date), ensureMoneyle(db, date)]);
+  await Promise.all([
+    ensureMoreless(db, date),
+    ensureGuessr(db, date),
+    ensureMoneyle(db, date),
+    ensureConnections(db, date),
+  ]);
   return date;
 }

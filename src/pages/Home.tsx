@@ -5,7 +5,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 export default function Home() {
   usePageMeta(
     "MoneyGames — Games about money",
-    "Free browser games about money. Play More/Less, Money Guessr, and Moneyle — test your intuition for wealth, cash, and currencies."
+    "Free browser games about money. Play More/Less, Money Guessr, Moneyle, and MoneyConnections — test your intuition for wealth, cash, and currencies."
   );
 
   return (
@@ -49,6 +49,16 @@ export default function Home() {
             the note’s blurred outline to deduce the hidden currency.
           </p>
           <span className="game-card-cta">Play Moneyle →</span>
+        </Link>
+
+        <Link to="/connections" className="game-card playable">
+          <div className="game-card-badge">Play now</div>
+          <h2>MoneyConnections</h2>
+          <p>
+            A 4×4 grid of flags, cash, GDP figures, and currency names. Find
+            the four tiles that belong to the same country.
+          </p>
+          <span className="game-card-cta">Play MoneyConnections →</span>
         </Link>
       </section>
 

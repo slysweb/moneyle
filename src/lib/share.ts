@@ -25,6 +25,18 @@ export function closenessSquare(closeness: number, correct: boolean): string {
   return "🟥";
 }
 
+const CONNECTION_SQUARES: Record<string, string> = {
+  yellow: "🟨",
+  green: "🟩",
+  blue: "🟦",
+  purple: "🟪",
+};
+
+export function connectionRow(color: string): string {
+  const sq = CONNECTION_SQUARES[color] ?? "⬜";
+  return sq.repeat(4);
+}
+
 export async function copyText(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);

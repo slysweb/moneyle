@@ -107,6 +107,36 @@ export function fetchMoneyleGuess(code: string, attempt?: number): Promise<Money
   return getJson(`/api/moneyle/guess?${params.toString()}`);
 }
 
+export type ConnectionKind = "flag" | "money" | "gdp" | "currency";
+export type ConnectionColor = "yellow" | "green" | "blue" | "purple";
+
+export interface ConnectionTile {
+  id: string;
+  groupId: string;
+  kind: ConnectionKind;
+  label: string;
+  imageUrl: string | null;
+  moneyKind?: "bill" | "coin";
+}
+
+export interface ConnectionGroup {
+  id: string;
+  country: string;
+  currencyCode: string;
+  currencyName: string;
+  color: ConnectionColor;
+}
+
+export interface ConnectionsTodayResponse {
+  date: string;
+  groups: ConnectionGroup[];
+  tiles: ConnectionTile[];
+}
+
+export function fetchConnectionsToday(): Promise<ConnectionsTodayResponse> {
+  return getJson("/api/connections/today");
+}
+
 export type FeedbackCategory = "bug" | "suggestion";
 
 export async function submitFeedback(input: {
