@@ -6,10 +6,11 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
 import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
-type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding";
+type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding" | "interlude";
 type Side = "left" | "right";
 
 const ROUNDS_PER_LEVEL = 5;
+const INTERLUDE_MS = 2000;
 
 interface AnswerRecord {
   levelIndex: number;
@@ -77,7 +78,7 @@ function cardClass(
   if (selected === side && (phase === "selected" || phase === "revealing")) {
     classes.push("selected");
   }
-  const showResult = phase === "correct" || phase === "wrong" || phase === "sliding";
+  const showResult = phase === "correct" || phase === "wrong" || phase === "sliding" || phase === "interlude";
   if (showResult && selected === side) {
     classes.push(selected === correctSide ? "correct" : "wrong");
   }
@@ -156,7 +157,11 @@ export default function Game() {
   const right = level?.chain?.[roundIndex + 1];
 
   const revealing =
-    phase === "revealing" || phase === "correct" || phase === "wrong" || phase === "sliding";
+    phase === "revealing" ||
+    phase === "correct" ||
+    phase === "wrong" ||
+    phase === "sliding" ||
+    phase === "interlude";
   const rightCounted = useCountUp(right?.value ?? 0, revealing);
   const correctSide: Side | null =
     left && right ? (left.value >= right.value ? "left" : "right") : null;
@@ -192,14 +197,21 @@ export default function Game() {
         return;
       }
 
-      // Next level / finish: hard cut (no shared card to carry over).
-      setSelected(null);
+      // Next level: pause on this theme's score, then cut to the next board.
       if (!isLastLevel) {
-        setLevelIndex((i) => i + 1);
-        setRoundIndex(0);
-        setPhase("guessing");
+        setPhase("interlude");
+        timers.current.push(
+          window.setTimeout(() => {
+            setLevelIndex((i) => i + 1);
+            setRoundIndex(0);
+            setSelected(null);
+            setPhase("guessing");
+          }, INTERLUDE_MS)
+        );
         return;
       }
+
+      setSelected(null);
       setFinished(true);
     },
     [level, levelIndex, roundIndex, levels]
@@ -330,9 +342,13 @@ export default function Game() {
   const metric = level.metricLabel;
   const mediaMode = level.slug === "market-cap" ? "logo" : "cover";
   const verdictClass =
-    phase === "correct" || (phase === "sliding" && selected === correctSide)
+    phase === "correct" ||
+    (phase === "interlude" && selected === correctSide) ||
+    (phase === "sliding" && selected === correctSide)
       ? "correct"
-      : phase === "wrong" || (phase === "sliding" && selected && selected !== correctSide)
+      : phase === "wrong" ||
+          (phase === "interlude" && selected && selected !== correctSide) ||
+          (phase === "sliding" && selected && selected !== correctSide)
         ? "wrong"
         : "";
 
@@ -347,6 +363,9 @@ export default function Game() {
     }
     return <span className="card-value">{right.displayValue}</span>;
   };
+
+  const levelRows = answers.filter((a) => a.levelIndex === levelIndex);
+  const nextLevel = levels[levelIndex + 1];
 
   return (
     <main className="game-page">
@@ -371,7 +390,11 @@ export default function Game() {
       <div className="level-progress" aria-label="Levels">
         {levels.map((lvl, i) => {
           const state =
-            i < levelIndex ? "done" : i === levelIndex ? "current" : "todo";
+            i < levelIndex || (phase === "interlude" && i === levelIndex)
+              ? "done"
+              : i === levelIndex
+                ? "current"
+                : "todo";
           return (
             <div key={lvl.slug} className={`level-pill ${state}`}>
               {state === "current" ? lvl.short : i + 1}
@@ -425,6 +448,23 @@ export default function Game() {
           </div>
         </button>
       </div>
+
+      {phase === "interlude" && (
+        <div className="level-interlude" role="status" aria-live="polite">
+          <div className="level-interlude-card">
+            <p className="level-interlude-kicker">Level complete</p>
+            <h2>{level.short}</h2>
+            <p className="review-score">
+              <strong>{levelRows.filter((a) => a.correct).length}</strong>
+              <span> / {ROUNDS_PER_LEVEL}</span>
+            </p>
+            <p className="review-marks level-interlude-marks" aria-label={resultSquares(levelRows.map((r) => r.correct))}>
+              {resultSquares(levelRows.map((r) => r.correct))}
+            </p>
+            {nextLevel ? <p className="level-interlude-next">Next: {nextLevel.short}</p> : null}
+          </div>
+        </div>
+      )}
 
       {showHelp && <HowToPlay onClose={() => setShowHelp(false)} />}
     </main>
