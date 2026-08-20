@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 20, 2026",
+    iso: "2026-08-20",
+    items: [
+      "Added the Archive: every past daily puzzle is listed by date and still playable.",
+    ],
+  },
+  {
     date: "August 19, 2026",
     iso: "2026-08-19",
     items: [

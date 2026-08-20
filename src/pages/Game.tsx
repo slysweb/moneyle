@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/api";
+import ArchiveBanner from "../components/ArchiveBanner";
 import HowToPlay from "../components/HowToPlay";
 import { usePageMeta } from "../lib/usePageMeta";
+import { denverDate, sharePlayLine } from "../lib/dates";
+import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
 import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
@@ -94,6 +97,7 @@ export default function Game() {
     "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition."
   );
 
+  const requestedDate = usePuzzleDateParam();
   const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -126,7 +130,14 @@ export default function Game() {
     let cancelled = false;
     setError(false);
     setLevels(null);
-    fetchMorelessToday()
+    setPuzzleDate(null);
+    setAnswers([]);
+    setLevelIndex(0);
+    setRoundIndex(0);
+    setPhase("guessing");
+    setSelected(null);
+    setFinished(false);
+    fetchMorelessToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setLevels(res.levels);
@@ -140,7 +151,7 @@ export default function Game() {
       cancelled = true;
       timers.current.forEach(clearTimeout);
     };
-  }, [runKey, restore]);
+  }, [runKey, requestedDate, restore]);
 
   useEffect(() => {
     if (answers.length === 0) return;
@@ -248,7 +259,7 @@ export default function Game() {
 
   const restart = useCallback(() => {
     clearTimers();
-    clearProgress("moreless");
+    clearProgress("moreless", puzzleDate);
     setLevelIndex(0);
     setRoundIndex(0);
     setPhase("guessing");
@@ -257,13 +268,15 @@ export default function Game() {
     setFinished(false);
     setCopied(false);
     setRunKey((k) => k + 1);
-  }, []);
+  }, [puzzleDate]);
 
   if (error) {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load the game. <Link to="/">Back home</Link>
+          Could not load the game. <Link to="/archive">Archive</Link>
+          {" · "}
+          <Link to="/">Home</Link>
         </p>
       </main>
     );
@@ -293,7 +306,7 @@ export default function Game() {
       "",
       ...byLevel.map((row) => `${row.short} ${row.marks}`),
       "",
-      "Play Today's Game: https://moneygames.cc/moreless",
+      sharePlayLine("/moreless", puzzleDate, denverDate()),
     ].join("\n");
 
     const share = async () => {
@@ -306,6 +319,7 @@ export default function Game() {
 
     return (
       <main className="game-page">
+        <ArchiveBanner title="More/Less" path="/moreless" puzzleDate={puzzleDate} />
         <div className="review-screen">
           <h1>Run complete</h1>
           <p className="review-score">
@@ -369,6 +383,7 @@ export default function Game() {
 
   return (
     <main className="game-page">
+      <ArchiveBanner title="More/Less" path="/moreless" puzzleDate={puzzleDate} />
       <div className="game-topbar">
         <h1 className="game-heading">More/Less</h1>
         <div className="topbar-right">

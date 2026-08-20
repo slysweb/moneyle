@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchGuessrToday, type GuessrCurrency, type GuessrPiece } from "../lib/api";
+import ArchiveBanner from "../components/ArchiveBanner";
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
 import { usePageMeta } from "../lib/usePageMeta";
+import { denverDate, sharePlayLine } from "../lib/dates";
+import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
 import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
@@ -210,6 +213,7 @@ export default function Guessr() {
     "A pile of bills and coins flashes for five seconds. Guess the total. Five rounds, scored by how close you are."
   );
 
+  const requestedDate = usePuzzleDateParam();
   const [puzzles, setPuzzles] = useState<GuessrPiece[][] | null>(null);
   const [currency, setCurrency] = useState<GuessrCurrency | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -247,7 +251,14 @@ export default function Guessr() {
     let cancelled = false;
     setError(false);
     setPuzzles(null);
-    fetchGuessrToday()
+    setCurrency(null);
+    setPuzzleDate(null);
+    setRound(0);
+    setPhase("memorize");
+    setGuess("");
+    setResults([]);
+    setFinished(false);
+    fetchGuessrToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setCurrency(res.currency);
@@ -262,7 +273,7 @@ export default function Guessr() {
       cancelled = true;
       clearTimers();
     };
-  }, [runKey, restore]);
+  }, [runKey, requestedDate, restore]);
 
   useEffect(() => {
     if (results.length === 0) return;
@@ -324,7 +335,7 @@ export default function Guessr() {
 
   const restart = useCallback(() => {
     clearTimers();
-    clearProgress("guessr");
+    clearProgress("guessr", puzzleDate);
     setRound(0);
     setPhase("memorize");
     setGuess("");
@@ -332,13 +343,15 @@ export default function Guessr() {
     setFinished(false);
     setCopied(false);
     setRunKey((k) => k + 1);
-  }, []);
+  }, [puzzleDate]);
 
   if (error) {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load Money Guessr. <Link to="/">Back home</Link>
+          Could not load Money Guessr. <Link to="/archive">Archive</Link>
+          {" · "}
+          <Link to="/">Home</Link>
         </p>
       </main>
     );
@@ -362,7 +375,7 @@ export default function Guessr() {
       "",
       ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
       "",
-      "Play Today's Game: https://moneygames.cc/guessr",
+      sharePlayLine("/guessr", puzzleDate, denverDate()),
     ].join("\n");
 
     const share = async () => {
@@ -375,6 +388,7 @@ export default function Guessr() {
 
     return (
       <main className="game-page">
+        <ArchiveBanner title="Money Guessr" path="/guessr" puzzleDate={puzzleDate} />
         <div className="review-screen guessr-review">
           <h1>Run complete</h1>
           <p className="review-score">
@@ -416,6 +430,7 @@ export default function Guessr() {
 
   return (
     <main className="game-page guessr-page">
+      <ArchiveBanner title="Money Guessr" path="/guessr" puzzleDate={puzzleDate} />
       <div className="game-topbar">
         <h1 className="game-heading">Money Guessr</h1>
         <div className="topbar-right">

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Navigate, Route, Routes, Link } from "react-router-dom";
+import { Navigate, Route, Routes, Link, NavLink } from "react-router-dom";
 import Home from "./pages/Home";
+import Archive from "./pages/Archive";
 import Game from "./pages/Game";
 import Guessr from "./pages/Guessr";
 import Moneyle from "./pages/Moneyle";
@@ -23,12 +24,18 @@ export default function App() {
           <Link to="/" className="logo">
             <span className="logo-mark">$</span> MoneyGames
           </Link>
-          <button type="button" className="header-feedback" onClick={openFeedback}>
-            Feedback
-          </button>
+          <div className="header-actions">
+            <NavLink to="/archive" className="header-archive">
+              Archive
+            </NavLink>
+            <button type="button" className="header-feedback" onClick={openFeedback}>
+              Feedback
+            </button>
+          </div>
         </header>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/archive" element={<Archive />} />
           <Route path="/moreless" element={<Game />} />
           <Route path="/moreless/:slug" element={<Navigate to="/moreless" replace />} />
           <Route path="/guessr" element={<Guessr />} />

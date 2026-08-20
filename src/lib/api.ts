@@ -67,12 +67,17 @@ export function fetchCategories(): Promise<{ categories: Category[] }> {
   return getJson("/api/categories");
 }
 
-export function fetchMorelessToday(): Promise<MorelessTodayResponse> {
-  return getJson("/api/moreless/today");
+function dateQuery(date?: string | null): string {
+  if (!date) return "";
+  return `?date=${encodeURIComponent(date)}`;
 }
 
-export function fetchGuessrToday(): Promise<GuessrTodayResponse> {
-  return getJson("/api/guessr/today");
+export function fetchMorelessToday(date?: string | null): Promise<MorelessTodayResponse> {
+  return getJson(`/api/moreless/today${dateQuery(date)}`);
+}
+
+export function fetchGuessrToday(date?: string | null): Promise<GuessrTodayResponse> {
+  return getJson(`/api/guessr/today${dateQuery(date)}`);
 }
 
 export interface MoneyleCurrency {
@@ -97,13 +102,18 @@ export interface MoneyleGuessResult {
   target: MoneyleCurrency | null;
 }
 
-export function fetchMoneylePuzzle(): Promise<MoneylePuzzleResponse> {
-  return getJson("/api/moneyle/puzzle");
+export function fetchMoneylePuzzle(date?: string | null): Promise<MoneylePuzzleResponse> {
+  return getJson(`/api/moneyle/puzzle${dateQuery(date)}`);
 }
 
-export function fetchMoneyleGuess(code: string, attempt?: number): Promise<MoneyleGuessResult> {
+export function fetchMoneyleGuess(
+  code: string,
+  attempt?: number,
+  date?: string | null
+): Promise<MoneyleGuessResult> {
   const params = new URLSearchParams({ code });
   if (attempt != null) params.set("attempt", String(attempt));
+  if (date) params.set("date", date);
   return getJson(`/api/moneyle/guess?${params.toString()}`);
 }
 
@@ -133,8 +143,8 @@ export interface ConnectionsTodayResponse {
   tiles: ConnectionTile[];
 }
 
-export function fetchConnectionsToday(): Promise<ConnectionsTodayResponse> {
-  return getJson("/api/connections/today");
+export function fetchConnectionsToday(date?: string | null): Promise<ConnectionsTodayResponse> {
+  return getJson(`/api/connections/today${dateQuery(date)}`);
 }
 
 export type FeedbackCategory = "bug" | "suggestion";

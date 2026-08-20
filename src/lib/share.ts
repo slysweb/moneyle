@@ -1,7 +1,9 @@
-/** More/Less #1 = Denver calendar date of the site launch. */
-export const PUZZLE_EPOCH = "2026-08-12";
+import { SITE_EPOCH } from "./dates";
 
-export function dailyPuzzleNumber(isoDate: string, epoch = PUZZLE_EPOCH): number {
+/** More/Less #1 = Denver calendar date of the site launch. */
+export const PUZZLE_EPOCH = SITE_EPOCH;
+
+export function dailyPuzzleNumber(isoDate: string, epoch = SITE_EPOCH): number {
   const start = Date.parse(`${epoch}T12:00:00Z`);
   const day = Date.parse(`${isoDate}T12:00:00Z`);
   if (Number.isNaN(start) || Number.isNaN(day)) return 1;

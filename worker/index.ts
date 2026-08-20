@@ -1,4 +1,4 @@
-import { denverDate } from "./denver";
+import { denverDate, resolvePuzzleDate, type GameId } from "./denver";
 import {
   ensureAllDailyPuzzles,
   ensureConnections,
@@ -72,26 +72,46 @@ async function handleCategories(env: Env): Promise<Response> {
 
 const noStore = { headers: { "cache-control": "no-store" } };
 
-async function handleMorelessToday(env: Env): Promise<Response> {
-  const date = denverDate();
+function puzzleCache(date: string): ResponseInit {
+  return date === denverDate()
+    ? noStore
+    : { headers: { "cache-control": "public, max-age=3600" } };
+}
+
+function puzzleDateOrError(url: URL, game: GameId): { date: string } | Response {
+  const resolved = resolvePuzzleDate(url.searchParams.get("date"), game);
+  if (!resolved.ok) return json({ error: resolved.error }, { status: 400 });
+  return { date: resolved.date };
+}
+
+async function handleMorelessToday(env: Env, url: URL): Promise<Response> {
+  const resolved = puzzleDateOrError(url, "moreless");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
   const puzzle = await ensureMoreless(env.DB, date);
-  return json({ date, ...puzzle }, noStore);
+  return json({ date, ...puzzle }, puzzleCache(date));
 }
 
-async function handleGuessrToday(env: Env): Promise<Response> {
-  const date = denverDate();
+async function handleGuessrToday(env: Env, url: URL): Promise<Response> {
+  const resolved = puzzleDateOrError(url, "guessr");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
   const puzzle = await ensureGuessr(env.DB, date);
-  return json({ date, ...puzzle }, noStore);
+  return json({ date, ...puzzle }, puzzleCache(date));
 }
 
-async function handleConnectionsToday(env: Env): Promise<Response> {
-  const date = denverDate();
+async function handleConnectionsToday(env: Env, url: URL): Promise<Response> {
+  const resolved = puzzleDateOrError(url, "connections");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
   const puzzle = await ensureConnections(env.DB, date);
-  return json({ date, ...puzzle }, noStore);
+  return json({ date, ...puzzle }, puzzleCache(date));
 }
 
-async function handleMoneylePuzzle(env: Env): Promise<Response> {
-  const date = denverDate();
+async function handleMoneylePuzzle(env: Env, url: URL): Promise<Response> {
+  const resolved = puzzleDateOrError(url, "moneyle");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
   const puzzle = await ensureMoneyle(env.DB, date);
   return json(
     {
@@ -100,7 +120,7 @@ async function handleMoneylePuzzle(env: Env): Promise<Response> {
       maxGuesses: 6,
       currencies: FX_CURRENCIES,
     },
-    noStore
+    puzzleCache(date)
   );
 }
 
@@ -110,7 +130,9 @@ async function handleMoneyleGuess(env: Env, url: URL): Promise<Response> {
   const guess = findCurrency(raw);
   if (!guess) return json({ error: "Unknown currency" }, { status: 400 });
 
-  const date = denverDate();
+  const resolved = puzzleDateOrError(url, "moneyle");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
   const puzzle = await ensureMoneyle(env.DB, date);
   const target = puzzle.target;
   const attempt = Math.min(Math.max(Number(url.searchParams.get("attempt")) || 1, 1), 6);
@@ -154,11 +176,11 @@ export default {
           return json({ error: "Method not allowed" }, { status: 405 });
         }
         if (url.pathname === "/api/categories") return await handleCategories(env);
-        if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env);
-        if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env);
-        if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env);
+        if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env, url);
+        if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env, url);
+        if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env, url);
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, url);
-        if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env);
+        if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env, url);
       } catch (err) {
         console.error("API error", err instanceof Error ? err.message : err);
         return json({ error: "Internal error" }, { status: 500 });

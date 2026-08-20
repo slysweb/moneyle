@@ -62,8 +62,13 @@ async function saveRow(db: D1Database, game: DailyGame, date: string, payload: u
 }
 
 async function generateMoreless(db: D1Database, date: string): Promise<MorelessDailyPayload> {
-  const refresh = await refreshLiveStats(db);
-  console.log("live stats refresh", date, refresh);
+  // Live Forbes / market-cap pulls belong to today's puzzle only. Replaying an
+  // archive date must not rewrite the current item table, and a cached payload
+  // is the authentic puzzle for that day.
+  if (date === denverDate()) {
+    const refresh = await refreshLiveStats(db);
+    console.log("live stats refresh", date, refresh);
+  }
 
   const levels: MorelessLevelPuzzle[] = [];
   for (const lvl of MORELESS_LEVELS) {

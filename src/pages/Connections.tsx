@@ -5,8 +5,11 @@ import {
   type ConnectionGroup,
   type ConnectionTile,
 } from "../lib/api";
+import ArchiveBanner from "../components/ArchiveBanner";
 import HowToPlayConnections from "../components/HowToPlayConnections";
 import { usePageMeta } from "../lib/usePageMeta";
+import { denverDate, sharePlayLine } from "../lib/dates";
+import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
 import { connectionRow, copyText, dailyPuzzleNumber } from "../lib/share";
 import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
@@ -55,6 +58,7 @@ export default function Connections() {
     "A 4×4 grid of flags, cash, GDP, and currency names. Group the four tiles that belong to the same country."
   );
 
+  const requestedDate = usePuzzleDateParam();
   const [groups, setGroups] = useState<ConnectionGroup[] | null>(null);
   const [tiles, setTiles] = useState<ConnectionTile[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -90,7 +94,8 @@ export default function Connections() {
     setError(false);
     setGroups(null);
     setTiles(null);
-    fetchConnectionsToday()
+    setPuzzleDate(null);
+    fetchConnectionsToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setGroups(res.groups);
@@ -121,7 +126,7 @@ export default function Connections() {
     return () => {
       cancelled = true;
     };
-  }, [runKey]);
+  }, [runKey, requestedDate]);
 
   useEffect(() => {
     if (!puzzleDate || !tiles) return;
@@ -213,19 +218,21 @@ export default function Connections() {
   }, [finished, selected, groups, tileById, wrongKeys, solvedIds, mistakes]);
 
   const restart = useCallback(() => {
-    clearProgress("connections");
+    clearProgress("connections", puzzleDate);
     setSelected([]);
     setToast(null);
     setCopied(false);
     setPreview(null);
     setRunKey((k) => k + 1);
-  }, []);
+  }, [puzzleDate]);
 
   if (error) {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load MoneyConnections. <Link to="/">Back home</Link>
+          Could not load MoneyConnections. <Link to="/archive">Archive</Link>
+          {" · "}
+          <Link to="/">Home</Link>
         </p>
       </main>
     );
@@ -247,7 +254,7 @@ export default function Connections() {
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
     "",
-    "Play Today's Game: https://moneygames.cc/connections",
+    sharePlayLine("/connections", puzzleDate, denverDate()),
   ].join("\n");
 
   const doShare = async () => {
@@ -260,6 +267,7 @@ export default function Connections() {
 
   return (
     <main className="game-page conn-page">
+      <ArchiveBanner title="MoneyConnections" path="/connections" puzzleDate={puzzleDate} />
       <div className="game-topbar">
         <h1 className="game-heading">MoneyConnections</h1>
         <div className="topbar-right">
@@ -343,7 +351,7 @@ export default function Connections() {
             <p className="conn-end-copy">
               {won
                 ? "Four countries, four groups. Clean sheet."
-                : `You found ${solvedIds.length} of 4. Tomorrow’s grid is a new set.`}
+                : `You found ${solvedIds.length} of 4.`}
             </p>
             <button className="btn primary" onClick={restart}>
               Play again

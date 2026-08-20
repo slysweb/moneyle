@@ -30,7 +30,7 @@ export default function HowToPlayConnections({ onClose }: HowToPlayConnectionsPr
 
         <div className="howto-demo">
           <ol className="guessr-howto-steps">
-            <li>Each country appears as four tiles: its flag, cash (all bills or all coins that day), a GDP figure, and a currency name.</li>
+            <li>Each country appears as four tiles: its flag, a bill or coin, a GDP figure, and a currency name.</li>
             <li>Select four tiles you think belong together, then Submit.</li>
             <li>Four mistakes and the remaining countries are revealed. “One away…” means you had three right.</li>
           </ol>

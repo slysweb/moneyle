@@ -18,6 +18,9 @@ export default function Home() {
           behind wealth, economies and markets. New puzzles every day at
           midnight Denver time — the same ones for everyone.
         </p>
+        <p className="hero-archive">
+          Missed a day? <Link to="/archive">Play any past puzzle in the archive</Link>.
+        </p>
       </section>
 
       <section className="game-grid">

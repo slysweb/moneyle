@@ -6,8 +6,11 @@ import {
   type MoneyleCurrency,
   type MoneyleGuessResult,
 } from "../lib/api";
+import ArchiveBanner from "../components/ArchiveBanner";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import { usePageMeta } from "../lib/usePageMeta";
+import { denverDate, sharePlayLine } from "../lib/dates";
+import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
 import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
 
@@ -46,6 +49,7 @@ export default function Moneyle() {
     "A frosted banknote and six guesses. Use live exchange rates to find the hidden currency."
   );
 
+  const requestedDate = usePuzzleDateParam();
   const [currencies, setCurrencies] = useState<MoneyleCurrency[]>([]);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -82,7 +86,15 @@ export default function Moneyle() {
   useEffect(() => {
     let cancelled = false;
     setError(false);
-    fetchMoneylePuzzle()
+    setCurrencies([]);
+    setImageUrl(null);
+    setPuzzleDate(null);
+    setHistory([]);
+    setWon(false);
+    setLost(false);
+    setAnswer(null);
+    setQuery("");
+    fetchMoneylePuzzle(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setCurrencies(res.currencies);
@@ -96,7 +108,7 @@ export default function Moneyle() {
     return () => {
       cancelled = true;
     };
-  }, [runKey, restore]);
+  }, [runKey, requestedDate, restore]);
 
   useEffect(() => {
     if (history.length === 0) return;
@@ -128,7 +140,11 @@ export default function Moneyle() {
       setBusy(true);
       setGuessError(null);
       try {
-        const res: MoneyleGuessResult = await fetchMoneyleGuess(code, history.length + 1);
+        const res: MoneyleGuessResult = await fetchMoneyleGuess(
+          code,
+          history.length + 1,
+          puzzleDate
+        );
         const row: HistoryRow = {
           currency,
           rateDisplay: res.rateDisplay,
@@ -153,11 +169,11 @@ export default function Moneyle() {
         inputRef.current?.focus();
       }
     },
-    [busy, revealed, currencies, guessedCodes, history.length]
+    [busy, revealed, currencies, guessedCodes, history.length, puzzleDate]
   );
 
   const restart = useCallback(() => {
-    clearProgress("moneyle");
+    clearProgress("moneyle", puzzleDate);
     setQuery("");
     setHistory([]);
     setWon(false);
@@ -167,7 +183,7 @@ export default function Moneyle() {
     setCopied(false);
     setImageUrl(null);
     setRunKey((k) => k + 1);
-  }, []);
+  }, [puzzleDate]);
 
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
   const score = won ? `${history.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
@@ -179,7 +195,7 @@ export default function Moneyle() {
       return row.correct ? sq : `${sq}${row.stronger ? "↑" : "↓"}`;
     }),
     "",
-    "Play Today's Game: https://moneygames.cc/moneyle",
+    sharePlayLine("/moneyle", puzzleDate, denverDate()),
   ].join("\n");
 
   const share = async () => {
@@ -194,7 +210,9 @@ export default function Moneyle() {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load Moneyle. <Link to="/">Back home</Link>
+          Could not load Moneyle. <Link to="/archive">Archive</Link>
+          {" · "}
+          <Link to="/">Home</Link>
         </p>
       </main>
     );
@@ -210,6 +228,7 @@ export default function Moneyle() {
 
   return (
     <main className="game-page moneyle-page">
+      <ArchiveBanner title="Moneyle" path="/moneyle" puzzleDate={puzzleDate} />
       <div className="game-topbar">
         <h1 className="game-heading">Moneyle</h1>
         <div className="topbar-right">

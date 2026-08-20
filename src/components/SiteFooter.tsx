@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useFeedback } from "../lib/feedback";
 
 const links = [
+  { to: "/archive", label: "Archive" },
   { to: "/about", label: "About us" },
   { to: "/changelog", label: "Changelog" },
   { to: "/terms", label: "Terms of Service" },
