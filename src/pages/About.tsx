@@ -13,9 +13,10 @@ export default function About() {
       updated="August 20, 2026"
     >
       <p>
-        MoneyGames is a free site of short browser games about money. No accounts, no
-        paywalls — just a daily puzzle for everyone, resetting at midnight Denver time.
-        Past days stay playable in the <Link to="/archive">archive</Link>.
+        MoneyGames is a free site of short browser games about money. No paywalls — just a
+        daily puzzle for everyone, resetting at midnight Denver time. You can play as a
+        guest, or <Link to="/register">register with Google</Link>. Past days stay playable
+        in the <Link to="/archive">archive</Link>.
       </p>
 
       <h2>The games</h2>

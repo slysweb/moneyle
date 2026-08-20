@@ -7,7 +7,7 @@ export default function Terms() {
     <InfoPage
       title="Terms of Service"
       description="Terms of Service for moneygames.cc — free browser games about money."
-      updated="August 17, 2026"
+      updated="August 20, 2026"
     >
       <p>
         These terms govern your use of MoneyGames at moneygames.cc (the “site”). By using
@@ -17,8 +17,8 @@ export default function Terms() {
       <h2>The service</h2>
       <p>
         MoneyGames offers free, recreational browser games about money, wealth, and
-        currencies. You do not need an account. We may add, change, or remove games or
-        features at any time.
+        currencies. An account is optional: you can play as a guest, or register with a
+        Google account. We may add, change, or remove games or features at any time.
       </p>
 
       <h2>Not financial advice</h2>
@@ -28,6 +28,12 @@ export default function Terms() {
         They are not offers, valuations, or advice. Moneyle rates are a daily mid-market
         snapshot (around 00:00 UTC) and can differ from live quotes. Do not rely on anything
         here to make financial decisions.
+      </p>
+
+      <h2>Accounts</h2>
+      <p>
+        Registration is optional and currently only via Google. You are responsible for the
+        Google account you use. We may suspend an account that is used to abuse the service.
       </p>
 
       <h2>Acceptable use</h2>

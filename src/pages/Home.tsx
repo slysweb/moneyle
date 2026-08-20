@@ -1,6 +1,42 @@
 import { Link } from "react-router-dom";
+import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
 import { usePageMeta } from "../lib/usePageMeta";
+
+const games = [
+  {
+    to: "/moreless",
+    icon: "moreless",
+    title: "More/Less",
+    blurb:
+      "Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
+    cta: "Play More/Less →",
+  },
+  {
+    to: "/guessr",
+    icon: "guessr",
+    title: "Money Guessr",
+    blurb:
+      "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
+    cta: "Play Money Guessr →",
+  },
+  {
+    to: "/moneyle",
+    icon: "moneyle",
+    title: "Moneyle",
+    blurb:
+      "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
+    cta: "Play Moneyle →",
+  },
+  {
+    to: "/connections",
+    icon: "connections",
+    title: "MoneyConnections",
+    blurb:
+      "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
+    cta: "Play MoneyConnections →",
+  },
+] as const;
 
 export default function Home() {
   usePageMeta(
@@ -24,45 +60,19 @@ export default function Home() {
       </section>
 
       <section className="game-grid">
-        <Link to="/moreless" className="game-card playable">
-          <div className="game-card-badge">Play now</div>
-          <h2>More/Less</h2>
-          <p>
-            Five levels of money comparisons — billionaires, market caps,
-            salaries, box office and GDP. Tap the higher one each round.
-          </p>
-          <span className="game-card-cta">Play More/Less →</span>
-        </Link>
-
-        <Link to="/guessr" className="game-card playable">
-          <div className="game-card-badge">Play now</div>
-          <h2>Money Guessr</h2>
-          <p>
-            A pile of bills and coins flashes for five seconds. How much was
-            it? Five rounds, scored by how close your guess is.
-          </p>
-          <span className="game-card-cta">Play Money Guessr →</span>
-        </Link>
-
-        <Link to="/moneyle" className="game-card playable">
-          <div className="game-card-badge">Play now</div>
-          <h2>Moneyle</h2>
-          <p>
-            A frosted banknote and six guesses. Use exchange-rate clues and
-            the note’s blurred outline to deduce the hidden currency.
-          </p>
-          <span className="game-card-cta">Play Moneyle →</span>
-        </Link>
-
-        <Link to="/connections" className="game-card playable">
-          <div className="game-card-badge">Play now</div>
-          <h2>MoneyConnections</h2>
-          <p>
-            A 4×4 grid of flags, cash, GDP figures, and currency names. Find
-            the four tiles that belong to the same country.
-          </p>
-          <span className="game-card-cta">Play MoneyConnections →</span>
-        </Link>
+        {games.map((game) => (
+          <Link key={game.to} to={game.to} className="game-card playable">
+            <div className="game-card-head">
+              <span className={`game-card-icon ${game.icon}`} aria-hidden="true">
+                <Icon name={game.icon} size={26} />
+              </span>
+              <div className="game-card-badge">Play now</div>
+            </div>
+            <h2>{game.title}</h2>
+            <p>{game.blurb}</p>
+            <span className="game-card-cta">{game.cta}</span>
+          </Link>
+        ))}
       </section>
 
       <SiteFooter />

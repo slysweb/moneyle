@@ -7,11 +7,14 @@ import {
   ensureMoreless,
 } from "./daily";
 import { handleFeedback } from "./feedback";
+import { handleAuth } from "./auth";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 
 interface Env {
   DB: D1Database;
   ASSETS: Fetcher;
+  GOOGLE_CLIENT_ID?: string;
+  GOOGLE_CLIENT_SECRET?: string;
 }
 
 interface CategoryRow {
@@ -166,6 +169,9 @@ export default {
 
     if (url.pathname.startsWith("/api/")) {
       try {
+        if (url.pathname.startsWith("/api/auth")) {
+          return await handleAuth(env, request, url);
+        }
         if (url.pathname === "/api/feedback") {
           if (request.method !== "POST") {
             return json({ error: "Method not allowed" }, { status: 405 });

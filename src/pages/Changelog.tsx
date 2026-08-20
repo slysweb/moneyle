@@ -6,6 +6,7 @@ const entries = [
     iso: "2026-08-20",
     items: [
       "Added the Archive: every past daily puzzle is listed by date and still playable.",
+      "Optional Google registration. Games still work without an account; Feedback stays in the footer.",
     ],
   },
   {

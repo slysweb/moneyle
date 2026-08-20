@@ -9,6 +9,8 @@ DROP TABLE IF EXISTS denominations;
 DROP TABLE IF EXISTS currencies;
 DROP TABLE IF EXISTS daily_puzzles;
 DROP TABLE IF EXISTS feedback;
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE categories (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -94,3 +96,24 @@ CREATE TABLE feedback (
 );
 
 CREATE INDEX idx_feedback_ip_created ON feedback (ip, created_at);
+
+CREATE TABLE users (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  google_sub    TEXT NOT NULL UNIQUE,
+  email         TEXT NOT NULL,
+  name          TEXT NOT NULL,
+  picture_url   TEXT,
+  created_at    TEXT NOT NULL DEFAULT (datetime('now')),
+  last_login_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE TABLE sessions (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  token_hash TEXT NOT NULL UNIQUE,
+  expires_at TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX idx_sessions_user ON sessions (user_id);
+CREATE INDEX idx_sessions_expires ON sessions (expires_at);

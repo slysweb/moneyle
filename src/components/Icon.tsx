@@ -24,6 +24,22 @@ const paths: Record<string, ReactElement> = {
   building: (
     <path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4h5a1 1 0 0 1 1 1v11h2v2H2v-2h2zm2-15v2h2V6H6zm4 0v2h2V6h-2zM6 10v2h2v-2H6zm4 0v2h2v-2h-2zm6 1v2h2v-2h-2zM6 14v2h2v-2H6zm4 0v2h2v-2h-2zm6 1v2h2v-2h-2zM6 18v3h2v-3H6zm4 0v3h2v-3h-2z" />
   ),
+  moreless: <path d="M12 2 5.2 9.2h13.6L12 2zm0 20 6.8-7.2H5.2L12 22z" />,
+  guessr: (
+    <path
+      fillRule="evenodd"
+      d="M7 2h13v2.5H7V2zm-2 3.5h13V8H5V5.5zM3 9h18v13H3V9zm9 2.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2z"
+    />
+  ),
+  moneyle: (
+    <>
+      <path fillRule="evenodd" d="M2 5h20v14H2V5zm2 2v10h16V7H4z" />
+      <path d="M12.1 8.15c1.5 0 2.55.95 2.55 2.25 0 .95-.5 1.55-1.4 2.05-.55.3-.75.5-.75.95v.3h-1.85v-.45c0-1.05.45-1.7 1.4-2.2.55-.3.8-.55.8-.95 0-.5-.4-.85-1-.85s-1.05.35-1.15 1.05H9.05c.15-1.5 1.35-2.15 3.05-2.15zM11.15 16.1h1.8v1.8h-1.8v-1.8z" />
+    </>
+  ),
+  connections: (
+    <path d="M2 2h9v9H2V2zm11 0h9v9h-9V2zM2 13h9v9H2v-9zm11 0h9v9h-9v-9z" />
+  ),
 };
 
 export default function Icon({ name, size = 28 }: IconProps) {

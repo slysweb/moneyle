@@ -6,8 +6,8 @@ export default function Privacy() {
   return (
     <InfoPage
       title="Privacy Policy"
-      description="How MoneyGames handles information — no accounts, no ads, no sale of personal data."
-      updated="August 17, 2026"
+      description="How MoneyGames handles information — optional Google accounts, no ads, no sale of personal data."
+      updated="August 20, 2026"
     >
       <p>
         MoneyGames (“we”) runs free games at moneygames.cc. This policy explains what
@@ -15,11 +15,22 @@ export default function Privacy() {
         run advertising.
       </p>
 
-      <h2>We do not collect accounts</h2>
+      <h2>Accounts</h2>
       <p>
-        There is no sign-up, no profile, and no newsletter. We do not ask for your name,
-        email, or payment details. Scores and guesses live in your browser for that visit;
-        we do not store a personal play history.
+        You can play without signing in. Scores and guesses then live in your browser; we do
+        not store a personal play history for guests.
+      </p>
+      <p>
+        If you register, we use Google account sign-in only. Google sends us your Google
+        user id, name, email address, and profile photo. We store those in Cloudflare D1 so
+        we can keep you signed in. We do not get your Google password. Signing in creates an
+        account on first use; later visits reuse it.
+      </p>
+      <p>
+        After you sign in we set a first-party session cookie (<code>mg_session</code>) so
+        the site knows it is you. It is HttpOnly, not used for advertising, and lasts up to
+        30 days or until you sign out. A short-lived cookie is also used during the Google
+        sign-in handshake.
       </p>
 
       <h2>What the servers see</h2>
@@ -41,16 +52,22 @@ export default function Privacy() {
 
       <h2>Cookies and similar tech</h2>
       <p>
-        We do not set first-party tracking cookies, and we do not use third-party ad or
-        analytics pixels. Your browser may still send standard data on each request. If we
-        add optional preferences later (for example, a setting stored locally), we will
-        update this page.
+        We set first-party cookies only for optional sign-in (session and a brief OAuth
+        state cookie). We do not use third-party ad or analytics pixels. Your browser may
+        still send standard data on each request.
       </p>
 
       <h2>Third-party services</h2>
       <ul>
         <li>
           <strong>Cloudflare</strong> — hosting, DNS, and the Worker/D1 backend.
+        </li>
+        <li>
+          <strong>Google</strong> — optional account sign-in. See{" "}
+          <a href="https://policies.google.com/privacy" rel="noreferrer">
+            Google’s Privacy Policy
+          </a>
+          .
         </li>
         <li>
           <strong>ExchangeRate-API</strong> — daily mid-market FX used by Moneyle. When you
@@ -78,18 +95,18 @@ export default function Privacy() {
       <h2>How we use technical data</h2>
       <p>
         Only to operate the games: serve pages and APIs, generate daily puzzles, keep the
-        service reliable, and respond to abuse or outages. We do not use it to build a
-        marketing profile.
+        service reliable, keep optional accounts signed in, and respond to abuse or outages.
+        We do not use it to build a marketing profile.
       </p>
 
       <h2>Retention</h2>
       <p>
-        Puzzle content stays as long as the games need it. Feedback notes stay until we have
-        handled them. Infrastructure logs follow Cloudflare’s defaults unless we have a
-        security or legal reason to keep a record longer. We do not keep a personal account
-        we could “delete” on request, because we never created one. Email{" "}
-        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want a feedback
-        submission removed.
+        Puzzle content stays as long as the games need it. Account records stay until you
+        ask us to delete them, or until we shut the feature down. Feedback notes stay until
+        we have handled them. Infrastructure logs follow Cloudflare’s defaults unless we
+        have a security or legal reason to keep a record longer. Email{" "}
+        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want an account or a
+        feedback submission removed.
       </p>
 
       <h2>Children</h2>
