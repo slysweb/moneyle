@@ -8,6 +8,7 @@ import {
 } from "./daily";
 import { handleFeedback } from "./feedback";
 import { handleAuth } from "./auth";
+import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 
 interface Env {
@@ -127,6 +128,16 @@ async function handleMoneylePuzzle(env: Env, url: URL): Promise<Response> {
   );
 }
 
+async function handleMoneyleBonus(env: Env, url: URL): Promise<Response> {
+  const resolved = puzzleDateOrError(url, "moneyle");
+  if (resolved instanceof Response) return resolved;
+  const { date } = resolved;
+  const puzzle = await ensureMoneyle(env.DB, date);
+  const quiz = await buildMoneyleBonus(env.DB, date, puzzle.target.code);
+  if (!quiz) return json({ date, available: false }, puzzleCache(date));
+  return json({ date, available: true, ...quiz }, puzzleCache(date));
+}
+
 async function handleMoneyleGuess(env: Env, url: URL): Promise<Response> {
   const raw = url.searchParams.get("code");
   if (!raw) return json({ error: "Missing 'code' parameter" }, { status: 400 });
@@ -186,6 +197,7 @@ export default {
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env, url);
         if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env, url);
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, url);
+        if (url.pathname === "/api/moneyle/bonus") return await handleMoneyleBonus(env, url);
         if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env, url);
       } catch (err) {
         console.error("API error", err instanceof Error ? err.message : err);

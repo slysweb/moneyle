@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 21, 2026",
+    iso: "2026-08-21",
+    items: [
+      "Moneyle now offers a Play bonus round after the note is revealed: four multiple-choice questions on that country’s flag, GDP, population, and GDP per person. Euro days pick one eurozone country, the same for everyone.",
+    ],
+  },
+  {
     date: "August 20, 2026",
     iso: "2026-08-20",
     items: [

@@ -35,8 +35,10 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
             <li>The frost thins after each miss. Closeness % tells you how near the values are.</li>
           </ol>
           <p className="howto-rounds">
-            Guess right — or use all 6 tries — to lift the glass. A new note each day, the same for everyone.
-            Rates update once a day around 00:00 UTC, so they can differ from the live quotes you see elsewhere.
+            Guess right — or use all 6 tries — to lift the glass. Then an optional bonus
+            round asks about that country’s flag, GDP, population, and GDP per person.
+            A new note each day, the same for everyone. Rates update once a day around
+            00:00 UTC, so they can differ from the live quotes you see elsewhere.
           </p>
         </div>
       </div>

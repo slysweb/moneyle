@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  fetchMoneyleBonus,
   fetchMoneyleGuess,
   fetchMoneylePuzzle,
+  type BonusRound,
   type MoneyleCurrency,
   type MoneyleGuessResult,
 } from "../lib/api";
 import ArchiveBanner from "../components/ArchiveBanner";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
+import MoneyleBonus from "../components/MoneyleBonus";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
@@ -28,6 +31,8 @@ interface SavedRun {
   history: HistoryRow[];
   // Only the server knows the answer, so unlike win/loss it can't be re-derived.
   answer: MoneyleCurrency | null;
+  bonusPicks?: string[];
+  bonusOpen?: boolean;
 }
 
 function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: number } {
@@ -66,6 +71,10 @@ export default function Moneyle() {
   const [showHelp, setShowHelp] = useState(false);
   const [copied, setCopied] = useState(false);
   const [runKey, setRunKey] = useState(0);
+  const [bonusRounds, setBonusRounds] = useState<BonusRound[] | null>(null);
+  const [bonusCountry, setBonusCountry] = useState<string | null>(null);
+  const [bonusPicks, setBonusPicks] = useState<string[]>([]);
+  const [bonusOpen, setBonusOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const revealed = won || lost;
@@ -81,6 +90,8 @@ export default function Moneyle() {
     setAnswer(saved.answer ?? null);
     setWon(solved);
     setLost(!solved && history.length >= MAX_GUESSES);
+    setBonusPicks(saved.bonusPicks ?? []);
+    setBonusOpen(Boolean(saved.bonusOpen));
   }, []);
 
   useEffect(() => {
@@ -94,6 +105,10 @@ export default function Moneyle() {
     setLost(false);
     setAnswer(null);
     setQuery("");
+    setBonusRounds(null);
+    setBonusCountry(null);
+    setBonusPicks([]);
+    setBonusOpen(false);
     fetchMoneylePuzzle(requestedDate)
       .then((res) => {
         if (cancelled) return;
@@ -112,8 +127,33 @@ export default function Moneyle() {
 
   useEffect(() => {
     if (history.length === 0) return;
-    saveProgress<SavedRun>("moneyle", puzzleDate, { history, answer });
-  }, [puzzleDate, history, answer]);
+    saveProgress<SavedRun>("moneyle", puzzleDate, {
+      history,
+      answer,
+      bonusPicks,
+      bonusOpen,
+    });
+  }, [puzzleDate, history, answer, bonusPicks, bonusOpen]);
+
+  useEffect(() => {
+    if (!revealed || !puzzleDate) return;
+    let cancelled = false;
+    fetchMoneyleBonus(requestedDate)
+      .then((res) => {
+        if (cancelled || !res.available || !res.rounds?.length || !res.country) return;
+        setBonusRounds(res.rounds);
+        setBonusCountry(res.country);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setBonusRounds(null);
+          setBonusCountry(null);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [revealed, puzzleDate, requestedDate]);
 
   const guessedCodes = useMemo(() => new Set(history.map((h) => h.currency.code)), [history]);
 
@@ -182,11 +222,19 @@ export default function Moneyle() {
     setGuessError(null);
     setCopied(false);
     setImageUrl(null);
+    setBonusRounds(null);
+    setBonusCountry(null);
+    setBonusPicks([]);
+    setBonusOpen(false);
     setRunKey((k) => k + 1);
   }, [puzzleDate]);
 
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
   const score = won ? `${history.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
+  const bonusScore =
+    bonusRounds && bonusPicks.length >= bonusRounds.length
+      ? bonusRounds.filter((round, i) => round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct)).length
+      : null;
   const shareText = [
     number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
     "",
@@ -194,6 +242,15 @@ export default function Moneyle() {
       const sq = closenessSquare(row.closeness, row.correct);
       return row.correct ? sq : `${sq}${row.stronger ? "↑" : "↓"}`;
     }),
+    ...(bonusScore != null && bonusRounds
+      ? [
+          "",
+          `Bonus ${bonusScore}/${bonusRounds.length}`,
+          bonusRounds
+            .map((round, i) => (round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct) ? "🟩" : "🟥"))
+            .join(""),
+        ]
+      : []),
     "",
     sharePlayLine("/moneyle", puzzleDate, denverDate()),
   ].join("\n");
@@ -266,21 +323,23 @@ export default function Moneyle() {
         )}
       </div>
 
-      <ul className="moneyle-history">
-        {history.map((row) => (
-          <li key={row.currency.code} className={row.correct ? "correct" : ""}>
-            <span className="moneyle-hist-name">
-              {row.currency.name}
-              <small>{row.currency.code}</small>
-            </span>
-            <span className="moneyle-hist-rate">{row.correct ? "—" : row.rateDisplay}</span>
-            <span className={`moneyle-hist-dir ${row.correct ? "hit" : row.stronger ? "up" : "down"}`}>
-              {row.correct ? "✓" : row.stronger ? "↑" : "↓"}
-            </span>
-            <span className="moneyle-hist-pct">{row.correct ? "100%" : `${Math.round(row.closeness)}%`}</span>
-          </li>
-        ))}
-      </ul>
+      {!bonusOpen && (
+        <ul className="moneyle-history">
+          {history.map((row) => (
+            <li key={row.currency.code} className={row.correct ? "correct" : ""}>
+              <span className="moneyle-hist-name">
+                {row.currency.name}
+                <small>{row.currency.code}</small>
+              </span>
+              <span className="moneyle-hist-rate">{row.correct ? "—" : row.rateDisplay}</span>
+              <span className={`moneyle-hist-dir ${row.correct ? "hit" : row.stronger ? "up" : "down"}`}>
+                {row.correct ? "✓" : row.stronger ? "↑" : "↓"}
+              </span>
+              <span className="moneyle-hist-pct">{row.correct ? "100%" : `${Math.round(row.closeness)}%`}</span>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {!revealed && (
         <form
@@ -344,9 +403,24 @@ export default function Moneyle() {
         </form>
       )}
 
-      {revealed && (
+      {revealed && bonusOpen && bonusRounds && bonusCountry ? (
+        <MoneyleBonus
+          country={bonusCountry}
+          rounds={bonusRounds}
+          picks={bonusPicks}
+          onPick={(id) => setBonusPicks((prev) => [...prev, id])}
+          onExit={() => setBonusOpen(false)}
+        />
+      ) : null}
+
+      {revealed && !bonusOpen && (
         <div className="overlay-actions moneyle-end">
-          <button className="btn primary" onClick={restart}>
+          {bonusRounds && bonusCountry ? (
+            <button className="btn primary" type="button" onClick={() => setBonusOpen(true)}>
+              {bonusPicks.length >= bonusRounds.length ? "Bonus results" : "Play bonus round"}
+            </button>
+          ) : null}
+          <button className={bonusRounds ? "btn ghost" : "btn primary"} onClick={restart}>
             Play again
           </button>
           <button className="btn ghost" type="button" onClick={() => void share()}>

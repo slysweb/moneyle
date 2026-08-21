@@ -117,6 +117,34 @@ export function fetchMoneyleGuess(
   return getJson(`/api/moneyle/guess?${params.toString()}`);
 }
 
+export type BonusKind = "flag" | "gdp" | "population" | "gdppc";
+
+export interface BonusOption {
+  id: string;
+  label: string;
+  imageUrl: string | null;
+  correct: boolean;
+}
+
+export interface BonusRound {
+  kind: BonusKind;
+  title: string;
+  prompt: string;
+  options: BonusOption[];
+}
+
+export interface MoneyleBonusResponse {
+  date: string;
+  available: boolean;
+  country?: string;
+  currencyCode?: string;
+  rounds?: BonusRound[];
+}
+
+export function fetchMoneyleBonus(date?: string | null): Promise<MoneyleBonusResponse> {
+  return getJson(`/api/moneyle/bonus${dateQuery(date)}`);
+}
+
 export type ConnectionKind = "flag" | "money" | "gdp" | "currency";
 export type ConnectionColor = "yellow" | "green" | "blue" | "purple";
 

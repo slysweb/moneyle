@@ -63,7 +63,7 @@ const SOLO_CURRENCIES: { slug: string; iso2: string; country: string; shortName:
 ];
 
 /** Euro is shared, so a puzzle never includes two eurozone countries. */
-const EUROZONE: { iso2: string; country: string }[] = [
+export const EUROZONE: { iso2: string; country: string }[] = [
   { iso2: "de", country: "Germany" },
   { iso2: "fr", country: "France" },
   { iso2: "it", country: "Italy" },

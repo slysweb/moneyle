@@ -24,7 +24,12 @@ const paths: Record<string, ReactElement> = {
   building: (
     <path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v4h5a1 1 0 0 1 1 1v11h2v2H2v-2h2zm2-15v2h2V6H6zm4 0v2h2V6h-2zM6 10v2h2v-2H6zm4 0v2h2v-2h-2zm6 1v2h2v-2h-2zM6 14v2h2v-2H6zm4 0v2h2v-2h-2zm6 1v2h2v-2h-2zM6 18v3h2v-3H6zm4 0v3h2v-3h-2z" />
   ),
-  moreless: <path d="M12 2 5.2 9.2h13.6L12 2zm0 20 6.8-7.2H5.2L12 22z" />,
+  moreless: (
+    <>
+      <path d="M12 2 5.2 9.2h13.6L12 2z" />
+      <path fill="#e5484d" d="M12 22 18.8 14.8H5.2L12 22z" />
+    </>
+  ),
   guessr: (
     <path
       fillRule="evenodd"
@@ -38,7 +43,10 @@ const paths: Record<string, ReactElement> = {
     </>
   ),
   connections: (
-    <path d="M2 2h9v9H2V2zm11 0h9v9h-9V2zM2 13h9v9H2v-9zm11 0h9v9h-9v-9z" />
+    <>
+      <path d="M2 2h9v9H2V2zm11 0h9v9h-9V2z" />
+      <path fill="#d4a017" d="M2 13h9v9H2v-9zm11 0h9v9h-9v-9z" />
+    </>
   ),
 };
 
