@@ -27,6 +27,10 @@ export interface MorelessLevelPuzzle {
   chain: MorelessItem[];
 }
 
+function clashes(a: MorelessItem, b: MorelessItem): boolean {
+  return a.id === b.id || a.value === b.value || a.displayValue === b.displayValue;
+}
+
 export function buildChain(items: MorelessItem[], rounds: number, rand: Rng): MorelessItem[] {
   const need = rounds + 1;
   const pool = shuffle(items, rand);
@@ -37,10 +41,19 @@ export function buildChain(items: MorelessItem[], rounds: number, rand: Rng): Mo
       chain.push(item);
       continue;
     }
-    if (item.id === chain[chain.length - 1].id) continue;
-    if (item.value === chain[chain.length - 1].value) continue;
+    if (clashes(item, chain[chain.length - 1])) continue;
     chain.push(item);
     if (chain.length >= need) break;
+  }
+
+  if (chain.length < need) {
+    for (const item of shuffle(items, rand)) {
+      if (chain.some((c) => c.id === item.id)) continue;
+      const prev = chain[chain.length - 1];
+      if (prev && clashes(item, prev)) continue;
+      chain.push(item);
+      if (chain.length >= need) break;
+    }
   }
 
   if (chain.length < need) {

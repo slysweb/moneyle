@@ -7,6 +7,7 @@ const entries = [
     items: [
       "Moneyle How to play now walks through a US $100 example with euro, yen, yuan, and dollar guesses, and explains the rate numbers and closeness percent.",
       "Footer and About now link to MoneyGames on TikTok, X, and YouTube.",
+      "New More/Less days no longer pair two items that show the same compact figure, such as two movies both listed as $1.24B. Archived days are unchanged.",
     ],
   },
   {
