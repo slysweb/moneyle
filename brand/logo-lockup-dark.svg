@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="MoneyGames">
+  <rect width="640" height="160" rx="28" fill="#14241c"/>
+  <g transform="translate(28 32) scale(1.5)">
+    <rect width="64" height="64" rx="14" fill="#0fad6e"/>
+    <g fill="none" stroke="#ffffff" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M43 21.2c0-5.1-4.5-8.4-11-8.4-6.6 0-10.8 3.5-10.8 8.1 0 4.5 3.1 6.6 10.4 8.5 7.6 2 12.2 5.2 12.2 11.2 0 6.3-5.4 10.6-12.4 10.6-7.4 0-12.4-4.2-12.4-9.7"/>
+      <path d="M32 8.2v47.6"/>
+    </g>
+  </g>
+  <text
+    x="148"
+    y="88"
+    fill="#ffffff"
+    font-family="Space Grotesk, Outfit, Arial, Helvetica, sans-serif"
+    font-size="54"
+    font-weight="700"
+    letter-spacing="-1.8"
+  >MoneyGames</text>
+  <text
+    x="150"
+    y="122"
+    fill="#a8c4b4"
+    font-family="Outfit, Arial, Helvetica, sans-serif"
+    font-size="18"
+    font-weight="600"
+    letter-spacing="0.2"
+  >Games about money.</text>
+</svg>

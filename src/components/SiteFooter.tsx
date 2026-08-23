@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useFeedback } from "../lib/feedback";
+import SocialLinks from "./SocialLinks";
 
 const links = [
   { to: "/archive", label: "Archive" },
@@ -24,6 +25,7 @@ export default function SiteFooter() {
           Feedback
         </button>
       </nav>
+      <SocialLinks />
       <p>moneygames.cc — data from public sources, refreshed regularly.</p>
     </footer>
   );

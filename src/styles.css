@@ -490,6 +490,35 @@ a {
   cursor: pointer;
 }
 
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.social-links a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.info-body .social-links {
+  justify-content: flex-start;
+  margin: 4px 0 16px;
+}
+
 .text-link {
   background: none;
   border: 0;
@@ -1182,6 +1211,49 @@ button.card:disabled {
   margin: 18px 0 16px;
   color: var(--text-dim);
   font-size: 0.92rem;
+}
+
+.howto-modal.moneyle-howto {
+  width: min(480px, 100%);
+}
+
+.howto-moneyle-note {
+  width: min(100%, 280px);
+  margin: 0 auto 8px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #163d28;
+}
+
+.howto-moneyle-note img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.howto-moneyle-caption {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.howto-moneyle-history {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.howto-moneyle-history li {
+  padding: 8px 10px;
+}
+
+.howto-moneyle-explain {
+  margin: 0 0 16px;
+  text-align: left;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .howto-verdicts {
@@ -2761,6 +2833,15 @@ button.card:disabled {
 
   .moneyle-hist-rate {
     display: none;
+  }
+
+  .howto-moneyle-history li {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 28px 44px;
+  }
+
+  .howto-moneyle-history .moneyle-hist-rate {
+    display: block;
+    font-size: 0.7rem;
   }
 
   .feedback-cats {

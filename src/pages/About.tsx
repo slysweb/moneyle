@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import InfoPage from "../components/InfoPage";
-import { SUPPORT_EMAIL } from "../lib/contact";
+import SocialLinks from "../components/SocialLinks";
+import { SOCIAL_LINKS, SUPPORT_EMAIL } from "../lib/contact";
 import { useFeedback } from "../lib/feedback";
 
 export default function About() {
@@ -10,7 +11,7 @@ export default function About() {
     <InfoPage
       title="About us"
       description="MoneyGames is a small collection of free browser games about money, wealth, and currencies."
-      updated="August 20, 2026"
+      updated="August 23, 2026"
     >
       <p>
         MoneyGames is a free site of short browser games about money. No paywalls — just a
@@ -77,9 +78,19 @@ export default function About() {
         <button type="button" className="text-link" onClick={open}>
           send us feedback
         </button>
+        . Daily boards and clips also go out on{" "}
+        {SOCIAL_LINKS.map((link, i) => (
+          <span key={link.href}>
+            {i > 0 ? (i === SOCIAL_LINKS.length - 1 ? ", and " : ", ") : null}
+            <a href={link.href} rel="noreferrer">
+              {link.name}
+            </a>
+          </span>
+        ))}
         . See also the <Link to="/terms">Terms of Service</Link> and{" "}
         <Link to="/privacy">Privacy Policy</Link>.
       </p>
+      <SocialLinks />
     </InfoPage>
   );
 }

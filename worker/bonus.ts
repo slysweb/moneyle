@@ -1,7 +1,7 @@
 import { EUROZONE } from "./connections";
 import { formatUsd } from "./format";
 import { POPULATION } from "./population";
-import { pick, rngFor, sample, shuffle, type Rng } from "./rng";
+import { pick, rngFor, shuffle, type Rng } from "./rng";
 
 export type BonusKind = "flag" | "gdp" | "population" | "gdppc";
 
@@ -90,18 +90,40 @@ function formatGdpPc(n: number): string {
   return `$${Math.round(n).toLocaleString("en-US")}`;
 }
 
-function nearby<T>(
-  sorted: T[],
-  index: number,
-  n: number,
-  rand: Rng,
-  isSelf: (item: T) => boolean
-): T[] {
+function nearbyWindow<T>(sorted: T[], index: number, isSelf: (item: T) => boolean): T[] {
   const lo = Math.max(0, index - 7);
   const hi = Math.min(sorted.length, index + 9);
-  const window = sorted.slice(lo, hi).filter((item) => !isSelf(item));
-  const pool = window.length >= n ? window : sorted.filter((item) => !isSelf(item));
-  return sample(pool, n, rand);
+  return sorted.slice(lo, hi).filter((item) => !isSelf(item));
+}
+
+/** Prefer nearby countries, but never reuse a display label (5.61M and 5.65M both become “5.6 million”). */
+function pickDistinct(
+  preferred: CountryFact[],
+  fallback: CountryFact[],
+  n: number,
+  rand: Rng,
+  labelOf: (fact: CountryFact) => string,
+  answerLabel: string
+): CountryFact[] {
+  const used = new Set([answerLabel]);
+  const out: CountryFact[] = [];
+  const seen = new Set<string>();
+
+  const take = (pool: CountryFact[]) => {
+    for (const item of shuffle(pool, rand)) {
+      if (seen.has(item.iso2)) continue;
+      const label = labelOf(item);
+      if (used.has(label)) continue;
+      used.add(label);
+      seen.add(item.iso2);
+      out.push(item);
+      if (out.length >= n) return;
+    }
+  };
+
+  take(preferred);
+  if (out.length < n) take(fallback);
+  return out;
 }
 
 function choiceRound(
@@ -199,14 +221,32 @@ export async function buildMoneyleBonus(
   const pcIdx = byPc.findIndex((f) => f.iso2 === answer.iso2);
   const self = (f: CountryFact) => f.iso2 === answer.iso2;
 
-  const flagOthers = sample(
-    facts.filter((f) => f.iso2 !== answer.iso2),
+  const others = facts.filter((f) => f.iso2 !== answer.iso2);
+  const flagOthers = pickDistinct(others, others, 3, rand, (f) => f.name, answer.name);
+  const gdpOthers = pickDistinct(
+    nearbyWindow(byGdp, gdpIdx, self),
+    others,
     3,
-    rand
+    rand,
+    (f) => f.gdpLabel,
+    answer.gdpLabel
   );
-  const gdpOthers = nearby(byGdp, gdpIdx, 3, rand, self);
-  const popOthers = nearby(byPop, popIdx, 3, rand, self);
-  const pcOthers = nearby(byPc, pcIdx, 3, rand, self);
+  const popOthers = pickDistinct(
+    nearbyWindow(byPop, popIdx, self),
+    others,
+    3,
+    rand,
+    (f) => f.popLabel,
+    answer.popLabel
+  );
+  const pcOthers = pickDistinct(
+    nearbyWindow(byPc, pcIdx, self),
+    others,
+    3,
+    rand,
+    (f) => f.gdppcLabel,
+    answer.gdppcLabel
+  );
 
   const name = target.country;
   return {

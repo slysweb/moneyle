@@ -2,6 +2,14 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 23, 2026",
+    iso: "2026-08-23",
+    items: [
+      "Moneyle How to play now walks through a US $100 example with euro, yen, yuan, and dollar guesses, and explains the rate numbers and closeness percent.",
+      "Footer and About now link to MoneyGames on TikTok, X, and YouTube.",
+    ],
+  },
+  {
     date: "August 21, 2026",
     iso: "2026-08-21",
     items: [
