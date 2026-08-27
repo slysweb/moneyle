@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 27, 2026",
+    iso: "2026-08-27",
+    items: [
+      "Money Guessr, Moneyle, and MoneyConnections now include South African rand notes and coins. Ukrainian hryvnia coins were recut with transparent backgrounds.",
+    ],
+  },
+  {
     date: "August 23, 2026",
     iso: "2026-08-23",
     items: [

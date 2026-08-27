@@ -346,6 +346,27 @@ const CATALOG = [
       bill("bill-200", "E£200 bill", 20000, "bill-200.webp"),
     ],
   },
+  {
+    slug: "zar",
+    name: "South African Rand",
+    code: "ZAR",
+    symbol: "R",
+    minorDigits: 2,
+    country: "South Africa",
+    denoms: [
+      coin("coin-cent-10", "10 cent", 10, "coin-cent-10.webp"),
+      coin("coin-cent-20", "20 cent", 20, "coin-cent-20.webp"),
+      coin("coin-cent-50", "50 cent", 50, "coin-cent-50.webp"),
+      coin("coin-rand-1", "R1 coin", 100, "coin-rand-1.webp"),
+      coin("coin-rand-2", "R2 coin", 200, "coin-rand-2.webp"),
+      coin("coin-rand-5", "R5 coin", 500, "coin-rand-5.webp"),
+      bill("bill-10", "R10 bill", 1000, "bill-10.webp"),
+      bill("bill-20", "R20 bill", 2000, "bill-20.webp"),
+      bill("bill-50", "R50 bill", 5000, "bill-50.webp"),
+      bill("bill-100", "R100 bill", 10000, "bill-100.webp"),
+      bill("bill-200", "R200 bill", 20000, "bill-200.webp"),
+    ],
+  },
 ];
 
 function sqlStr(s) {
