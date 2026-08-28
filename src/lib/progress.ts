@@ -4,7 +4,14 @@
 // Keys are scoped to game + puzzle date so an archive run cannot overwrite
 // today's save, and vice versa.
 
+import { gamesForDate, type ArchiveGameId } from "./dates";
+
 const PREFIX = "moneygames:progress:";
+
+// Must match the daily lengths in each game page / worker generator.
+const MORELESS_TOTAL_ANSWERS = 25;
+const GUESSR_ROUNDS = 5;
+const MONEYLE_MAX_GUESSES = 6;
 
 interface Stored<T> {
   date: string;
@@ -64,4 +71,33 @@ export function clearProgress(game: string, date?: string | null): void {
   } catch {
     // Ignore — see saveProgress.
   }
+}
+
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" ? (value as Record<string, unknown>) : null;
+}
+
+/** True when that day's run is over and opening the game shows the results screen. */
+export function isPuzzleFinished(game: ArchiveGameId, date: string): boolean {
+  const rec = asRecord(loadProgress<unknown>(game, date));
+  if (!rec) return false;
+  switch (game) {
+    case "moreless":
+      return Array.isArray(rec.answers) && rec.answers.length >= MORELESS_TOTAL_ANSWERS;
+    case "guessr":
+      return Array.isArray(rec.results) && rec.results.length >= GUESSR_ROUNDS;
+    case "moneyle": {
+      if (!Array.isArray(rec.history)) return false;
+      if (rec.history.length >= MONEYLE_MAX_GUESSES) return true;
+      return rec.history.some((row) => asRecord(row)?.correct === true);
+    }
+    case "connections":
+      return rec.finished === true;
+  }
+}
+
+export function archiveDayProgress(date: string): { done: number; total: number } {
+  const games = gamesForDate(date);
+  const done = games.filter((game) => isPuzzleFinished(game.id, date)).length;
+  return { done, total: games.length };
 }

@@ -2583,18 +2583,30 @@ button.card:disabled {
 }
 
 .archive-cal-dots {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 700;
   font-family: var(--font-mono);
-  min-width: 16px;
+  min-width: 28px;
   height: 16px;
-  padding: 0 4px;
+  padding: 0 5px;
   border-radius: 999px;
   background: var(--accent-soft);
   color: var(--accent-dark);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.archive-cal-cell.complete .archive-cal-dots {
+  background: var(--accent);
+  color: #fff;
+}
+
+.archive-cal-cell.selected.complete .archive-cal-dots {
+  background: rgba(255, 255, 255, 0.28);
+  color: #fff;
 }
 
 .archive-day {
@@ -2621,7 +2633,8 @@ button.card:disabled {
   margin: -8px 0 14px;
 }
 
-.archive-today-tag {
+.archive-today-tag,
+.archive-progress-tag {
   display: inline-block;
   margin-left: 10px;
   padding: 2px 8px;
@@ -2633,6 +2646,13 @@ button.card:disabled {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   vertical-align: 2px;
+}
+
+.archive-progress-tag {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
 }
 
 .archive-games {
@@ -2679,6 +2699,7 @@ button.card:disabled {
 .archive-game .btn {
   flex-shrink: 0;
   padding: 10px 18px;
+  white-space: nowrap;
 }
 
 .archive-note {

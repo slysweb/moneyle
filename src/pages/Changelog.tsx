@@ -7,6 +7,7 @@ const entries = [
     items: [
       "Each daily game is one run per day. Refreshing brings you back to your in-progress round or your results, with a countdown to the next puzzle at midnight Denver time.",
       "The Archive of past daily puzzles is now for registered members. Today’s games stay free without an account.",
+      "The Archive calendar shows how many of that day’s games you’ve finished, and completed games open as View results.",
     ],
   },
   {

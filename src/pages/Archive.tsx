@@ -17,6 +17,7 @@ import {
   weekdaySundayFirst,
 } from "../lib/dates";
 import { useAuth } from "../lib/auth";
+import { archiveDayProgress, isPuzzleFinished } from "../lib/progress";
 import { dailyPuzzleNumber } from "../lib/share";
 import { usePageMeta } from "../lib/usePageMeta";
 
@@ -36,10 +37,23 @@ export default function Archive() {
     isIsoDate(raw) && raw >= SITE_EPOCH && raw <= today ? raw : today;
 
   const [monthCursor, setMonthCursor] = useState(monthStart(selected));
+  const [progressTick, setProgressTick] = useState(0);
 
   useEffect(() => {
     setMonthCursor(monthStart(selected));
   }, [selected]);
+
+  useEffect(() => {
+    const bump = () => setProgressTick((n) => n + 1);
+    window.addEventListener("focus", bump);
+    window.addEventListener("pageshow", bump);
+    window.addEventListener("storage", bump);
+    return () => {
+      window.removeEventListener("focus", bump);
+      window.removeEventListener("pageshow", bump);
+      window.removeEventListener("storage", bump);
+    };
+  }, []);
 
   const minMonth = monthStart(SITE_EPOCH);
   const maxMonth = monthStart(today);
@@ -59,6 +73,18 @@ export default function Archive() {
 
   const available = gamesForDate(selected);
   const puzzleNumber = dailyPuzzleNumber(selected);
+  const dayProgress = useMemo(() => {
+    const map = new Map<string, { done: number; total: number }>();
+    for (const iso of cells) {
+      if (!iso || iso < SITE_EPOCH || iso > today) continue;
+      map.set(iso, archiveDayProgress(iso));
+    }
+    if (selected >= SITE_EPOCH && selected <= today && !map.has(selected)) {
+      map.set(selected, archiveDayProgress(selected));
+    }
+    return map;
+  }, [cells, selected, today, progressTick]);
+  const selectedProgress = dayProgress.get(selected) ?? { done: 0, total: 0 };
 
   const selectDate = (iso: string) => {
     setParams({ date: iso }, { replace: true });
@@ -124,9 +150,10 @@ export default function Archive() {
           {cells.map((iso, i) => {
             if (!iso) return <div key={`pad-${i}`} className="archive-cal-cell empty" />;
             const inRange = iso >= SITE_EPOCH && iso <= today;
-            const nGames = inRange ? gamesForDate(iso).length : 0;
+            const progress = inRange ? (dayProgress.get(iso) ?? { done: 0, total: 0 }) : { done: 0, total: 0 };
             const isToday = iso === today;
             const isSelected = iso === selected;
+            const allDone = inRange && progress.total > 0 && progress.done === progress.total;
             return (
               <button
                 key={iso}
@@ -136,6 +163,7 @@ export default function Archive() {
                   inRange ? "playable" : "",
                   isToday ? "today" : "",
                   isSelected ? "selected" : "",
+                  allDone ? "complete" : "",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -144,12 +172,16 @@ export default function Archive() {
                 aria-pressed={isSelected}
                 aria-label={
                   inRange
-                    ? `${formatPuzzleDate(iso)}, ${nGames} game${nGames === 1 ? "" : "s"}`
+                    ? `${formatPuzzleDate(iso)}, ${progress.done} of ${progress.total} games completed`
                     : formatPuzzleDate(iso)
                 }
               >
                 <span className="archive-cal-num">{Number(iso.slice(8))}</span>
-                {inRange ? <span className="archive-cal-dots" aria-hidden>{nGames}</span> : null}
+                {inRange ? (
+                  <span className="archive-cal-dots" aria-hidden>
+                    {progress.done}/{progress.total}
+                  </span>
+                ) : null}
               </button>
             );
           })}
@@ -161,6 +193,11 @@ export default function Archive() {
           #{puzzleNumber}
           <span> · {formatPuzzleDate(selected)}</span>
           {selected === today ? <span className="archive-today-tag">Today</span> : null}
+          {selectedProgress.total > 0 ? (
+            <span className="archive-progress-tag">
+              {selectedProgress.done}/{selectedProgress.total}
+            </span>
+          ) : null}
         </h2>
         {selected !== today ? (
           <p className="archive-jump">
@@ -183,14 +220,18 @@ export default function Archive() {
                 </li>
               );
             }
+            const finished = isPuzzleFinished(game.id, selected);
             return (
-              <li key={game.id} className="archive-game">
+              <li key={game.id} className={`archive-game${finished ? " done" : ""}`}>
                 <div>
                   <strong>{game.name}</strong>
                   <p>Puzzle #{puzzleNumber}</p>
                 </div>
-                <Link className="btn primary" to={playPath(game.path, selected, today)}>
-                  Play
+                <Link
+                  className={finished ? "btn ghost" : "btn primary"}
+                  to={playPath(game.path, selected, today)}
+                >
+                  {finished ? "View results" : "Play"}
                 </Link>
               </li>
             );
