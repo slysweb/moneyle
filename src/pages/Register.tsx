@@ -36,7 +36,7 @@ function GoogleMark() {
 export default function Register() {
   usePageMeta(
     "Register — MoneyGames",
-    "Create a MoneyGames account with Google. Games still work if you skip this."
+    "Create a MoneyGames account with Google to unlock the archive. Today’s games still work if you skip this."
   );
 
   const { user, loading, logout } = useAuth();
@@ -72,8 +72,8 @@ export default function Register() {
               creates it. Already registered? Same button signs you back in.
             </p>
             <p className="register-copy dim">
-              You can keep playing without an account. Progress still lives in this
-              browser for now.
+              Today’s games work without an account. Registering unlocks the archive of
+              every past daily puzzle. Progress still lives in this browser for now.
             </p>
             {error ? <p className="register-error">{error}</p> : null}
             <a className="google-btn" href={start}>

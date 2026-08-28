@@ -55,7 +55,8 @@ export default function Home() {
           midnight Denver time — the same ones for everyone.
         </p>
         <p className="hero-archive">
-          Missed a day? <Link to="/archive">Play any past puzzle in the archive</Link>.
+          Missed a day? <Link to="/archive">Unlock the archive</Link> with a free
+          Google account.
         </p>
       </section>
 

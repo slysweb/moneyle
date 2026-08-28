@@ -7,7 +7,7 @@ export default function Terms() {
     <InfoPage
       title="Terms of Service"
       description="Terms of Service for moneygames.cc — free browser games about money."
-      updated="August 20, 2026"
+      updated="August 28, 2026"
     >
       <p>
         These terms govern your use of MoneyGames at moneygames.cc (the “site”). By using
@@ -17,8 +17,9 @@ export default function Terms() {
       <h2>The service</h2>
       <p>
         MoneyGames offers free, recreational browser games about money, wealth, and
-        currencies. An account is optional: you can play as a guest, or register with a
-        Google account. We may add, change, or remove games or features at any time.
+        currencies. Today’s puzzles are free without an account. Register with Google to
+        unlock the archive of past daily puzzles. We may add, change, or remove games or
+        features at any time.
       </p>
 
       <h2>Not financial advice</h2>

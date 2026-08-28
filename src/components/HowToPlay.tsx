@@ -44,7 +44,7 @@ export default function HowToPlay({ onClose }: HowToPlayProps) {
               <span>Jeff Bezos</span>
             </div>
           </div>
-          <p className="howto-rounds">Five levels, five rounds each. A new set every day at midnight Denver time.</p>
+          <p className="howto-rounds">Five levels, five rounds each. One run a day — refresh keeps your place or your results. Next puzzle at midnight Denver time.</p>
           <div className="howto-verdicts">
             <span className="howto-correct">
               <span className="howto-icon correct" aria-hidden="true">

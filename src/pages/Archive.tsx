@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import ArchiveLocked from "../components/ArchiveLocked";
 import SiteFooter from "../components/SiteFooter";
 import {
   ARCHIVE_GAMES,
@@ -15,6 +16,7 @@ import {
   playPath,
   weekdaySundayFirst,
 } from "../lib/dates";
+import { useAuth } from "../lib/auth";
 import { dailyPuzzleNumber } from "../lib/share";
 import { usePageMeta } from "../lib/usePageMeta";
 
@@ -23,9 +25,10 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function Archive() {
   usePageMeta(
     "Archive — MoneyGames",
-    "Play any past MoneyGames daily puzzle. More/Less, Money Guessr, Moneyle, and MoneyConnections from launch day through today."
+    "Registered members can play any past MoneyGames daily puzzle. More/Less, Money Guessr, Moneyle, and MoneyConnections from launch day through today."
   );
 
+  const { user, loading } = useAuth();
   const today = denverDate();
   const [params, setParams] = useSearchParams();
   const raw = params.get("date");
@@ -67,6 +70,18 @@ export default function Archive() {
     setMonthCursor(next);
   };
 
+  if (loading) {
+    return (
+      <main className="page">
+        <p className="status-msg">Loading…</p>
+      </main>
+    );
+  }
+
+  if (!user) {
+    return <ArchiveLocked next={`/archive${raw ? `?date=${raw}` : ""}`} />;
+  }
+
   return (
     <main className="page archive-page">
       <p className="info-kicker">
@@ -74,8 +89,8 @@ export default function Archive() {
       </p>
       <h1>Archive</h1>
       <p className="archive-lead">
-        Every daily puzzle stays playable. Pick a date, then a game. New puzzles
-        drop at midnight Denver time — same ones for everyone.
+        Every past puzzle is here for members. Pick a date, then a game — one run per date.
+        New puzzles drop at midnight Denver time — same ones for everyone.
       </p>
 
       <div className="archive-cal">

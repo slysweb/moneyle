@@ -118,6 +118,10 @@ async function readSessionUser(env: AuthEnv, request: Request) {
     .first<{ id: number; email: string; name: string; pictureUrl: string | null }>();
 }
 
+export async function sessionUser(env: AuthEnv, request: Request) {
+  return readSessionUser(env, request);
+}
+
 async function handleMe(env: AuthEnv, request: Request): Promise<Response> {
   const user = await readSessionUser(env, request);
   return json({ user: user ?? null });

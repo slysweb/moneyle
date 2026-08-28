@@ -11,13 +11,13 @@ export default function About() {
     <InfoPage
       title="About us"
       description="MoneyGames is a small collection of free browser games about money, wealth, and currencies."
-      updated="August 23, 2026"
+      updated="August 28, 2026"
     >
       <p>
         MoneyGames is a free site of short browser games about money. No paywalls — just a
-        daily puzzle for everyone, resetting at midnight Denver time. You can play as a
-        guest, or <Link to="/register">register with Google</Link>. Past days stay playable
-        in the <Link to="/archive">archive</Link>.
+        daily puzzle for everyone, one run a day, resetting at midnight Denver time. You can play as a
+        guest, or <Link to="/register">register with Google</Link> to unlock the{" "}
+        <Link to="/archive">archive</Link> of past daily puzzles.
       </p>
 
       <h2>The games</h2>

@@ -2,12 +2,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchGuessrToday, type GuessrCurrency, type GuessrPiece } from "../lib/api";
 import ArchiveBanner from "../components/ArchiveBanner";
+import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
+import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
-import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
+import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
-import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
+import { loadProgress, saveProgress } from "../lib/progress";
 
 const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
@@ -213,7 +215,8 @@ export default function Guessr() {
     "A pile of bills and coins flashes for five seconds. Guess the total. Five rounds, scored by how close you are."
   );
 
-  const requestedDate = usePuzzleDateParam();
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [puzzles, setPuzzles] = useState<GuessrPiece[][] | null>(null);
   const [currency, setCurrency] = useState<GuessrCurrency | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -225,7 +228,6 @@ export default function Guessr() {
   const [finished, setFinished] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
-  const [runKey, setRunKey] = useState(0);
   const [remainingMs, setRemainingMs] = useState(MEMORIZE_MS);
   const inputRef = useRef<HTMLInputElement>(null);
   const timers = useRef<number[]>([]);
@@ -248,6 +250,7 @@ export default function Guessr() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
     setError(false);
     setPuzzles(null);
@@ -273,7 +276,7 @@ export default function Guessr() {
       cancelled = true;
       clearTimers();
     };
-  }, [runKey, requestedDate, restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (results.length === 0) return;
@@ -333,17 +336,9 @@ export default function Guessr() {
     setPhase("memorize");
   }, [round]);
 
-  const restart = useCallback(() => {
-    clearTimers();
-    clearProgress("guessr", puzzleDate);
-    setRound(0);
-    setPhase("memorize");
-    setGuess("");
-    setResults([]);
-    setFinished(false);
-    setCopied(false);
-    setRunKey((k) => k + 1);
-  }, [puzzleDate]);
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
 
   if (error) {
     return (
@@ -409,10 +404,11 @@ export default function Guessr() {
             ))}
           </ul>
           <div className="overlay-actions">
-            <button className="btn primary" onClick={restart}>
-              Play again
-            </button>
-            <button className="btn ghost" type="button" onClick={() => void share()}>
+            <NextPuzzleCountdown
+              puzzleDate={puzzleDate}
+              autoAdvance={!requestedDate || requestedDate === denverDate()}
+            />
+            <button className="btn primary" type="button" onClick={() => void share()}>
               {copied ? "Copied!" : "Share"}
             </button>
             <Link className="btn ghost" to="/">

@@ -6,12 +6,14 @@ import {
   type ConnectionTile,
 } from "../lib/api";
 import ArchiveBanner from "../components/ArchiveBanner";
+import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayConnections from "../components/HowToPlayConnections";
+import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
-import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
+import { useArchiveGate } from "../lib/useArchiveGate";
 import { connectionRow, copyText, dailyPuzzleNumber } from "../lib/share";
-import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
+import { loadProgress, saveProgress } from "../lib/progress";
 
 const LIVES = 4;
 
@@ -58,7 +60,8 @@ export default function Connections() {
     "A 4×4 grid of flags, cash, GDP, and currency names. Group the four tiles that belong to the same country."
   );
 
-  const requestedDate = usePuzzleDateParam();
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [groups, setGroups] = useState<ConnectionGroup[] | null>(null);
   const [tiles, setTiles] = useState<ConnectionTile[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -75,7 +78,6 @@ export default function Connections() {
   const [toast, setToast] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
   const [preview, setPreview] = useState<ConnectionTile | null>(null);
-  const [runKey, setRunKey] = useState(0);
 
   const tileById = useMemo(() => {
     const map = new Map<string, ConnectionTile>();
@@ -90,6 +92,7 @@ export default function Connections() {
   }, [groups]);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
     setError(false);
     setGroups(null);
@@ -126,7 +129,7 @@ export default function Connections() {
     return () => {
       cancelled = true;
     };
-  }, [runKey, requestedDate]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate]);
 
   useEffect(() => {
     if (!puzzleDate || !tiles) return;
@@ -217,14 +220,9 @@ export default function Connections() {
     }
   }, [finished, selected, groups, tileById, wrongKeys, solvedIds, mistakes]);
 
-  const restart = useCallback(() => {
-    clearProgress("connections", puzzleDate);
-    setSelected([]);
-    setToast(null);
-    setCopied(false);
-    setPreview(null);
-    setRunKey((k) => k + 1);
-  }, [puzzleDate]);
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
 
   if (error) {
     return (
@@ -353,10 +351,11 @@ export default function Connections() {
                 ? "Four countries, four groups. Clean sheet."
                 : `You found ${solvedIds.length} of 4.`}
             </p>
-            <button className="btn primary" onClick={restart}>
-              Play again
-            </button>
-            <button className="btn ghost" type="button" onClick={() => void doShare()}>
+            <NextPuzzleCountdown
+              puzzleDate={puzzleDate}
+              autoAdvance={!requestedDate || requestedDate === denverDate()}
+            />
+            <button className="btn primary" type="button" onClick={() => void doShare()}>
               {copied ? "Copied!" : "Share"}
             </button>
             <Link className="btn ghost" to="/">

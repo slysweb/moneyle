@@ -34,7 +34,7 @@ export default function HowToPlayGuessr({ onClose }: HowToPlayGuessrProps) {
             <li>It disappears. Type how much you think it was.</li>
             <li>See the actual total and your difference as a +/− percent.</li>
           </ol>
-          <p className="howto-rounds">Five piles, getting a little harder each time. Same puzzle for everyone until midnight Denver time.</p>
+          <p className="howto-rounds">Five piles, getting a little harder each time. One run a day, same puzzle for everyone until midnight Denver time.</p>
         </div>
       </div>
     </div>

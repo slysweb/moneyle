@@ -35,8 +35,8 @@ export default function HowToPlayConnections({ onClose }: HowToPlayConnectionsPr
             <li>Four mistakes and the remaining countries are revealed. “One away…” means you had three right.</li>
           </ol>
           <p className="howto-rounds">
-            Same puzzle for everyone until midnight Denver time. GDP figures are World Bank annual totals,
-            shown as compact dollars.
+            One grid a day, same puzzle for everyone until midnight Denver time. GDP figures are
+            World Bank annual totals, shown as compact dollars.
           </p>
         </div>
       </div>

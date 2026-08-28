@@ -7,7 +7,7 @@ export default function Privacy() {
     <InfoPage
       title="Privacy Policy"
       description="How MoneyGames handles information — optional Google accounts, no ads, no sale of personal data."
-      updated="August 20, 2026"
+      updated="August 28, 2026"
     >
       <p>
         MoneyGames (“we”) runs free games at moneygames.cc. This policy explains what
@@ -17,8 +17,9 @@ export default function Privacy() {
 
       <h2>Accounts</h2>
       <p>
-        You can play without signing in. Scores and guesses then live in your browser; we do
-        not store a personal play history for guests.
+        You can play today’s games without signing in. Scores and guesses then live in your
+        browser; we do not store a personal play history for guests. The archive of past
+        daily puzzles is for registered members.
       </p>
       <p>
         If you register, we use Google account sign-in only. Google sends us your Google

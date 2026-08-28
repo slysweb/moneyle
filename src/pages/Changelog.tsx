@@ -2,6 +2,14 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 28, 2026",
+    iso: "2026-08-28",
+    items: [
+      "Each daily game is one run per day. Refreshing brings you back to your in-progress round or your results, with a countdown to the next puzzle at midnight Denver time.",
+      "The Archive of past daily puzzles is now for registered members. Today’s games stay free without an account.",
+    ],
+  },
+  {
     date: "August 27, 2026",
     iso: "2026-08-27",
     items: [

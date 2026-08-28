@@ -9,13 +9,15 @@ import {
   type MoneyleGuessResult,
 } from "../lib/api";
 import ArchiveBanner from "../components/ArchiveBanner";
+import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import MoneyleBonus from "../components/MoneyleBonus";
+import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
-import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
+import { useArchiveGate } from "../lib/useArchiveGate";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
-import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
+import { loadProgress, saveProgress } from "../lib/progress";
 
 const MAX_GUESSES = 6;
 
@@ -54,7 +56,8 @@ export default function Moneyle() {
     "A frosted banknote and six guesses. Use live exchange rates to find the hidden currency."
   );
 
-  const requestedDate = usePuzzleDateParam();
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [currencies, setCurrencies] = useState<MoneyleCurrency[]>([]);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -70,7 +73,6 @@ export default function Moneyle() {
   const [answer, setAnswer] = useState<MoneyleCurrency | null>(null);
   const [showHelp, setShowHelp] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [runKey, setRunKey] = useState(0);
   const [bonusRounds, setBonusRounds] = useState<BonusRound[] | null>(null);
   const [bonusCountry, setBonusCountry] = useState<string | null>(null);
   const [bonusPicks, setBonusPicks] = useState<string[]>([]);
@@ -95,6 +97,7 @@ export default function Moneyle() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
     setError(false);
     setCurrencies([]);
@@ -123,7 +126,7 @@ export default function Moneyle() {
     return () => {
       cancelled = true;
     };
-  }, [runKey, requestedDate, restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (history.length === 0) return;
@@ -136,7 +139,7 @@ export default function Moneyle() {
   }, [puzzleDate, history, answer, bonusPicks, bonusOpen]);
 
   useEffect(() => {
-    if (!revealed || !puzzleDate) return;
+    if (!revealed || !puzzleDate || archiveGate.locked) return;
     let cancelled = false;
     fetchMoneyleBonus(requestedDate)
       .then((res) => {
@@ -153,7 +156,7 @@ export default function Moneyle() {
     return () => {
       cancelled = true;
     };
-  }, [revealed, puzzleDate, requestedDate]);
+  }, [archiveGate.locked, revealed, puzzleDate, requestedDate]);
 
   const guessedCodes = useMemo(() => new Set(history.map((h) => h.currency.code)), [history]);
 
@@ -212,23 +215,6 @@ export default function Moneyle() {
     [busy, revealed, currencies, guessedCodes, history.length, puzzleDate]
   );
 
-  const restart = useCallback(() => {
-    clearProgress("moneyle", puzzleDate);
-    setQuery("");
-    setHistory([]);
-    setWon(false);
-    setLost(false);
-    setAnswer(null);
-    setGuessError(null);
-    setCopied(false);
-    setImageUrl(null);
-    setBonusRounds(null);
-    setBonusCountry(null);
-    setBonusPicks([]);
-    setBonusOpen(false);
-    setRunKey((k) => k + 1);
-  }, [puzzleDate]);
-
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
   const score = won ? `${history.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
   const bonusScore =
@@ -262,6 +248,10 @@ export default function Moneyle() {
       window.setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
 
   if (error) {
     return (
@@ -415,15 +405,16 @@ export default function Moneyle() {
 
       {revealed && !bonusOpen && (
         <div className="overlay-actions moneyle-end">
+          <NextPuzzleCountdown
+            puzzleDate={puzzleDate}
+            autoAdvance={!requestedDate || requestedDate === denverDate()}
+          />
           {bonusRounds && bonusCountry ? (
             <button className="btn primary" type="button" onClick={() => setBonusOpen(true)}>
               {bonusPicks.length >= bonusRounds.length ? "Bonus results" : "Play bonus round"}
             </button>
           ) : null}
-          <button className={bonusRounds ? "btn ghost" : "btn primary"} onClick={restart}>
-            Play again
-          </button>
-          <button className="btn ghost" type="button" onClick={() => void share()}>
+          <button className={bonusRounds ? "btn ghost" : "btn primary"} type="button" onClick={() => void share()}>
             {copied ? "Copied!" : "Share"}
           </button>
           <Link className="btn ghost" to="/">

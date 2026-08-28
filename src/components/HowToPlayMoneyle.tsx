@@ -75,8 +75,8 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
             </li>
           </ol>
           <p className="howto-rounds">
-            A new note each day, the same for everyone. Rates are a daily snapshot, so they
-            can differ from live quotes.
+            One note a day, the same for everyone. Refresh keeps your guesses. Rates are a daily
+            snapshot, so they can differ from live quotes.
           </p>
         </div>
       </div>

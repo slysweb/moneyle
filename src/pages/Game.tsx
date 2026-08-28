@@ -2,12 +2,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/api";
 import ArchiveBanner from "../components/ArchiveBanner";
+import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlay from "../components/HowToPlay";
+import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
-import { usePuzzleDateParam } from "../lib/usePuzzleDateParam";
+import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
-import { clearProgress, loadProgress, saveProgress } from "../lib/progress";
+import { loadProgress, saveProgress } from "../lib/progress";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding" | "interlude";
 type Side = "left" | "right";
@@ -97,7 +99,8 @@ export default function Game() {
     "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition."
   );
 
-  const requestedDate = usePuzzleDateParam();
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -109,7 +112,6 @@ export default function Game() {
   const [finished, setFinished] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
-  const [runKey, setRunKey] = useState(0);
   const timers = useRef<number[]>([]);
 
   // Position in the run is derived from the answer log rather than saved next
@@ -127,6 +129,7 @@ export default function Game() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
     setError(false);
     setLevels(null);
@@ -151,7 +154,7 @@ export default function Game() {
       cancelled = true;
       timers.current.forEach(clearTimeout);
     };
-  }, [runKey, requestedDate, restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (answers.length === 0) return;
@@ -257,18 +260,9 @@ export default function Game() {
     [phase, left, right, advance]
   );
 
-  const restart = useCallback(() => {
-    clearTimers();
-    clearProgress("moreless", puzzleDate);
-    setLevelIndex(0);
-    setRoundIndex(0);
-    setPhase("guessing");
-    setSelected(null);
-    setAnswers([]);
-    setFinished(false);
-    setCopied(false);
-    setRunKey((k) => k + 1);
-  }, [puzzleDate]);
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
 
   if (error) {
     return (
@@ -338,10 +332,11 @@ export default function Game() {
             ))}
           </ul>
           <div className="overlay-actions">
-            <button className="btn primary" onClick={restart}>
-              Play again
-            </button>
-            <button className="btn ghost" type="button" onClick={() => void share()}>
+            <NextPuzzleCountdown
+              puzzleDate={puzzleDate}
+              autoAdvance={!requestedDate || requestedDate === denverDate()}
+            />
+            <button className="btn primary" type="button" onClick={() => void share()}>
               {copied ? "Copied!" : "Share"}
             </button>
             <Link className="btn ghost" to="/">

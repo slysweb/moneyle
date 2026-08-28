@@ -1340,6 +1340,30 @@ button.card:disabled {
   flex-wrap: wrap;
 }
 
+.next-puzzle {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.next-puzzle-time {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.next-puzzle-tz {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.82rem;
+}
+
+.review-screen .next-puzzle,
+.moneyle-end .next-puzzle {
+  width: 100%;
+}
+
 .review-screen {
   max-width: 520px;
   margin: 40px auto 0;
@@ -2680,6 +2704,48 @@ button.card:disabled {
   margin: 0 0 12px;
   font-family: var(--font-display);
   letter-spacing: -0.03em;
+}
+
+.archive-lock {
+  max-width: 440px;
+  margin: 48px auto 0;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 36px 28px 28px;
+  box-shadow: var(--shadow);
+}
+
+.archive-lock-kicker {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+.archive-lock h1 {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  letter-spacing: -0.03em;
+}
+
+.archive-lock p {
+  margin: 0 0 20px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+.archive-lock-alt {
+  margin: 16px 0 0;
+  font-size: 0.92rem;
+}
+
+.archive-lock-alt a {
+  font-weight: 700;
 }
 
 .register-copy {
