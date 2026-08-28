@@ -307,7 +307,7 @@ a {
 
 .hero {
   text-align: center;
-  padding: 48px 0 36px;
+  padding: 36px 0;
 }
 
 .brand-hero {
@@ -1344,6 +1344,7 @@ button.card:disabled {
   margin: 0 0 16px;
   color: var(--text-dim);
   font-size: 0.95rem;
+  text-align: center;
 }
 
 .next-puzzle-time {
@@ -1989,6 +1990,7 @@ button.card:disabled {
 
 .moneyle-end {
   margin-top: 8px;
+  text-align: center;
 }
 
 .bonus-wrap {
