@@ -53,9 +53,10 @@ export default function Privacy() {
 
       <h2>Cookies and similar tech</h2>
       <p>
-        We set first-party cookies only for optional sign-in (session and a brief OAuth
-        state cookie). We do not use third-party ad or analytics pixels. Your browser may
-        still send standard data on each request.
+        We set first-party cookies for optional sign-in (session and a brief OAuth state
+        cookie). We also load Google Analytics (gtag.js) on the public site so we can see
+        which pages and games people use. Google may set its own cookies (such as{" "}
+        <code>_ga</code>). We do not use this for advertising, and we do not sell the data.
       </p>
 
       <h2>Third-party services</h2>
@@ -64,7 +65,8 @@ export default function Privacy() {
           <strong>Cloudflare</strong> — hosting, DNS, and the Worker/D1 backend.
         </li>
         <li>
-          <strong>Google</strong> — optional account sign-in. See{" "}
+          <strong>Google</strong> — optional account sign-in, and Google Analytics for page
+          views and basic usage. See{" "}
           <a href="https://policies.google.com/privacy" rel="noreferrer">
             Google’s Privacy Policy
           </a>
@@ -96,8 +98,9 @@ export default function Privacy() {
       <h2>How we use technical data</h2>
       <p>
         Only to operate the games: serve pages and APIs, generate daily puzzles, keep the
-        service reliable, keep optional accounts signed in, and respond to abuse or outages.
-        We do not use it to build a marketing profile.
+        service reliable, keep optional accounts signed in, respond to abuse or outages, and
+        understand which pages and games people use. We do not use it to build a marketing
+        profile.
       </p>
 
       <h2>Retention</h2>
