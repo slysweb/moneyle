@@ -10,6 +10,8 @@ import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
 import { loadProgress, saveProgress } from "../lib/progress";
+import { formatScore, guessrRoundPoints, guessrScore } from "../lib/score";
+import GameScore from "../components/GameScore";
 
 const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
@@ -380,9 +382,11 @@ export default function Guessr() {
     const avgAbs =
       results.reduce((sum, r) => sum + Math.abs(r.pct), 0) / Math.max(results.length, 1);
     const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
-    const avgLabel = `${avgAbs.toFixed(1)}%`;
+    const run = guessrScore(results);
     const shareText = [
-      number != null ? `Money Guessr #${number} — ${avgLabel}` : `Money Guessr — ${avgLabel}`,
+      number != null
+        ? `Money Guessr #${number} — ${formatScore(run.score, run.max)}`
+        : `Money Guessr — ${formatScore(run.score, run.max)}`,
       "",
       ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
       "",
@@ -402,22 +406,29 @@ export default function Guessr() {
         <ArchiveBanner title="Money Guessr" path="/guessr" puzzleDate={puzzleDate} />
         <div className="review-screen guessr-review">
           <h1>Run complete</h1>
-          <p className="review-score">
-            <strong>{avgAbs.toFixed(1)}%</strong>
-          </p>
-          <p className="review-sub">Average absolute error across {ROUNDS} {currency.name} piles.</p>
+          <GameScore
+            score={run.score}
+            max={run.max}
+            detail={`Exact is 2 pts, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
+          />
           <ul className="review-levels">
-            {results.map((row, i) => (
-              <li key={i}>
-                <span>
-                  Round {i + 1}
-                  <small className="guessr-review-meta">
-                    {formatMoney(row.guessCents, currency)} vs {formatMoney(row.actualCents, currency)}
-                  </small>
-                </span>
-                <strong className={pctClass(row.pct)}>{formatPct(row.pct)}</strong>
-              </li>
-            ))}
+            {results.map((row, i) => {
+              const pts = guessrRoundPoints(row.pct, row.guessCents, row.actualCents);
+              return (
+                <li key={i}>
+                  <span>
+                    Round {i + 1}
+                    <small className="guessr-review-meta">
+                      {formatMoney(row.guessCents, currency)} vs {formatMoney(row.actualCents, currency)}
+                    </small>
+                  </span>
+                  <strong className={pctClass(row.pct)}>
+                    {formatPct(row.pct)}
+                    <small className="guessr-review-pts">{pts} pt{pts === 1 ? "" : "s"}</small>
+                  </strong>
+                </li>
+              );
+            })}
           </ul>
           <div className="overlay-actions">
             <NextPuzzleCountdown

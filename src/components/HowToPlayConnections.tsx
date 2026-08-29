@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface HowToPlayConnectionsProps {
   onClose: () => void;
@@ -35,8 +36,9 @@ export default function HowToPlayConnections({ onClose }: HowToPlayConnectionsPr
             <li>Four mistakes and the remaining countries are revealed. “One away…” means you had three right.</li>
           </ol>
           <p className="howto-rounds">
-            One grid a day, same puzzle for everyone until midnight Denver time. GDP figures are
-            World Bank annual totals, shown as compact dollars.
+            Two points per group — 8 if you find all four. One grid a day, same puzzle for
+            everyone until midnight Denver time. GDP figures are World Bank annual totals, shown
+            as compact dollars. <Link to="/scoring">Scoring rules</Link>.
           </p>
         </div>
       </div>

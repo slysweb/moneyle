@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface HowToPlayGuessrProps {
   onClose: () => void;
@@ -34,7 +35,7 @@ export default function HowToPlayGuessr({ onClose }: HowToPlayGuessrProps) {
             <li>It disappears. Type how much you think it was.</li>
             <li>See the actual total and your difference as a +/− percent.</li>
           </ol>
-          <p className="howto-rounds">Five piles, getting a little harder each time. One run a day, same puzzle for everyone until midnight Denver time.</p>
+          <p className="howto-rounds">Five piles, two points each: exact is 2, within 20% is 1. One run a day, same puzzle for everyone until midnight Denver time. <Link to="/scoring">Scoring rules</Link>.</p>
         </div>
       </div>
     </div>

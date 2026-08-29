@@ -10,6 +10,8 @@ import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
 import { loadProgress, saveProgress } from "../lib/progress";
+import { formatScore, morelessScore } from "../lib/score";
+import GameScore from "../components/GameScore";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong" | "sliding" | "interlude";
 type Side = "left" | "right";
@@ -295,8 +297,11 @@ export default function Game() {
       };
     });
     const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
+    const run = morelessScore(correctCount, total);
     const shareText = [
-      number != null ? `More/Less #${number} — ${correctCount}/${total}` : `More/Less — ${correctCount}/${total}`,
+      number != null
+        ? `More/Less #${number} — ${formatScore(run.score, run.max)}`
+        : `More/Less — ${formatScore(run.score, run.max)}`,
       "",
       ...byLevel.map((row) => `${row.short} ${row.marks}`),
       "",
@@ -316,11 +321,11 @@ export default function Game() {
         <ArchiveBanner title="More/Less" path="/moreless" puzzleDate={puzzleDate} />
         <div className="review-screen">
           <h1>Run complete</h1>
-          <p className="review-score">
-            <strong>{correctCount}</strong>
-            <span> / {total}</span>
-          </p>
-          <p className="review-sub">Here&apos;s how you did across all five levels.</p>
+          <GameScore
+            score={run.score}
+            max={run.max}
+            detail="One point per correct pick across all five levels."
+          />
           <ul className="review-levels">
             {byLevel.map((row) => (
               <li key={row.short}>

@@ -7,6 +7,7 @@ import Guessr from "./pages/Guessr";
 import Moneyle from "./pages/Moneyle";
 import Connections from "./pages/Connections";
 import About from "./pages/About";
+import Scoring from "./pages/Scoring";
 import Changelog from "./pages/Changelog";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/moneyle" element={<Moneyle />} />
             <Route path="/connections" element={<Connections />} />
             <Route path="/about" element={<About />} />
+            <Route path="/scoring" element={<Scoring />} />
             <Route path="/changelog" element={<Changelog />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />

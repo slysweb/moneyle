@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ELON_IMG = "/moreless/billionaires/elon-musk.webp";
 const BEZOS_IMG = "/moreless/billionaires/jeff-bezos.webp";
@@ -44,7 +45,7 @@ export default function HowToPlay({ onClose }: HowToPlayProps) {
               <span>Jeff Bezos</span>
             </div>
           </div>
-          <p className="howto-rounds">Five levels, five rounds each. One run a day — refresh keeps your place or your results. Next puzzle at midnight Denver time.</p>
+          <p className="howto-rounds">Five levels, five rounds each. One point per correct pick — 25 in a full run. One run a day — refresh keeps your place or your results. Next puzzle at midnight Denver time. <Link to="/scoring">Scoring rules</Link>.</p>
           <div className="howto-verdicts">
             <span className="howto-correct">
               <span className="howto-icon correct" aria-hidden="true">

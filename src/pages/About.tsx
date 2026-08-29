@@ -87,7 +87,8 @@ export default function About() {
             </a>
           </span>
         ))}
-        . See also the <Link to="/terms">Terms of Service</Link> and{" "}
+        . See also the <Link to="/scoring">scoring rules</Link>,{" "}
+        <Link to="/terms">Terms of Service</Link>, and{" "}
         <Link to="/privacy">Privacy Policy</Link>.
       </p>
       <SocialLinks />

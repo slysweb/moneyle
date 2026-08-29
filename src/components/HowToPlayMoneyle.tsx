@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface HowToPlayMoneyleProps {
   onClose: () => void;
@@ -75,8 +76,9 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
             </li>
           </ol>
           <p className="howto-rounds">
-            One note a day, the same for everyone. Refresh keeps your guesses. Rates are a daily
-            snapshot, so they can differ from live quotes.
+            Score out of 10: first try is 10, then 8, 6, 4, 2, 1. One note a day, the same for
+            everyone. Refresh keeps your guesses. Rates are a daily snapshot, so they can differ
+            from live quotes. <Link to="/scoring">Scoring rules</Link>.
           </p>
         </div>
       </div>

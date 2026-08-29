@@ -14,6 +14,8 @@ import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { connectionRow, copyText, dailyPuzzleNumber } from "../lib/share";
 import { loadProgress, saveProgress } from "../lib/progress";
+import { connectionsScore, formatScore } from "../lib/score";
+import GameScore from "../components/GameScore";
 
 const LIVES = 4;
 
@@ -246,8 +248,11 @@ export default function Connections() {
 
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
   const score = won ? "4/4" : `${solvedIds.length}/4`;
+  const run = connectionsScore(solvedIds.length);
   const shareText = [
-    number != null ? `MoneyConnections #${number} — ${won ? "4/4" : "X"}` : `MoneyConnections — ${won ? "4/4" : "X"}`,
+    number != null
+      ? `MoneyConnections #${number} — ${formatScore(run.score, run.max)}`
+      : `MoneyConnections — ${formatScore(run.score, run.max)}`,
     "",
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
@@ -346,11 +351,15 @@ export default function Connections() {
 
         {finished && (
           <div className="overlay-actions moneyle-end">
-            <p className="conn-end-copy">
-              {won
-                ? "Four countries, four groups. Clean sheet."
-                : `You found ${solvedIds.length} of 4.`}
-            </p>
+            <GameScore
+              score={run.score}
+              max={run.max}
+              detail={
+                won
+                  ? "Two points per group. Four countries, four groups."
+                  : `Two points per group. You found ${solvedIds.length} of 4.`
+              }
+            />
             <NextPuzzleCountdown
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}

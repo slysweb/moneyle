@@ -7,6 +7,8 @@ const entries = [
     items: [
       "Money Guessr now opens How to play before the first pile. The five-second countdown starts after you close it, and later rounds keep the same shrinking timer bar as round one.",
       "Money Guessr, Moneyle, and MoneyConnections now include British pound notes and coins. Mexican peso cash was recut for a clearer look, and the 5-peso coin was added.",
+      "Each game now has a score on the results screen: More/Less is 1 point per pick, Money Guessr is 2 per pile (1 if you’re within 20%), Moneyle is 10–1 by how fast you find the note, and MoneyConnections is 2 per group.",
+      "Added a Scoring rules page that explains every game’s points, with a link from results and the footer.",
     ],
   },
   {

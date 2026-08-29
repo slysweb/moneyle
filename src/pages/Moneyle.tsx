@@ -18,6 +18,8 @@ import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
 import { loadProgress, saveProgress } from "../lib/progress";
+import { formatScore, moneyleScore } from "../lib/score";
+import GameScore from "../components/GameScore";
 
 const MAX_GUESSES = 6;
 
@@ -216,7 +218,8 @@ export default function Moneyle() {
   );
 
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
-  const score = won ? `${history.length}/${MAX_GUESSES}` : `X/${MAX_GUESSES}`;
+  const run = moneyleScore(won, history.length);
+  const score = formatScore(run.score, run.max);
   const bonusScore =
     bonusRounds && bonusPicks.length >= bonusRounds.length
       ? bonusRounds.filter((round, i) => round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct)).length
@@ -405,6 +408,15 @@ export default function Moneyle() {
 
       {revealed && !bonusOpen && (
         <div className="overlay-actions moneyle-end">
+          <GameScore
+            score={run.score}
+            max={run.max}
+            detail={
+              won
+                ? `First try is 10, then 8, 6, 4, 2, 1. You got it in ${history.length}.`
+                : "First try is 10, then 8, 6, 4, 2, 1. Missed this one."
+            }
+          />
           <NextPuzzleCountdown
             puzzleDate={puzzleDate}
             autoAdvance={!requestedDate || requestedDate === denverDate()}

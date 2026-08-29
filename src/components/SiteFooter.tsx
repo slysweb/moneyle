@@ -5,6 +5,7 @@ import SocialLinks from "./SocialLinks";
 const links = [
   { to: "/archive", label: "Archive" },
   { to: "/about", label: "About us" },
+  { to: "/scoring", label: "Scoring rules" },
   { to: "/changelog", label: "Changelog" },
   { to: "/terms", label: "Terms of Service" },
   { to: "/privacy", label: "Privacy Policy" },
