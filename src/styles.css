@@ -1442,6 +1442,12 @@ button.card:disabled {
   font-size: 1.6rem;
 }
 
+.review-lead {
+  margin: 0 0 4px;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .review-sub {
   color: var(--text-dim);
   margin: 0 0 22px;
@@ -1454,6 +1460,10 @@ button.card:disabled {
 .moneyle-end .review-score {
   margin: 4px 0 2px;
   font-size: 2.6rem;
+}
+
+.moneyle-end .review-lead {
+  margin: 0 0 4px;
 }
 
 .moneyle-end .review-sub {
@@ -2201,12 +2211,14 @@ button.card:disabled {
 
 .bonus-facts li {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 88px;
-  padding: 10px 12px;
+  gap: 8px;
+  min-height: 104px;
+  padding: 12px 14px 14px;
   border: 2px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--surface);
   text-align: center;
 }
@@ -2221,18 +2233,30 @@ button.card:disabled {
   background: rgba(229, 72, 77, 0.08);
 }
 
+.bonus-facts li.flag {
+  padding: 10px;
+}
+
+.bonus-fact-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.bonus-fact-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
 .bonus-facts img {
   width: 100%;
   height: 72px;
   object-fit: cover;
-  border-radius: 8px;
-}
-
-.bonus-facts p {
-  margin: 0;
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1.35;
+  border-radius: 10px;
 }
 
 /* ---------- MoneyConnections ---------- */

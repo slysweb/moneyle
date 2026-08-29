@@ -40,13 +40,12 @@ export function MoneyleBonusRecap({ rounds, picks }: { rounds: BonusRound[]; pic
         if (!correct) return null;
         const ok = round.options.some((opt) => opt.id === picks[i] && opt.correct);
         return (
-          <li key={round.kind} className={ok ? "ok" : "no"}>
+          <li key={round.kind} className={`${ok ? "ok" : "no"}${round.kind === "flag" ? " flag" : ""}`}>
+            {round.kind !== "flag" && <span className="bonus-fact-label">{round.title}</span>}
             {round.kind === "flag" && correct.imageUrl ? (
               <img src={correct.imageUrl} alt={correct.label} />
             ) : (
-              <p>
-                {round.title}: {correct.label}
-              </p>
+              <strong className="bonus-fact-value">{correct.label}</strong>
             )}
           </li>
         );

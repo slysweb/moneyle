@@ -421,11 +421,10 @@ export default function Moneyle() {
           <GameScore
             score={run.score}
             max={run.max}
+            lead={bonusRounds ? `Note ${run.note} + bonus ${run.bonus}.` : undefined}
             detail={
               bonusRounds
-                ? won
-                  ? `Note ${run.note} + bonus ${run.bonus}. First try is 10, then 8, 6, 4, 2, 1; each bonus question is 1.`
-                  : `Note 0 + bonus ${run.bonus}. Each bonus question is 1 point.`
+                ? "First try is 10, then 8, 6, 4, 2, 1; each bonus question is 1."
                 : won
                   ? `First try is 10, then 8, 6, 4, 2, 1. You got it in ${history.length}.`
                   : "First try is 10, then 8, 6, 4, 2, 1. Missed this one."
