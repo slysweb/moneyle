@@ -11,7 +11,7 @@ import {
 import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
-import MoneyleBonus from "../components/MoneyleBonus";
+import MoneyleBonus, { MoneyleBonusRecap } from "../components/MoneyleBonus";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
@@ -218,12 +218,15 @@ export default function Moneyle() {
   );
 
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
-  const run = moneyleScore(won, history.length);
+  const bonusCorrect = bonusRounds
+    ? bonusRounds.filter((round, i) =>
+        bonusPicks[i] ? round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct) : false
+      ).length
+    : 0;
+  const run = moneyleScore(won, history.length, bonusCorrect, bonusRounds?.length ?? 0);
   const score = formatScore(run.score, run.max);
   const bonusScore =
-    bonusRounds && bonusPicks.length >= bonusRounds.length
-      ? bonusRounds.filter((round, i) => round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct)).length
-      : null;
+    bonusRounds && bonusPicks.length >= bonusRounds.length ? bonusCorrect : null;
   const shareText = [
     number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
     "",
@@ -333,6 +336,9 @@ export default function Moneyle() {
           ))}
         </ul>
       )}
+      {!bonusOpen && bonusRounds && bonusPicks.length >= bonusRounds.length ? (
+        <MoneyleBonusRecap rounds={bonusRounds} picks={bonusPicks} />
+      ) : null}
 
       {!revealed && (
         <form
@@ -401,7 +407,11 @@ export default function Moneyle() {
           country={bonusCountry}
           rounds={bonusRounds}
           picks={bonusPicks}
-          onPick={(id) => setBonusPicks((prev) => [...prev, id])}
+          onPick={(id) => {
+            const next = [...bonusPicks, id];
+            setBonusPicks(next);
+            if (next.length >= bonusRounds.length) setBonusOpen(false);
+          }}
           onExit={() => setBonusOpen(false)}
         />
       ) : null}
@@ -412,21 +422,31 @@ export default function Moneyle() {
             score={run.score}
             max={run.max}
             detail={
-              won
-                ? `First try is 10, then 8, 6, 4, 2, 1. You got it in ${history.length}.`
-                : "First try is 10, then 8, 6, 4, 2, 1. Missed this one."
+              bonusRounds
+                ? won
+                  ? `Note ${run.note} + bonus ${run.bonus}. First try is 10, then 8, 6, 4, 2, 1; each bonus question is 1.`
+                  : `Note 0 + bonus ${run.bonus}. Each bonus question is 1 point.`
+                : won
+                  ? `First try is 10, then 8, 6, 4, 2, 1. You got it in ${history.length}.`
+                  : "First try is 10, then 8, 6, 4, 2, 1. Missed this one."
             }
           />
           <NextPuzzleCountdown
             puzzleDate={puzzleDate}
             autoAdvance={!requestedDate || requestedDate === denverDate()}
           />
-          {bonusRounds && bonusCountry ? (
+          {bonusRounds && bonusCountry && bonusPicks.length < bonusRounds.length ? (
             <button className="btn primary" type="button" onClick={() => setBonusOpen(true)}>
-              {bonusPicks.length >= bonusRounds.length ? "Bonus results" : "Play bonus round"}
+              Play bonus round
             </button>
           ) : null}
-          <button className={bonusRounds ? "btn ghost" : "btn primary"} type="button" onClick={() => void share()}>
+          <button
+            className={
+              bonusRounds && bonusPicks.length < bonusRounds.length ? "btn ghost" : "btn primary"
+            }
+            type="button"
+            onClick={() => void share()}
+          >
             {copied ? "Copied!" : "Share"}
           </button>
           <Link className="btn ghost" to="/">

@@ -76,9 +76,9 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
             </li>
           </ol>
           <p className="howto-rounds">
-            Score out of 10: first try is 10, then 8, 6, 4, 2, 1. One note a day, the same for
-            everyone. Refresh keeps your guesses. Rates are a daily snapshot, so they can differ
-            from live quotes. <Link to="/scoring">Scoring rules</Link>.
+            Score out of 14: first try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.
+            One note a day, the same for everyone. Refresh keeps your guesses. Rates are a daily
+            snapshot, so they can differ from live quotes. <Link to="/scoring">Scoring rules</Link>.
           </p>
         </div>
       </div>

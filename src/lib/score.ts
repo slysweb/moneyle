@@ -3,8 +3,10 @@ export const GUESSR_ROUNDS = 5;
 export const GUESSR_ROUND_MAX = 2;
 export const GUESSR_MAX = GUESSR_ROUNDS * GUESSR_ROUND_MAX;
 export const GUESSR_NEAR_PCT = 20;
-export const MONEYLE_MAX = 10;
+export const MONEYLE_NOTE_MAX = 10;
 export const MONEYLE_POINTS = [10, 8, 6, 4, 2, 1] as const;
+export const MONEYLE_BONUS_MAX = 4;
+export const MONEYLE_MAX = MONEYLE_NOTE_MAX + MONEYLE_BONUS_MAX;
 export const CONNECTIONS_GROUPS = 4;
 export const CONNECTIONS_PER_GROUP = 2;
 export const CONNECTIONS_MAX = CONNECTIONS_GROUPS * CONNECTIONS_PER_GROUP;
@@ -32,10 +34,22 @@ export function guessrScore(
   return { score, max: GUESSR_MAX };
 }
 
-export function moneyleScore(won: boolean, guesses: number): { score: number; max: number } {
-  if (!won || guesses < 1) return { score: 0, max: MONEYLE_MAX };
+export function moneyleNoteScore(won: boolean, guesses: number): number {
+  if (!won || guesses < 1) return 0;
   const index = Math.min(guesses, MONEYLE_POINTS.length) - 1;
-  return { score: MONEYLE_POINTS[index] ?? 0, max: MONEYLE_MAX };
+  return MONEYLE_POINTS[index] ?? 0;
+}
+
+export function moneyleScore(
+  won: boolean,
+  guesses: number,
+  bonusCorrect = 0,
+  bonusMax = 0
+): { score: number; max: number; note: number; bonus: number } {
+  const note = moneyleNoteScore(won, guesses);
+  const extra = Math.max(0, bonusMax);
+  const bonus = extra > 0 ? Math.min(Math.max(0, bonusCorrect), extra) : 0;
+  return { score: note + bonus, max: MONEYLE_NOTE_MAX + extra, note, bonus };
 }
 
 export function connectionsScore(solvedGroups: number): { score: number; max: number } {

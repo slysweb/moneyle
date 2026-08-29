@@ -6,7 +6,9 @@ import {
   GUESSR_MAX,
   GUESSR_NEAR_PCT,
   GUESSR_ROUND_MAX,
+  MONEYLE_BONUS_MAX,
   MONEYLE_MAX,
+  MONEYLE_NOTE_MAX,
   MONEYLE_POINTS,
   MORELESS_MAX,
 } from "../lib/score";
@@ -109,9 +111,11 @@ export default function Scoring() {
         <Link to="/moneyle">Moneyle</Link> — {MONEYLE_MAX} points
       </h2>
       <p>
-        You have six guesses to name the hidden currency. Faster is better. The
-        optional bonus round after the note is revealed is separate and does not
-        change this score.
+        You have six guesses to name the hidden currency. Faster is better, up to{" "}
+        {MONEYLE_NOTE_MAX} points for the note. After it is revealed, a bonus
+        round of {MONEYLE_BONUS_MAX} questions (flag, GDP, population, GDP per
+        person) adds <strong>1 point each</strong>. Skip the bonus and those
+        points stay at 0; the note score still counts.
       </p>
       <div className="score-table-wrap">
         <table className="score-table">
@@ -134,6 +138,14 @@ export default function Scoring() {
             <tr>
               <td>Missed in six</td>
               <td>0</td>
+            </tr>
+            <tr>
+              <td>Each bonus question correct</td>
+              <td>+1</td>
+            </tr>
+            <tr>
+              <td>Note first try + four bonus hits</td>
+              <td>{MONEYLE_MAX}</td>
             </tr>
           </tbody>
         </table>

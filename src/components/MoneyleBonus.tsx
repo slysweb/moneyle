@@ -17,36 +17,7 @@ export default function MoneyleBonus({
   onExit,
 }: MoneyleBonusProps) {
   const done = picks.length >= rounds.length;
-  const score = rounds.filter((round, i) =>
-    round.options.some((opt) => opt.id === picks[i] && opt.correct)
-  ).length;
-
-  if (done) {
-    return (
-      <div className="bonus-wrap">
-        <p className="bonus-kicker">Bonus round · {country}</p>
-        <h2>Bonus complete</h2>
-        <p className="review-score">
-          <strong>{score}</strong>
-          <span> / {rounds.length}</span>
-        </p>
-        <ul className="bonus-recap">
-          {rounds.map((round, i) => {
-            const ok = round.options.some((opt) => opt.id === picks[i] && opt.correct);
-            return (
-              <li key={round.kind} className={ok ? "ok" : "no"}>
-                <span>{round.title}</span>
-                <strong>{ok ? "✓" : "✗"}</strong>
-              </li>
-            );
-          })}
-        </ul>
-        <button type="button" className="btn primary" onClick={onExit}>
-          Back
-        </button>
-      </div>
-    );
-  }
+  if (done) return null;
 
   const round = rounds[picks.length];
   return (
@@ -58,6 +29,29 @@ export default function MoneyleBonus({
       onPick={onPick}
       onExit={onExit}
     />
+  );
+}
+
+export function MoneyleBonusRecap({ rounds, picks }: { rounds: BonusRound[]; picks: string[] }) {
+  return (
+    <ul className="bonus-facts" aria-label="Bonus answers">
+      {rounds.map((round, i) => {
+        const correct = round.options.find((opt) => opt.correct);
+        if (!correct) return null;
+        const ok = round.options.some((opt) => opt.id === picks[i] && opt.correct);
+        return (
+          <li key={round.kind} className={ok ? "ok" : "no"}>
+            {round.kind === "flag" && correct.imageUrl ? (
+              <img src={correct.imageUrl} alt={correct.label} />
+            ) : (
+              <p>
+                {round.title}: {correct.label}
+              </p>
+            )}
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
@@ -122,7 +116,7 @@ function BonusQuestion({
         </button>
         {picked ? (
           <button type="button" className="btn primary" onClick={() => onPick(picked.id)}>
-            {index + 1 >= total ? "See results" : "Next"}
+            {index + 1 >= total ? "Done" : "Next"}
           </button>
         ) : null}
       </div>
