@@ -228,6 +228,7 @@ export default function Guessr() {
   const [finished, setFinished] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [introOpen, setIntroOpen] = useState(true);
   const [remainingMs, setRemainingMs] = useState(MEMORIZE_MS);
   const inputRef = useRef<HTMLInputElement>(null);
   const timers = useRef<number[]>([]);
@@ -237,16 +238,27 @@ export default function Guessr() {
     timers.current = [];
   };
 
+  const closeHelp = useCallback(() => {
+    setShowHelp(false);
+    setIntroOpen(false);
+  }, []);
+
   // A submitted guess is a finished round, so the round to resume at is simply
   // however many results are already banked.
   const restore = useCallback((date: string) => {
     const saved = loadProgress<SavedRun>("guessr", date);
-    if (!saved?.results?.length) return;
+    if (!saved?.results?.length) {
+      setIntroOpen(true);
+      setRemainingMs(MEMORIZE_MS);
+      return;
+    }
     const results = saved.results.slice(0, ROUNDS);
     setResults(results);
     setRound(Math.min(results.length, ROUNDS - 1));
     setFinished(results.length >= ROUNDS);
+    setRemainingMs(MEMORIZE_MS);
     setPhase("memorize");
+    setIntroOpen(false);
   }, []);
 
   useEffect(() => {
@@ -261,6 +273,9 @@ export default function Guessr() {
     setGuess("");
     setResults([]);
     setFinished(false);
+    setIntroOpen(true);
+    setShowHelp(false);
+    setRemainingMs(MEMORIZE_MS);
     fetchGuessrToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
@@ -288,7 +303,7 @@ export default function Guessr() {
   const minorDigits = currency?.minorDigits ?? 2;
 
   useEffect(() => {
-    if (!puzzles || finished || phase !== "memorize") return;
+    if (!puzzles || finished || phase !== "memorize" || introOpen) return;
     clearTimers();
     setRemainingMs(MEMORIZE_MS);
     const started = performance.now();
@@ -309,7 +324,7 @@ export default function Guessr() {
       cancelAnimationFrame(frame);
       clearTimeout(fallback);
     };
-  }, [puzzles, round, phase, finished]);
+  }, [puzzles, round, phase, finished, introOpen]);
 
   useEffect(() => {
     if (phase === "guess") {
@@ -333,6 +348,7 @@ export default function Guessr() {
     }
     setRound((r) => r + 1);
     setGuess("");
+    setRemainingMs(MEMORIZE_MS);
     setPhase("memorize");
   }, [round]);
 
@@ -422,7 +438,6 @@ export default function Guessr() {
 
   const last = results[results.length - 1];
   const secondsLeft = Math.ceil(remainingMs / 1000);
-  const timerPct = (remainingMs / MEMORIZE_MS) * 100;
 
   return (
     <main className="game-page guessr-page">
@@ -447,21 +462,27 @@ export default function Guessr() {
       </div>
 
       <div className="guessr-stage">
-        {phase === "memorize" && (
+        {phase === "memorize" && !introOpen && (
           <div className="guessr-timer" aria-live="polite">
-            <div className="guessr-timer-bar" style={{ width: `${timerPct}%` }} />
+            <div
+              key={round}
+              className="guessr-timer-bar"
+              style={{ transform: `scaleX(${Math.max(0, remainingMs / MEMORIZE_MS)})` }}
+            />
             <span>{secondsLeft}s</span>
           </div>
         )}
 
-        <MoneyPile
-          pieces={pieces}
-          hidden={phase === "guess"}
-          quip={phase === "reveal" && last ? guessrQuip(last.pct, round) : undefined}
-        />
+        {!introOpen && (
+          <MoneyPile
+            pieces={pieces}
+            hidden={phase === "guess"}
+            quip={phase === "reveal" && last ? guessrQuip(last.pct, round) : undefined}
+          />
+        )}
 
         <div className="guessr-dock">
-          {phase === "memorize" && (
+          {phase === "memorize" && !introOpen && (
             <p className="guessr-dock-hint">Count the cash — it disappears in {secondsLeft}s</p>
           )}
 
@@ -517,7 +538,7 @@ export default function Guessr() {
         </div>
       </div>
 
-      {showHelp && <HowToPlayGuessr onClose={() => setShowHelp(false)} />}
+      {(showHelp || introOpen) && <HowToPlayGuessr onClose={closeHelp} />}
     </main>
   );
 }

@@ -48,6 +48,7 @@ interface CountryFact {
 /** Banknote currencies we can map onto a GDP/flag country. */
 const SOLO: Record<string, { iso2: string; country: string }> = {
   USD: { iso2: "us", country: "the United States" },
+  GBP: { iso2: "gb", country: "the United Kingdom" },
   JPY: { iso2: "jp", country: "Japan" },
   CNY: { iso2: "cn", country: "China" },
   CAD: { iso2: "ca", country: "Canada" },

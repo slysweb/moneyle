@@ -47,6 +47,7 @@ interface DenomRow {
 /** Currencies we have cash art for, mapped onto a GDP/flag country. */
 const SOLO_CURRENCIES: { slug: string; iso2: string; country: string; shortName: string }[] = [
   { slug: "usd", iso2: "us", country: "United States", shortName: "Dollar" },
+  { slug: "gbp", iso2: "gb", country: "United Kingdom", shortName: "Pound" },
   { slug: "cny", iso2: "cn", country: "China", shortName: "Yuan" },
   { slug: "jpy", iso2: "jp", country: "Japan", shortName: "Yen" },
   { slug: "cad", iso2: "ca", country: "Canada", shortName: "Dollar" },

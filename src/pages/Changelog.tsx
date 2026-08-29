@@ -2,6 +2,14 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "August 29, 2026",
+    iso: "2026-08-29",
+    items: [
+      "Money Guessr now opens How to play before the first pile. The five-second countdown starts after you close it, and later rounds keep the same shrinking timer bar as round one.",
+      "Money Guessr, Moneyle, and MoneyConnections now include British pound notes and coins. Mexican peso cash was recut for a clearer look, and the 5-peso coin was added.",
+    ],
+  },
+  {
     date: "August 28, 2026",
     iso: "2026-08-28",
     items: [
