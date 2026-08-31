@@ -1,0 +1,71 @@
+export interface PageMeta {
+  title: string;
+  description: string;
+}
+
+export const SITE_ORIGIN = "https://moneygames.cc";
+
+export const HOME_META: PageMeta = {
+  title: "MoneyGames — Games about money",
+  description:
+    "Free browser games about money. Play More/Less, Money Guessr, Moneyle, and MoneyConnections — test your intuition for wealth, cash, and currencies.",
+};
+
+export const GAME_PAGES = {
+  moreless: {
+    path: "/moreless",
+    title: "More/Less — MoneyGames",
+    description:
+      "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition.",
+  },
+  guessr: {
+    path: "/guessr",
+    title: "Money Guessr — MoneyGames",
+    description:
+      "A pile of bills and coins flashes for five seconds. Guess the total. Five rounds, scored by how close you are.",
+  },
+  moneyle: {
+    path: "/moneyle",
+    title: "Moneyle — MoneyGames",
+    description: "A frosted banknote and six guesses. Use live exchange rates to find the hidden currency.",
+  },
+  connections: {
+    path: "/connections",
+    title: "MoneyConnections — MoneyGames",
+    description:
+      "A 4×4 grid of flags, cash, GDP, and currency names. Group the four tiles that belong to the same country.",
+  },
+} as const satisfies Record<string, PageMeta & { path: string }>;
+
+export function canonicalUrl(pathname: string): string {
+  const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  return `${SITE_ORIGIN}${path || "/"}`;
+}
+
+export function metaForPath(pathname: string): (PageMeta & { path: string }) | null {
+  const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  for (const page of Object.values(GAME_PAGES)) {
+    if (page.path === path) return page;
+  }
+  return null;
+}
+
+function attr(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
+/** Rewrites title, description, Open Graph, Twitter, and canonical tags in the SPA shell. */
+export function applyPageMeta(html: string, page: PageMeta, pathname: string): string {
+  const url = attr(canonicalUrl(pathname));
+  const title = attr(page.title);
+  const description = attr(page.description);
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
+    .replace(/(<meta\s+name="description"[\s\S]*?content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/(<meta\s+property="og:title"[\s\S]*?content=")[^"]*(")/, `$1${title}$2`)
+    .replace(/(<meta\s+property="og:description"[\s\S]*?content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/(<meta\s+property="og:url"[\s\S]*?content=")[^"]*(")/, `$1${url}$2`)
+    .replace(/(<meta\s+name="twitter:title"[\s\S]*?content=")[^"]*(")/, `$1${title}$2`)
+    .replace(/(<meta\s+name="twitter:description"[\s\S]*?content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/(<link\s+rel="canonical"[\s\S]*?href=")[^"]*(")/, `$1${url}$2`);
+}

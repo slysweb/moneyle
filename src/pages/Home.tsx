@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
+import { HOME_META } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 
 const games = [
@@ -39,10 +40,7 @@ const games = [
 ] as const;
 
 export default function Home() {
-  usePageMeta(
-    "MoneyGames — Games about money",
-    "Free browser games about money. Play More/Less, Money Guessr, Moneyle, and MoneyConnections — test your intuition for wealth, cash, and currencies."
-  );
+  usePageMeta(HOME_META.title, HOME_META.description);
 
   return (
     <main className="page">

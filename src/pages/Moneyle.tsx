@@ -13,6 +13,7 @@ import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import MoneyleBonus, { MoneyleBonusRecap } from "../components/MoneyleBonus";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
+import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
@@ -53,10 +54,7 @@ function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: 
 }
 
 export default function Moneyle() {
-  usePageMeta(
-    "Moneyle — MoneyGames",
-    "A frosted banknote and six guesses. Use live exchange rates to find the hidden currency."
-  );
+  usePageMeta(GAME_PAGES.moneyle.title, GAME_PAGES.moneyle.description);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

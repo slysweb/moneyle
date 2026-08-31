@@ -9,6 +9,7 @@ import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayConnections from "../components/HowToPlayConnections";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
+import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
@@ -57,10 +58,7 @@ function tilesOfGroup(tiles: ConnectionTile[], groupId: string): ConnectionTile[
 }
 
 export default function Connections() {
-  usePageMeta(
-    "MoneyConnections — MoneyGames",
-    "A 4×4 grid of flags, cash, GDP, and currency names. Group the four tiles that belong to the same country."
-  );
+  usePageMeta(GAME_PAGES.connections.title, GAME_PAGES.connections.description);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

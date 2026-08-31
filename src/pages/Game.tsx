@@ -5,6 +5,7 @@ import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlay from "../components/HowToPlay";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
+import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
@@ -96,10 +97,7 @@ function cardClass(
 }
 
 export default function Game() {
-  usePageMeta(
-    "More/Less — MoneyGames",
-    "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition."
-  );
+  usePageMeta(GAME_PAGES.moreless.title, GAME_PAGES.moreless.description);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

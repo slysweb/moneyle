@@ -5,6 +5,7 @@ import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
+import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
@@ -212,10 +213,7 @@ function DenomStack({
 }
 
 export default function Guessr() {
-  usePageMeta(
-    "Money Guessr — MoneyGames",
-    "A pile of bills and coins flashes for five seconds. Guess the total. Five rounds, scored by how close you are."
-  );
+  usePageMeta(GAME_PAGES.guessr.title, GAME_PAGES.guessr.description);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;
