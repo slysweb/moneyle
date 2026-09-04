@@ -12,6 +12,7 @@ export const POPULATION: Record<string, number> = {
   bo: 12581843,
   br: 212812405,
   by: 9085991,
+  bz: 422924,
   ca: 41651653,
   cd: 112832473,
   ch: 9092436,

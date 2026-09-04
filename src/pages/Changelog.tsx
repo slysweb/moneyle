@@ -6,6 +6,7 @@ const entries = [
     iso: "2026-09-04",
     items: [
       "Added Articles: rankings behind the games, including a live Forbes real-time top 100, plus GDP, market caps, athletes, movies, and notes on Guessr, Moneyle, and MoneyConnections.",
+      "Money Guessr, Moneyle, and MoneyConnections now include Belize dollar notes and coins.",
     ],
   },
   {

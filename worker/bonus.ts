@@ -63,6 +63,7 @@ const SOLO: Record<string, { iso2: string; country: string }> = {
   UAH: { iso2: "ua", country: "Ukraine" },
   EGP: { iso2: "eg", country: "Egypt" },
   ZAR: { iso2: "za", country: "South Africa" },
+  BZD: { iso2: "bz", country: "Belize" },
 };
 
 function parseIso2(meta: string | null): string | null {

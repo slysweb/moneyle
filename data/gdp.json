@@ -1098,5 +1098,16 @@
     "displayValue": "$48.1B",
     "flagUrl": "/moreless/flags/ly.webp",
     "sourceImageUrl": "https://flagcdn.com/w320/ly.png"
+  },
+  {
+    "name": "Belize",
+    "iso2": "bz",
+    "iso3": "BLZ",
+    "region": "Latin America & Caribbean",
+    "year": 2025,
+    "gdpUsd": 3326500000,
+    "displayValue": "$3.33B",
+    "flagUrl": "/moreless/flags/bz.webp",
+    "sourceImageUrl": "https://flagcdn.com/w320/bz.png"
   }
 ]

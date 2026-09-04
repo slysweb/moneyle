@@ -387,6 +387,28 @@ const CATALOG = [
       bill("bill-200", "R200 bill", 20000, "bill-200.webp"),
     ],
   },
+  {
+    slug: "bzd",
+    name: "Belize Dollar",
+    code: "BZD",
+    symbol: "BZ$",
+    minorDigits: 2,
+    country: "Belize",
+    denoms: [
+      coin("coin-cent-1", "1 cent", 1, "coin-cent-1.webp"),
+      coin("coin-cents-5", "5 cents", 5, "coin-cents-5.webp"),
+      coin("coin-cents-10", "10 cents", 10, "coin-cents-10.webp"),
+      coin("coin-cents-25", "25 cents", 25, "coin-cents-25.webp"),
+      coin("coin-cents-50", "50 cents", 50, "coin-cents-50.webp"),
+      coin("coin-dollar-1", "BZ$1 coin", 100, "coin-dollar-1.webp"),
+      bill("bill-2", "BZ$2 bill", 200, "bill-2.webp"),
+      bill("bill-5", "BZ$5 bill", 500, "bill-5.webp"),
+      bill("bill-10", "BZ$10 bill", 1000, "bill-10.webp"),
+      bill("bill-20", "BZ$20 bill", 2000, "bill-20.webp"),
+      bill("bill-50", "BZ$50 bill", 5000, "bill-50.webp"),
+      bill("bill-100", "BZ$100 bill", 10000, "bill-100.webp"),
+    ],
+  },
 ];
 
 function sqlStr(s) {

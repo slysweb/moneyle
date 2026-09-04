@@ -493,3 +493,31 @@ SELECT id, 'bill-100', 'bill', 'R100 bill', 10000, '/money/zar/bill-100.webp', 1
 INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
 SELECT id, 'bill-200', 'bill', 'R200 bill', 20000, '/money/zar/bill-200.webp', 11 FROM currencies WHERE slug = 'zar';
 
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('bzd', 'Belize Dollar', 'BZD', 'BZ$', 2, 'Belize', 1, 20);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cent-1', 'coin', '1 cent', 1, '/money/bzd/coin-cent-1.webp', 1 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-5', 'coin', '5 cents', 5, '/money/bzd/coin-cents-5.webp', 2 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-10', 'coin', '10 cents', 10, '/money/bzd/coin-cents-10.webp', 3 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-25', 'coin', '25 cents', 25, '/money/bzd/coin-cents-25.webp', 4 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-50', 'coin', '50 cents', 50, '/money/bzd/coin-cents-50.webp', 5 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollar-1', 'coin', 'BZ$1 coin', 100, '/money/bzd/coin-dollar-1.webp', 6 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-2', 'bill', 'BZ$2 bill', 200, '/money/bzd/bill-2.webp', 7 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-5', 'bill', 'BZ$5 bill', 500, '/money/bzd/bill-5.webp', 8 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10', 'bill', 'BZ$10 bill', 1000, '/money/bzd/bill-10.webp', 9 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20', 'bill', 'BZ$20 bill', 2000, '/money/bzd/bill-20.webp', 10 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', 'BZ$50 bill', 5000, '/money/bzd/bill-50.webp', 11 FROM currencies WHERE slug = 'bzd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', 'BZ$100 bill', 10000, '/money/bzd/bill-100.webp', 12 FROM currencies WHERE slug = 'bzd';
+
