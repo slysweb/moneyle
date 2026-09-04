@@ -10,6 +10,7 @@ import { handleFeedback } from "./feedback";
 import { handleAuth, sessionUser } from "./auth";
 import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
+import { handleArticleHtml, isArticlePath } from "./articleSsr";
 import { handleRanking } from "./rankings";
 
 interface Env {
@@ -221,6 +222,17 @@ export default {
         return json({ error: "Internal error" }, { status: 500 });
       }
       return json({ error: "Not found" }, { status: 404 });
+    }
+
+    if (
+      isArticlePath(url.pathname) &&
+      (request.method === "GET" || request.method === "HEAD")
+    ) {
+      try {
+        return await handleArticleHtml(request, env, ctx);
+      } catch (err) {
+        console.error("article SSR", err instanceof Error ? err.message : err);
+      }
     }
 
     return env.ASSETS.fetch(request);

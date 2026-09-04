@@ -25,6 +25,17 @@ export interface RankingItem {
   imageUrl: string | null;
 }
 
+export interface RankingPayload {
+  slug: string;
+  title: string;
+  metricLabel: string;
+  sourceName: string | null;
+  sourceUrl: string | null;
+  live: boolean;
+  fetchedAt: string;
+  items: RankingItem[];
+}
+
 const ALLOWED = new Set([
   "billionaires",
   "country-gdp",
@@ -60,14 +71,12 @@ function fromRows(rows: ItemRow[]): RankingItem[] {
   });
 }
 
-export async function handleRanking(
+export async function loadRanking(
   env: { DB: D1Database },
   slug: string,
   ctx?: ExecutionContext
-): Promise<Response> {
-  if (!ALLOWED.has(slug)) {
-    return Response.json({ error: "Not found" }, { status: 404 });
-  }
+): Promise<RankingPayload | null> {
+  if (!ALLOWED.has(slug)) return null;
 
   const category = await env.DB.prepare(
     `SELECT id, slug, title, metric_label, source_name, source_url
@@ -75,9 +84,7 @@ export async function handleRanking(
   )
     .bind(slug)
     .first<CategoryRow>();
-  if (!category) {
-    return Response.json({ error: "Not found" }, { status: 404 });
-  }
+  if (!category) return null;
 
   const live = slug === "billionaires";
   if (live && ctx) {
@@ -96,18 +103,29 @@ export async function handleRanking(
     .bind(category.id)
     .all<ItemRow>();
 
-  const cache = live ? "public, max-age=120" : "public, max-age=600";
-  return Response.json(
-    {
-      slug: category.slug,
-      title: category.title,
-      metricLabel: category.metric_label,
-      sourceName: category.source_name,
-      sourceUrl: category.source_url,
-      live,
-      fetchedAt: new Date().toISOString(),
-      items: fromRows(results),
-    },
-    { headers: { "content-type": "application/json; charset=utf-8", "cache-control": cache } }
-  );
+  return {
+    slug: category.slug,
+    title: category.title,
+    metricLabel: category.metric_label,
+    sourceName: category.source_name,
+    sourceUrl: category.source_url,
+    live,
+    fetchedAt: new Date().toISOString(),
+    items: fromRows(results),
+  };
+}
+
+export async function handleRanking(
+  env: { DB: D1Database },
+  slug: string,
+  ctx?: ExecutionContext
+): Promise<Response> {
+  const data = await loadRanking(env, slug, ctx);
+  if (!data) {
+    return Response.json({ error: "Not found" }, { status: 404 });
+  }
+  const cache = data.live ? "public, max-age=120" : "public, max-age=600";
+  return Response.json(data, {
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": cache },
+  });
 }

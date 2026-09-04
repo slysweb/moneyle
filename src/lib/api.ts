@@ -90,6 +90,12 @@ export function fetchRanking(slug: string): Promise<RankingResponse> {
   return getJson(`/api/rankings/${encodeURIComponent(slug)}`);
 }
 
+declare global {
+  interface Window {
+    __RANKING__?: RankingResponse;
+  }
+}
+
 function dateQuery(date?: string | null): string {
   if (!date) return "";
   return `?date=${encodeURIComponent(date)}`;

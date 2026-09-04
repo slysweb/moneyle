@@ -12,5 +12,5 @@
     "isolatedModules": true,
     "tsBuildInfoFile": "node_modules/.tmp/tsconfig.worker.tsbuildinfo"
   },
-  "include": ["worker"]
+  "include": ["worker", "src/lib/articles.ts", "src/lib/articleHtml.ts", "src/lib/pageMeta.ts"]
 }

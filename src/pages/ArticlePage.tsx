@@ -38,10 +38,26 @@ function ArticleBody({ article }: { article: Article }) {
         <p key={para}>{para}</p>
       ))}
       {article.kind === "ranking" && article.rankingSlug ? (
-        <RankingBlock article={article} slug={article.rankingSlug} />
+        <RankingBlock key={article.rankingSlug} article={article} slug={article.rankingSlug} />
       ) : null}
-      {article.slug === "world-currencies" ? <WorldCurrenciesBody /> : null}
-      {article.slug === "four-tiles-one-country" ? <ConnectionsBody /> : null}
+      {article.sections?.map((section) => (
+        <section key={section.heading ?? section.paragraphs[0]}>
+          {section.heading ? <h2>{section.heading}</h2> : null}
+          {section.paragraphs.map((para) => (
+            <p key={para}>{para}</p>
+          ))}
+        </section>
+      ))}
+      {article.related?.length ? (
+        <p>
+          {article.related.map((link, i) => (
+            <span key={link.href}>
+              {i > 0 ? " · " : null}
+              <Link to={link.href}>{link.label}</Link>
+            </span>
+          ))}
+        </p>
+      ) : null}
       {article.note ? <p className="article-note">{article.note}</p> : null}
       <p className="article-play">
         <Link to={article.gameTo}>Play {article.gameLabel} →</Link>
@@ -52,18 +68,28 @@ function ArticleBody({ article }: { article: Article }) {
   );
 }
 
+function bootRanking(slug: string): RankingResponse | null {
+  const boot = typeof window !== "undefined" ? window.__RANKING__ : undefined;
+  return boot?.slug === slug ? boot : null;
+}
+
 function RankingBlock({ article, slug }: { article: Article; slug: string }) {
-  const [data, setData] = useState<RankingResponse | null>(null);
+  const [data, setData] = useState<RankingResponse | null>(() => bootRanking(slug));
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    const boot = bootRanking(slug);
+    if (boot && !boot.live) return;
     let cancelled = false;
     fetchRanking(slug)
       .then((res) => {
-        if (!cancelled) setData(res);
+        if (!cancelled) {
+          setError(false);
+          setData(res);
+        }
       })
       .catch(() => {
-        if (!cancelled) setError(true);
+        if (!cancelled && !boot) setError(true);
       });
     return () => {
       cancelled = true;
@@ -136,59 +162,6 @@ function RankingBlock({ article, slug }: { article: Article; slug: string }) {
           </tbody>
         </table>
       </div>
-    </>
-  );
-}
-
-function WorldCurrenciesBody() {
-  return (
-    <>
-      <h2>Money Guessr</h2>
-      <p>
-        A pile is built from one currency’s photographed bills and coins — dollars, yen, pounds,
-        pesos, and others we have on file. You get five seconds. Then you type a total. Scoring
-        cares how close you are, not whether you named every denomination.
-      </p>
-      <p>
-        The hard part is usually mixed coins and similar-looking notes. A $1 and a $10 can share a
-        palette until you remember the portrait; yen and won drop the cents and jump in size.
-      </p>
-      <h2>Moneyle</h2>
-      <p>
-        One banknote, frosted. Six guesses. Each miss tells you whether that currency is stronger
-        or weaker than the hidden one, using a mid-market rate snapshot from around 00:00 UTC. A
-        bonus round after the reveal asks about the country: flag, GDP, population, GDP per person.
-      </p>
-      <p>
-        Euro days pick one eurozone country for the bonus, the same for everyone. The note itself
-        is still a euro.
-      </p>
-      <p>
-        Play <Link to="/guessr">Money Guessr</Link> or <Link to="/moneyle">Moneyle</Link> — both
-        reset at midnight Denver time.
-      </p>
-    </>
-  );
-}
-
-function ConnectionsBody() {
-  return (
-    <>
-      <h2>What you’re grouping</h2>
-      <p>
-        The board is 16 tiles: four countries × four clues. A flag is obvious once you know it. A
-        GDP figure is a number in the same compact style as More/Less. A currency name is a word.
-        Cash is a crop of a real bill or coin from that country.
-      </p>
-      <p>
-        Four mistakes end the run. There is no custom puzzle and no infinite mode — one grid per
-        Denver day, the same for everyone.
-      </p>
-      <p>
-        If you want the raw GDP table those tiles draw from, see{" "}
-        <Link to="/articles/largest-economies">the world’s largest economies</Link>. Then play{" "}
-        <Link to="/connections">MoneyConnections</Link>.
-      </p>
     </>
   );
 }

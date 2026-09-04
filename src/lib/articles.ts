@@ -19,6 +19,8 @@ export interface Article {
   metricLabel?: string;
   intros: string[];
   note?: string;
+  sections?: { heading?: string; paragraphs: string[] }[];
+  related?: { href: string; label: string }[];
 }
 
 export const ARTICLES_INDEX = {
@@ -132,6 +134,26 @@ export const ARTICLES: Article[] = [
     intros: [
       "Two MoneyGames use real bills and coins. Money Guessr flashes a mixed pile for five seconds, then asks for the total. Moneyle hides one note behind frost and gives you six guesses plus live exchange-rate clues.",
     ],
+    sections: [
+      {
+        heading: "Money Guessr",
+        paragraphs: [
+          "A pile is built from one currency’s photographed bills and coins — dollars, yen, pounds, pesos, and others we have on file. You get five seconds. Then you type a total. Scoring cares how close you are, not whether you named every denomination.",
+          "The hard part is usually mixed coins and similar-looking notes. A $1 and a $10 can share a palette until you remember the portrait; yen and won drop the cents and jump in size.",
+        ],
+      },
+      {
+        heading: "Moneyle",
+        paragraphs: [
+          "One banknote, frosted. Six guesses. Each miss tells you whether that currency is stronger or weaker than the hidden one, using a mid-market rate snapshot from around 00:00 UTC. A bonus round after the reveal asks about the country: flag, GDP, population, GDP per person.",
+          "Euro days pick one eurozone country for the bonus, the same for everyone. The note itself is still a euro.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/guessr", label: "Money Guessr" },
+      { href: "/moneyle", label: "Moneyle" },
+    ],
   },
   {
     slug: "four-tiles-one-country",
@@ -145,6 +167,19 @@ export const ARTICLES: Article[] = [
     kind: "essay",
     intros: [
       "Each MoneyConnections group is one country told four ways: a flag, a photographed bill or coin, a GDP figure, and the currency’s name. Find all four groups before four mistakes.",
+    ],
+    sections: [
+      {
+        heading: "What you’re grouping",
+        paragraphs: [
+          "The board is 16 tiles: four countries × four clues. A flag is obvious once you know it. A GDP figure is a number in the same compact style as More/Less. A currency name is a word. Cash is a crop of a real bill or coin from that country.",
+          "Four mistakes end the run. There is no custom puzzle and no infinite mode — one grid per Denver day, the same for everyone.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/articles/largest-economies", label: "The world’s largest economies" },
+      { href: "/connections", label: "MoneyConnections" },
     ],
   },
 ];
