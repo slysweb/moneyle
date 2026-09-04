@@ -1,3 +1,5 @@
+import { ARTICLES, ARTICLES_INDEX } from "./articles";
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -37,6 +39,22 @@ export const GAME_PAGES = {
   },
 } as const satisfies Record<string, PageMeta & { path: string }>;
 
+export function crawlerPages(): (PageMeta & { path: string })[] {
+  return [
+    ...Object.values(GAME_PAGES),
+    {
+      path: "/articles",
+      title: `${ARTICLES_INDEX.title} — MoneyGames`,
+      description: ARTICLES_INDEX.description,
+    },
+    ...ARTICLES.map((article) => ({
+      path: `/articles/${article.slug}`,
+      title: `${article.title} — MoneyGames`,
+      description: article.description,
+    })),
+  ];
+}
+
 export function canonicalUrl(pathname: string): string {
   const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
   return `${SITE_ORIGIN}${path || "/"}`;
@@ -44,10 +62,7 @@ export function canonicalUrl(pathname: string): string {
 
 export function metaForPath(pathname: string): (PageMeta & { path: string }) | null {
   const path = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
-  for (const page of Object.values(GAME_PAGES)) {
-    if (page.path === path) return page;
-  }
-  return null;
+  return crawlerPages().find((page) => page.path === path) ?? null;
 }
 
 function attr(value: string): string {

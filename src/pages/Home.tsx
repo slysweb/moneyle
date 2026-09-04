@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
+import { ARTICLES, articlePath } from "../lib/articles";
 import { HOME_META } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 
@@ -72,6 +73,24 @@ export default function Home() {
             <span className="game-card-cta">{game.cta}</span>
           </Link>
         ))}
+      </section>
+
+      <section className="article-teaser">
+        <div className="article-teaser-head">
+          <h2>Articles</h2>
+          <Link to="/articles">All articles →</Link>
+        </div>
+        <ul>
+          {ARTICLES.slice(0, 3).map((article) => (
+            <li key={article.slug}>
+              <Link to={articlePath(article.slug)}>
+                {article.live ? <span className="article-live">Live</span> : null}
+                {article.title}
+              </Link>
+              <p>{article.blurb}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <SiteFooter />

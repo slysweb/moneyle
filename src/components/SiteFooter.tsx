@@ -4,6 +4,7 @@ import SocialLinks from "./SocialLinks";
 
 const links = [
   { to: "/archive", label: "Archive" },
+  { to: "/articles", label: "Articles" },
   { to: "/about", label: "About us" },
   { to: "/scoring", label: "Scoring rules" },
   { to: "/changelog", label: "Changelog" },

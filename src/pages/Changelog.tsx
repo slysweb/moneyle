@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "September 4, 2026",
+    iso: "2026-09-04",
+    items: [
+      "Added Articles: rankings behind the games, including a live Forbes real-time top 100, plus GDP, market caps, athletes, movies, and notes on Guessr, Moneyle, and MoneyConnections.",
+    ],
+  },
+  {
     date: "August 29, 2026",
     iso: "2026-08-29",
     items: [

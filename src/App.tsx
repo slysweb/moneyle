@@ -9,6 +9,8 @@ import Connections from "./pages/Connections";
 import About from "./pages/About";
 import Scoring from "./pages/Scoring";
 import Changelog from "./pages/Changelog";
+import Articles from "./pages/Articles";
+import ArticlePage from "./pages/ArticlePage";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Register from "./pages/Register";
@@ -45,6 +47,8 @@ export default function App() {
             <Route path="/guessr" element={<Guessr />} />
             <Route path="/moneyle" element={<Moneyle />} />
             <Route path="/connections" element={<Connections />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:slug" element={<ArticlePage />} />
             <Route path="/about" element={<About />} />
             <Route path="/scoring" element={<Scoring />} />
             <Route path="/changelog" element={<Changelog />} />

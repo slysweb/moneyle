@@ -269,6 +269,11 @@ export interface RefreshResult {
   marketCap: number | string;
 }
 
+export async function refreshBillionaires(db: D1Database): Promise<number> {
+  const incoming = await fetchBillionaires();
+  return syncItems(db, "billionaires", incoming, "name");
+}
+
 /** Fetch live lists and upsert D1. Failures are isolated so one source cannot block the others. */
 export async function refreshLiveStats(db: D1Database): Promise<RefreshResult> {
   const result: RefreshResult = { billionaires: 0, gdp: 0, marketCap: 0 };

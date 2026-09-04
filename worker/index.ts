@@ -10,6 +10,7 @@ import { handleFeedback } from "./feedback";
 import { handleAuth, sessionUser } from "./auth";
 import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
+import { handleRanking } from "./rankings";
 
 interface Env {
   DB: D1Database;
@@ -187,7 +188,7 @@ async function handleMoneyleGuess(env: Env, request: Request, url: URL): Promise
 }
 
 export default {
-  async fetch(request, env): Promise<Response> {
+  async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith("/api/")) {
@@ -205,6 +206,10 @@ export default {
           return json({ error: "Method not allowed" }, { status: 405 });
         }
         if (url.pathname === "/api/categories") return await handleCategories(env);
+        if (url.pathname.startsWith("/api/rankings/")) {
+          const slug = url.pathname.slice("/api/rankings/".length);
+          return await handleRanking(env, slug, ctx);
+        }
         if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env, request, url);
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env, request, url);
         if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env, request, url);

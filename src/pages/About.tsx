@@ -41,6 +41,12 @@ export default function About() {
         </li>
       </ul>
 
+      <h2>Articles</h2>
+      <p>
+        Longer rankings and notes live under <Link to="/articles">Articles</Link>, including a
+        live Forbes top 100 that uses the same billionaire list as More/Less.
+      </p>
+
       <h2>Data</h2>
       <p>
         Figures come from public sources and are meant for play, not as live market data or

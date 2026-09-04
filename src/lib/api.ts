@@ -67,6 +67,29 @@ export function fetchCategories(): Promise<{ categories: Category[] }> {
   return getJson("/api/categories");
 }
 
+export interface RankingItem {
+  rank: number;
+  name: string;
+  subtitle: string | null;
+  displayValue: string;
+  imageUrl: string | null;
+}
+
+export interface RankingResponse {
+  slug: string;
+  title: string;
+  metricLabel: string;
+  sourceName: string | null;
+  sourceUrl: string | null;
+  live: boolean;
+  fetchedAt: string;
+  items: RankingItem[];
+}
+
+export function fetchRanking(slug: string): Promise<RankingResponse> {
+  return getJson(`/api/rankings/${encodeURIComponent(slug)}`);
+}
+
 function dateQuery(date?: string | null): string {
   if (!date) return "";
   return `?date=${encodeURIComponent(date)}`;

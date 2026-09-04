@@ -3,7 +3,7 @@ import path from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import { cloudflare } from "@cloudflare/vite-plugin";
-import { applyPageMeta, GAME_PAGES, metaForPath } from "./src/lib/pageMeta";
+import { applyPageMeta, crawlerPages, metaForPath } from "./src/lib/pageMeta.ts";
 
 function gameHtmlMeta(): Plugin {
   return {
@@ -38,10 +38,12 @@ function gameHtmlMeta(): Plugin {
       const indexPath = path.join(dir, "index.html");
       if (!fs.existsSync(indexPath)) return;
       const html = fs.readFileSync(indexPath, "utf8");
-      for (const page of Object.values(GAME_PAGES)) {
-        const slug = page.path.slice(1);
+      for (const page of crawlerPages()) {
+        const slug = page.path.replace(/^\//, "");
         const rewritten = applyPageMeta(html, page, page.path);
-        fs.writeFileSync(path.join(dir, `${slug}.html`), rewritten);
+        const htmlFile = path.join(dir, `${slug}.html`);
+        fs.mkdirSync(path.dirname(htmlFile), { recursive: true });
+        fs.writeFileSync(htmlFile, rewritten);
         const nested = path.join(dir, slug);
         fs.mkdirSync(nested, { recursive: true });
         fs.writeFileSync(path.join(nested, "index.html"), rewritten);
