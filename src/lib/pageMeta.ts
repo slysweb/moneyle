@@ -18,24 +18,25 @@ export const GAME_PAGES = {
     path: "/moreless",
     title: "More/Less — MoneyGames",
     description:
-      "Compare billionaires, companies, salaries, movies, and GDP. Tap the higher value each round — five levels of money intuition.",
+      "More/Less - A daily more or less money guessing game. Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
   },
   guessr: {
     path: "/guessr",
     title: "Money Guessr — MoneyGames",
     description:
-      "A pile of bills and coins flashes for five seconds. Guess the total. Five rounds, scored by how close you are.",
+      "Money Guessr - A daily money amount guessing game. A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
   },
   moneyle: {
     path: "/moneyle",
     title: "Moneyle — MoneyGames",
-    description: "A frosted banknote and six guesses. Use live exchange rates to find the hidden currency.",
+    description:
+      "Moneyle - A daily currency guessing game. A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
   },
   connections: {
     path: "/connections",
     title: "MoneyConnections — MoneyGames",
     description:
-      "A 4×4 grid of flags, cash, GDP, and currency names. Group the four tiles that belong to the same country.",
+      "MoneyConnections - A daily money connections game. A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
   },
 } as const satisfies Record<string, PageMeta & { path: string }>;
 
