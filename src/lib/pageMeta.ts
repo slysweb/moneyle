@@ -8,7 +8,7 @@ export interface PageMeta {
 export const SITE_ORIGIN = "https://moneygames.cc";
 
 export const HOME_META: PageMeta = {
-  title: "MoneyGames — Games about money",
+  title: "MoneyGames - Games about money",
   description:
     "Free browser games about money. Play More/Less, Money Guessr, Moneyle, and MoneyConnections — test your intuition for wealth, cash, and currencies.",
 };
@@ -16,27 +16,27 @@ export const HOME_META: PageMeta = {
 export const GAME_PAGES = {
   moreless: {
     path: "/moreless",
-    title: "More/Less — MoneyGames",
+    title: "More/Less - A daily more or less money guessing game.",
     description:
-      "More/Less - A daily more or less money guessing game. Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
+      "Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
   },
   guessr: {
     path: "/guessr",
-    title: "Money Guessr — MoneyGames",
+    title: "Money Guessr - A daily money amount guessing game.",
     description:
-      "Money Guessr - A daily money amount guessing game. A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
+      "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
   },
   moneyle: {
     path: "/moneyle",
-    title: "Moneyle — MoneyGames",
+    title: "Moneyle - A daily currency guessing game.",
     description:
-      "Moneyle - A daily currency guessing game. A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
+      "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
   },
   connections: {
     path: "/connections",
-    title: "MoneyConnections — MoneyGames",
+    title: "MoneyConnections - A daily money connections game.",
     description:
-      "MoneyConnections - A daily money connections game. A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
+      "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
   },
 } as const satisfies Record<string, PageMeta & { path: string }>;
 

@@ -11,7 +11,7 @@ const games = [
     icon: "moreless",
     title: "More/Less",
     blurb:
-      "More/Less - A daily more or less money guessing game. Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
+      "Five levels of money comparisons — billionaires, market caps, salaries, box office and GDP. Tap the higher one each round.",
     cta: "Play More/Less →",
   },
   {
@@ -19,7 +19,7 @@ const games = [
     icon: "guessr",
     title: "Money Guessr",
     blurb:
-      "Money Guessr - A daily money amount guessing game. A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
+      "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
     cta: "Play Money Guessr →",
   },
   {
@@ -27,7 +27,7 @@ const games = [
     icon: "moneyle",
     title: "Moneyle",
     blurb:
-      "Moneyle - A daily currency guessing game. A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
+      "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
     cta: "Play Moneyle →",
   },
   {
@@ -35,7 +35,7 @@ const games = [
     icon: "connections",
     title: "MoneyConnections",
     blurb:
-      "MoneyConnections - A daily money connections game. A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
+      "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
     cta: "Play MoneyConnections →",
   },
 ] as const;
