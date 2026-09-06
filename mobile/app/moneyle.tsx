@@ -78,18 +78,17 @@ export default function MoneyleScreen() {
   const remaining = MONEYLE_MAX_GUESSES - history.length;
   const frost = frostFor(history.length, revealed);
 
-  const restore = useCallback((date: string) => {
-    void loadSyncedProgress<SavedRun>("moneyle", date).then((saved) => {
-      if (!saved?.history?.length) return;
-      const loaded = saved.history.slice(0, MONEYLE_MAX_GUESSES);
-      const solved = loaded.some((row) => row.correct);
-      setHistory(loaded);
-      setAnswer(saved.answer ?? null);
-      setWon(solved);
-      setLost(!solved && loaded.length >= MONEYLE_MAX_GUESSES);
-      setBonusPicks(saved.bonusPicks ?? []);
-      setBonusOpen(Boolean(saved.bonusOpen));
-    });
+  const restore = useCallback(async (date: string) => {
+    const saved = await loadSyncedProgress<SavedRun>("moneyle", date);
+    if (!saved?.history?.length) return;
+    const loaded = saved.history.slice(0, MONEYLE_MAX_GUESSES);
+    const solved = loaded.some((row) => row.correct);
+    setHistory(loaded);
+    setAnswer(saved.answer ?? null);
+    setWon(solved);
+    setLost(!solved && loaded.length >= MONEYLE_MAX_GUESSES);
+    setBonusPicks(saved.bonusPicks ?? []);
+    setBonusOpen(Boolean(saved.bonusOpen));
   }, []);
 
   useEffect(() => {
@@ -108,12 +107,13 @@ export default function MoneyleScreen() {
     setBonusPicks([]);
     setBonusOpen(false);
     fetchMoneylePuzzle(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date);
         if (cancelled) return;
         setCurrencies(res.currencies);
         setImageUrl(res.imageUrl);
         setPuzzleDate(res.date);
-        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);

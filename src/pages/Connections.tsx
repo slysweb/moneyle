@@ -102,9 +102,6 @@ export default function Connections() {
     fetchConnectionsToday(requestedDate)
       .then(async (res) => {
         if (cancelled) return;
-        setGroups(res.groups);
-        setTiles(res.tiles);
-        setPuzzleDate(res.date);
         const saved = await loadSyncedProgress<SavedRun>("connections", res.date);
         if (cancelled) return;
         const sig = tileSigOf(res.tiles);
@@ -124,6 +121,9 @@ export default function Connections() {
           setWon(false);
         }
         setSelected([]);
+        setGroups(res.groups);
+        setTiles(res.tiles);
+        setPuzzleDate(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);

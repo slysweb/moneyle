@@ -42,16 +42,15 @@ export default function MoreLessScreen() {
   const [help, setHelp] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const restore = useCallback((date: string, loaded: MorelessLevel[]) => {
-    void loadSyncedProgress<SavedRun>("moreless", date).then((saved) => {
-      if (!saved?.answers?.length) return;
-      const total = loaded.length * ROUNDS_PER_LEVEL;
-      const done = Math.min(saved.answers.length, total);
-      setAnswers(saved.answers.slice(0, done));
-      setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
-      setRoundIndex(done % ROUNDS_PER_LEVEL);
-      setFinished(done >= total);
-    });
+  const restore = useCallback(async (date: string, loaded: MorelessLevel[]) => {
+    const saved = await loadSyncedProgress<SavedRun>("moreless", date);
+    if (!saved?.answers?.length) return;
+    const total = loaded.length * ROUNDS_PER_LEVEL;
+    const done = Math.min(saved.answers.length, total);
+    setAnswers(saved.answers.slice(0, done));
+    setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
+    setRoundIndex(done % ROUNDS_PER_LEVEL);
+    setFinished(done >= total);
   }, []);
 
   useEffect(() => {
@@ -67,11 +66,12 @@ export default function MoreLessScreen() {
     setSelected(null);
     setFinished(false);
     fetchMorelessToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date, res.levels);
         if (cancelled) return;
         setLevels(res.levels);
         setPuzzleDate(res.date);
-        restore(res.date, res.levels);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -179,11 +179,7 @@ export default function MoreLessScreen() {
     return <ErrorView message="Could not load More/Less." />;
   }
 
-  if (!levels || !level || !left || !right) {
-    return <LoadingView />;
-  }
-
-  if (finished) {
+  if (finished && levels) {
     const correctCount = answers.filter((a) => a.correct).length;
     const byLevel = levels.map((lvl, i) => ({
       short: lvl.short,
@@ -222,6 +218,10 @@ export default function MoreLessScreen() {
         </ScrollView>
       </Screen>
     );
+  }
+
+  if (!levels || !level || !left || !right) {
+    return <LoadingView />;
   }
 
   const media = mediaKind(level.slug);

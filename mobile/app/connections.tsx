@@ -123,25 +123,25 @@ export default function ConnectionsScreen() {
     setWon(false);
     setSelected([]);
     fetchConnectionsToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
         if (cancelled) return;
+        const saved = await loadSyncedProgress<SavedRun>("connections", res.date);
+        if (cancelled) return;
+        const sig = tileSigOf(res.tiles);
+        if (saved && saved.tileSig === sig) {
+          setSolvedIds(saved.solvedIds);
+          setMistakes(saved.mistakes);
+          setWrongKeys(saved.wrongKeys);
+          setBoardOrder(saved.boardOrder);
+          setFinished(saved.finished);
+          setWon(saved.won);
+        } else {
+          setBoardOrder(res.tiles.map((t) => t.id));
+        }
+        setSelected([]);
         setGroups(res.groups);
         setTiles(res.tiles);
         setPuzzleDate(res.date);
-        void loadSyncedProgress<SavedRun>("connections", res.date).then((saved) => {
-          const sig = tileSigOf(res.tiles);
-          if (saved && saved.tileSig === sig) {
-            setSolvedIds(saved.solvedIds);
-            setMistakes(saved.mistakes);
-            setWrongKeys(saved.wrongKeys);
-            setBoardOrder(saved.boardOrder);
-            setFinished(saved.finished);
-            setWon(saved.won);
-          } else {
-            setBoardOrder(res.tiles.map((t) => t.id));
-          }
-          setSelected([]);
-        });
       })
       .catch(() => {
         if (!cancelled) setError(true);

@@ -84,18 +84,17 @@ export default function Moneyle() {
   const remaining = MAX_GUESSES - history.length;
   const frost = frostFor(history.length, revealed);
 
-  const restore = useCallback((date: string) => {
-    void loadSyncedProgress<SavedRun>("moneyle", date).then((saved) => {
-      if (!saved?.history?.length) return;
-      const history = saved.history.slice(0, MAX_GUESSES);
-      const solved = history.some((row) => row.correct);
-      setHistory(history);
-      setAnswer(saved.answer ?? null);
-      setWon(solved);
-      setLost(!solved && history.length >= MAX_GUESSES);
-      setBonusPicks(saved.bonusPicks ?? []);
-      setBonusOpen(Boolean(saved.bonusOpen));
-    });
+  const restore = useCallback(async (date: string) => {
+    const saved = await loadSyncedProgress<SavedRun>("moneyle", date);
+    if (!saved?.history?.length) return;
+    const history = saved.history.slice(0, MAX_GUESSES);
+    const solved = history.some((row) => row.correct);
+    setHistory(history);
+    setAnswer(saved.answer ?? null);
+    setWon(solved);
+    setLost(!solved && history.length >= MAX_GUESSES);
+    setBonusPicks(saved.bonusPicks ?? []);
+    setBonusOpen(Boolean(saved.bonusOpen));
   }, []);
 
   useEffect(() => {
@@ -115,12 +114,13 @@ export default function Moneyle() {
     setBonusPicks([]);
     setBonusOpen(false);
     fetchMoneylePuzzle(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date);
         if (cancelled) return;
         setCurrencies(res.currencies);
         setImageUrl(res.imageUrl);
         setPuzzleDate(res.date);
-        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);

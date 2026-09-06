@@ -118,16 +118,15 @@ export default function Game() {
   // Position in the run is derived from the answer log rather than saved next
   // to it: a level is always exactly ROUNDS_PER_LEVEL answers, so the two can
   // never drift apart if the app dies mid-animation.
-  const restore = useCallback((date: string, loaded: MorelessLevel[]) => {
-    void loadSyncedProgress<SavedRun>("moreless", date).then((saved) => {
-      if (!saved?.answers?.length) return;
-      const total = loaded.length * ROUNDS_PER_LEVEL;
-      const done = Math.min(saved.answers.length, total);
-      setAnswers(saved.answers.slice(0, done));
-      setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
-      setRoundIndex(done % ROUNDS_PER_LEVEL);
-      setFinished(done >= total);
-    });
+  const restore = useCallback(async (date: string, loaded: MorelessLevel[]) => {
+    const saved = await loadSyncedProgress<SavedRun>("moreless", date);
+    if (!saved?.answers?.length) return;
+    const total = loaded.length * ROUNDS_PER_LEVEL;
+    const done = Math.min(saved.answers.length, total);
+    setAnswers(saved.answers.slice(0, done));
+    setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
+    setRoundIndex(done % ROUNDS_PER_LEVEL);
+    setFinished(done >= total);
   }, []);
 
   useEffect(() => {
@@ -143,11 +142,12 @@ export default function Game() {
     setSelected(null);
     setFinished(false);
     fetchMorelessToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date, res.levels);
         if (cancelled) return;
         setLevels(res.levels);
         setPuzzleDate(res.date);
-        restore(res.date, res.levels);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -278,15 +278,7 @@ export default function Game() {
     );
   }
 
-  if (!levels || !level || !left || !right) {
-    return (
-      <main className="page">
-        <p className="status-msg">Loading…</p>
-      </main>
-    );
-  }
-
-  if (finished) {
+  if (finished && levels) {
     const total = answers.length;
     const correctCount = answers.filter((a) => a.correct).length;
     const byLevel = (levels ?? []).map((lvl, i) => {
@@ -351,6 +343,14 @@ export default function Game() {
             <MoreGames current="/moreless" date={puzzleDate} />
           </div>
         </div>
+      </main>
+    );
+  }
+
+  if (!levels || !level || !left || !right) {
+    return (
+      <main className="page">
+        <p className="status-msg">Loading…</p>
       </main>
     );
   }
