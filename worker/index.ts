@@ -12,6 +12,7 @@ import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 import { handleArticleHtml, isArticlePath } from "./articleSsr";
 import { handleRanking } from "./rankings";
+import { robotsTxt, sitemapXml } from "../src/lib/sitemap";
 
 interface Env {
   DB: D1Database;
@@ -74,6 +75,33 @@ async function handleCategories(env: Env): Promise<Response> {
     },
     { headers: { "cache-control": "public, max-age=300" } }
   );
+}
+
+function seoText(body: string, contentType: string, method: string): Response {
+  return new Response(method === "HEAD" ? null : body, {
+    status: 200,
+    headers: {
+      "content-type": contentType,
+      "cache-control": "public, max-age=3600",
+      "x-content-type-options": "nosniff",
+    },
+  });
+}
+
+function handleSeoAsset(pathname: string, method: string): Response | null {
+  if (pathname === "/sitemap.xml/") {
+    return new Response(null, {
+      status: 301,
+      headers: { location: "/sitemap.xml" },
+    });
+  }
+  if (pathname === "/sitemap.xml") {
+    return seoText(sitemapXml(), "application/xml; charset=utf-8", method);
+  }
+  if (pathname === "/robots.txt") {
+    return seoText(robotsTxt(), "text/plain; charset=utf-8", method);
+  }
+  return null;
 }
 
 const noStore = { headers: { "cache-control": "no-store" } };
@@ -191,6 +219,9 @@ async function handleMoneyleGuess(env: Env, request: Request, url: URL): Promise
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
+
+    const seo = handleSeoAsset(url.pathname, request.method);
+    if (seo) return seo;
 
     if (url.pathname.startsWith("/api/")) {
       try {
