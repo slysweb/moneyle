@@ -1285,6 +1285,39 @@ button.card:disabled {
   border-color: var(--text-dim);
 }
 
+.btn.danger {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.btn.danger:hover {
+  filter: brightness(0.92);
+}
+
+.me-profile-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.me-delete {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--red);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.me-delete:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 /* ---------- How to play ---------- */
 .howto-overlay {
   position: fixed;

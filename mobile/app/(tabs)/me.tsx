@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { Link, useFocusEffect } from "expo-router";
 import { Image } from "expo-image";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/lib/auth";
 import { formatScore } from "../../src/lib/config";
 import { formatJoinedOn } from "../../src/lib/dates";
-import { loadPlayerStats } from "../../src/lib/progress";
+import { emptyPlayerStats, loadPlayerStats } from "../../src/lib/progress";
 import { formatAverage, formatWinRate, type GameStatCard } from "../../src/lib/stats";
 import { colors, radius, type } from "../../src/theme";
 import { Screen } from "../../src/ui";
@@ -66,20 +66,45 @@ function GameCard({ card }: { card: GameStatCard }) {
 }
 
 export default function MeScreen() {
-  const { user, loading, signIn, logout, error, clearError } = useAuth();
+  const { user, loading, signIn, logout, deleteAccount, error, clearError } = useAuth();
   const [stats, setStats] = useState<GameStatCard[] | null>(null);
 
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
-      void loadPlayerStats().then((next) => {
-        if (!cancelled) setStats(next);
-      });
+      if (!loading) {
+        void loadPlayerStats()
+          .then((next) => {
+            if (!cancelled) setStats(next);
+          })
+          .catch(() => {
+            if (!cancelled) setStats(emptyPlayerStats());
+          });
+      }
       return () => {
         cancelled = true;
       };
-    }, [user?.id])
+    }, [loading, user?.id])
   );
+
+  function confirmDelete() {
+    Alert.alert(
+      "Delete account?",
+      "This permanently deletes your MoneyGames account and synced progress. Guest games on this phone stay.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            void deleteAccount().catch((err: unknown) => {
+              Alert.alert("Could not delete", err instanceof Error ? err.message : "Try again.");
+            });
+          },
+        },
+      ]
+    );
+  }
 
   const first = user ? user.name.split(/\s+/)[0] || user.email : null;
   const joined = user ? formatJoinedOn(user.joinedAt) : null;
@@ -115,6 +140,9 @@ export default function MeScreen() {
                   <Text style={styles.signOut}>Sign out</Text>
                 </Pressable>
               </View>
+              <Pressable onPress={confirmDelete} hitSlop={8} style={({ pressed }) => pressed && styles.pressed}>
+                <Text style={styles.delete}>Delete account</Text>
+              </Pressable>
             </>
           ) : (
             <>
@@ -176,6 +204,7 @@ const styles = StyleSheet.create({
   name: { ...type.heading },
   email: { ...type.caption, marginTop: 2 },
   signOut: { color: colors.accent, fontWeight: "700", fontSize: 16 },
+  delete: { color: colors.red, fontWeight: "700", fontSize: 15, alignSelf: "flex-start" },
   google: {
     backgroundColor: colors.ink,
     borderRadius: radius.md,

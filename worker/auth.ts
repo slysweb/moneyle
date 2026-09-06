@@ -271,6 +271,23 @@ async function handleLogout(env: AuthEnv, request: Request, url: URL): Promise<R
   return json({ ok: true }, { headers });
 }
 
+async function handleDeleteAccount(env: AuthEnv, request: Request, url: URL): Promise<Response> {
+  const user = await readSessionUser(env, request);
+  if (!user) return json({ error: "Sign in required" }, { status: 401 });
+
+  try {
+    await env.DB.prepare(`DELETE FROM puzzle_progress WHERE user_id = ?`).bind(user.id).run();
+  } catch {
+    // Progress table may not exist yet for this database.
+  }
+  await env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?`).bind(user.id).run();
+  await env.DB.prepare(`DELETE FROM users WHERE id = ?`).bind(user.id).run();
+
+  const headers = new Headers({ "cache-control": "no-store" });
+  clearCookie(headers, SESSION_COOKIE, url);
+  return json({ ok: true }, { headers });
+}
+
 async function handleExchange(env: AuthEnv, request: Request): Promise<Response> {
   await ensureAuthCodes(env);
   const body = (await request.json().catch(() => null)) as { code?: unknown } | null;
@@ -419,6 +436,7 @@ export async function handleAuth(env: AuthEnv, request: Request, url: URL): Prom
   const path = url.pathname;
   if (path === "/api/auth/me" && request.method === "GET") return handleMe(env, request);
   if (path === "/api/auth/logout" && request.method === "POST") return handleLogout(env, request, url);
+  if (path === "/api/auth/delete" && request.method === "POST") return handleDeleteAccount(env, request, url);
   if (path === "/api/auth/exchange" && request.method === "POST") return handleExchange(env, request);
   if (path === "/api/auth/app-return" && request.method === "GET") {
     const target = safeAppRedirect(url.searchParams.get("to"));

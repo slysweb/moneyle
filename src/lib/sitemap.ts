@@ -31,6 +31,7 @@ export function sitemapUrls(): SitemapUrl[] {
     { path: "/register", changefreq: "monthly", priority: 0.3 },
     { path: "/terms", changefreq: "yearly", priority: 0.2 },
     { path: "/privacy", changefreq: "yearly", priority: 0.2 },
+    { path: "/delete-account", changefreq: "yearly", priority: 0.2 },
   ];
 }
 

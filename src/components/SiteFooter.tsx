@@ -11,6 +11,7 @@ const links = [
   { to: "/changelog", label: "Changelog" },
   { to: "/terms", label: "Terms of Service" },
   { to: "/privacy", label: "Privacy Policy" },
+  { to: "/delete-account", label: "Delete account" },
 ];
 
 export default function SiteFooter() {

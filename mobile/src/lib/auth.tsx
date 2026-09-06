@@ -10,7 +10,7 @@ import {
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import { API_ORIGIN } from "./config";
-import { exchangeAuthCode, fetchMe, logoutRemote, type AuthUser } from "./api";
+import { deleteAccountRemote, exchangeAuthCode, fetchMe, logoutRemote, type AuthUser } from "./api";
 import { pushLocalProgress, setProgressSync } from "./progress";
 import { loadStoredBearer, persistBearer } from "./session";
 
@@ -30,6 +30,7 @@ interface AuthContextValue {
   signIn: () => Promise<void>;
   completeFromUrl: (url: string) => Promise<boolean>;
   logout: () => Promise<void>;
+  deleteAccount: () => Promise<void>;
   clearError: () => void;
 }
 
@@ -40,6 +41,7 @@ const AuthContext = createContext<AuthContextValue>({
   signIn: async () => {},
   completeFromUrl: async () => false,
   logout: async () => {},
+  deleteAccount: async () => {},
   clearError: () => {},
 });
 
@@ -132,6 +134,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
   }, []);
 
+  const deleteAccount = useCallback(async () => {
+    await deleteAccountRemote();
+    try {
+      await persistBearer(null);
+    } finally {
+      setProgressSync(false);
+      setUser(null);
+      setError(null);
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       user,
@@ -140,9 +153,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signIn,
       completeFromUrl,
       logout,
+      deleteAccount,
       clearError: () => setError(null),
     }),
-    [user, loading, error, signIn, completeFromUrl, logout]
+    [user, loading, error, signIn, completeFromUrl, logout, deleteAccount]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

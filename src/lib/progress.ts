@@ -282,21 +282,29 @@ function listLocalRuns(): RunSummary[] {
   return rows;
 }
 
+export function emptyPlayerStats(): GameStatCard[] {
+  return aggregateGameStats([], denverDate());
+}
+
 export async function loadPlayerStats(): Promise<GameStatCard[]> {
-  const local = listLocalRuns();
-  let remote: RunSummary[] = [];
-  if (syncEnabled) {
-    try {
-      const res = await fetch("/api/progress?stats=1", { credentials: "same-origin" });
-      if (res.ok) {
-        const data = (await res.json()) as { items?: RunSummary[] };
-        remote = data.items ?? [];
+  try {
+    const local = listLocalRuns();
+    let remote: RunSummary[] = [];
+    if (syncEnabled) {
+      try {
+        const res = await fetch("/api/progress?stats=1", { credentials: "same-origin" });
+        if (res.ok) {
+          const data = (await res.json()) as { items?: RunSummary[] };
+          remote = data.items ?? [];
+        }
+      } catch {
+        // Keep local stats offline.
       }
-    } catch {
-      // Keep local stats offline.
     }
+    return aggregateGameStats(mergeRuns(local, remote), denverDate());
+  } catch {
+    return emptyPlayerStats();
   }
-  return aggregateGameStats(mergeRuns(local, remote), denverDate());
 }
 
 export async function isDateFinished(game: ArchiveGameId, date: string): Promise<boolean> {

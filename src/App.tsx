@@ -13,6 +13,7 @@ import Articles from "./pages/Articles";
 import ArticlePage from "./pages/ArticlePage";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import DeleteAccount from "./pages/DeleteAccount";
 import Register from "./pages/Register";
 import Me from "./pages/Me";
 import FeedbackModal from "./components/FeedbackModal";
@@ -59,6 +60,7 @@ export default function App() {
             <Route path="/changelog" element={<Changelog />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/delete-account" element={<DeleteAccount />} />
           </Routes>
           {feedbackOpen ? <FeedbackModal onClose={() => setFeedbackOpen(false)} /> : null}
         </div>

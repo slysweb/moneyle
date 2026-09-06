@@ -4,7 +4,7 @@ import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
 import { googleStartPath, useAuth } from "../lib/auth";
 import { formatJoinedOn } from "../lib/dates";
-import { loadPlayerStats } from "../lib/progress";
+import { emptyPlayerStats, loadPlayerStats } from "../lib/progress";
 import { formatAverage, formatWinRate, type GameStatCard } from "../lib/stats";
 import { formatScore } from "../lib/score";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -58,20 +58,25 @@ export default function Me() {
     "Your MoneyGames profile and daily-run statistics — played days, high scores, streaks, and win rates."
   );
 
-  const { user, loading, logout } = useAuth();
+  const { user, loading, logout, deleteAccount } = useAuth();
   const [stats, setStats] = useState<GameStatCard[] | null>(null);
+  const [accountError, setAccountError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (loading) return;
     let cancelled = false;
-    void loadPlayerStats().then((next) => {
-      if (!cancelled) setStats(next);
-    });
-    const bump = () => {
-      void loadPlayerStats().then((next) => {
-        if (!cancelled) setStats(next);
-      });
+    const load = () => {
+      if (loading) return;
+      void loadPlayerStats()
+        .then((next) => {
+          if (!cancelled) setStats(next);
+        })
+        .catch(() => {
+          if (!cancelled) setStats(emptyPlayerStats());
+        });
     };
+    load();
+    const bump = () => load();
     window.addEventListener("focus", bump);
     return () => {
       cancelled = true;
@@ -109,9 +114,34 @@ export default function Me() {
                 {joined ? <p className="me-email">{joined}</p> : null}
               </div>
             </div>
-            <button type="button" className="btn ghost" onClick={() => void logout()}>
-              Sign out
-            </button>
+            <div className="me-profile-actions">
+              <button type="button" className="btn ghost" onClick={() => void logout()}>
+                Sign out
+              </button>
+              <button
+                type="button"
+                className="me-delete"
+                disabled={deleting}
+                onClick={() => {
+                  if (
+                    !window.confirm(
+                      "This permanently deletes your MoneyGames account and synced progress. Guest games on this browser stay. Continue?"
+                    )
+                  ) {
+                    return;
+                  }
+                  setDeleting(true);
+                  setAccountError(null);
+                  void deleteAccount()
+                    .catch((err: unknown) => {
+                      setAccountError(err instanceof Error ? err.message : "Could not delete the account.");
+                    })
+                    .finally(() => setDeleting(false));
+                }}
+              >
+                {deleting ? "Deleting…" : "Delete account"}
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -124,6 +154,7 @@ export default function Me() {
           </>
         )}
       </section>
+      {accountError ? <p className="me-copy">{accountError}</p> : null}
 
       <h2 className="me-section">Statistics</h2>
       {stats == null ? (

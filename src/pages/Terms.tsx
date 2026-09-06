@@ -10,8 +10,9 @@ export default function Terms() {
       updated="September 6, 2026"
     >
       <p>
-        These terms govern your use of MoneyGames at moneygames.cc (the “site”). By using
-        the site, you agree to them. If you do not agree, do not use the site.
+        These terms govern your use of MoneyGames at moneygames.cc and the MoneyGames
+        Android app (together, the “service”). By using the service, you agree to them. If
+        you do not agree, do not use it.
       </p>
 
       <h2>The service</h2>
@@ -35,6 +36,9 @@ export default function Terms() {
       <p>
         Registration is optional and currently only via Google. You are responsible for the
         Google account you use. We may suspend an account that is used to abuse the service.
+        You can delete your MoneyGames account at any time from{" "}
+        <Link to="/delete-account">Delete your account</Link>. That removes the record we
+        stored and synced progress; it does not delete your Google account.
       </p>
 
       <h2>Acceptable use</h2>

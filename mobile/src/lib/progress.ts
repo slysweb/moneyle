@@ -202,18 +202,26 @@ async function listLocalRuns(): Promise<RunSummary[]> {
   return out;
 }
 
+export function emptyPlayerStats(): GameStatCard[] {
+  return aggregateGameStats([], denverDate());
+}
+
 export async function loadPlayerStats(): Promise<GameStatCard[]> {
-  const local = await listLocalRuns();
-  let remote: RunSummary[] = [];
-  if (syncEnabled) {
-    try {
-      const data = await fetchProgressStats();
-      remote = (data.items ?? []).filter((row): row is RunSummary => isStatsGame(row.game));
-    } catch {
-      // Keep local stats offline.
+  try {
+    const local = await listLocalRuns();
+    let remote: RunSummary[] = [];
+    if (syncEnabled) {
+      try {
+        const data = await fetchProgressStats();
+        remote = (data.items ?? []).filter((row): row is RunSummary => isStatsGame(row.game));
+      } catch {
+        // Keep local stats offline.
+      }
     }
+    return aggregateGameStats(mergeRuns(local, remote), denverDate());
+  } catch {
+    return emptyPlayerStats();
   }
-  return aggregateGameStats(mergeRuns(local, remote), denverDate());
 }
 
 export async function isDateFinished(game: ArchiveGameId, date: string): Promise<boolean> {

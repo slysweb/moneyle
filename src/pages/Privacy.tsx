@@ -108,11 +108,22 @@ export default function Privacy() {
       <h2>Retention</h2>
       <p>
         Puzzle content stays as long as the games need it. Account records and signed-in
-        puzzle progress stay until you ask us to delete them, or until we shut the feature
+        puzzle progress stay until you delete the account, or until we shut the feature
         down. Feedback notes stay until we have handled them. Infrastructure logs follow
         Cloudflare’s defaults unless we have a security or legal reason to keep a record
-        longer. Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want an
-        account, its synced progress, or a feedback submission removed.
+        longer. Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want a
+        feedback submission removed.
+      </p>
+
+      <h2>Delete your account</h2>
+      <p>
+        You can delete your MoneyGames account at any time from{" "}
+        <Link to="/me">Me</Link> or the{" "}
+        <Link to="/delete-account">Delete your account</Link> page, or in the Android app
+        under Me. That removes the Google sign-in record we stored and any synced daily
+        progress. It does not delete your Google account, and it does not wipe guest games
+        saved only on this device. If you cannot sign in, email{" "}
+        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>.
       </p>
 
       <h2>Children</h2>
@@ -140,7 +151,8 @@ export default function Privacy() {
       <p>
         Privacy questions:{" "}
         <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
-        . See also the <Link to="/terms">Terms of Service</Link> and{" "}
+        . See also the <Link to="/terms">Terms of Service</Link>,{" "}
+        <Link to="/delete-account">Delete your account</Link>, and{" "}
         <Link to="/about">About us</Link>.
       </p>
     </InfoPage>

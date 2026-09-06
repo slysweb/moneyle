@@ -120,6 +120,10 @@ export async function logoutRemote(): Promise<void> {
   await postJson("/api/auth/logout");
 }
 
+export async function deleteAccountRemote(): Promise<void> {
+  await postJson("/api/auth/delete");
+}
+
 function withAssets(item: GameItem): GameItem {
   return { ...item, imageUrl: assetUrl(item.imageUrl) };
 }

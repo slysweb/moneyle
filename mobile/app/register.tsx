@@ -67,6 +67,13 @@ export default function RegisterScreen() {
             <Pressable onPress={() => void logout()} style={({ pressed }) => [styles.ghost, pressed && styles.pressed]}>
               <Text style={styles.ghostText}>Sign out</Text>
             </Pressable>
+            <Text style={styles.legal}>
+              Need to leave? Delete your account from the Me tab, or on the web at{" "}
+              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneygames.cc/delete-account")}>
+                moneygames.cc/delete-account
+              </Text>
+              .
+            </Text>
           </>
         ) : (
           <>
