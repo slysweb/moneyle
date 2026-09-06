@@ -64,9 +64,12 @@ export default function Me() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
+    if (loading || !user) {
+      setStats(null);
+      return;
+    }
     let cancelled = false;
     const load = () => {
-      if (loading) return;
       void loadPlayerStats()
         .then((next) => {
           if (!cancelled) setStats(next);
@@ -82,7 +85,7 @@ export default function Me() {
       cancelled = true;
       window.removeEventListener("focus", bump);
     };
-  }, [loading, user?.id]);
+  }, [loading, user]);
 
   const first = user ? user.name.split(/\s+/)[0] || user.email : null;
   const joined = user ? formatJoinedOn(user.joinedAt) : null;
@@ -93,10 +96,12 @@ export default function Me() {
         <Link to="/">← Home</Link>
       </p>
       <h1>Me</h1>
-      <p className="me-lead">
-        Finished daily runs only. Missing a day resets the current streak at midnight Denver
-        time.
-      </p>
+      {user ? (
+        <p className="me-lead">
+          Finished daily runs only. Missing a day resets the current streak at midnight Denver
+          time.
+        </p>
+      ) : null}
 
       <section className="me-profile">
         {loading ? (
@@ -146,7 +151,8 @@ export default function Me() {
         ) : (
           <>
             <p className="me-copy">
-              Playing as a guest. These numbers stay on this browser until you register.
+              Playing as a guest. Sign in to see your stats, sync progress, and unlock the
+              archive.
             </p>
             <a className="btn primary" href={googleStartPath("/me")}>
               Continue with Google
@@ -156,16 +162,20 @@ export default function Me() {
       </section>
       {accountError ? <p className="me-copy">{accountError}</p> : null}
 
-      <h2 className="me-section">Statistics</h2>
-      {stats == null ? (
-        <p className="me-copy">Loading stats…</p>
-      ) : (
-        <div className="me-games">
-          {stats.map((card) => (
-            <GameStatsCard key={card.id} card={card} />
-          ))}
-        </div>
-      )}
+      {user ? (
+        <>
+          <h2 className="me-section">Statistics</h2>
+          {stats == null ? (
+            <p className="me-copy">Loading stats…</p>
+          ) : (
+            <div className="me-games">
+              {stats.map((card) => (
+                <GameStatsCard key={card.id} card={card} />
+              ))}
+            </div>
+          )}
+        </>
+      ) : null}
       <SiteFooter />
     </main>
   );

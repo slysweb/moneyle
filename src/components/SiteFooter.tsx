@@ -3,8 +3,6 @@ import { useFeedback } from "../lib/feedback";
 import SocialLinks from "./SocialLinks";
 
 const links = [
-  { to: "/archive", label: "Archive" },
-  { to: "/me", label: "Me" },
   { to: "/articles", label: "Articles" },
   { to: "/about", label: "About us" },
   { to: "/scoring", label: "Scoring rules" },

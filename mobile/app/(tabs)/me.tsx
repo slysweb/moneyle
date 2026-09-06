@@ -71,16 +71,18 @@ export default function MeScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      let cancelled = false;
-      if (!loading) {
-        void loadPlayerStats()
-          .then((next) => {
-            if (!cancelled) setStats(next);
-          })
-          .catch(() => {
-            if (!cancelled) setStats(emptyPlayerStats());
-          });
+      if (loading || !user) {
+        setStats(null);
+        return;
       }
+      let cancelled = false;
+      void loadPlayerStats()
+        .then((next) => {
+          if (!cancelled) setStats(next);
+        })
+        .catch(() => {
+          if (!cancelled) setStats(emptyPlayerStats());
+        });
       return () => {
         cancelled = true;
       };
@@ -114,10 +116,12 @@ export default function MeScreen() {
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <Text style={styles.kicker}>ME</Text>
         <Text style={styles.title}>Me</Text>
-        <Text style={styles.lead}>
-          Finished daily runs only. Missing a day resets the current streak at midnight Denver
-          time.
-        </Text>
+        {user ? (
+          <Text style={styles.lead}>
+            Finished daily runs only. Missing a day resets the current streak at midnight Denver
+            time.
+          </Text>
+        ) : null}
 
         <View style={styles.profile}>
           {loading ? (
@@ -147,7 +151,8 @@ export default function MeScreen() {
           ) : (
             <>
               <Text style={styles.copy}>
-                Playing as a guest. These numbers stay on this phone until you register.
+                Playing as a guest. Sign in to see your stats, sync progress, and unlock the
+                archive.
               </Text>
               {error ? <Text style={styles.error}>{error}</Text> : null}
               <Pressable
@@ -163,12 +168,16 @@ export default function MeScreen() {
           )}
         </View>
 
-        <Text style={styles.section}>STATISTICS</Text>
-        {stats == null ? (
-          <Text style={styles.copy}>Loading stats…</Text>
-        ) : (
-          stats.map((card) => <GameCard key={card.id} card={card} />)
-        )}
+        {user ? (
+          <>
+            <Text style={styles.section}>STATISTICS</Text>
+            {stats == null ? (
+              <Text style={styles.copy}>Loading stats…</Text>
+            ) : (
+              stats.map((card) => <GameCard key={card.id} card={card} />)
+            )}
+          </>
+        ) : null}
       </ScrollView>
     </Screen>
   );
