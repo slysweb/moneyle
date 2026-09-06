@@ -3277,8 +3277,8 @@ button.card:disabled {
   line-height: 1.55;
 }
 
-.archive-lock-alt {
-  margin: 16px 0 0;
+.archive-lock p.archive-lock-alt {
+  margin: 22px 0 0;
   font-size: 0.92rem;
 }
 

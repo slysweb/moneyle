@@ -261,8 +261,10 @@ export function ArchiveLocked({ next }: { next: string }) {
           Today’s games stay free. Register with Google to play every past daily puzzle.
         </Text>
         <Link href={`/register?next=${encodeURIComponent(next)}`} asChild>
-          <Pressable style={({ pressed }) => [styles.btn, pressed && styles.btnPressed]}>
-            <Text style={styles.btnText}>Register to unlock</Text>
+          <Pressable style={({ pressed }) => pressed && styles.btnPressed}>
+            <View style={styles.btn}>
+              <Text style={styles.btnText}>Register to unlock</Text>
+            </View>
           </Pressable>
         </Link>
         <Link href="/" asChild>
@@ -438,5 +440,5 @@ const styles = StyleSheet.create({
   lockKicker: { ...type.kicker, textTransform: "uppercase" },
   lockTitle: { ...type.title, fontSize: 32 },
   lockCopy: { ...type.body, color: colors.dim, marginBottom: 8 },
-  lockAlt: { alignSelf: "flex-start", paddingTop: 4 },
+  lockAlt: { alignSelf: "flex-start", paddingTop: 16 },
 });
