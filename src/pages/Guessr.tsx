@@ -34,6 +34,45 @@ function totalCents(pieces: GuessrPiece[]): number {
   return pieces.reduce((sum, p) => sum + p.valueCents, 0);
 }
 
+function uniqueImageUrls(puzzles: GuessrPiece[][]): string[] {
+  const urls = new Set<string>();
+  for (const pieces of puzzles) {
+    for (const piece of pieces) {
+      if (piece.imageUrl) urls.add(piece.imageUrl);
+    }
+  }
+  return [...urls];
+}
+
+function loadImage(url: string): Promise<void> {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => {
+      if (typeof img.decode === "function") {
+        void img.decode().then(() => resolve(), () => resolve());
+        return;
+      }
+      resolve();
+    };
+    img.onerror = () => resolve();
+    img.src = url;
+  });
+}
+
+function preloadGuessrImages(puzzles: GuessrPiece[][]): void {
+  void Promise.all(uniqueImageUrls(puzzles).map(loadImage));
+}
+
+function waitForImages(urls: string[], timeoutMs: number): Promise<void> {
+  if (urls.length === 0) return Promise.resolve();
+  return Promise.race([
+    Promise.all(urls.map(loadImage)).then(() => undefined),
+    new Promise<void>((resolve) => {
+      window.setTimeout(resolve, timeoutMs);
+    }),
+  ]);
+}
+
 function formatMoney(minor: number, currency: GuessrCurrency): string {
   const value = minor / 10 ** currency.minorDigits;
   try {
@@ -296,6 +335,11 @@ export default function Guessr() {
   }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
+    if (!puzzles) return;
+    preloadGuessrImages(puzzles);
+  }, [puzzles]);
+
+  useEffect(() => {
     if (results.length === 0) return;
     saveProgress<SavedRun>("guessr", puzzleDate, { results });
   }, [puzzleDate, results]);
@@ -306,23 +350,32 @@ export default function Guessr() {
 
   useEffect(() => {
     if (!puzzles || finished || phase !== "memorize" || introOpen) return;
+    let cancelled = false;
+    let frame = 0;
+    let fallback = 0;
     clearTimers();
     setRemainingMs(MEMORIZE_MS);
-    const started = performance.now();
-    let frame = 0;
-    const tick = (now: number) => {
-      const left = Math.max(0, MEMORIZE_MS - (now - started));
-      setRemainingMs(left);
-      if (left <= 0) {
-        setPhase("guess");
-        return;
-      }
+
+    const startClock = () => {
+      if (cancelled) return;
+      const started = performance.now();
+      const tick = (now: number) => {
+        const left = Math.max(0, MEMORIZE_MS - (now - started));
+        setRemainingMs(left);
+        if (left <= 0) {
+          setPhase("guess");
+          return;
+        }
+        frame = requestAnimationFrame(tick);
+      };
       frame = requestAnimationFrame(tick);
+      fallback = window.setTimeout(() => setPhase("guess"), MEMORIZE_MS + 50);
+      timers.current.push(fallback);
     };
-    frame = requestAnimationFrame(tick);
-    const fallback = window.setTimeout(() => setPhase("guess"), MEMORIZE_MS + 50);
-    timers.current.push(fallback);
+
+    void waitForImages(uniqueImageUrls([puzzles[round] ?? []]), 2500).then(startClock);
     return () => {
+      cancelled = true;
       cancelAnimationFrame(frame);
       clearTimeout(fallback);
     };

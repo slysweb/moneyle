@@ -38,6 +38,34 @@ function totalCents(pieces: GuessrPiece[]): number {
   return pieces.reduce((sum, p) => sum + p.valueCents, 0);
 }
 
+function uniqueImageUrls(puzzles: GuessrPiece[][]): string[] {
+  const urls = new Set<string>();
+  for (const pieces of puzzles) {
+    for (const piece of pieces) {
+      if (piece.imageUrl) urls.add(piece.imageUrl);
+    }
+  }
+  return [...urls];
+}
+
+function preloadGuessrImages(puzzles: GuessrPiece[][]): void {
+  const urls = uniqueImageUrls(puzzles);
+  if (urls.length === 0) return;
+  void Image.prefetch(urls, "memory-disk");
+}
+
+function waitForImages(urls: string[], timeoutMs: number): Promise<void> {
+  if (urls.length === 0) return Promise.resolve();
+  return Promise.race([
+    Image.prefetch(urls, "memory-disk")
+      .then(() => undefined)
+      .catch(() => undefined),
+    new Promise<void>((resolve) => {
+      setTimeout(resolve, timeoutMs);
+    }),
+  ]);
+}
+
 function formatMoney(minor: number, currency: GuessrCurrency): string {
   const value = minor / 10 ** currency.minorDigits;
   try {
@@ -203,6 +231,7 @@ function DenomStack({
             zIndex: i + 1,
           }}
           contentFit={kind === "coin" ? "contain" : "cover"}
+          cachePolicy="memory-disk"
         />
       ))}
     </View>
@@ -272,6 +301,11 @@ export default function GuessrScreen() {
   }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
+    if (!puzzles) return;
+    preloadGuessrImages(puzzles);
+  }, [puzzles]);
+
+  useEffect(() => {
     if (results.length === 0) return;
     void saveProgress<SavedRun>("guessr", puzzleDate, { results });
   }, [puzzleDate, results]);
@@ -282,17 +316,28 @@ export default function GuessrScreen() {
 
   useEffect(() => {
     if (!puzzles || finished || phase !== "memorize" || introOpen) return;
+    let cancelled = false;
+    let id: ReturnType<typeof setInterval> | undefined;
     setRemainingMs(MEMORIZE_MS);
-    const started = Date.now();
-    const id = setInterval(() => {
-      const left = Math.max(0, MEMORIZE_MS - (Date.now() - started));
-      setRemainingMs(left);
-      if (left <= 0) {
-        clearInterval(id);
-        setPhase("guess");
-      }
-    }, 50);
-    return () => clearInterval(id);
+
+    const startClock = () => {
+      if (cancelled || id) return;
+      const started = Date.now();
+      id = setInterval(() => {
+        const left = Math.max(0, MEMORIZE_MS - (Date.now() - started));
+        setRemainingMs(left);
+        if (left <= 0) {
+          clearInterval(id);
+          setPhase("guess");
+        }
+      }, 50);
+    };
+
+    void waitForImages(uniqueImageUrls([puzzles[round] ?? []]), 2500).then(startClock);
+    return () => {
+      cancelled = true;
+      if (id) clearInterval(id);
+    };
   }, [puzzles, round, phase, finished, introOpen]);
 
   const submit = useCallback(() => {
