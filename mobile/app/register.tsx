@@ -4,6 +4,7 @@ import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-na
 import { Image } from "expo-image";
 import { GameHeader, Screen } from "../src/ui";
 import { useAuth } from "../src/lib/auth";
+import { formatJoinedOn } from "../src/lib/dates";
 import { colors, radius, type } from "../src/theme";
 
 function safeNext(raw: string | string[] | undefined): string | null {
@@ -50,7 +51,9 @@ export default function RegisterScreen() {
               )}
               <View style={styles.profileCopy}>
                 <Text style={styles.name}>{user.name}</Text>
-                <Text style={styles.email}>{user.email}</Text>
+                {formatJoinedOn(user.joinedAt) ? (
+                  <Text style={styles.email}>{formatJoinedOn(user.joinedAt)}</Text>
+                ) : null}
               </View>
             </View>
             <Text style={styles.copy}>

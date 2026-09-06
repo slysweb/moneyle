@@ -104,6 +104,7 @@ export interface AuthUser {
   name: string;
   email: string;
   pictureUrl: string | null;
+  joinedAt: string | null;
 }
 
 export async function fetchMe(): Promise<AuthUser | null> {

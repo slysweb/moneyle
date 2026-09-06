@@ -36,6 +36,11 @@ export function formatPuzzleDate(iso: string): string {
   });
 }
 
+export function formatJoinedOn(iso: string | null | undefined): string | null {
+  if (!iso || iso.length < 10) return null;
+  return `Joined on ${formatPuzzleDate(iso.slice(0, 10))}`;
+}
+
 export function monthStart(iso: string): string {
   return `${iso.slice(0, 7)}-01`;
 }

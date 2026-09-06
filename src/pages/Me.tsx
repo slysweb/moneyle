@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
 import { googleStartPath, useAuth } from "../lib/auth";
+import { formatJoinedOn } from "../lib/dates";
 import { loadPlayerStats } from "../lib/progress";
 import { formatAverage, formatWinRate, type GameStatCard } from "../lib/stats";
 import { formatScore } from "../lib/score";
@@ -79,6 +80,7 @@ export default function Me() {
   }, [loading, user?.id]);
 
   const first = user ? user.name.split(/\s+/)[0] || user.email : null;
+  const joined = user ? formatJoinedOn(user.joinedAt) : null;
 
   return (
     <main className="page me-page">
@@ -104,7 +106,7 @@ export default function Me() {
               )}
               <div>
                 <p className="me-name">{user.name}</p>
-                <p className="me-email">{user.email}</p>
+                {joined ? <p className="me-email">{joined}</p> : null}
               </div>
             </div>
             <button type="button" className="btn ghost" onClick={() => void logout()}>

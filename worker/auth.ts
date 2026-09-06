@@ -32,6 +32,7 @@ export interface AuthUser {
   email: string;
   name: string;
   pictureUrl: string | null;
+  joinedAt: string | null;
 }
 
 function json(data: unknown, init: ResponseInit = {}): Response {
@@ -205,7 +206,8 @@ function bearerToken(request: Request): string | null {
 async function userFromToken(env: AuthEnv, token: string): Promise<AuthUser | null> {
   const hash = await sha256Hex(token);
   return env.DB.prepare(
-    `SELECT u.id, u.email, u.name, u.picture_url AS pictureUrl
+    `SELECT u.id, u.email, u.name, u.picture_url AS pictureUrl,
+            date(u.created_at) AS joinedAt
      FROM sessions s
      JOIN users u ON u.id = s.user_id
      WHERE s.token_hash = ? AND s.expires_at > datetime('now')`

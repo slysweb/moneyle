@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../../src/lib/auth";
 import { formatScore } from "../../src/lib/config";
+import { formatJoinedOn } from "../../src/lib/dates";
 import { loadPlayerStats } from "../../src/lib/progress";
 import { formatAverage, formatWinRate, type GameStatCard } from "../../src/lib/stats";
 import { colors, radius, type } from "../../src/theme";
@@ -81,6 +82,7 @@ export default function MeScreen() {
   );
 
   const first = user ? user.name.split(/\s+/)[0] || user.email : null;
+  const joined = user ? formatJoinedOn(user.joinedAt) : null;
 
   return (
     <Screen>
@@ -107,7 +109,7 @@ export default function MeScreen() {
                 )}
                 <View style={styles.profileCopy}>
                   <Text style={styles.name}>{user.name}</Text>
-                  <Text style={styles.email}>{user.email}</Text>
+                  {joined ? <Text style={styles.email}>{joined}</Text> : null}
                 </View>
               </View>
               <Pressable onPress={() => void logout()} style={({ pressed }) => pressed && styles.pressed}>

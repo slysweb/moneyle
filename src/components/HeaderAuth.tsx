@@ -50,7 +50,6 @@ export default function HeaderAuth() {
         </button>
         {open ? (
           <div className="header-user-menu" role="menu">
-            <p className="header-user-email">{user.email}</p>
             <Link to="/me" role="menuitem">
               Your stats
             </Link>
