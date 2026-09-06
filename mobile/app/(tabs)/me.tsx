@@ -111,10 +111,10 @@ export default function MeScreen() {
                   <Text style={styles.name}>{user.name}</Text>
                   {joined ? <Text style={styles.email}>{joined}</Text> : null}
                 </View>
+                <Pressable onPress={() => void logout()} hitSlop={8} style={({ pressed }) => pressed && styles.pressed}>
+                  <Text style={styles.signOut}>Sign out</Text>
+                </Pressable>
               </View>
-              <Pressable onPress={() => void logout()} style={({ pressed }) => pressed && styles.pressed}>
-                <Text style={styles.signOut}>Sign out</Text>
-              </Pressable>
             </>
           ) : (
             <>
