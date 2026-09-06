@@ -4,6 +4,7 @@ import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../lib/ap
 import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlay from "../components/HowToPlay";
+import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -337,6 +338,7 @@ export default function Game() {
           </ul>
           <div className="overlay-actions">
             <NextPuzzleCountdown
+              game="More/Less"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />
@@ -346,6 +348,7 @@ export default function Game() {
             <Link className="btn ghost" to="/">
               Home
             </Link>
+            <MoreGames current="/moreless" date={puzzleDate} />
           </div>
         </div>
       </main>

@@ -8,6 +8,7 @@ import {
 import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayConnections from "../components/HowToPlayConnections";
+import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -360,6 +361,7 @@ export default function Connections() {
               }
             />
             <NextPuzzleCountdown
+              game="MoneyConnections"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />
@@ -369,6 +371,7 @@ export default function Connections() {
             <Link className="btn ghost" to="/">
               Home
             </Link>
+            <MoreGames current="/connections" date={puzzleDate} />
           </div>
         )}
       </div>

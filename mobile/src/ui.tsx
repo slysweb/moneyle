@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link, useRouter } from "expo-router";
 import {
   ActivityIndicator,
@@ -10,7 +10,13 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { denverDate } from "./lib/config";
-import { formatPuzzleDate, isArchiveDate, playPath } from "./lib/dates";
+import {
+  formatCountdown,
+  formatPuzzleDate,
+  isArchiveDate,
+  nextDenverMidnight,
+  playPath,
+} from "./lib/dates";
 import { colors, radius, space, type } from "./theme";
 
 function useGoHome() {
@@ -30,6 +36,47 @@ const GAMES = [
   { href: "/moneyle", title: "Moneyle", mark: "?", tint: "#f7f0df", ink: "#9a7209" },
   { href: "/connections", title: "MoneyConnections", mark: "▦", tint: "#efe8f8", ink: "#6b45b0" },
 ] as const;
+
+export function NextPuzzleNote({
+  game,
+  puzzleDate,
+}: {
+  game: string;
+  puzzleDate?: string | null;
+}) {
+  const [now, setNow] = useState(() => Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 250);
+    return () => clearInterval(id);
+  }, []);
+
+  const today = denverDate(new Date(now));
+  if (isArchiveDate(puzzleDate, today)) {
+    return (
+      <Text style={styles.nextPuzzle}>
+        This past puzzle is done. Play today’s games, or pick another date in the{" "}
+        <Link href="/archive">
+          <Text style={styles.nextPuzzleLink}>Archive</Text>
+        </Link>
+        .
+      </Text>
+    );
+  }
+
+  const remain = nextDenverMidnight(new Date(now)).getTime() - now;
+  return (
+    <Text style={styles.nextPuzzle}>
+      You finished today’s {game}. The next puzzle starts in{" "}
+      <Text style={styles.nextPuzzleTime}>{formatCountdown(remain)}</Text> (midnight Denver
+      time). Play another game, or open past puzzles in the{" "}
+      <Link href="/archive">
+        <Text style={styles.nextPuzzleLink}>Archive</Text>
+      </Link>
+      .
+    </Text>
+  );
+}
 
 export function MoreGames({ current, date }: { current: string; date?: string | null }) {
   const others = GAMES.filter((game) => game.href !== current && game.href !== `/${current}`);
@@ -269,6 +316,10 @@ export function ResultBlock({
       <Text style={styles.resultDetail}>{detail}</Text>
       {children}
       <Button label={shareLabel} onPress={onShare} />
+      <NextPuzzleNote
+        game={GAMES.find((row) => row.href === current || row.href === `/${current}`)?.title ?? current}
+        puzzleDate={archiveDate}
+      />
       <MoreGames current={current} date={archiveDate} />
     </View>
   );
@@ -339,6 +390,9 @@ const styles = StyleSheet.create({
   resultKicker: { ...type.kicker, textTransform: "uppercase" },
   resultScore: { ...type.score },
   resultDetail: { ...type.caption, marginBottom: 8 },
+  nextPuzzle: { ...type.body, color: colors.dim, fontSize: 15, lineHeight: 22, marginTop: 6 },
+  nextPuzzleTime: { fontWeight: "700", color: colors.ink },
+  nextPuzzleLink: { color: colors.accent, fontWeight: "600" },
   more: { marginTop: 20, gap: 12 },
   moreKicker: { ...type.kicker, textTransform: "uppercase" },
   moreStack: { gap: 10 },

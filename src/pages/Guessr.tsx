@@ -4,6 +4,7 @@ import { fetchGuessrToday, type GuessrCurrency, type GuessrPiece } from "../lib/
 import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayGuessr from "../components/HowToPlayGuessr";
+import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -245,21 +246,20 @@ export default function Guessr() {
 
   // A submitted guess is a finished round, so the round to resume at is simply
   // however many results are already banked.
-  const restore = useCallback((date: string) => {
-    void loadSyncedProgress<SavedRun>("guessr", date).then((saved) => {
-      if (!saved?.results?.length) {
-        setIntroOpen(true);
-        setRemainingMs(MEMORIZE_MS);
-        return;
-      }
-      const results = saved.results.slice(0, ROUNDS);
-      setResults(results);
-      setRound(Math.min(results.length, ROUNDS - 1));
-      setFinished(results.length >= ROUNDS);
+  const restore = useCallback(async (date: string) => {
+    const saved = await loadSyncedProgress<SavedRun>("guessr", date);
+    if (!saved?.results?.length) {
+      setIntroOpen(true);
       setRemainingMs(MEMORIZE_MS);
-      setPhase("memorize");
-      setIntroOpen(false);
-    });
+      return;
+    }
+    const results = saved.results.slice(0, ROUNDS);
+    setResults(results);
+    setRound(Math.min(results.length, ROUNDS - 1));
+    setFinished(results.length >= ROUNDS);
+    setRemainingMs(MEMORIZE_MS);
+    setPhase("memorize");
+    setIntroOpen(false);
   }, []);
 
   useEffect(() => {
@@ -274,16 +274,17 @@ export default function Guessr() {
     setGuess("");
     setResults([]);
     setFinished(false);
-    setIntroOpen(true);
+    setIntroOpen(false);
     setShowHelp(false);
     setRemainingMs(MEMORIZE_MS);
     fetchGuessrToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date);
         if (cancelled) return;
         setCurrency(res.currency);
         setPuzzles(res.puzzles.map((p) => p.pieces));
         setPuzzleDate(res.date);
-        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
@@ -431,6 +432,7 @@ export default function Guessr() {
           </ul>
           <div className="overlay-actions">
             <NextPuzzleCountdown
+              game="Money Guessr"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />
@@ -440,6 +442,7 @@ export default function Guessr() {
             <Link className="btn ghost" to="/">
               Home
             </Link>
+            <MoreGames current="/guessr" date={puzzleDate} />
           </div>
         </div>
       </main>

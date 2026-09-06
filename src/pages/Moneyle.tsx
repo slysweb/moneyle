@@ -12,6 +12,7 @@ import ArchiveBanner from "../components/ArchiveBanner";
 import ArchiveLocked from "../components/ArchiveLocked";
 import HowToPlayMoneyle from "../components/HowToPlayMoneyle";
 import MoneyleBonus, { MoneyleBonusRecap } from "../components/MoneyleBonus";
+import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
@@ -430,6 +431,7 @@ export default function Moneyle() {
             }
           />
           <NextPuzzleCountdown
+            game="Moneyle"
             puzzleDate={puzzleDate}
             autoAdvance={!requestedDate || requestedDate === denverDate()}
           />
@@ -450,6 +452,7 @@ export default function Moneyle() {
           <Link className="btn ghost" to="/">
             Home
           </Link>
+          <MoreGames current="/moneyle" date={puzzleDate} />
         </div>
       )}
 

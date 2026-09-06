@@ -1,4 +1,4 @@
-import { SITE_EPOCH, denverDate } from "./config";
+import { PUZZLE_TZ, SITE_EPOCH, denverDate } from "./config";
 
 export { SITE_EPOCH };
 
@@ -75,4 +75,63 @@ export function playPath(path: string, date: string | null | undefined, today = 
 
 export function isArchiveDate(date: string | null | undefined, today = denverDate()): boolean {
   return Boolean(date && date !== today);
+}
+
+function pad2(n: number): string {
+  return String(n).padStart(2, "0");
+}
+
+export function addIsoDays(iso: string, days: number): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  const dt = new Date(Date.UTC(year, month - 1, day + days));
+  return `${dt.getUTCFullYear()}-${pad2(dt.getUTCMonth() + 1)}-${pad2(dt.getUTCDate())}`;
+}
+
+function denverParts(at: Date): Record<string, string> {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone: PUZZLE_TZ,
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+  const map: Record<string, string> = {};
+  for (const part of dtf.formatToParts(at)) {
+    if (part.type !== "literal") map[part.type] = part.value;
+  }
+  return map;
+}
+
+export function denverWallToUtc(isoDate: string, hour = 0, minute = 0, second = 0): Date {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  let utc = Date.UTC(year, month - 1, day, hour + 7, minute, second);
+  for (let i = 0; i < 4; i += 1) {
+    const parts = denverParts(new Date(utc));
+    const got = Date.UTC(
+      Number(parts.year),
+      Number(parts.month) - 1,
+      Number(parts.day),
+      Number(parts.hour) % 24,
+      Number(parts.minute),
+      Number(parts.second)
+    );
+    const want = Date.UTC(year, month - 1, day, hour, minute, second);
+    utc += want - got;
+  }
+  return new Date(utc);
+}
+
+export function nextDenverMidnight(at: Date = new Date()): Date {
+  return denverWallToUtc(addIsoDays(denverDate(at), 1), 0, 0, 0);
+}
+
+export function formatCountdown(ms: number): string {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+  return `${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}`;
 }

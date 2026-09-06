@@ -27,7 +27,7 @@ import {
 import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
 import { useArchiveGate } from "../src/lib/useArchiveGate";
-import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
+import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, NextPuzzleNote, Screen } from "../src/ui";
 
 const LIVES = 4;
 const HELP =
@@ -334,6 +334,7 @@ export default function ConnectionsScreen() {
                 : `Two points per group. You found ${solvedIds.length} of 4.`}
             </Text>
             <Button label="Share" onPress={() => void Share.share({ message: shareText })} />
+            <NextPuzzleNote game="MoneyConnections" puzzleDate={puzzleDate} />
             <MoreGames current="connections" date={puzzleDate} />
           </View>
         )}

@@ -21,7 +21,7 @@ import {
 import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
 import { useArchiveGate } from "../src/lib/useArchiveGate";
-import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
+import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, NextPuzzleNote, Screen } from "../src/ui";
 
 const HELP =
   "Guess the currency on the frosted banknote. You get 6 tries. Each miss thins the frost and shows a USD rate plus how close you are. ↑ means your guess is stronger than the hidden note; ↓ means weaker. After the note is revealed, an optional bonus asks about that country’s flag, GDP, population, and GDP per person. First try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.";
@@ -364,6 +364,7 @@ export default function MoneyleScreen() {
               ghost={Boolean(bonusRounds && bonusPicks.length < bonusRounds.length)}
               onPress={() => void Share.share({ message: shareText })}
             />
+            <NextPuzzleNote game="Moneyle" puzzleDate={puzzleDate} />
             <MoreGames current="moneyle" date={puzzleDate} />
           </View>
         )}

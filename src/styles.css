@@ -1659,10 +1659,17 @@ button.card:disabled {
 }
 
 .next-puzzle {
-  margin: 0 0 16px;
+  margin: 0 auto 16px;
+  max-width: 36em;
   color: var(--text-dim);
   font-size: 0.95rem;
+  line-height: 1.45;
   text-align: center;
+}
+
+.next-puzzle a {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .next-puzzle-time {
@@ -1679,8 +1686,66 @@ button.card:disabled {
 }
 
 .review-screen .next-puzzle,
-.moneyle-end .next-puzzle {
+.moneyle-end .next-puzzle,
+.review-screen .more-games,
+.moneyle-end .more-games {
   width: 100%;
+}
+
+.more-games {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.more-games-kicker {
+  margin: 16px 0 10px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.more-games ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.more-games a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.more-games a:hover {
+  border-color: var(--accent);
+}
+
+.more-games .game-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+.more-games-title {
+  flex: 1;
+}
+
+.more-games-chevron {
+  color: var(--text-dim);
+  font-size: 1.4rem;
+  line-height: 1;
 }
 
 .review-screen {

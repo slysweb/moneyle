@@ -225,21 +225,20 @@ export default function GuessrScreen() {
   const [introOpen, setIntroOpen] = useState(true);
   const [remainingMs, setRemainingMs] = useState(MEMORIZE_MS);
 
-  const restore = useCallback((date: string) => {
-    void loadSyncedProgress<SavedRun>("guessr", date).then((saved) => {
-      if (!saved?.results?.length) {
-        setIntroOpen(true);
-        setRemainingMs(MEMORIZE_MS);
-        return;
-      }
-      const loaded = saved.results.slice(0, ROUNDS);
-      setResults(loaded);
-      setRound(Math.min(loaded.length, ROUNDS - 1));
-      setFinished(loaded.length >= ROUNDS);
+  const restore = useCallback(async (date: string) => {
+    const saved = await loadSyncedProgress<SavedRun>("guessr", date);
+    if (!saved?.results?.length) {
+      setIntroOpen(true);
       setRemainingMs(MEMORIZE_MS);
-      setPhase("memorize");
-      setIntroOpen(false);
-    });
+      return;
+    }
+    const loaded = saved.results.slice(0, ROUNDS);
+    setResults(loaded);
+    setRound(Math.min(loaded.length, ROUNDS - 1));
+    setFinished(loaded.length >= ROUNDS);
+    setRemainingMs(MEMORIZE_MS);
+    setPhase("memorize");
+    setIntroOpen(false);
   }, []);
 
   useEffect(() => {
@@ -254,14 +253,15 @@ export default function GuessrScreen() {
     setFinished(false);
     setPhase("memorize");
     setGuess("");
-    setIntroOpen(true);
+    setIntroOpen(false);
     fetchGuessrToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
+        if (cancelled) return;
+        await restore(res.date);
         if (cancelled) return;
         setCurrency(res.currency);
         setPuzzles(res.puzzles.map((p) => p.pieces));
         setPuzzleDate(res.date);
-        restore(res.date);
       })
       .catch(() => {
         if (!cancelled) setError(true);
