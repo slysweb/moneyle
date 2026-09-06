@@ -1,0 +1,512 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import * as Haptics from "expo-haptics";
+import { Image } from "expo-image";
+import { Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  fetchMoneyleBonus,
+  fetchMoneyleGuess,
+  fetchMoneylePuzzle,
+  type BonusOption,
+  type BonusRound,
+  type MoneyleCurrency,
+} from "../src/lib/api";
+import {
+  closenessSquare,
+  dailyPuzzleNumber,
+  formatScore,
+  MONEYLE_MAX_GUESSES,
+  moneyleScore,
+  sharePlayLine,
+} from "../src/lib/config";
+import { loadProgress, saveProgress } from "../src/lib/progress";
+import { colors, radius, type } from "../src/theme";
+import { Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
+
+const HELP =
+  "Guess the currency on the frosted banknote. You get 6 tries. Each miss thins the frost and shows a USD rate plus how close you are. ↑ means your guess is stronger than the hidden note; ↓ means weaker. After the note is revealed, an optional bonus asks about that country’s flag, GDP, population, and GDP per person. First try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.";
+
+interface HistoryRow {
+  currency: MoneyleCurrency;
+  rateDisplay: string;
+  stronger: boolean;
+  closeness: number;
+  correct: boolean;
+}
+
+interface SavedRun {
+  history: HistoryRow[];
+  answer: MoneyleCurrency | null;
+  bonusPicks?: string[];
+  bonusOpen?: boolean;
+}
+
+function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: number } {
+  if (revealed) return { blur: 0, tint: 0 };
+  const steps = [
+    { blur: 28, tint: 0.42 },
+    { blur: 20, tint: 0.32 },
+    { blur: 14, tint: 0.24 },
+    { blur: 9, tint: 0.16 },
+    { blur: 5, tint: 0.1 },
+    { blur: 2, tint: 0.05 },
+  ];
+  return steps[Math.min(guessCount, steps.length - 1)];
+}
+
+export default function MoneyleScreen() {
+  const [currencies, setCurrencies] = useState<MoneyleCurrency[]>([]);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
+  const [error, setError] = useState(false);
+  const [query, setQuery] = useState("");
+  const [history, setHistory] = useState<HistoryRow[]>([]);
+  const [busy, setBusy] = useState(false);
+  const [guessError, setGuessError] = useState<string | null>(null);
+  const [won, setWon] = useState(false);
+  const [lost, setLost] = useState(false);
+  const [answer, setAnswer] = useState<MoneyleCurrency | null>(null);
+  const [help, setHelp] = useState(false);
+  const [bonusRounds, setBonusRounds] = useState<BonusRound[] | null>(null);
+  const [bonusCountry, setBonusCountry] = useState<string | null>(null);
+  const [bonusPicks, setBonusPicks] = useState<string[]>([]);
+  const [bonusOpen, setBonusOpen] = useState(false);
+
+  const revealed = won || lost;
+  const remaining = MONEYLE_MAX_GUESSES - history.length;
+  const frost = frostFor(history.length, revealed);
+
+  const restore = useCallback((date: string) => {
+    void loadProgress<SavedRun>("moneyle", date).then((saved) => {
+      if (!saved?.history?.length) return;
+      const loaded = saved.history.slice(0, MONEYLE_MAX_GUESSES);
+      const solved = loaded.some((row) => row.correct);
+      setHistory(loaded);
+      setAnswer(saved.answer ?? null);
+      setWon(solved);
+      setLost(!solved && loaded.length >= MONEYLE_MAX_GUESSES);
+      setBonusPicks(saved.bonusPicks ?? []);
+      setBonusOpen(Boolean(saved.bonusOpen));
+    });
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchMoneylePuzzle()
+      .then((res) => {
+        if (cancelled) return;
+        setCurrencies(res.currencies);
+        setImageUrl(res.imageUrl);
+        setPuzzleDate(res.date);
+        restore(res.date);
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [restore]);
+
+  useEffect(() => {
+    if (history.length === 0) return;
+    void saveProgress<SavedRun>("moneyle", puzzleDate, {
+      history,
+      answer,
+      bonusPicks,
+      bonusOpen,
+    });
+  }, [puzzleDate, history, answer, bonusPicks, bonusOpen]);
+
+  useEffect(() => {
+    if (!revealed || !puzzleDate) return;
+    let cancelled = false;
+    fetchMoneyleBonus()
+      .then((res) => {
+        if (cancelled || !res.available || !res.rounds?.length || !res.country) return;
+        setBonusRounds(res.rounds);
+        setBonusCountry(res.country);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setBonusRounds(null);
+          setBonusCountry(null);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [revealed, puzzleDate]);
+
+  const guessedCodes = useMemo(() => new Set(history.map((h) => h.currency.code)), [history]);
+
+  const matches = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return currencies
+      .filter((c) => !guessedCodes.has(c.code))
+      .filter((c) => {
+        if (!q) return true;
+        return (
+          c.code.toLowerCase().includes(q) ||
+          c.name.toLowerCase().includes(q) ||
+          c.country.toLowerCase().includes(q)
+        );
+      })
+      .slice(0, 16);
+  }, [currencies, guessedCodes, query]);
+
+  const submitCode = useCallback(
+    async (code: string) => {
+      if (busy || revealed) return;
+      const currency = currencies.find((c) => c.code === code);
+      if (!currency || guessedCodes.has(code)) return;
+      setBusy(true);
+      setGuessError(null);
+      try {
+        const res = await fetchMoneyleGuess(code, history.length + 1);
+        const row: HistoryRow = {
+          currency,
+          rateDisplay: res.rateDisplay,
+          stronger: res.stronger,
+          closeness: res.closeness,
+          correct: res.correct,
+        };
+        setHistory((prev) => [...prev, row]);
+        setQuery("");
+        if (res.correct) {
+          setWon(true);
+          setAnswer(res.target);
+          void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        } else if (res.remaining <= 0) {
+          setLost(true);
+          setAnswer(res.target);
+          void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+        } else {
+          void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }
+      } catch {
+        setGuessError("Could not fetch the exchange rate. Try again.");
+      } finally {
+        setBusy(false);
+      }
+    },
+    [busy, revealed, currencies, guessedCodes, history.length]
+  );
+
+  const bonusCorrect = bonusRounds
+    ? bonusRounds.filter((round, i) =>
+        bonusPicks[i] ? round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct) : false
+      ).length
+    : 0;
+  const run = moneyleScore(won, history.length, bonusCorrect, bonusRounds?.length ?? 0);
+  const score = formatScore(run.score, run.max);
+  const bonusScore =
+    bonusRounds && bonusPicks.length >= bonusRounds.length ? bonusCorrect : null;
+  const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
+  const shareText = [
+    number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
+    "",
+    ...history.map((row) => {
+      const sq = closenessSquare(row.closeness, row.correct);
+      return row.correct ? sq : `${sq}${row.stronger ? "↑" : "↓"}`;
+    }),
+    ...(bonusScore != null && bonusRounds
+      ? [
+          "",
+          `Bonus ${bonusScore}/${bonusRounds.length}`,
+          bonusRounds
+            .map((round, i) =>
+              round.options.some((opt) => opt.id === bonusPicks[i] && opt.correct) ? "🟩" : "🟥"
+            )
+            .join(""),
+        ]
+      : []),
+    "",
+    sharePlayLine("/moneyle"),
+  ].join("\n");
+
+  if (error) {
+    return <ErrorView message="Could not load today’s Moneyle." />;
+  }
+
+  if (!imageUrl) {
+    return <LoadingView />;
+  }
+
+  return (
+    <Screen>
+      <GameHeader
+        title="Moneyle"
+        meta={`${history.length}/${MONEYLE_MAX_GUESSES}`}
+        onHelp={() => setHelp(true)}
+      />
+      <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
+        <View style={styles.noteWrap}>
+          <View style={styles.note}>
+            <Image
+              source={{ uri: imageUrl }}
+              style={[styles.noteImage, !revealed && { transform: [{ scale: 1.12 }] }]}
+              contentFit="cover"
+              blurRadius={frost.blur}
+            />
+            {frost.tint > 0 && (
+              <View style={[styles.frost, { backgroundColor: `rgba(244,245,244,${frost.tint})` }]} />
+            )}
+          </View>
+          {revealed && answer && (
+            <Text style={[styles.badge, won ? styles.badgeWin : styles.badgeLose]}>
+              {won ? "Correct" : "Answer"}: {answer.name} ({answer.code})
+            </Text>
+          )}
+        </View>
+
+        {bonusOpen && bonusRounds && bonusCountry ? (
+          <BonusPlay
+            country={bonusCountry}
+            rounds={bonusRounds}
+            picks={bonusPicks}
+            onPick={(id) => {
+              const next = [...bonusPicks, id];
+              setBonusPicks(next);
+              if (next.length >= bonusRounds.length) setBonusOpen(false);
+            }}
+            onExit={() => setBonusOpen(false)}
+          />
+        ) : (
+          <>
+            {history.map((row) => (
+              <View key={row.currency.code} style={[styles.hist, row.correct && styles.histOk]}>
+                <View style={styles.histName}>
+                  <Text style={styles.histTitle}>{row.currency.name}</Text>
+                  <Text style={styles.dim}>{row.currency.code}</Text>
+                </View>
+                <Text style={styles.histRate}>{row.correct ? "—" : row.rateDisplay}</Text>
+                <Text style={[styles.histDir, row.correct ? styles.hit : row.stronger ? styles.up : styles.down]}>
+                  {row.correct ? "✓" : row.stronger ? "↑" : "↓"}
+                </Text>
+                <Text style={styles.histPct}>{row.correct ? "100%" : `${Math.round(row.closeness)}%`}</Text>
+              </View>
+            ))}
+            {bonusRounds && bonusPicks.length >= bonusRounds.length ? (
+              <BonusRecap rounds={bonusRounds} picks={bonusPicks} />
+            ) : null}
+          </>
+        )}
+
+        {!revealed && (
+          <View style={styles.search}>
+            <TextInput
+              style={styles.input}
+              value={query}
+              onChangeText={setQuery}
+              placeholder="Search name, country, or code…"
+              placeholderTextColor={colors.dim}
+              autoCorrect={false}
+              autoCapitalize="none"
+              editable={!busy}
+            />
+            {query.length > 0 &&
+              matches.map((c) => (
+                <Pressable key={c.code} style={styles.suggest} onPress={() => void submitCode(c.code)}>
+                  <Text style={styles.suggestCode}>{c.code}</Text>
+                  <Text style={styles.dim}>
+                    {c.name} · {c.country}
+                  </Text>
+                </Pressable>
+              ))}
+            {guessError ? <Text style={styles.err}>{guessError}</Text> : null}
+            <Text style={styles.dim}>
+              {remaining} guess{remaining === 1 ? "" : "es"} left
+            </Text>
+          </View>
+        )}
+
+        {revealed && !bonusOpen && (
+          <View style={styles.end}>
+            <Text style={styles.score}>{score}</Text>
+            <Text style={styles.dim}>
+              {bonusRounds
+                ? `Note ${run.note} + bonus ${run.bonus}.`
+                : won
+                  ? `You got it in ${history.length}.`
+                  : "Missed this one."}
+            </Text>
+            {bonusRounds && bonusCountry && bonusPicks.length < bonusRounds.length ? (
+              <Button label="Play bonus round" onPress={() => setBonusOpen(true)} />
+            ) : null}
+            <Button
+              label="Share"
+              ghost={Boolean(bonusRounds && bonusPicks.length < bonusRounds.length)}
+              onPress={() => void Share.share({ message: shareText })}
+            />
+            <MoreGames current="moneyle" />
+          </View>
+        )}
+      </ScrollView>
+      <HelpModal visible={help} title="How to play" body={HELP} onClose={() => setHelp(false)} />
+    </Screen>
+  );
+}
+
+function BonusPlay({
+  country,
+  rounds,
+  picks,
+  onPick,
+  onExit,
+}: {
+  country: string;
+  rounds: BonusRound[];
+  picks: string[];
+  onPick: (id: string) => void;
+  onExit: () => void;
+}) {
+  const [picked, setPicked] = useState<BonusOption | null>(null);
+  const round = rounds[picks.length];
+  useEffect(() => {
+    setPicked(null);
+  }, [round?.kind]);
+  if (!round) return null;
+
+  return (
+    <View style={styles.bonus}>
+      <Text style={styles.dim}>
+        Bonus round · {country} · {picks.length + 1}/{rounds.length}
+      </Text>
+      <Text style={styles.bonusTitle}>{round.title}</Text>
+      <Text style={styles.dim}>{round.prompt}</Text>
+      <View style={styles.bonusOpts}>
+        {round.options.map((opt) => {
+          let border: string = colors.border;
+          if (picked) {
+            if (opt.correct) border = colors.accent;
+            else if (opt.id === picked.id) border = colors.red;
+          }
+          return (
+            <Pressable
+              key={opt.id}
+              disabled={!!picked}
+              onPress={() => setPicked(opt)}
+              style={[styles.bonusChoice, { borderColor: border }]}
+            >
+              {opt.imageUrl ? (
+                <Image source={{ uri: opt.imageUrl }} style={styles.flag} contentFit="cover" />
+              ) : (
+                <Text style={styles.bonusLabel}>{opt.label}</Text>
+              )}
+              {picked && opt.imageUrl ? <Text style={styles.dim}>{opt.label}</Text> : null}
+            </Pressable>
+          );
+        })}
+      </View>
+      <View style={styles.bonusNav}>
+        <Button label="Skip" ghost compact onPress={onExit} />
+        {picked ? (
+          <Button
+            label={picks.length + 1 >= rounds.length ? "Done" : "Next"}
+            compact
+            onPress={() => onPick(picked.id)}
+          />
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+function BonusRecap({ rounds, picks }: { rounds: BonusRound[]; picks: string[] }) {
+  return (
+    <View style={styles.recap}>
+      {rounds.map((round, i) => {
+        const correct = round.options.find((opt) => opt.correct);
+        if (!correct) return null;
+        const ok = round.options.some((opt) => opt.id === picks[i] && opt.correct);
+        return (
+          <View key={round.kind} style={styles.recapRow}>
+            <Text style={styles.dim}>{round.title}</Text>
+            <Text style={{ color: ok ? colors.accent : colors.red, fontWeight: "600" }}>
+              {correct.label}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  scroll: { paddingBottom: 36, gap: 10, paddingTop: 8 },
+  dim: { ...type.caption },
+  noteWrap: { gap: 8 },
+  note: {
+    height: 176,
+    borderRadius: radius.lg,
+    overflow: "hidden",
+    backgroundColor: colors.surface,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.border,
+  },
+  noteImage: { width: "100%", height: "100%" },
+  frost: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0 },
+  badge: { fontWeight: "600", textAlign: "center", fontSize: 15 },
+  badgeWin: { color: colors.accent },
+  badgeLose: { color: colors.red },
+  hist: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    backgroundColor: colors.surface,
+    borderRadius: radius.sm,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.border,
+  },
+  histOk: { borderColor: colors.accent },
+  histName: { flex: 1 },
+  histTitle: { fontWeight: "600", color: colors.text },
+  histRate: { color: colors.dim, fontWeight: "500", minWidth: 64, textAlign: "right", fontSize: 13 },
+  histDir: { width: 20, textAlign: "center", fontWeight: "700" },
+  histPct: { width: 40, textAlign: "right", fontWeight: "600", color: colors.text, fontSize: 13 },
+  hit: { color: colors.accent },
+  up: { color: colors.accent },
+  down: { color: colors.red },
+  search: { gap: 8 },
+  input: {
+    backgroundColor: colors.surface,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    paddingHorizontal: 14,
+    height: 50,
+    fontSize: 16,
+    color: colors.text,
+  },
+  suggest: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.sm,
+    padding: 12,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.border,
+  },
+  suggestCode: { fontWeight: "700", color: colors.ink },
+  err: { color: colors.red, fontSize: 13 },
+  end: { gap: 10, marginTop: 8 },
+  score: { ...type.score, fontSize: 36 },
+  bonus: { gap: 10 },
+  bonusTitle: { ...type.heading, fontSize: 20 },
+  bonusOpts: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
+  bonusChoice: {
+    flexGrow: 1,
+    minWidth: "46%",
+    backgroundColor: colors.surface,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: radius.md,
+    padding: 12,
+    alignItems: "center",
+    gap: 6,
+  },
+  bonusLabel: { fontWeight: "600", color: colors.text, textAlign: "center" },
+  flag: { width: "100%", height: 56, borderRadius: 8 },
+  bonusNav: { flexDirection: "row", gap: 8, marginTop: 4 },
+  recap: { gap: 8 },
+  recapRow: { flexDirection: "row", justifyContent: "space-between" },
+});
