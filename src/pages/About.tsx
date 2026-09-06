@@ -17,8 +17,8 @@ export default function About() {
         MoneyGames is a free site of short browser games about money. No paywalls — just a
         daily puzzle for everyone, one run a day, resetting at midnight Denver time. You can play as a
         guest, or <Link to="/register">register with Google</Link> to unlock the{" "}
-        <Link to="/archive">archive</Link> of past daily puzzles and sync progress across
-        devices.
+        <Link to="/archive">archive</Link> of past daily puzzles, sync progress across
+        devices, and keep <Link to="/me">your stats</Link>.
       </p>
 
       <h2>The games</h2>

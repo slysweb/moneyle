@@ -2,7 +2,14 @@
 // players also write to /api/progress so the same account matches on phone
 // and desktop.
 
-import { gamesForDate, type ArchiveGameId } from "./dates";
+import { denverDate, gamesForDate, type ArchiveGameId } from "./dates";
+import {
+  aggregateGameStats,
+  mergeRuns,
+  summarizeRun,
+  type GameStatCard,
+  type RunSummary,
+} from "./stats";
 
 const PREFIX = "moneygames:progress:";
 const MORELESS_TOTAL_ANSWERS = 25;
@@ -252,6 +259,44 @@ export async function archiveMonthProgress(
     // Keep the local map.
   }
   return map;
+}
+
+function listLocalRuns(): RunSummary[] {
+  const rows: RunSummary[] = [];
+  for (let i = 0; i < window.localStorage.length; i += 1) {
+    const key = window.localStorage.key(i);
+    if (!key || !key.startsWith(PREFIX)) continue;
+    const rest = key.slice(PREFIX.length);
+    const cut = rest.indexOf(":");
+    if (cut < 0) continue;
+    const game = rest.slice(0, cut);
+    const date = rest.slice(cut + 1);
+    try {
+      const parsed = JSON.parse(window.localStorage.getItem(key) ?? "") as Stored<unknown> | null;
+      const summary = summarizeRun(game, date, parsed?.state);
+      if (summary) rows.push(summary);
+    } catch {
+      // Skip a bad row.
+    }
+  }
+  return rows;
+}
+
+export async function loadPlayerStats(): Promise<GameStatCard[]> {
+  const local = listLocalRuns();
+  let remote: RunSummary[] = [];
+  if (syncEnabled) {
+    try {
+      const res = await fetch("/api/progress?stats=1", { credentials: "same-origin" });
+      if (res.ok) {
+        const data = (await res.json()) as { items?: RunSummary[] };
+        remote = data.items ?? [];
+      }
+    } catch {
+      // Keep local stats offline.
+    }
+  }
+  return aggregateGameStats(mergeRuns(local, remote), denverDate());
 }
 
 export async function isDateFinished(game: ArchiveGameId, date: string): Promise<boolean> {

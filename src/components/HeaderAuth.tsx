@@ -51,6 +51,9 @@ export default function HeaderAuth() {
         {open ? (
           <div className="header-user-menu" role="menu">
             <p className="header-user-email">{user.email}</p>
+            <Link to="/me" role="menuitem">
+              Your stats
+            </Link>
             <button type="button" role="menuitem" onClick={() => void logout()}>
               Sign out
             </button>

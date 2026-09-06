@@ -14,6 +14,7 @@ import ArticlePage from "./pages/ArticlePage";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Register from "./pages/Register";
+import Me from "./pages/Me";
 import FeedbackModal from "./components/FeedbackModal";
 import HeaderAuth from "./components/HeaderAuth";
 import { FeedbackContext } from "./lib/feedback";
@@ -35,6 +36,9 @@ export default function App() {
               <NavLink to="/archive" className="header-archive">
                 Archive
               </NavLink>
+              <NavLink to="/me" className="header-archive">
+                Me
+              </NavLink>
               <HeaderAuth />
             </div>
           </header>
@@ -42,6 +46,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/archive" element={<Archive />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/me" element={<Me />} />
             <Route path="/moreless" element={<Game />} />
             <Route path="/moreless/:slug" element={<Navigate to="/moreless" replace />} />
             <Route path="/guessr" element={<Guessr />} />

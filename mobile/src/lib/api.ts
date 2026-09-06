@@ -76,6 +76,20 @@ export async function fetchProgressRange(
   return getJson(`/api/progress?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
 }
 
+export async function fetchProgressStats(): Promise<{
+  items: {
+    game: string;
+    date: string;
+    score: number;
+    max: number;
+    won: boolean | null;
+    perfect: boolean;
+    guesses?: number;
+  }[];
+}> {
+  return getJson("/api/progress?stats=1");
+}
+
 export async function putProgress(
   game: string,
   date: string,

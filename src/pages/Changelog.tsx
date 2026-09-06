@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "September 6, 2026",
+    iso: "2026-09-06",
+    items: [
+      "Me now shows per-game statistics for finished daily runs: days played, high score, average, streaks, and win rate on Moneyle and MoneyConnections.",
+    ],
+  },
+  {
     date: "September 4, 2026",
     iso: "2026-09-04",
     items: [

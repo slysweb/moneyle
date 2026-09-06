@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { googleStartPath, useAuth } from "../lib/auth";
 import { usePageMeta } from "../lib/usePageMeta";
 import SiteFooter from "../components/SiteFooter";
@@ -39,7 +39,7 @@ export default function Register() {
     "Create a MoneyGames account with Google to unlock the archive. Today’s games still work if you skip this."
   );
 
-  const { user, loading, logout } = useAuth();
+  const { user, loading } = useAuth();
   const [params] = useSearchParams();
   const error = ERRORS[params.get("error") ?? ""] ?? null;
   const next = params.get("next") || "/";
@@ -52,19 +52,7 @@ export default function Register() {
         {loading ? (
           <p className="register-copy">Checking your session…</p>
         ) : user ? (
-          <>
-            <p className="register-copy">
-              You’re signed in as <strong>{user.name}</strong> ({user.email}).
-            </p>
-            <div className="register-actions">
-              <Link className="btn primary" to="/">
-                Home
-              </Link>
-              <button type="button" className="btn ghost" onClick={() => void logout()}>
-                Sign out
-              </button>
-            </div>
-          </>
+          <Navigate to="/me" replace />
         ) : (
           <>
             <p className="register-copy">

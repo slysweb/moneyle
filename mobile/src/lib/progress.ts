@@ -1,6 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { fetchProgress, fetchProgressRange, putProgress } from "./api";
+import { fetchProgress, fetchProgressRange, fetchProgressStats, putProgress } from "./api";
+import { denverDate } from "./config";
 import { gamesForDate, type ArchiveGameId } from "./dates";
+import {
+  aggregateGameStats,
+  isStatsGame,
+  mergeRuns,
+  summarizeRun,
+  type GameStatCard,
+  type RunSummary,
+} from "./stats";
 
 const PREFIX = "moneygames:progress:";
 const MORELESS_TOTAL_ANSWERS = 25;
@@ -167,6 +176,44 @@ export async function pushLocalProgress(): Promise<void> {
       }
     })
   );
+}
+
+async function listLocalRuns(): Promise<RunSummary[]> {
+  const keys = (await AsyncStorage.getAllKeys()).filter((key) => key.startsWith(PREFIX));
+  if (keys.length === 0) return [];
+  const rows = await AsyncStorage.multiGet(keys);
+  const out: RunSummary[] = [];
+  for (const [key, raw] of rows) {
+    if (!raw) continue;
+    const rest = key.slice(PREFIX.length);
+    const cut = rest.indexOf(":");
+    if (cut < 0) continue;
+    const game = rest.slice(0, cut);
+    const date = rest.slice(cut + 1);
+    if (!isStatsGame(game) || !date) continue;
+    try {
+      const parsed = JSON.parse(raw) as Stored<unknown> | null;
+      const summary = summarizeRun(game, date, parsed?.state);
+      if (summary) out.push(summary);
+    } catch {
+      // Skip a bad row.
+    }
+  }
+  return out;
+}
+
+export async function loadPlayerStats(): Promise<GameStatCard[]> {
+  const local = await listLocalRuns();
+  let remote: RunSummary[] = [];
+  if (syncEnabled) {
+    try {
+      const data = await fetchProgressStats();
+      remote = (data.items ?? []).filter((row): row is RunSummary => isStatsGame(row.game));
+    } catch {
+      // Keep local stats offline.
+    }
+  }
+  return aggregateGameStats(mergeRuns(local, remote), denverDate());
 }
 
 export async function isDateFinished(game: ArchiveGameId, date: string): Promise<boolean> {

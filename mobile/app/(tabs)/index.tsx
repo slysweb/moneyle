@@ -11,7 +11,7 @@ function AccountChip() {
   if (user) {
     const first = user.name.split(/\s+/)[0] || user.email;
     return (
-      <Link href="/register" asChild>
+      <Link href="/me" asChild>
         <Pressable style={({ pressed }) => [styles.chip, pressed && styles.chipPressed]}>
           {user.pictureUrl ? (
             <Image source={{ uri: user.pictureUrl }} style={styles.chipAvatar} contentFit="cover" />
@@ -25,7 +25,7 @@ function AccountChip() {
     );
   }
   return (
-    <Link href="/register" asChild>
+    <Link href="/me" asChild>
       <Pressable hitSlop={8}>
         <Text style={styles.signIn}>Register</Text>
       </Pressable>
