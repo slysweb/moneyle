@@ -8,6 +8,7 @@ import {
 } from "./daily";
 import { handleFeedback } from "./feedback";
 import { handleAuth, sessionUser } from "./auth";
+import { handleProgress } from "./progress";
 import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 import { handleArticleHtml, isArticlePath } from "./articleSsr";
@@ -227,6 +228,9 @@ export default {
       try {
         if (url.pathname.startsWith("/api/auth")) {
           return await handleAuth(env, request, url);
+        }
+        if (url.pathname.startsWith("/api/progress")) {
+          return await handleProgress(env, request, url);
         }
         if (url.pathname === "/api/feedback") {
           if (request.method !== "POST") {

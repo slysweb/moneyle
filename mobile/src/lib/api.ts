@@ -1,4 +1,13 @@
 import { API_ORIGIN, assetUrl } from "./config";
+import { getBearer } from "./session";
+
+function authHeaders(extra?: Record<string, string>): Record<string, string> {
+  const token = getBearer();
+  return {
+    ...(extra ?? {}),
+    ...(token ? { authorization: `Bearer ${token}` } : {}),
+  };
+}
 
 export interface GameItem {
   id: number;
@@ -22,18 +31,91 @@ export interface MorelessTodayResponse {
   levels: MorelessLevel[];
 }
 
+async function readError(res: Response): Promise<string> {
+  const data = (await res.json().catch(() => null)) as { error?: string } | null;
+  return data?.error || `Request failed: ${res.status}`;
+}
+
 async function getJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_ORIGIN}${path}`);
-  if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+  const res = await fetch(`${API_ORIGIN}${path}`, { headers: authHeaders() });
+  if (!res.ok) throw new Error(await readError(res));
   return res.json() as Promise<T>;
+}
+
+async function postJson<T>(path: string, body?: unknown): Promise<T> {
+  const res = await fetch(`${API_ORIGIN}${path}`, {
+    method: "POST",
+    headers: authHeaders({ "content-type": "application/json" }),
+    body: body == null ? undefined : JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json() as Promise<T>;
+}
+
+async function putJson<T>(path: string, body?: unknown): Promise<T> {
+  const res = await fetch(`${API_ORIGIN}${path}`, {
+    method: "PUT",
+    headers: authHeaders({ "content-type": "application/json" }),
+    body: body == null ? undefined : JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(await readError(res));
+  return res.json() as Promise<T>;
+}
+
+export async function fetchProgress<T>(
+  game: string,
+  date: string
+): Promise<{ state: T | null; updatedAt: number }> {
+  return getJson(`/api/progress?game=${encodeURIComponent(game)}&date=${encodeURIComponent(date)}`);
+}
+
+export async function fetchProgressRange(
+  from: string,
+  to: string
+): Promise<{ items: { game: string; date: string; finished: boolean }[] }> {
+  return getJson(`/api/progress?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`);
+}
+
+export async function putProgress(
+  game: string,
+  date: string,
+  state: unknown,
+  updatedAt: number
+): Promise<void> {
+  await putJson("/api/progress", { game, date, state, updatedAt });
+}
+
+export interface AuthUser {
+  id: number;
+  name: string;
+  email: string;
+  pictureUrl: string | null;
+}
+
+export async function fetchMe(): Promise<AuthUser | null> {
+  const data = await getJson<{ user?: AuthUser | null }>("/api/auth/me");
+  return data.user ?? null;
+}
+
+export async function exchangeAuthCode(code: string): Promise<{ token: string; user: AuthUser }> {
+  return postJson("/api/auth/exchange", { code });
+}
+
+export async function logoutRemote(): Promise<void> {
+  await postJson("/api/auth/logout");
 }
 
 function withAssets(item: GameItem): GameItem {
   return { ...item, imageUrl: assetUrl(item.imageUrl) };
 }
 
-export async function fetchMorelessToday(): Promise<MorelessTodayResponse> {
-  const data = await getJson<MorelessTodayResponse>("/api/moreless/today");
+function dateQuery(date?: string | null): string {
+  if (!date) return "";
+  return `?date=${encodeURIComponent(date)}`;
+}
+
+export async function fetchMorelessToday(date?: string | null): Promise<MorelessTodayResponse> {
+  const data = await getJson<MorelessTodayResponse>(`/api/moreless/today${dateQuery(date)}`);
   return {
     ...data,
     levels: data.levels.map((level) => ({
@@ -66,8 +148,8 @@ export interface GuessrTodayResponse {
   puzzles: { pieces: GuessrPiece[] }[];
 }
 
-export async function fetchGuessrToday(): Promise<GuessrTodayResponse> {
-  const data = await getJson<GuessrTodayResponse>("/api/guessr/today");
+export async function fetchGuessrToday(date?: string | null): Promise<GuessrTodayResponse> {
+  const data = await getJson<GuessrTodayResponse>(`/api/guessr/today${dateQuery(date)}`);
   return {
     ...data,
     puzzles: data.puzzles.map((puzzle) => ({
@@ -101,14 +183,19 @@ export interface MoneyleGuessResult {
   target: MoneyleCurrency | null;
 }
 
-export async function fetchMoneylePuzzle(): Promise<MoneylePuzzleResponse> {
-  const data = await getJson<MoneylePuzzleResponse>("/api/moneyle/puzzle");
+export async function fetchMoneylePuzzle(date?: string | null): Promise<MoneylePuzzleResponse> {
+  const data = await getJson<MoneylePuzzleResponse>(`/api/moneyle/puzzle${dateQuery(date)}`);
   return { ...data, imageUrl: assetUrl(data.imageUrl) ?? data.imageUrl };
 }
 
-export function fetchMoneyleGuess(code: string, attempt?: number): Promise<MoneyleGuessResult> {
+export function fetchMoneyleGuess(
+  code: string,
+  attempt?: number,
+  date?: string | null
+): Promise<MoneyleGuessResult> {
   const params = new URLSearchParams({ code });
   if (attempt != null) params.set("attempt", String(attempt));
+  if (date) params.set("date", date);
   return getJson(`/api/moneyle/guess?${params.toString()}`);
 }
 
@@ -136,8 +223,8 @@ export interface MoneyleBonusResponse {
   rounds?: BonusRound[];
 }
 
-export async function fetchMoneyleBonus(): Promise<MoneyleBonusResponse> {
-  const data = await getJson<MoneyleBonusResponse>("/api/moneyle/bonus");
+export async function fetchMoneyleBonus(date?: string | null): Promise<MoneyleBonusResponse> {
+  const data = await getJson<MoneyleBonusResponse>(`/api/moneyle/bonus${dateQuery(date)}`);
   if (!data.rounds) return data;
   return {
     ...data,
@@ -177,8 +264,8 @@ export interface ConnectionsTodayResponse {
   tiles: ConnectionTile[];
 }
 
-export async function fetchConnectionsToday(): Promise<ConnectionsTodayResponse> {
-  const data = await getJson<ConnectionsTodayResponse>("/api/connections/today");
+export async function fetchConnectionsToday(date?: string | null): Promise<ConnectionsTodayResponse> {
+  const data = await getJson<ConnectionsTodayResponse>(`/api/connections/today${dateQuery(date)}`);
   return {
     ...data,
     tiles: data.tiles.map((tile) => ({ ...tile, imageUrl: assetUrl(tile.imageUrl) })),

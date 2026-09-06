@@ -11,7 +11,7 @@ export function useArchiveGate() {
 
   return {
     requestedDate,
-    pending: needsMember && loading,
+    pending: loading,
     locked: needsMember && !loading && !user,
     next: `${location.pathname}${location.search}`,
   };

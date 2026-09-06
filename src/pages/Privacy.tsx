@@ -7,7 +7,7 @@ export default function Privacy() {
     <InfoPage
       title="Privacy Policy"
       description="How MoneyGames handles information — optional Google accounts, no ads, no sale of personal data."
-      updated="August 28, 2026"
+      updated="September 6, 2026"
     >
       <p>
         MoneyGames (“we”) runs free games at moneygames.cc. This policy explains what
@@ -24,8 +24,10 @@ export default function Privacy() {
       <p>
         If you register, we use Google account sign-in only. Google sends us your Google
         user id, name, email address, and profile photo. We store those in Cloudflare D1 so
-        we can keep you signed in. We do not get your Google password. Signing in creates an
-        account on first use; later visits reuse it.
+        we can keep you signed in. We also store that account’s daily puzzle progress
+        (which game, which date, and the run state) so the same account matches on phone
+        and desktop. We do not get your Google password. Signing in creates an account on
+        first use; later visits reuse it.
       </p>
       <p>
         After you sign in we set a first-party session cookie (<code>mg_session</code>) so
@@ -105,12 +107,12 @@ export default function Privacy() {
 
       <h2>Retention</h2>
       <p>
-        Puzzle content stays as long as the games need it. Account records stay until you
-        ask us to delete them, or until we shut the feature down. Feedback notes stay until
-        we have handled them. Infrastructure logs follow Cloudflare’s defaults unless we
-        have a security or legal reason to keep a record longer. Email{" "}
-        <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want an account or a
-        feedback submission removed.
+        Puzzle content stays as long as the games need it. Account records and signed-in
+        puzzle progress stay until you ask us to delete them, or until we shut the feature
+        down. Feedback notes stay until we have handled them. Infrastructure logs follow
+        Cloudflare’s defaults unless we have a security or legal reason to keep a record
+        longer. Email <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a> if you want an
+        account, its synced progress, or a feedback submission removed.
       </p>
 
       <h2>Children</h2>

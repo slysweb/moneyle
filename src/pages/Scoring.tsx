@@ -18,13 +18,13 @@ export default function Scoring() {
     <InfoPage
       title="Scoring rules"
       description="How MoneyGames scores each daily run — More/Less, Money Guessr, Moneyle, and MoneyConnections."
-      updated="August 29, 2026"
+      updated="September 6, 2026"
     >
       <p>
         Each game has its own score. When you finish a run, the results screen shows{" "}
         <strong>points over that game’s maximum</strong>, and Share copies the same
-        number. Scores do not add up across games or days, and they stay on this
-        device with your progress.
+        number. Scores do not add up across games or days. Signed-in progress
+        syncs across devices; guest progress stays on this device.
       </p>
       <p>
         One run per date, the same puzzle for everyone, resetting at midnight Denver

@@ -37,6 +37,10 @@
     "db:feedback:remote": "wrangler d1 execute moneygames-db --remote --file=db/feedback.sql",
     "db:auth:local": "wrangler d1 execute moneygames-db --local --file=db/auth.sql",
     "db:auth:remote": "wrangler d1 execute moneygames-db --remote --file=db/auth.sql",
+    "db:auth-codes:local": "wrangler d1 execute moneygames-db --local --file=db/auth-codes.sql",
+    "db:auth-codes:remote": "wrangler d1 execute moneygames-db --remote --file=db/auth-codes.sql",
+    "db:progress:local": "wrangler d1 execute moneygames-db --local --file=db/progress.sql",
+    "db:progress:remote": "wrangler d1 execute moneygames-db --remote --file=db/progress.sql",
     "data:money-seed": "node scripts/build-money-seed.mjs"
   },
   "dependencies": {

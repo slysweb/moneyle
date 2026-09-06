@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { pushLocalProgress, setProgressSync } from "./progress";
 
 export interface AuthUser {
   id: number;
@@ -38,9 +39,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const refresh = useCallback(async () => {
     try {
-      setUser(await fetchMe());
+      const next = await fetchMe();
+      setUser(next);
+      setProgressSync(Boolean(next));
+      if (next) void pushLocalProgress();
     } catch {
       setUser(null);
+      setProgressSync(false);
     } finally {
       setLoading(false);
     }
@@ -52,6 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = useCallback(async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "same-origin" });
+    setProgressSync(false);
     setUser(null);
   }, []);
 

@@ -1,7 +1,37 @@
 import { Link } from "expo-router";
+import { Image } from "expo-image";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Screen } from "../src/ui";
-import { colors, radius, type } from "../src/theme";
+import { Screen } from "../../src/ui";
+import { useAuth } from "../../src/lib/auth";
+import { colors, radius, type } from "../../src/theme";
+
+function AccountChip() {
+  const { user, loading } = useAuth();
+  if (loading) return <View style={styles.chipSlot} />;
+  if (user) {
+    const first = user.name.split(/\s+/)[0] || user.email;
+    return (
+      <Link href="/register" asChild>
+        <Pressable style={({ pressed }) => [styles.chip, pressed && styles.chipPressed]}>
+          {user.pictureUrl ? (
+            <Image source={{ uri: user.pictureUrl }} style={styles.chipAvatar} contentFit="cover" />
+          ) : (
+            <View style={styles.chipFallback}>
+              <Text style={styles.chipLetter}>{first.charAt(0).toUpperCase()}</Text>
+            </View>
+          )}
+        </Pressable>
+      </Link>
+    );
+  }
+  return (
+    <Link href="/register" asChild>
+      <Pressable hitSlop={8}>
+        <Text style={styles.signIn}>Register</Text>
+      </Pressable>
+    </Link>
+  );
+}
 
 const games = [
   {
@@ -38,12 +68,15 @@ const games = [
   },
 ] as const;
 
-export default function HomeScreen() {
+export default function DailyScreen() {
   return (
     <Screen>
       <View style={styles.wash} pointerEvents="none" />
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <Text style={styles.kicker}>TODAY</Text>
+        <View style={styles.topRow}>
+          <Text style={styles.kicker}>TODAY</Text>
+          <AccountChip />
+        </View>
         <Text style={styles.title}>MoneyGames</Text>
         <Text style={styles.sub}>The same daily puzzles as moneygames.cc</Text>
 
@@ -82,7 +115,27 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   scroll: { paddingTop: 20, paddingBottom: 48 },
+  topRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
   kicker: { ...type.kicker, textTransform: "uppercase" },
+  signIn: { color: colors.accent, fontSize: 15, fontWeight: "600" },
+  chipSlot: { width: 28, height: 28 },
+  chip: { alignSelf: "flex-end" },
+  chipPressed: { opacity: 0.7 },
+  chipAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: colors.accentSoft,
+  },
+  chipFallback: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: colors.accentSoft,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  chipLetter: { fontSize: 12, fontWeight: "700", color: colors.accent },
   title: { ...type.title, fontSize: 34, marginTop: 6 },
   sub: { ...type.caption, fontSize: 14, lineHeight: 20, marginTop: 8, marginBottom: 26 },
   stack: { gap: 18 },

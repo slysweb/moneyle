@@ -10,7 +10,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
-import { loadProgress, saveProgress } from "../lib/progress";
+import { loadSyncedProgress, saveProgress } from "../lib/progress";
 import { formatScore, morelessScore } from "../lib/score";
 import GameScore from "../components/GameScore";
 
@@ -118,14 +118,15 @@ export default function Game() {
   // to it: a level is always exactly ROUNDS_PER_LEVEL answers, so the two can
   // never drift apart if the app dies mid-animation.
   const restore = useCallback((date: string, loaded: MorelessLevel[]) => {
-    const saved = loadProgress<SavedRun>("moreless", date);
-    if (!saved?.answers?.length) return;
-    const total = loaded.length * ROUNDS_PER_LEVEL;
-    const done = Math.min(saved.answers.length, total);
-    setAnswers(saved.answers.slice(0, done));
-    setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
-    setRoundIndex(done % ROUNDS_PER_LEVEL);
-    setFinished(done >= total);
+    void loadSyncedProgress<SavedRun>("moreless", date).then((saved) => {
+      if (!saved?.answers?.length) return;
+      const total = loaded.length * ROUNDS_PER_LEVEL;
+      const done = Math.min(saved.answers.length, total);
+      setAnswers(saved.answers.slice(0, done));
+      setLevelIndex(Math.min(Math.floor(done / ROUNDS_PER_LEVEL), loaded.length - 1));
+      setRoundIndex(done % ROUNDS_PER_LEVEL);
+      setFinished(done >= total);
+    });
   }, []);
 
   useEffect(() => {

@@ -4,9 +4,10 @@ import { Image } from "expo-image";
 import { Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
 import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../src/lib/api";
 import { dailyPuzzleNumber, formatScore, resultSquares, sharePlayLine } from "../src/lib/config";
-import { loadProgress, saveProgress } from "../src/lib/progress";
+import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
-import { ErrorView, GameHeader, HelpModal, LoadingView, ResultBlock, Screen } from "../src/ui";
+import { useArchiveGate } from "../src/lib/useArchiveGate";
+import { ArchiveBanner, ArchiveLocked, ErrorView, GameHeader, HelpModal, LoadingView, ResultBlock, Screen } from "../src/ui";
 
 type Phase = "guessing" | "selected" | "revealing" | "correct" | "wrong";
 type Side = "left" | "right";
@@ -27,6 +28,8 @@ interface SavedRun {
 }
 
 export default function MoreLessScreen() {
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -40,7 +43,7 @@ export default function MoreLessScreen() {
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const restore = useCallback((date: string, loaded: MorelessLevel[]) => {
-    void loadProgress<SavedRun>("moreless", date).then((saved) => {
+    void loadSyncedProgress<SavedRun>("moreless", date).then((saved) => {
       if (!saved?.answers?.length) return;
       const total = loaded.length * ROUNDS_PER_LEVEL;
       const done = Math.min(saved.answers.length, total);
@@ -52,8 +55,18 @@ export default function MoreLessScreen() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
-    fetchMorelessToday()
+    setError(false);
+    setLevels(null);
+    setPuzzleDate(null);
+    setAnswers([]);
+    setLevelIndex(0);
+    setRoundIndex(0);
+    setPhase("guessing");
+    setSelected(null);
+    setFinished(false);
+    fetchMorelessToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setLevels(res.levels);
@@ -67,7 +80,7 @@ export default function MoreLessScreen() {
       cancelled = true;
       timers.current.forEach(clearTimeout);
     };
-  }, [restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (answers.length === 0) return;
@@ -154,8 +167,16 @@ export default function MoreLessScreen() {
     [phase, left, right, advance]
   );
 
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
+
+  if (archiveGate.pending) {
+    return <LoadingView />;
+  }
+
   if (error) {
-    return <ErrorView message="Could not load today’s More/Less." />;
+    return <ErrorView message="Could not load More/Less." />;
   }
 
   if (!levels || !level || !left || !right) {
@@ -176,7 +197,7 @@ export default function MoreLessScreen() {
       "",
       ...byLevel.map((row) => `${row.short} ${row.marks}`),
       "",
-      sharePlayLine("/moreless"),
+      sharePlayLine("/moreless", puzzleDate),
     ].join("\n");
 
     return (
@@ -186,6 +207,7 @@ export default function MoreLessScreen() {
             score={formatScore(correctCount, answers.length)}
             detail="One point per correct pick."
             current="moreless"
+            archiveDate={puzzleDate}
             onShare={() => void Share.share({ message: shareText })}
           >
             <View style={styles.review}>
@@ -212,7 +234,9 @@ export default function MoreLessScreen() {
         title="More/Less"
         meta={`${level.short}  ·  ${roundIndex + 1}/${ROUNDS_PER_LEVEL}`}
         onHelp={() => setHelp(true)}
+        archiveDate={puzzleDate}
       />
+      <ArchiveBanner puzzleDate={puzzleDate} />
       <View style={styles.pills}>
         {levels.map((lvl, i) => (
           <View

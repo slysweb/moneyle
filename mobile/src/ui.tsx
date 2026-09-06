@@ -9,6 +9,8 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { denverDate } from "./lib/config";
+import { formatPuzzleDate, isArchiveDate, playPath } from "./lib/dates";
 import { colors, radius, space, type } from "./theme";
 
 function useGoHome() {
@@ -29,14 +31,15 @@ const GAMES = [
   { href: "/connections", title: "MoneyConnections", mark: "▦", tint: "#efe8f8", ink: "#6b45b0" },
 ] as const;
 
-export function MoreGames({ current }: { current: string }) {
+export function MoreGames({ current, date }: { current: string; date?: string | null }) {
   const others = GAMES.filter((game) => game.href !== current && game.href !== `/${current}`);
+  const today = denverDate();
   return (
     <View style={styles.more}>
       <Text style={styles.moreKicker}>MORE GAMES</Text>
       <View style={styles.moreStack}>
         {others.map((game) => (
-          <Link key={game.href} href={game.href} asChild>
+          <Link key={game.href} href={playPath(game.href, date, today)} asChild>
             <Pressable style={({ pressed }) => [styles.moreCard, pressed && styles.moreCardPressed]}>
               <View style={styles.moreInner}>
                 <View style={[styles.moreMark, { backgroundColor: game.tint }]}>
@@ -69,16 +72,30 @@ export function GameHeader({
   title,
   meta,
   onHelp,
+  archiveDate,
 }: {
   title: string;
   meta?: string;
   onHelp?: () => void;
+  archiveDate?: string | null;
 }) {
   const goHome = useGoHome();
+  const router = useRouter();
+  const archive = isArchiveDate(archiveDate);
   return (
     <View style={styles.header}>
-      <Pressable onPress={goHome} hitSlop={10} style={styles.headerSide}>
-        <Text style={styles.headerLink}>Home</Text>
+      <Pressable
+        onPress={() => {
+          if (archive && archiveDate) {
+            router.replace(playPath("/archive", archiveDate));
+            return;
+          }
+          goHome();
+        }}
+        hitSlop={10}
+        style={styles.headerSide}
+      >
+        <Text style={styles.headerLink}>{archive ? "Archive" : "Home"}</Text>
       </Pressable>
       <View style={styles.headerMid}>
         <Text style={styles.headerTitle} numberOfLines={1}>
@@ -177,6 +194,40 @@ export function ErrorView({ message }: { message: string }) {
   );
 }
 
+export function ArchiveBanner({ puzzleDate }: { puzzleDate: string | null }) {
+  if (!puzzleDate || !isArchiveDate(puzzleDate)) return null;
+  return (
+    <View style={styles.banner}>
+      <Text style={styles.bannerDate}>{formatPuzzleDate(puzzleDate)}</Text>
+      <Text style={styles.bannerTag}>Archive</Text>
+    </View>
+  );
+}
+
+export function ArchiveLocked({ next }: { next: string }) {
+  return (
+    <Screen>
+      <View style={styles.lock}>
+        <Text style={styles.lockKicker}>MEMBERS ONLY</Text>
+        <Text style={styles.lockTitle}>Unlock the archive</Text>
+        <Text style={styles.lockCopy}>
+          Today’s games stay free. Register with Google to play every past daily puzzle.
+        </Text>
+        <Link href={`/register?next=${encodeURIComponent(next)}`} asChild>
+          <Pressable style={({ pressed }) => [styles.btn, pressed && styles.btnPressed]}>
+            <Text style={styles.btnText}>Register to unlock</Text>
+          </Pressable>
+        </Link>
+        <Link href="/" asChild>
+          <Pressable hitSlop={8} style={styles.lockAlt}>
+            <Text style={styles.headerLink}>Play today</Text>
+          </Pressable>
+        </Link>
+      </View>
+    </Screen>
+  );
+}
+
 export function ResultBlock({
   score,
   detail,
@@ -184,6 +235,7 @@ export function ResultBlock({
   shareLabel = "Share",
   current,
   onShare,
+  archiveDate,
 }: {
   score: string;
   detail: string;
@@ -191,19 +243,33 @@ export function ResultBlock({
   shareLabel?: string;
   current: string;
   onShare: () => void;
+  archiveDate?: string | null;
 }) {
   const goHome = useGoHome();
+  const router = useRouter();
+  const archive = isArchiveDate(archiveDate);
   return (
     <View style={styles.result}>
-      <Pressable onPress={goHome} hitSlop={8}>
-        <Text style={styles.headerLink}>Home</Text>
+      <Pressable
+        onPress={() => {
+          if (archive && archiveDate) {
+            router.replace(playPath("/archive", archiveDate));
+            return;
+          }
+          goHome();
+        }}
+        hitSlop={8}
+      >
+        <Text style={styles.headerLink}>{archive ? "Archive" : "Home"}</Text>
       </Pressable>
-      <Text style={styles.resultKicker}>Today</Text>
+      <Text style={styles.resultKicker}>
+        {archive && archiveDate ? formatPuzzleDate(archiveDate) : "Today"}
+      </Text>
       <Text style={styles.resultScore}>{score}</Text>
       <Text style={styles.resultDetail}>{detail}</Text>
       {children}
       <Button label={shareLabel} onPress={onShare} />
-      <MoreGames current={current} />
+      <MoreGames current={current} date={archiveDate} />
     </View>
   );
 }
@@ -217,7 +283,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
     paddingBottom: 4,
   },
-  headerSide: { width: 64, justifyContent: "center" },
+  headerSide: { width: 72, justifyContent: "center" },
   headerRight: { alignItems: "flex-end" },
   headerMid: { flex: 1, alignItems: "center" },
   headerTitle: { ...type.heading },
@@ -296,4 +362,27 @@ const styles = StyleSheet.create({
   moreMarkText: { fontSize: 16, fontWeight: "700" },
   moreTitle: { fontSize: 16, fontWeight: "600", color: colors.ink, flex: 1 },
   moreChevron: { fontSize: 24, lineHeight: 24, color: colors.muted, width: 16, textAlign: "right" },
+  banner: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingBottom: 8,
+  },
+  bannerDate: { ...type.caption },
+  bannerTag: {
+    fontSize: 11,
+    fontWeight: "700",
+    letterSpacing: 0.4,
+    color: colors.accent,
+    backgroundColor: colors.accentSoft,
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 999,
+    overflow: "hidden",
+  },
+  lock: { flex: 1, justifyContent: "center", gap: 12, paddingBottom: 40 },
+  lockKicker: { ...type.kicker, textTransform: "uppercase" },
+  lockTitle: { ...type.title, fontSize: 32 },
+  lockCopy: { ...type.body, color: colors.dim, marginBottom: 8 },
+  lockAlt: { alignSelf: "flex-start", paddingTop: 4 },
 });

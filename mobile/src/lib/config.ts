@@ -29,8 +29,11 @@ export function resultSquares(correct: boolean[]): string {
   return correct.map((ok) => (ok ? "🟩" : "🟥")).join("");
 }
 
-export function sharePlayLine(path: string): string {
-  return `Play Today's Game: ${API_ORIGIN}${path}`;
+export function sharePlayLine(path: string, date?: string | null, today = denverDate()): string {
+  const href = !date || date === today ? path : `${path}?date=${date}`;
+  const url = `${API_ORIGIN}${href}`;
+  if (date && date !== today) return `Play this puzzle: ${url}`;
+  return `Play Today's Game: ${url}`;
 }
 
 export function formatScore(score: number, max: number): string {

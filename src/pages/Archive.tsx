@@ -17,7 +17,7 @@ import {
   weekdaySundayFirst,
 } from "../lib/dates";
 import { useAuth } from "../lib/auth";
-import { archiveDayProgress, isPuzzleFinished } from "../lib/progress";
+import { archiveMonthProgress, isDateFinished } from "../lib/progress";
 import { dailyPuzzleNumber } from "../lib/share";
 import { usePageMeta } from "../lib/usePageMeta";
 
@@ -38,6 +38,10 @@ export default function Archive() {
 
   const [monthCursor, setMonthCursor] = useState(monthStart(selected));
   const [progressTick, setProgressTick] = useState(0);
+  const [dayProgress, setDayProgress] = useState<Map<string, { done: number; total: number }>>(
+    () => new Map()
+  );
+  const [finishedIds, setFinishedIds] = useState<string[]>([]);
 
   useEffect(() => {
     setMonthCursor(monthStart(selected));
@@ -73,17 +77,26 @@ export default function Archive() {
 
   const available = gamesForDate(selected);
   const puzzleNumber = dailyPuzzleNumber(selected);
-  const dayProgress = useMemo(() => {
-    const map = new Map<string, { done: number; total: number }>();
-    for (const iso of cells) {
-      if (!iso || iso < SITE_EPOCH || iso > today) continue;
-      map.set(iso, archiveDayProgress(iso));
+
+  useEffect(() => {
+    const dates = cells.filter((iso): iso is string => Boolean(iso && iso >= SITE_EPOCH && iso <= today));
+    if (selected >= SITE_EPOCH && selected <= today && !dates.includes(selected)) {
+      dates.push(selected);
     }
-    if (selected >= SITE_EPOCH && selected <= today && !map.has(selected)) {
-      map.set(selected, archiveDayProgress(selected));
-    }
-    return map;
-  }, [cells, selected, today, progressTick]);
+    let cancelled = false;
+    void archiveMonthProgress(dates).then((map) => {
+      if (!cancelled) setDayProgress(map);
+    });
+    void Promise.all(ARCHIVE_GAMES.map((game) => isDateFinished(game.id, selected))).then((flags) => {
+      if (!cancelled) {
+        setFinishedIds(ARCHIVE_GAMES.filter((_, i) => flags[i]).map((game) => game.id));
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [cells, selected, today, progressTick, user?.id]);
+
   const selectedProgress = dayProgress.get(selected) ?? { done: 0, total: 0 };
 
   const selectDate = (iso: string) => {
@@ -220,7 +233,7 @@ export default function Archive() {
                 </li>
               );
             }
-            const finished = isPuzzleFinished(game.id, selected);
+            const finished = finishedIds.includes(game.id);
             return (
               <li key={game.id} className={`archive-game${finished ? " done" : ""}`}>
                 <div>

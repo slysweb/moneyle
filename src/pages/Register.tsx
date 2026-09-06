@@ -73,7 +73,7 @@ export default function Register() {
             </p>
             <p className="register-copy dim">
               Today’s games work without an account. Registering unlocks the archive of
-              every past daily puzzle. Progress still lives in this browser for now.
+              every past daily puzzle and syncs your progress across devices.
             </p>
             {error ? <p className="register-error">{error}</p> : null}
             <a className="google-btn" href={start}>

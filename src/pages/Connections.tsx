@@ -14,7 +14,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { connectionRow, copyText, dailyPuzzleNumber } from "../lib/share";
-import { loadProgress, saveProgress } from "../lib/progress";
+import { loadSyncedProgress, saveProgress } from "../lib/progress";
 import { connectionsScore, formatScore } from "../lib/score";
 import GameScore from "../components/GameScore";
 
@@ -99,12 +99,13 @@ export default function Connections() {
     setTiles(null);
     setPuzzleDate(null);
     fetchConnectionsToday(requestedDate)
-      .then((res) => {
+      .then(async (res) => {
         if (cancelled) return;
         setGroups(res.groups);
         setTiles(res.tiles);
         setPuzzleDate(res.date);
-        const saved = loadProgress<SavedRun>("connections", res.date);
+        const saved = await loadSyncedProgress<SavedRun>("connections", res.date);
+        if (cancelled) return;
         const sig = tileSigOf(res.tiles);
         if (saved && saved.tileSig === sig) {
           setSolvedIds(saved.solvedIds);

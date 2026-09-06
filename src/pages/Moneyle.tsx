@@ -18,7 +18,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
-import { loadProgress, saveProgress } from "../lib/progress";
+import { loadSyncedProgress, saveProgress } from "../lib/progress";
 import { formatScore, moneyleScore } from "../lib/score";
 import GameScore from "../components/GameScore";
 
@@ -84,16 +84,17 @@ export default function Moneyle() {
   const frost = frostFor(history.length, revealed);
 
   const restore = useCallback((date: string) => {
-    const saved = loadProgress<SavedRun>("moneyle", date);
-    if (!saved?.history?.length) return;
-    const history = saved.history.slice(0, MAX_GUESSES);
-    const solved = history.some((row) => row.correct);
-    setHistory(history);
-    setAnswer(saved.answer ?? null);
-    setWon(solved);
-    setLost(!solved && history.length >= MAX_GUESSES);
-    setBonusPicks(saved.bonusPicks ?? []);
-    setBonusOpen(Boolean(saved.bonusOpen));
+    void loadSyncedProgress<SavedRun>("moneyle", date).then((saved) => {
+      if (!saved?.history?.length) return;
+      const history = saved.history.slice(0, MAX_GUESSES);
+      const solved = history.some((row) => row.correct);
+      setHistory(history);
+      setAnswer(saved.answer ?? null);
+      setWon(solved);
+      setLost(!solved && history.length >= MAX_GUESSES);
+      setBonusPicks(saved.bonusPicks ?? []);
+      setBonusOpen(Boolean(saved.bonusOpen));
+    });
   }, []);
 
   useEffect(() => {

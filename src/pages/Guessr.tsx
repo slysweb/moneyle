@@ -10,7 +10,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
-import { loadProgress, saveProgress } from "../lib/progress";
+import { loadSyncedProgress, saveProgress } from "../lib/progress";
 import { formatScore, guessrRoundPoints, guessrScore } from "../lib/score";
 import GameScore from "../components/GameScore";
 
@@ -246,19 +246,20 @@ export default function Guessr() {
   // A submitted guess is a finished round, so the round to resume at is simply
   // however many results are already banked.
   const restore = useCallback((date: string) => {
-    const saved = loadProgress<SavedRun>("guessr", date);
-    if (!saved?.results?.length) {
-      setIntroOpen(true);
+    void loadSyncedProgress<SavedRun>("guessr", date).then((saved) => {
+      if (!saved?.results?.length) {
+        setIntroOpen(true);
+        setRemainingMs(MEMORIZE_MS);
+        return;
+      }
+      const results = saved.results.slice(0, ROUNDS);
+      setResults(results);
+      setRound(Math.min(results.length, ROUNDS - 1));
+      setFinished(results.length >= ROUNDS);
       setRemainingMs(MEMORIZE_MS);
-      return;
-    }
-    const results = saved.results.slice(0, ROUNDS);
-    setResults(results);
-    setRound(Math.min(results.length, ROUNDS - 1));
-    setFinished(results.length >= ROUNDS);
-    setRemainingMs(MEMORIZE_MS);
-    setPhase("memorize");
-    setIntroOpen(false);
+      setPhase("memorize");
+      setIntroOpen(false);
+    });
   }, []);
 
   useEffect(() => {

@@ -18,9 +18,10 @@ import {
   moneyleScore,
   sharePlayLine,
 } from "../src/lib/config";
-import { loadProgress, saveProgress } from "../src/lib/progress";
+import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
-import { Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
+import { useArchiveGate } from "../src/lib/useArchiveGate";
+import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
 
 const HELP =
   "Guess the currency on the frosted banknote. You get 6 tries. Each miss thins the frost and shows a USD rate plus how close you are. ↑ means your guess is stronger than the hidden note; ↓ means weaker. After the note is revealed, an optional bonus asks about that country’s flag, GDP, population, and GDP per person. First try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.";
@@ -54,6 +55,8 @@ function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: 
 }
 
 export default function MoneyleScreen() {
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [currencies, setCurrencies] = useState<MoneyleCurrency[]>([]);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -76,7 +79,7 @@ export default function MoneyleScreen() {
   const frost = frostFor(history.length, revealed);
 
   const restore = useCallback((date: string) => {
-    void loadProgress<SavedRun>("moneyle", date).then((saved) => {
+    void loadSyncedProgress<SavedRun>("moneyle", date).then((saved) => {
       if (!saved?.history?.length) return;
       const loaded = saved.history.slice(0, MONEYLE_MAX_GUESSES);
       const solved = loaded.some((row) => row.correct);
@@ -90,8 +93,21 @@ export default function MoneyleScreen() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
-    fetchMoneylePuzzle()
+    setError(false);
+    setCurrencies([]);
+    setImageUrl(null);
+    setPuzzleDate(null);
+    setHistory([]);
+    setWon(false);
+    setLost(false);
+    setAnswer(null);
+    setBonusRounds(null);
+    setBonusCountry(null);
+    setBonusPicks([]);
+    setBonusOpen(false);
+    fetchMoneylePuzzle(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setCurrencies(res.currencies);
@@ -105,7 +121,7 @@ export default function MoneyleScreen() {
     return () => {
       cancelled = true;
     };
-  }, [restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (history.length === 0) return;
@@ -120,7 +136,7 @@ export default function MoneyleScreen() {
   useEffect(() => {
     if (!revealed || !puzzleDate) return;
     let cancelled = false;
-    fetchMoneyleBonus()
+    fetchMoneyleBonus(requestedDate)
       .then((res) => {
         if (cancelled || !res.available || !res.rounds?.length || !res.country) return;
         setBonusRounds(res.rounds);
@@ -135,7 +151,7 @@ export default function MoneyleScreen() {
     return () => {
       cancelled = true;
     };
-  }, [revealed, puzzleDate]);
+  }, [revealed, puzzleDate, requestedDate]);
 
   const guessedCodes = useMemo(() => new Set(history.map((h) => h.currency.code)), [history]);
 
@@ -162,7 +178,7 @@ export default function MoneyleScreen() {
       setBusy(true);
       setGuessError(null);
       try {
-        const res = await fetchMoneyleGuess(code, history.length + 1);
+        const res = await fetchMoneyleGuess(code, history.length + 1, requestedDate);
         const row: HistoryRow = {
           currency,
           rateDisplay: res.rateDisplay,
@@ -189,7 +205,7 @@ export default function MoneyleScreen() {
         setBusy(false);
       }
     },
-    [busy, revealed, currencies, guessedCodes, history.length]
+    [busy, revealed, currencies, guessedCodes, history.length, requestedDate]
   );
 
   const bonusCorrect = bonusRounds
@@ -221,11 +237,19 @@ export default function MoneyleScreen() {
         ]
       : []),
     "",
-    sharePlayLine("/moneyle"),
+    sharePlayLine("/moneyle", puzzleDate),
   ].join("\n");
 
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
+
+  if (archiveGate.pending) {
+    return <LoadingView />;
+  }
+
   if (error) {
-    return <ErrorView message="Could not load today’s Moneyle." />;
+    return <ErrorView message="Could not load Moneyle." />;
   }
 
   if (!imageUrl) {
@@ -238,7 +262,9 @@ export default function MoneyleScreen() {
         title="Moneyle"
         meta={`${history.length}/${MONEYLE_MAX_GUESSES}`}
         onHelp={() => setHelp(true)}
+        archiveDate={puzzleDate}
       />
+      <ArchiveBanner puzzleDate={puzzleDate} />
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
         <View style={styles.noteWrap}>
           <View style={styles.note}>
@@ -338,7 +364,7 @@ export default function MoneyleScreen() {
               ghost={Boolean(bonusRounds && bonusPicks.length < bonusRounds.length)}
               onPress={() => void Share.share({ message: shareText })}
             />
-            <MoreGames current="moneyle" />
+            <MoreGames current="moneyle" date={puzzleDate} />
           </View>
         )}
       </ScrollView>

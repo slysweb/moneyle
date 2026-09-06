@@ -11,9 +11,10 @@ import {
   guessrScore,
   sharePlayLine,
 } from "../src/lib/config";
-import { loadProgress, saveProgress } from "../src/lib/progress";
+import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
-import { Button, ErrorView, GameHeader, HelpModal, LoadingView, ResultBlock, Screen } from "../src/ui";
+import { useArchiveGate } from "../src/lib/useArchiveGate";
+import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, ResultBlock, Screen } from "../src/ui";
 
 const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
@@ -209,6 +210,8 @@ function DenomStack({
 }
 
 export default function GuessrScreen() {
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const [puzzles, setPuzzles] = useState<GuessrPiece[][] | null>(null);
   const [currency, setCurrency] = useState<GuessrCurrency | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
@@ -223,7 +226,7 @@ export default function GuessrScreen() {
   const [remainingMs, setRemainingMs] = useState(MEMORIZE_MS);
 
   const restore = useCallback((date: string) => {
-    void loadProgress<SavedRun>("guessr", date).then((saved) => {
+    void loadSyncedProgress<SavedRun>("guessr", date).then((saved) => {
       if (!saved?.results?.length) {
         setIntroOpen(true);
         setRemainingMs(MEMORIZE_MS);
@@ -240,8 +243,19 @@ export default function GuessrScreen() {
   }, []);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
-    fetchGuessrToday()
+    setError(false);
+    setPuzzles(null);
+    setCurrency(null);
+    setPuzzleDate(null);
+    setResults([]);
+    setRound(0);
+    setFinished(false);
+    setPhase("memorize");
+    setGuess("");
+    setIntroOpen(true);
+    fetchGuessrToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setCurrency(res.currency);
@@ -255,7 +269,7 @@ export default function GuessrScreen() {
     return () => {
       cancelled = true;
     };
-  }, [restore]);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate, restore]);
 
   useEffect(() => {
     if (results.length === 0) return;
@@ -311,8 +325,16 @@ export default function GuessrScreen() {
     setIntroOpen(false);
   };
 
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
+
+  if (archiveGate.pending) {
+    return <LoadingView />;
+  }
+
   if (error) {
-    return <ErrorView message="Could not load today’s Money Guessr." />;
+    return <ErrorView message="Could not load Money Guessr." />;
   }
 
   if (!puzzles || !currency) {
@@ -330,7 +352,7 @@ export default function GuessrScreen() {
       "",
       ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
       "",
-      sharePlayLine("/guessr"),
+      sharePlayLine("/guessr", puzzleDate),
     ].join("\n");
 
     return (
@@ -340,6 +362,7 @@ export default function GuessrScreen() {
             score={formatScore(run.score, run.max)}
             detail={`Exact is 2 pts, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
             current="guessr"
+            archiveDate={puzzleDate}
             onShare={() => void Share.share({ message: shareText })}
           >
             <View style={styles.review}>
@@ -376,7 +399,9 @@ export default function GuessrScreen() {
         title="Money Guessr"
         meta={`${currency.code}  ·  ${round + 1}/${ROUNDS}`}
         onHelp={() => setHelp(true)}
+        archiveDate={puzzleDate}
       />
+      <ArchiveBanner puzzleDate={puzzleDate} />
       <ScrollView
         contentContainerStyle={styles.play}
         keyboardShouldPersistTaps="handled"

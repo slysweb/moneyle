@@ -24,9 +24,10 @@ import {
   formatScore,
   sharePlayLine,
 } from "../src/lib/config";
-import { loadProgress, saveProgress } from "../src/lib/progress";
+import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
 import { colors, radius, type } from "../src/theme";
-import { Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
+import { useArchiveGate } from "../src/lib/useArchiveGate";
+import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, Screen } from "../src/ui";
 
 const LIVES = 4;
 const HELP =
@@ -77,6 +78,8 @@ function tilesOfGroup(tiles: ConnectionTile[], groupId: string): ConnectionTile[
 }
 
 export default function ConnectionsScreen() {
+  const archiveGate = useArchiveGate();
+  const requestedDate = archiveGate.requestedDate;
   const { width } = useWindowDimensions();
   const [groups, setGroups] = useState<ConnectionGroup[] | null>(null);
   const [tiles, setTiles] = useState<ConnectionTile[] | null>(null);
@@ -106,14 +109,26 @@ export default function ConnectionsScreen() {
   }, [groups]);
 
   useEffect(() => {
+    if (archiveGate.pending || archiveGate.locked) return;
     let cancelled = false;
-    fetchConnectionsToday()
+    setError(false);
+    setGroups(null);
+    setTiles(null);
+    setPuzzleDate(null);
+    setSolvedIds([]);
+    setMistakes(0);
+    setWrongKeys([]);
+    setBoardOrder([]);
+    setFinished(false);
+    setWon(false);
+    setSelected([]);
+    fetchConnectionsToday(requestedDate)
       .then((res) => {
         if (cancelled) return;
         setGroups(res.groups);
         setTiles(res.tiles);
         setPuzzleDate(res.date);
-        void loadProgress<SavedRun>("connections", res.date).then((saved) => {
+        void loadSyncedProgress<SavedRun>("connections", res.date).then((saved) => {
           const sig = tileSigOf(res.tiles);
           if (saved && saved.tileSig === sig) {
             setSolvedIds(saved.solvedIds);
@@ -134,7 +149,7 @@ export default function ConnectionsScreen() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [archiveGate.locked, archiveGate.pending, requestedDate]);
 
   useEffect(() => {
     if (!puzzleDate || !tiles) return;
@@ -221,8 +236,16 @@ export default function ConnectionsScreen() {
     }
   }, [finished, selected, groups, tileById, wrongKeys, solvedIds, mistakes]);
 
+  if (archiveGate.locked) {
+    return <ArchiveLocked next={archiveGate.next} />;
+  }
+
+  if (archiveGate.pending) {
+    return <LoadingView />;
+  }
+
   if (error) {
-    return <ErrorView message="Could not load today’s MoneyConnections." />;
+    return <ErrorView message="Could not load MoneyConnections." />;
   }
 
   if (!groups || !tiles) {
@@ -239,7 +262,7 @@ export default function ConnectionsScreen() {
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
     "",
-    sharePlayLine("/connections"),
+    sharePlayLine("/connections", puzzleDate),
   ].join("\n");
 
   const gap = 8;
@@ -251,7 +274,9 @@ export default function ConnectionsScreen() {
         title="Connections"
         meta={`${solvedIds.length}/4`}
         onHelp={() => setHelp(true)}
+        archiveDate={puzzleDate}
       />
+      <ArchiveBanner puzzleDate={puzzleDate} />
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         {solvedGroups.map((g) => (
           <SolvedRow key={g.id} group={g} items={tilesOfGroup(tiles, g.id)} leftover={false} />
@@ -309,7 +334,7 @@ export default function ConnectionsScreen() {
                 : `Two points per group. You found ${solvedIds.length} of 4.`}
             </Text>
             <Button label="Share" onPress={() => void Share.share({ message: shareText })} />
-            <MoreGames current="connections" />
+            <MoreGames current="connections" date={puzzleDate} />
           </View>
         )}
       </ScrollView>
@@ -402,13 +427,13 @@ const styles = StyleSheet.create({
   dim: { ...type.caption },
   grid: { flexDirection: "row", flexWrap: "wrap" },
   tile: {
-    backgroundColor: colors.surface,
+    backgroundColor: "#e6e8e6",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.border,
     borderRadius: radius.sm,
     overflow: "hidden",
   },
-  tileOn: { borderColor: colors.ink, borderWidth: 1.5, backgroundColor: "#eef1ef" },
+  tileOn: { borderColor: colors.ink, borderWidth: 1.5, backgroundColor: "#d8dbd8" },
   tileHit: { flex: 1, alignItems: "center", justifyContent: "center", padding: 6 },
   tileImg: { width: "100%", height: "100%" },
   tileText: { textAlign: "center", fontWeight: "600", color: colors.text, fontSize: 12 },
@@ -440,7 +465,7 @@ const styles = StyleSheet.create({
   end: { gap: 10, marginTop: 8 },
   score: { ...type.score, fontSize: 36 },
   modalBg: { flex: 1, backgroundColor: "rgba(17,20,19,0.35)", justifyContent: "center", padding: 28 },
-  preview: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: 20, alignItems: "center", gap: 12 },
+  preview: { backgroundColor: "#e6e8e6", borderRadius: radius.lg, padding: 20, alignItems: "center", gap: 12 },
   previewImg: { width: "100%", height: 180 },
   previewCoin: { width: 140, height: 140 },
   previewLabel: { fontWeight: "600", color: colors.text, textAlign: "center" },
