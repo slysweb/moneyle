@@ -279,9 +279,11 @@ export default function MoneyleScreen() {
             )}
           </View>
           {revealed && answer && (
-            <Text style={[styles.badge, won ? styles.badgeWin : styles.badgeLose]}>
-              {won ? "Correct" : "Answer"}: {answer.name} ({answer.code})
-            </Text>
+            <View style={[styles.badge, won ? styles.badgeWin : styles.badgeLose]}>
+              <Text style={styles.badgeText}>
+                {won ? "Correct" : "Answer"}: {answer.name} ({answer.code})
+              </Text>
+            </View>
           )}
         </View>
 
@@ -413,14 +415,23 @@ function BonusPlay({
               key={opt.id}
               disabled={!!picked}
               onPress={() => setPicked(opt)}
-              style={[styles.bonusChoice, { borderColor: border }]}
+              android_ripple={{ color: "rgba(0,0,0,0.08)" }}
+              style={styles.bonusChoiceHit}
             >
-              {opt.imageUrl ? (
-                <Image source={{ uri: opt.imageUrl }} style={styles.flag} contentFit="cover" />
-              ) : (
-                <Text style={styles.bonusLabel}>{opt.label}</Text>
-              )}
-              {picked && opt.imageUrl ? <Text style={styles.dim}>{opt.label}</Text> : null}
+              <View
+                style={[
+                  styles.bonusChoice,
+                  { borderColor: border },
+                  picked && (opt.correct || opt.id === picked.id) && styles.bonusChoiceMarked,
+                ]}
+              >
+                {opt.imageUrl ? (
+                  <Image source={{ uri: opt.imageUrl }} style={styles.flag} contentFit="cover" />
+                ) : (
+                  <Text style={styles.bonusLabel}>{opt.label}</Text>
+                )}
+                {picked && opt.imageUrl ? <Text style={styles.dim}>{opt.label}</Text> : null}
+              </View>
             </Pressable>
           );
         })}
@@ -473,9 +484,15 @@ const styles = StyleSheet.create({
   },
   noteImage: { width: "100%", height: "100%" },
   frost: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0 },
-  badge: { fontWeight: "600", textAlign: "center", fontSize: 15 },
-  badgeWin: { color: colors.accent },
-  badgeLose: { color: colors.red },
+  badge: {
+    alignSelf: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 999,
+  },
+  badgeText: { color: "#fff", fontWeight: "700", fontSize: 16, textAlign: "center" },
+  badgeWin: { backgroundColor: colors.accent },
+  badgeLose: { backgroundColor: colors.red },
   hist: {
     flexDirection: "row",
     alignItems: "center",
@@ -521,16 +538,22 @@ const styles = StyleSheet.create({
   bonus: { gap: 10 },
   bonusTitle: { ...type.heading, fontSize: 20 },
   bonusOpts: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  bonusChoice: {
+  bonusChoiceHit: {
     flexGrow: 1,
     minWidth: "46%",
-    backgroundColor: colors.surface,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: radius.md,
+    overflow: "hidden",
+    backgroundColor: "#e6e8e6",
+  },
+  bonusChoice: {
+    backgroundColor: "#e6e8e6",
+    borderWidth: 1,
     borderRadius: radius.md,
     padding: 12,
     alignItems: "center",
     gap: 6,
   },
+  bonusChoiceMarked: { borderWidth: 2 },
   bonusLabel: { fontWeight: "600", color: colors.text, textAlign: "center" },
   flag: { width: "100%", height: 56, borderRadius: 8 },
   bonusNav: { flexDirection: "row", gap: 8, marginTop: 4 },

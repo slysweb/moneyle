@@ -2241,9 +2241,10 @@ button.card:disabled {
 }
 
 .moneyle-badge {
-  font-weight: 700;
-  font-size: 0.95rem;
-  padding: 6px 14px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  padding: 8px 18px;
   border-radius: 999px;
   background: var(--ink);
   color: #fff;
@@ -2469,7 +2470,7 @@ button.card:disabled {
   padding: 12px 10px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: var(--surface-2);
+  background: #e6e8e6;
   color: var(--text);
   font: inherit;
   font-weight: 700;
