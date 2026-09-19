@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "September 19, 2026",
+    iso: "2026-09-19",
+    items: [
+      "Money Guessr, Moneyle, and MoneyConnections now include Swiss franc and Vietnamese dong notes and coins. Swiss notes stand upright, as they do in real life.",
+    ],
+  },
+  {
     date: "September 6, 2026",
     iso: "2026-09-06",
     items: [

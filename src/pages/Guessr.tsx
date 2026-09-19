@@ -217,8 +217,9 @@ function DenomStack({
   sizePx?: number;
 }) {
   const kind = stack[0].kind;
+  const portrait = kind === "bill" && /\/money\/chf\//.test(stack[0].imageUrl);
   const n = stack.length;
-  const dx = kind === "bill" ? 13 : 10;
+  const dx = kind === "bill" ? (portrait ? 8 : 13) : 10;
   const dy = kind === "bill" ? 9 : 9;
   const sizeStyle =
     kind === "coin" && sizePx
@@ -227,7 +228,7 @@ function DenomStack({
 
   return (
     <div
-      className={`guessr-stack ${kind} ${stack[0].slug}`}
+      className={`guessr-stack ${kind} ${stack[0].slug}${portrait ? " portrait" : ""}`}
       style={{
         width: `calc(var(--piece-w) + ${(n - 1) * dx}px)`,
         height: `calc(var(--piece-h) + ${(n - 1) * dy}px)`,

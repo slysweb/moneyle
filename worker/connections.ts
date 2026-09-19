@@ -63,6 +63,8 @@ const SOLO_CURRENCIES: { slug: string; iso2: string; country: string; shortName:
   { slug: "egp", iso2: "eg", country: "Egypt", shortName: "Pound" },
   { slug: "zar", iso2: "za", country: "South Africa", shortName: "Rand" },
   { slug: "bzd", iso2: "bz", country: "Belize", shortName: "Belize dollar" },
+  { slug: "chf", iso2: "ch", country: "Switzerland", shortName: "Franc" },
+  { slug: "vnd", iso2: "vn", country: "Vietnam", shortName: "Dong" },
 ];
 
 /** Euro is shared, so a puzzle never includes two eurozone countries. */

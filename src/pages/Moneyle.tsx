@@ -302,7 +302,7 @@ export default function Moneyle() {
 
       <div className="moneyle-note-wrap">
         <div
-          className="moneyle-note"
+          className={`moneyle-note${/\/money\/chf\//.test(imageUrl) ? " portrait" : ""}`}
           style={{
             ["--frost-blur" as string]: `${frost.blur}px`,
             ["--frost-tint" as string]: String(frost.tint),

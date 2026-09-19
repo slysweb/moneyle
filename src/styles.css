@@ -2031,6 +2031,11 @@ button.card:disabled {
   --piece-h: calc(var(--piece-w) * 0.436);
 }
 
+.guessr-stack.bill.portrait {
+  --piece-w: clamp(78px, 12vw, 110px);
+  --piece-h: calc(var(--piece-w) * 2.15);
+}
+
 .guessr-stack.coin {
   --piece-w: 68px;
   --piece-h: 68px;
@@ -2251,6 +2256,10 @@ button.card:disabled {
   --frost-blur: 28px;
   --frost-tint: 0.42;
   --frost-scale: 1.12;
+}
+
+.moneyle-note.portrait {
+  width: min(100%, 240px);
 }
 
 .moneyle-note img {
@@ -3543,6 +3552,10 @@ button.card:disabled {
 
   .guessr-stack.bill {
     --piece-w: 150px;
+  }
+
+  .guessr-stack.bill.portrait {
+    --piece-w: 72px;
   }
 
   .guessr-result-grid {

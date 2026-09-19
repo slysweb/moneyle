@@ -521,3 +521,59 @@ SELECT id, 'bill-50', 'bill', 'BZ$50 bill', 5000, '/money/bzd/bill-50.webp', 11 
 INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
 SELECT id, 'bill-100', 'bill', 'BZ$100 bill', 10000, '/money/bzd/bill-100.webp', 12 FROM currencies WHERE slug = 'bzd';
 
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('chf', 'Swiss Franc', 'CHF', 'Fr.', 2, 'Switzerland', 1, 21);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rappen-5', 'coin', '5 rappen', 5, '/money/chf/coin-rappen-5.webp', 1 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rappen-10', 'coin', '10 rappen', 10, '/money/chf/coin-rappen-10.webp', 2 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rappen-20', 'coin', '20 rappen', 20, '/money/chf/coin-rappen-20.webp', 3 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-1-2', 'coin', '½ franc', 50, '/money/chf/coin-1-2.webp', 4 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-1', 'coin', 'Fr. 1 coin', 100, '/money/chf/coin-1.webp', 5 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-2', 'coin', 'Fr. 2 coin', 200, '/money/chf/coin-2.webp', 6 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-5', 'coin', 'Fr. 5 coin', 500, '/money/chf/coin-5.webp', 7 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10', 'bill', 'Fr. 10 bill', 1000, '/money/chf/bill-10.webp', 8 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20', 'bill', 'Fr. 20 bill', 2000, '/money/chf/bill-20.webp', 9 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', 'Fr. 50 bill', 5000, '/money/chf/bill-50.webp', 10 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', 'Fr. 100 bill', 10000, '/money/chf/bill-100.webp', 11 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-200', 'bill', 'Fr. 200 bill', 20000, '/money/chf/bill-200.webp', 12 FROM currencies WHERE slug = 'chf';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-1000', 'bill', 'Fr. 1000 bill', 100000, '/money/chf/bill-1000.webp', 13 FROM currencies WHERE slug = 'chf';
+
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('vnd', 'Vietnamese Dong', 'VND', '₫', 0, 'Vietnam', 1, 22);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-200', 'coin', '₫200 coin', 200, '/money/vnd/coin-200.webp', 1 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-500', 'coin', '₫500 coin', 500, '/money/vnd/coin-500.webp', 2 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-1000', 'coin', '₫1000 coin', 1000, '/money/vnd/coin-1000.webp', 3 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-2000', 'coin', '₫2000 coin', 2000, '/money/vnd/coin-2000.webp', 4 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-5000', 'coin', '₫5000 coin', 5000, '/money/vnd/coin-5000.webp', 5 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10000', 'bill', '₫10000 bill', 10000, '/money/vnd/bill-10000.webp', 6 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20000', 'bill', '₫20000 bill', 20000, '/money/vnd/bill-20000.webp', 7 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50000', 'bill', '₫50000 bill', 50000, '/money/vnd/bill-50000.webp', 8 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100000', 'bill', '₫100000 bill', 100000, '/money/vnd/bill-100000.webp', 9 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-200000', 'bill', '₫200000 bill', 200000, '/money/vnd/bill-200000.webp', 10 FROM currencies WHERE slug = 'vnd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-500000', 'bill', '₫500000 bill', 500000, '/money/vnd/bill-500000.webp', 11 FROM currencies WHERE slug = 'vnd';
+

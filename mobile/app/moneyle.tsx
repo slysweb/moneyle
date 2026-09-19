@@ -267,11 +267,11 @@ export default function MoneyleScreen() {
       <ArchiveBanner puzzleDate={puzzleDate} />
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled">
         <View style={styles.noteWrap}>
-          <View style={styles.note}>
+          <View style={[styles.note, /\/money\/chf\//.test(imageUrl) && styles.notePortrait]}>
             <Image
               source={{ uri: imageUrl }}
               style={[styles.noteImage, !revealed && { transform: [{ scale: 1.12 }] }]}
-              contentFit="cover"
+              contentFit={/\/money\/chf\//.test(imageUrl) ? "contain" : "cover"}
               blurRadius={frost.blur}
             />
             {frost.tint > 0 && (
@@ -481,6 +481,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: colors.border,
+  },
+  notePortrait: {
+    height: 280,
+    width: 168,
+    alignSelf: "center",
   },
   noteImage: { width: "100%", height: "100%" },
   frost: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0 },

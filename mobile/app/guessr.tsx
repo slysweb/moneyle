@@ -204,10 +204,11 @@ function DenomStack({
 }) {
   const kind = stack[0].kind;
   const n = stack.length;
-  const dx = kind === "bill" ? 10 : 8;
+  const portrait = kind === "bill" && /\/money\/chf\//.test(stack[0].imageUrl);
+  const dx = kind === "bill" ? (portrait ? 6 : 10) : 8;
   const dy = 8;
-  const w = kind === "bill" ? 132 : sizePx ?? 56;
-  const h = kind === "bill" ? Math.round(132 * 0.436) : sizePx ?? 56;
+  const w = kind === "bill" ? (portrait ? 70 : 132) : sizePx ?? 56;
+  const h = kind === "bill" ? (portrait ? Math.round(70 * 2.15) : Math.round(132 * 0.436)) : sizePx ?? 56;
 
   return (
     <View
@@ -230,7 +231,7 @@ function DenomStack({
             height: h,
             zIndex: i + 1,
           }}
-          contentFit={kind === "coin" ? "contain" : "cover"}
+          contentFit={kind === "coin" || portrait ? "contain" : "cover"}
           cachePolicy="memory-disk"
         />
       ))}
