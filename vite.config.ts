@@ -12,6 +12,7 @@ import {
   renderArticlesIndexHtml,
   withArticleDocument,
 } from "./src/lib/articleHtml.ts";
+import { withGameDocument } from "./src/lib/gameHtml.ts";
 import { robotsTxt, sitemapXml } from "./src/lib/sitemap.ts";
 
 function articleDocument(pathname: string, html: string): string {
@@ -24,6 +25,8 @@ function articleDocument(pathname: string, html: string): string {
     if (!article) return html;
     return withArticleDocument(html, renderArticleHtml(article, null), articleJsonLd(article));
   }
+  const page = metaForPath(path);
+  if (page) return withGameDocument(html, path, page);
   return html;
 }
 

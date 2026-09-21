@@ -8,6 +8,7 @@ import {
 } from "../src/lib/articleHtml";
 import { articleBySlug } from "../src/lib/articles";
 import { applyPageMeta, metaForPath } from "../src/lib/pageMeta";
+import { isGameSeoPath, renderGameHtml, gameJsonLd } from "../src/lib/gameHtml";
 import { loadRanking } from "./rankings";
 
 interface ArticleEnv {
@@ -18,6 +19,10 @@ interface ArticleEnv {
 export function isArticlePath(pathname: string): boolean {
   const path = normalizePath(pathname);
   return path === "/articles" || path.startsWith("/articles/");
+}
+
+export function isGameHtmlPath(pathname: string): boolean {
+  return isGameSeoPath(pathname);
 }
 
 function normalizePath(pathname: string): string {
@@ -96,4 +101,24 @@ export async function handleArticleHtml(
     "cache-control": cache,
   };
   return fillRoot(html, inner, headers, request.method);
+}
+
+export async function handleGameHtml(
+  request: Request,
+  env: ArticleEnv
+): Promise<Response | null> {
+  const url = new URL(request.url);
+  const path = normalizePath(url.pathname);
+  const inner = renderGameHtml(path);
+  const page = metaForPath(path);
+  if (!inner || !page) return null;
+
+  let html = await loadShell(env, request);
+  html = applyPageMeta(html, page, path);
+  if (!html.includes("application/ld+json")) html = injectHead(html, gameJsonLd(page, path));
+
+  return fillRoot(html, inner, {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "public, max-age=3600",
+  }, request.method);
 }
