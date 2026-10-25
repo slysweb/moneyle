@@ -156,6 +156,63 @@ export const ARTICLES: Article[] = [
     ],
   },
   {
+    slug: "count-the-cash-in-five-seconds",
+    title: "Money Guessr: count the cash in five seconds",
+    description:
+      "A real-cash guessing game: a pile of banknotes and coins appears for five seconds, then you type the total. Why yen days are harder than dollar days.",
+    blurb: "Five seconds to count a pile of real cash — and why yen is harder than dollars.",
+    published: "2026-10-25",
+    gameTo: "/guessr",
+    gameLabel: "Money Guessr",
+    kind: "essay",
+    intros: [
+      "Money Guessr is a guessing game with real money. Not real stakes — real cash. A pile of photographed banknotes and coins appears on the table for five seconds. Then it disappears, and you type how much was there.",
+      "It sounds like simple arithmetic. In practice it is three skills at once: recognising unfamiliar notes and coins at a glance, holding what you saw in memory, and adding it up before the picture fades from your head.",
+    ],
+    sections: [
+      {
+        heading: "How a round works",
+        paragraphs: [
+          "Each day, Money Guessr picks one currency from the 22 we have photographed — US dollars, Japanese yen, euros, pounds, pesos, dong, and more — and builds five piles from it. Everyone plays the same five piles until midnight Denver time.",
+          "The piles get harder as you go. Round one is three banknotes of a single kind, drawn from the cheaper end of that currency’s notes. By round five the table holds eight notes of up to three kinds and eleven coins of up to four kinds: nineteen pieces of cash, five seconds.",
+          "An exact answer is worth 2 points. Anything within 20% of the true total is worth 1. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
+        ],
+      },
+      {
+        heading: "Why real cash",
+        paragraphs: [
+          "Most of the money we handle now is a number on a screen. Money Guessr puts physical money back on the table: the colour of a note, the size of a coin, the hole in the middle of a ¥50. Play for a few weeks and you start to recognise currencies you have never held, and to know what a handful of them adds up to.",
+          "It also trains a quieter skill: a feel for money. Is this pile closer to fifty or to five hundred? Estimating fast and roughly right is often more useful than calculating slowly and exactly — and the 20% band rewards exactly that.",
+        ],
+      },
+      {
+        heading: "Dollars vs yen: same game, different difficulty",
+        paragraphs: [
+          "The US dollar set in Money Guessr has seven notes — $1, $2, $5, $10, $20, $50 and $100 — and six coins, from the penny to the dollar coin. The yen set has three notes — ¥1,000, ¥5,000 and ¥10,000 — and four coins: ¥10, ¥50, ¥100 and ¥500.",
+          "Round one feels similar in both. With dollars you might see three $5 bills: $15. With yen you might see three ¥5,000 notes: ¥15,000. Same counting, but the yen answer already has five digits.",
+          "Now take the last round. A dollar pile could be two $100s, three $20s and three $5s — $275 — plus three quarters, four dimes, two nickels and two pennies. The coins add $1.27, for $276.27. They move the total by less than half a percent. For the 1-point band you can almost ignore them; for the exact 2 points you have to count every cent.",
+          "A yen pile of the same shape could be three ¥10,000s, two ¥5,000s and three ¥1,000s — ¥43,000 — plus four ¥500s, three ¥100s, two ¥50s and two ¥10s. Those coins add ¥2,420, for ¥45,420. That is more than five percent of the total from coins alone, and the biggest coin is worth half of the smallest note. In yen, the change is real money.",
+          "That is what makes yen days harder. The face values are large, so totals run into tens of thousands and one slip costs a lot of zeros. There are no cents to round away, so an exact answer means getting every coin right. And because yen coins are worth so much, you cannot treat them as noise the way you can with pennies and dimes.",
+          "Dollar days have their own trap. Every US note is the same size and mostly the same green, so a $1 and a $100 are told apart by the number and the portrait, not the colour. Yen notes change colour and size with value, which helps — once you know which is which.",
+        ],
+      },
+      {
+        heading: "How to get faster",
+        paragraphs: [
+          "Count the notes first, largest to smallest. They carry most of the value, and they are the easiest pieces to read at a glance.",
+          "Remember counts, not totals. In five seconds, “three tens, two fives, three ones” is easier to hold than a running sum. Do the multiplication after the pile disappears — there is no clock on the answer box.",
+          "Think in the currency’s natural unit. For yen, think in thousands: “forty-three thousand, plus about two and a half.” For dollars, settle the bills first, then decide whether the coins are worth counting for the exact answer.",
+          "Learn each currency’s coins once — a hole, a colour, a size — and every day in that currency gets quicker. A new currency comes up regularly, so there is always something new to learn.",
+        ],
+      },
+    ],
+    related: [
+      { href: "/guessr", label: "Play Money Guessr" },
+      { href: "/articles/world-currencies", label: "Banknotes and coins in MoneyGames" },
+      { href: "/scoring", label: "Scoring rules" },
+    ],
+  },
+  {
     slug: "four-tiles-one-country",
     title: "Four tiles, one country",
     description:
