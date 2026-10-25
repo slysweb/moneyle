@@ -8,8 +8,13 @@ import {
   articlePath,
   formatArticleDate,
   type Article,
+  type ArticleBlock,
 } from "../lib/articles";
 import { usePageMeta } from "../lib/usePageMeta";
+
+function blockKey(block: ArticleBlock | undefined): string | undefined {
+  return typeof block === "string" ? block : block?.src;
+}
 
 export default function ArticlePage() {
   const { slug } = useParams();
@@ -41,11 +46,25 @@ function ArticleBody({ article }: { article: Article }) {
         <RankingBlock key={article.rankingSlug} article={article} slug={article.rankingSlug} />
       ) : null}
       {article.sections?.map((section) => (
-        <section key={section.heading ?? section.paragraphs[0]}>
+        <section key={section.heading ?? blockKey(section.paragraphs[0])}>
           {section.heading ? <h2>{section.heading}</h2> : null}
-          {section.paragraphs.map((para) => (
-            <p key={para}>{para}</p>
-          ))}
+          {section.paragraphs.map((block) =>
+            typeof block === "string" ? (
+              <p key={block}>{block}</p>
+            ) : (
+              <figure key={block.src} className="article-figure">
+                <img
+                  src={block.src}
+                  alt={block.alt}
+                  width={block.width}
+                  height={block.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {block.caption ? <figcaption>{block.caption}</figcaption> : null}
+              </figure>
+            ),
+          )}
         </section>
       ))}
       {article.related?.length ? (

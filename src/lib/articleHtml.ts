@@ -4,6 +4,7 @@ import {
   articlePath,
   formatArticleDate,
   type Article,
+  type ArticleFigure,
 } from "./articles";
 import { SITE_ORIGIN, canonicalUrl } from "./pageMeta";
 
@@ -34,6 +35,11 @@ export function escapeHtml(value: string): string {
 
 function p(text: string): string {
   return `<p>${escapeHtml(text)}</p>`;
+}
+
+function figure(fig: ArticleFigure): string {
+  const caption = fig.caption ? `<figcaption>${escapeHtml(fig.caption)}</figcaption>` : "";
+  return `<figure class="article-figure"><img src="${escapeHtml(fig.src)}" alt="${escapeHtml(fig.alt)}" width="${fig.width}" height="${fig.height}" loading="lazy" decoding="async">${caption}</figure>`;
 }
 
 function footer(): string {
@@ -82,7 +88,7 @@ export function renderArticleHtml(article: Article, ranking: RankingHtml | null)
   const sections = (article.sections ?? [])
     .map((section) => {
       const h = section.heading ? `<h2>${escapeHtml(section.heading)}</h2>` : "";
-      return `${h}${section.paragraphs.map(p).join("")}`;
+      return `${h}${section.paragraphs.map((block) => (typeof block === "string" ? p(block) : figure(block))).join("")}`;
     })
     .join("");
   const related = article.related?.length

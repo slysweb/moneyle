@@ -5,6 +5,16 @@ export type RankingSlug =
   | "player-salaries"
   | "box-office";
 
+export interface ArticleFigure {
+  src: string;
+  alt: string;
+  caption?: string;
+  width: number;
+  height: number;
+}
+
+export type ArticleBlock = string | ArticleFigure;
+
 export interface Article {
   slug: string;
   title: string;
@@ -19,7 +29,7 @@ export interface Article {
   metricLabel?: string;
   intros: string[];
   note?: string;
-  sections?: { heading?: string; paragraphs: string[] }[];
+  sections?: { heading?: string; paragraphs: ArticleBlock[] }[];
   related?: { href: string; label: string }[];
 }
 
@@ -191,7 +201,21 @@ export const ARTICLES: Article[] = [
           "The US dollar set in Money Guessr has seven notes — $1, $2, $5, $10, $20, $50 and $100 — and six coins, from the penny to the dollar coin. The yen set has three notes — ¥1,000, ¥5,000 and ¥10,000 — and four coins: ¥10, ¥50, ¥100 and ¥500.",
           "Round one feels similar in both. With dollars you might see three $5 bills: $15. With yen you might see three ¥5,000 notes: ¥15,000. Same counting, but the yen answer already has five digits.",
           "Now take the last round. A dollar pile could be two $100s, three $20s and three $5s — $275 — plus three quarters, four dimes, two nickels and two pennies. The coins add $1.27, for $276.27. They move the total by less than half a percent. For the 1-point band you can almost ignore them; for the exact 2 points you have to count every cent.",
+          {
+            src: "/images/articles/guessr-round-five-usd.webp",
+            alt: "A Money Guessr table in US dollars: three $5 bills, three $20s and two $100s above two pennies, two nickels, four dimes and three quarters.",
+            caption: "Round five in dollars: $275 in bills, $1.27 in coins, $276.27 in total.",
+            width: 1520,
+            height: 760,
+          },
           "A yen pile of the same shape could be three ¥10,000s, two ¥5,000s and three ¥1,000s — ¥43,000 — plus four ¥500s, three ¥100s, two ¥50s and two ¥10s. Those coins add ¥2,420, for ¥45,420. That is more than five percent of the total from coins alone, and the biggest coin is worth half of the smallest note. In yen, the change is real money.",
+          {
+            src: "/images/articles/guessr-round-five-jpy.webp",
+            alt: "A Money Guessr table in Japanese yen: three ¥1,000 notes, two ¥5,000s and three ¥10,000s above two ¥10 coins, two ¥50s, three ¥100s and four ¥500s.",
+            caption: "The same shape in yen: ¥43,000 in notes, ¥2,420 in coins, ¥45,420 in total.",
+            width: 1520,
+            height: 760,
+          },
           "That is what makes yen days harder. The face values are large, so totals run into tens of thousands and one slip costs a lot of zeros. There are no cents to round away, so an exact answer means getting every coin right. And because yen coins are worth so much, you cannot treat them as noise the way you can with pennies and dimes.",
           "Dollar days have their own trap. Every US note is the same size and mostly the same green, so a $1 and a $100 are told apart by the number and the portrait, not the colour. Yen notes change colour and size with value, which helps — once you know which is which.",
         ],
