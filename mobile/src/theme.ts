@@ -27,6 +27,11 @@ export const radius = {
   pill: 999,
 } as const;
 
+export const layout = {
+  contentMaxWidth: 720,
+  wideBreakpoint: 640,
+} as const;
+
 export const type = {
   kicker: { fontSize: 13, fontWeight: "600" as const, letterSpacing: 0.6, color: colors.dim },
   title: { fontSize: 28, fontWeight: "700" as const, letterSpacing: -0.6, color: colors.ink },

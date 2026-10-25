@@ -25,7 +25,7 @@ import {
   sharePlayLine,
 } from "../src/lib/config";
 import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
-import { colors, radius, type } from "../src/theme";
+import { colors, layout, radius, type } from "../src/theme";
 import { useArchiveGate } from "../src/lib/useArchiveGate";
 import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, NextPuzzleNote, Screen } from "../src/ui";
 
@@ -266,7 +266,8 @@ export default function ConnectionsScreen() {
   ].join("\n");
 
   const gap = 8;
-  const tileSize = Math.floor((width - 32 - gap * 3) / 4);
+  const boardWidth = Math.min(width, layout.contentMaxWidth) - 32;
+  const tileSize = Math.floor((boardWidth - gap * 3) / 4);
 
   return (
     <Screen>
@@ -286,7 +287,7 @@ export default function ConnectionsScreen() {
         ))}
 
         {!finished && (
-          <View style={[styles.grid, { gap }]}>
+          <View style={[styles.grid, { gap, width: tileSize * 4 + gap * 3, alignSelf: "center" }]}>
             {remainingTiles.map((tile) => (
               <TileButton
                 key={tile.id}

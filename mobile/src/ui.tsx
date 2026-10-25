@@ -4,8 +4,10 @@ import {
   ActivityIndicator,
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,7 +19,7 @@ import {
   nextDenverMidnight,
   playPath,
 } from "./lib/dates";
-import { colors, radius, space, type } from "./theme";
+import { colors, layout, radius, space, type } from "./theme";
 
 function useGoHome() {
   const router = useRouter();
@@ -111,7 +113,9 @@ export function Screen({
   padded?: boolean;
 }) {
   return (
-    <SafeAreaView style={[styles.safe, padded && styles.padded]}>{children}</SafeAreaView>
+    <SafeAreaView style={styles.safe}>
+      <View style={[styles.body, padded && styles.padded]}>{children}</View>
+    </SafeAreaView>
   );
 }
 
@@ -172,17 +176,21 @@ export function HelpModal({
   body: string;
   onClose: () => void;
 }) {
+  const { height } = useWindowDimensions();
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable style={styles.modalBg} onPress={onClose}>
-        <Pressable style={styles.modalCard} onPress={(e) => e.stopPropagation()}>
-          <Text style={styles.modalTitle}>{title}</Text>
-          <Text style={styles.modalBody}>{body}</Text>
-          <Pressable onPress={onClose} style={styles.modalClose}>
-            <Text style={styles.headerLink}>Close</Text>
-          </Pressable>
-        </Pressable>
-      </Pressable>
+      <View style={styles.modalBg}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.modalCard, { maxHeight: Math.max(220, height - 48), zIndex: 1 }]}>
+          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+            <Text style={styles.modalTitle}>{title}</Text>
+            <Text style={styles.modalBody}>{body}</Text>
+            <Pressable onPress={onClose} style={styles.modalClose}>
+              <Text style={styles.headerLink}>Close</Text>
+            </Pressable>
+          </ScrollView>
+        </View>
+      </View>
     </Modal>
   );
 }
@@ -329,6 +337,12 @@ export function ResultBlock({
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
+  body: {
+    flex: 1,
+    width: "100%",
+    maxWidth: layout.contentMaxWidth,
+    alignSelf: "center",
+  },
   padded: { paddingHorizontal: space.md },
   header: {
     flexDirection: "row",
@@ -365,8 +379,8 @@ const styles = StyleSheet.create({
     padding: 22,
     gap: 12,
   },
-  modalTitle: { ...type.heading, fontSize: 20 },
-  modalBody: { ...type.body, color: colors.dim },
+  modalTitle: { ...type.heading, fontSize: 20, marginBottom: 12 },
+  modalBody: { ...type.body, color: colors.dim, marginBottom: 12 },
   modalClose: { alignSelf: "flex-start", paddingTop: 4 },
   btn: {
     backgroundColor: colors.ink,

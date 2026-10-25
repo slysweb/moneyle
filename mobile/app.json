@@ -3,15 +3,15 @@
     "name": "MoneyGames",
     "slug": "moneygames",
     "scheme": "moneygames",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "1.0.2",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "primaryColor": "#0fad6e",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#eef7f2"
+      "backgroundColor": "#1ecc8f"
     },
     "ios": {
       "bundleIdentifier": "cc.moneygames.app",
@@ -20,7 +20,7 @@
     "android": {
       "package": "cc.moneygames.app",
       "adaptiveIcon": {
-        "backgroundColor": "#eef7f2",
+        "backgroundColor": "#1ecc8f",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -30,8 +30,15 @@
         {
           "action": "VIEW",
           "autoVerify": false,
-          "category": ["BROWSABLE", "DEFAULT"],
-          "data": [{ "scheme": "moneygames" }]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ],
+          "data": [
+            {
+              "scheme": "moneygames"
+            }
+          ]
         }
       ]
     },
@@ -41,10 +48,11 @@
     "plugins": [
       "expo-router",
       "expo-image",
+      "expo-system-ui",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#eef7f2",
+          "backgroundColor": "#1ecc8f",
           "image": "./assets/splash-icon.png",
           "imageWidth": 200
         }
@@ -55,6 +63,13 @@
     ],
     "experiments": {
       "typedRoutes": false
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4f4bf6b3-ca80-49fd-a3ce-3505ca84d750"
+      }
+    },
+    "owner": "liushaoping"
   }
 }
