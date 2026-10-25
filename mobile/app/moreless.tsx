@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { Image } from "expo-image";
-import { Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, Share, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { fetchMorelessToday, type GameItem, type MorelessLevel } from "../src/lib/api";
 import { dailyPuzzleNumber, formatScore, resultSquares, sharePlayLine } from "../src/lib/config";
 import { loadSyncedProgress, saveProgress } from "../src/lib/progress";
-import { colors, radius, type } from "../src/theme";
+import { colors, layout, radius, type } from "../src/theme";
 import { useArchiveGate } from "../src/lib/useArchiveGate";
 import { ArchiveBanner, ArchiveLocked, ErrorView, GameHeader, HelpModal, LoadingView, ResultBlock, Screen } from "../src/ui";
 
@@ -27,9 +27,22 @@ interface SavedRun {
   answers: AnswerRecord[];
 }
 
+function preloadMorelessImages(levels: MorelessLevel[]): void {
+  const urls = new Set<string>();
+  for (const lvl of levels) {
+    for (const item of lvl.chain) {
+      if (item.imageUrl) urls.add(item.imageUrl);
+    }
+  }
+  if (urls.size === 0) return;
+  void Image.prefetch([...urls], "memory-disk");
+}
+
 export default function MoreLessScreen() {
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;
+  const { width } = useWindowDimensions();
+  const sideBySide = width >= layout.wideBreakpoint;
   const [levels, setLevels] = useState<MorelessLevel[] | null>(null);
   const [puzzleDate, setPuzzleDate] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -68,6 +81,7 @@ export default function MoreLessScreen() {
     fetchMorelessToday(requestedDate)
       .then(async (res) => {
         if (cancelled) return;
+        preloadMorelessImages(res.levels);
         await restore(res.date, res.levels);
         if (cancelled) return;
         setLevels(res.levels);
@@ -245,7 +259,7 @@ export default function MoreLessScreen() {
           />
         ))}
       </View>
-      <ScrollView contentContainerStyle={styles.board} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[styles.board, sideBySide && styles.boardRow]} showsVerticalScrollIndicator={false}>
         <Card
           item={left}
           metric={level.metricLabel}
@@ -254,9 +268,17 @@ export default function MoreLessScreen() {
           selected={selected === "left"}
           result={selected === "left" ? verdict : correctSide === "left" && phase === "wrong" ? "reveal" : ""}
           disabled={phase !== "guessing"}
+          flex={sideBySide}
           onPress={() => pick("left")}
         />
-        <View style={[styles.vs, verdict === "correct" && styles.vsOk, verdict === "wrong" && styles.vsBad]}>
+        <View
+          style={[
+            styles.vs,
+            sideBySide && styles.vsWide,
+            verdict === "correct" && styles.vsOk,
+            verdict === "wrong" && styles.vsBad,
+          ]}
+        >
           <Text style={[styles.vsText, verdict && styles.vsTextOn]}>
             {verdict === "correct" ? "✓" : verdict === "wrong" ? "✕" : "VS"}
           </Text>
@@ -269,6 +291,7 @@ export default function MoreLessScreen() {
           selected={selected === "right"}
           result={selected === "right" ? verdict : correctSide === "right" && phase === "wrong" ? "reveal" : ""}
           disabled={phase !== "guessing"}
+          flex={sideBySide}
           onPress={() => pick("right")}
         />
       </ScrollView>
@@ -299,6 +322,7 @@ function Card({
   selected,
   result,
   disabled,
+  flex,
   onPress,
 }: {
   item: GameItem;
@@ -308,11 +332,18 @@ function Card({
   selected: boolean;
   result: string;
   disabled: boolean;
+  flex?: boolean;
   onPress: () => void;
 }) {
   const fit = media === "cover" ? "cover" : "contain";
   const photo = item.imageUrl ? (
-    <Image source={{ uri: item.imageUrl }} style={styles.image} contentFit={fit} />
+    <Image
+      source={{ uri: item.imageUrl }}
+      recyclingKey={String(item.id)}
+      cachePolicy="memory-disk"
+      style={styles.image}
+      contentFit={fit}
+    />
   ) : (
     <Text style={styles.fallback}>{item.name.slice(0, 1)}</Text>
   );
@@ -323,6 +354,7 @@ function Card({
       disabled={disabled}
       style={[
         styles.card,
+        flex && styles.cardFlex,
         selected && styles.cardOn,
         result === "correct" && styles.cardOk,
         result === "wrong" && styles.cardBad,
@@ -343,7 +375,13 @@ function Card({
         <>
           <View style={styles.flagWell}>
             {item.imageUrl ? (
-              <Image source={{ uri: item.imageUrl }} style={styles.flagImage} contentFit="fill" />
+              <Image
+                source={{ uri: item.imageUrl }}
+                recyclingKey={String(item.id)}
+                cachePolicy="memory-disk"
+                style={styles.flagImage}
+                contentFit="fill"
+              />
             ) : (
               <Text style={styles.fallback}>{item.name.slice(0, 1)}</Text>
             )}
@@ -391,6 +429,7 @@ const styles = StyleSheet.create({
   pillOn: { backgroundColor: colors.ink },
   pillDone: { backgroundColor: colors.accent },
   board: { paddingBottom: 28, gap: 0 },
+  boardRow: { flexDirection: "row", alignItems: "stretch", gap: 0 },
   vs: {
     alignSelf: "center",
     width: 52,
@@ -413,6 +452,7 @@ const styles = StyleSheet.create({
   vsBad: { backgroundColor: colors.red, borderColor: colors.red },
   vsText: { fontSize: 14, fontWeight: "700", color: colors.dim, letterSpacing: 0.8 },
   vsTextOn: { color: "#fff" },
+  vsWide: { marginVertical: 0, marginHorizontal: 8 },
   card: {
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -421,6 +461,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     paddingBottom: 14,
   },
+  cardFlex: { flex: 1, minWidth: 0 },
   cardOn: { borderColor: colors.ink, borderWidth: 1.5 },
   cardOk: { borderColor: colors.accent, borderWidth: 1.5 },
   cardBad: { borderColor: colors.red, borderWidth: 1.5 },

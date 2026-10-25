@@ -64,11 +64,24 @@ function formatCounting(value: number, finalDisplay: string): string {
   return `$${n.toFixed(digits)}${suffix === "$" ? "" : suffix}`;
 }
 
+function preloadMorelessImages(levels: MorelessLevel[]): void {
+  const urls = new Set<string>();
+  for (const lvl of levels) {
+    for (const item of lvl.chain) {
+      if (item.imageUrl) urls.add(item.imageUrl);
+    }
+  }
+  for (const url of urls) {
+    const img = new window.Image();
+    img.src = url;
+  }
+}
+
 function CardMedia({ item, mode = "cover" }: { item: GameItem; mode?: "cover" | "logo" }) {
   return (
     <div className={`card-media${mode === "logo" ? " logo" : ""}`}>
       {item.imageUrl ? (
-        <img src={item.imageUrl} alt={item.name} loading="eager" />
+        <img key={item.id} src={item.imageUrl} alt={item.name} loading="eager" />
       ) : (
         <div className="card-media-fallback">{item.name.charAt(0)}</div>
       )}
@@ -144,6 +157,7 @@ export default function Game() {
     fetchMorelessToday(requestedDate)
       .then(async (res) => {
         if (cancelled) return;
+        preloadMorelessImages(res.levels);
         await restore(res.date, res.levels);
         if (cancelled) return;
         setLevels(res.levels);
