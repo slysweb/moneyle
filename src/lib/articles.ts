@@ -183,7 +183,7 @@ export const ARTICLES: Article[] = [
       {
         heading: "How a round works",
         paragraphs: [
-          "Each day, Money Guessr picks one currency from the 22 we have photographed — US dollars, Japanese yen, euros, pounds, pesos, dong, and more — and builds five piles from it. Everyone plays the same five piles until midnight Denver time.",
+          "Each day, Money Guessr picks one currency from the 27 we have photographed — US dollars, Japanese yen, euros, pounds, pesos, dong, and more — and builds five piles from it. Everyone plays the same five piles until midnight Denver time.",
           "The piles get harder as you go. Round one is three banknotes of a single kind, drawn from the cheaper end of that currency’s notes. By round five the table holds eight notes of up to three kinds and eleven coins of up to four kinds: nineteen pieces of cash, five seconds.",
           "An exact answer is worth 2 points. Anything within 20% of the true total is worth 1. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
         ],

@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "October 27, 2026",
+    iso: "2026-10-27",
+    items: [
+      "Money Guessr, Moneyle, and MoneyConnections now include Australian dollar, Indian rupee, Hong Kong dollar, Singapore dollar, and Swedish krona notes and coins.",
+    ],
+  },
+  {
     date: "September 19, 2026",
     iso: "2026-09-19",
     items: [

@@ -577,3 +577,127 @@ SELECT id, 'bill-200000', 'bill', '₫200000 bill', 200000, '/money/vnd/bill-200
 INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
 SELECT id, 'bill-500000', 'bill', '₫500000 bill', 500000, '/money/vnd/bill-500000.webp', 11 FROM currencies WHERE slug = 'vnd';
 
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('aud', 'Australian Dollar', 'AUD', 'A$', 2, 'Australia', 1, 23);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-5', 'coin', '5 cents', 5, '/money/aud/coin-cents-5.webp', 1 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-10', 'coin', '10 cents', 10, '/money/aud/coin-cents-10.webp', 2 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-20', 'coin', '20 cents', 20, '/money/aud/coin-cents-20.webp', 3 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-50', 'coin', '50 cents', 50, '/money/aud/coin-cents-50.webp', 4 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollar-1', 'coin', 'A$1 coin', 100, '/money/aud/coin-dollar-1.webp', 5 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollars-2', 'coin', 'A$2 coin', 200, '/money/aud/coin-dollars-2.webp', 6 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-5', 'bill', 'A$5 bill', 500, '/money/aud/bill-5.webp', 7 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10', 'bill', 'A$10 bill', 1000, '/money/aud/bill-10.webp', 8 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20', 'bill', 'A$20 bill', 2000, '/money/aud/bill-20.webp', 9 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', 'A$50 bill', 5000, '/money/aud/bill-50.webp', 10 FROM currencies WHERE slug = 'aud';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', 'A$100 bill', 10000, '/money/aud/bill-100.webp', 11 FROM currencies WHERE slug = 'aud';
+
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('inr', 'Indian Rupee', 'INR', '₹', 2, 'India', 1, 24);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rupee-1', 'coin', '₹1 coin', 100, '/money/inr/coin-rupee-1.webp', 1 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rupees-2', 'coin', '₹2 coin', 200, '/money/inr/coin-rupees-2.webp', 2 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rupees-5', 'coin', '₹5 coin', 500, '/money/inr/coin-rupees-5.webp', 3 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rupees-10', 'coin', '₹10 coin', 1000, '/money/inr/coin-rupees-10.webp', 4 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-rupees-20', 'coin', '₹20 coin', 2000, '/money/inr/coin-rupees-20.webp', 5 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10', 'bill', '₹10 bill', 1000, '/money/inr/bill-10.webp', 6 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20', 'bill', '₹20 bill', 2000, '/money/inr/bill-20.webp', 7 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', '₹50 bill', 5000, '/money/inr/bill-50.webp', 8 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', '₹100 bill', 10000, '/money/inr/bill-100.webp', 9 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-200', 'bill', '₹200 bill', 20000, '/money/inr/bill-200.webp', 10 FROM currencies WHERE slug = 'inr';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-500', 'bill', '₹500 bill', 50000, '/money/inr/bill-500.webp', 11 FROM currencies WHERE slug = 'inr';
+
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('hkd', 'Hong Kong Dollar', 'HKD', 'HK$', 2, 'Hong Kong', 1, 25);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-10', 'coin', '10 cents', 10, '/money/hkd/coin-cents-10.webp', 1 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-20', 'coin', '20 cents', 20, '/money/hkd/coin-cents-20.webp', 2 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-50', 'coin', '50 cents', 50, '/money/hkd/coin-cents-50.webp', 3 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollar-1', 'coin', 'HK$1 coin', 100, '/money/hkd/coin-dollar-1.webp', 4 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollars-2', 'coin', 'HK$2 coin', 200, '/money/hkd/coin-dollars-2.webp', 5 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollars-5', 'coin', 'HK$5 coin', 500, '/money/hkd/coin-dollars-5.webp', 6 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollars-10', 'coin', 'HK$10 coin', 1000, '/money/hkd/coin-dollars-10.webp', 7 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-20', 'bill', 'HK$20 bill', 2000, '/money/hkd/bill-20.webp', 8 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', 'HK$50 bill', 5000, '/money/hkd/bill-50.webp', 9 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', 'HK$100 bill', 10000, '/money/hkd/bill-100.webp', 10 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-500', 'bill', 'HK$500 bill', 50000, '/money/hkd/bill-500.webp', 11 FROM currencies WHERE slug = 'hkd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-1000', 'bill', 'HK$1000 bill', 100000, '/money/hkd/bill-1000.webp', 12 FROM currencies WHERE slug = 'hkd';
+
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('sgd', 'Singapore Dollar', 'SGD', 'S$', 2, 'Singapore', 1, 26);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-5', 'coin', '5 cents', 5, '/money/sgd/coin-cents-5.webp', 1 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-10', 'coin', '10 cents', 10, '/money/sgd/coin-cents-10.webp', 2 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-20', 'coin', '20 cents', 20, '/money/sgd/coin-cents-20.webp', 3 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-cents-50', 'coin', '50 cents', 50, '/money/sgd/coin-cents-50.webp', 4 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-dollar-1', 'coin', 'S$1 coin', 100, '/money/sgd/coin-dollar-1.webp', 5 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-2', 'bill', 'S$2 bill', 200, '/money/sgd/bill-2.webp', 6 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-5', 'bill', 'S$5 bill', 500, '/money/sgd/bill-5.webp', 7 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-10', 'bill', 'S$10 bill', 1000, '/money/sgd/bill-10.webp', 8 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', 'S$50 bill', 5000, '/money/sgd/bill-50.webp', 9 FROM currencies WHERE slug = 'sgd';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', 'S$100 bill', 10000, '/money/sgd/bill-100.webp', 10 FROM currencies WHERE slug = 'sgd';
+
+INSERT INTO currencies (slug, name, code, symbol, minor_digits, country, is_active, sort_order)
+VALUES ('sek', 'Swedish Krona', 'SEK', 'kr', 2, 'Sweden', 1, 27);
+
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-krona-1', 'coin', '1 krona', 100, '/money/sek/coin-krona-1.webp', 1 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-kronor-5', 'coin', '5 kronor', 500, '/money/sek/coin-kronor-5.webp', 2 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'coin-kronor-10', 'coin', '10 kronor', 1000, '/money/sek/coin-kronor-10.webp', 3 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-50', 'bill', '50 kr bill', 5000, '/money/sek/bill-50.webp', 4 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-100', 'bill', '100 kr bill', 10000, '/money/sek/bill-100.webp', 5 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-200', 'bill', '200 kr bill', 20000, '/money/sek/bill-200.webp', 6 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-500', 'bill', '500 kr bill', 50000, '/money/sek/bill-500.webp', 7 FROM currencies WHERE slug = 'sek';
+INSERT INTO denominations (currency_id, slug, kind, name, value_cents, image_url, sort_order)
+SELECT id, 'bill-1000', 'bill', '1000 kr bill', 100000, '/money/sek/bill-1000.webp', 8 FROM currencies WHERE slug = 'sek';
+

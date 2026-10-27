@@ -66,6 +66,11 @@ const SOLO: Record<string, { iso2: string; country: string }> = {
   BZD: { iso2: "bz", country: "Belize" },
   CHF: { iso2: "ch", country: "Switzerland" },
   VND: { iso2: "vn", country: "Vietnam" },
+  AUD: { iso2: "au", country: "Australia" },
+  INR: { iso2: "in", country: "India" },
+  HKD: { iso2: "hk", country: "Hong Kong" },
+  SGD: { iso2: "sg", country: "Singapore" },
+  SEK: { iso2: "se", country: "Sweden" },
 };
 
 function parseIso2(meta: string | null): string | null {
