@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "October 30, 2026",
+    iso: "2026-10-30",
+    items: [
+      "Each daily game page now includes a written guide below the live puzzle — how to play, tips, FAQ, and (where it does not give the answer away) today’s currency, cash, or line-up — so the page has the same text with or without JavaScript.",
+    ],
+  },
+  {
     date: "October 27, 2026",
     iso: "2026-10-27",
     items: [
