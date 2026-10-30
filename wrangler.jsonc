@@ -9,6 +9,7 @@
 		// Browser navigations (e.g. Continue with Google) send Sec-Fetch-Mode:
 		// navigate. Without this, SPA fallback serves index.html instead of the Worker.
         "run_worker_first": [
+			"/",
 			"/api/*",
 			"/articles",
 			"/articles/*",

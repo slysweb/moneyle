@@ -11,7 +11,7 @@ import { handleAuth, sessionUser } from "./auth";
 import { handleProgress } from "./progress";
 import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
-import { handleArticleHtml, handleGameHtml, isArticlePath, isGameHtmlPath } from "./articleSsr";
+import { handleArticleHtml, handleGameHtml, handleHomeHtml, isArticlePath, isGameHtmlPath, isHomePath } from "./articleSsr";
 import { handleRanking } from "./rankings";
 import { robotsTxt, sitemapXml } from "../src/lib/sitemap";
 
@@ -257,6 +257,14 @@ export default {
         return json({ error: "Internal error" }, { status: 500 });
       }
       return json({ error: "Not found" }, { status: 404 });
+    }
+
+    if (isHomePath(url.pathname) && (request.method === "GET" || request.method === "HEAD")) {
+      try {
+        return await handleHomeHtml(request, env);
+      } catch (err) {
+        console.error("home html", err instanceof Error ? err.message : err);
+      }
     }
 
     if (

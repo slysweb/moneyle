@@ -3,12 +3,14 @@ import {
   articlesIndexJsonLd,
   injectHead,
   rankingBootstrapScript,
+  injectIntoRoot,
   renderArticleHtml,
   renderArticlesIndexHtml,
 } from "../src/lib/articleHtml";
 import { articleBySlug } from "../src/lib/articles";
 import { applyPageMeta, metaForPath } from "../src/lib/pageMeta";
 import { isGameSeoPath, renderGameHtml, gameJsonLd } from "../src/lib/gameHtml";
+import { renderHomeHtml } from "../src/lib/homeHtml";
 import { loadRanking } from "./rankings";
 
 interface ArticleEnv {
@@ -23,6 +25,10 @@ export function isArticlePath(pathname: string): boolean {
 
 export function isGameHtmlPath(pathname: string): boolean {
   return isGameSeoPath(pathname);
+}
+
+export function isHomePath(pathname: string): boolean {
+  return normalizePath(pathname) === "/";
 }
 
 function normalizePath(pathname: string): string {
@@ -54,6 +60,17 @@ function fillRoot(html: string, inner: string, headers: HeadersInit, method: str
     return new Response(null, { status: 200, headers });
   }
   return rewritten;
+}
+
+export async function handleHomeHtml(request: Request, env: ArticleEnv): Promise<Response> {
+  const shell = await env.ASSETS.fetch(new URL("/index.html", request.url));
+  const html = injectIntoRoot(await shell.text(), renderHomeHtml());
+  const headers = {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "public, max-age=300",
+  };
+  if (request.method === "HEAD") return new Response(null, { status: 200, headers });
+  return new Response(html, { status: 200, headers });
 }
 
 export async function handleArticleHtml(
