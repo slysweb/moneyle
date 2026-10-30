@@ -51,5 +51,5 @@ export function sitemapXml(): string {
 }
 
 export function robotsTxt(): string {
-  return `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
+  return `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`;
 }
