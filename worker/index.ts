@@ -12,7 +12,6 @@ import { handleProgress } from "./progress";
 import { buildMoneyleBonus } from "./bonus";
 import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
 import { handleArticleHtml, handleGameHtml, isArticlePath, isGameHtmlPath } from "./articleSsr";
-import { guideToday } from "./guide";
 import { handleRanking } from "./rankings";
 import { robotsTxt, sitemapXml } from "../src/lib/sitemap";
 
@@ -172,15 +171,6 @@ async function handleMoneylePuzzle(env: Env, request: Request, url: URL): Promis
   );
 }
 
-async function handleGuide(env: Env, url: URL): Promise<Response> {
-  const game = url.searchParams.get("game");
-  if (game !== "moreless" && game !== "guessr" && game !== "moneyle" && game !== "connections") {
-    return json({ error: "Unknown game" }, { status: 400 });
-  }
-  const today = await guideToday(env.DB, game, denverDate());
-  return json({ game, today }, { headers: { "cache-control": "public, max-age=300" } });
-}
-
 async function handleMoneyleBonus(env: Env, request: Request, url: URL): Promise<Response> {
   const resolved = await puzzleDateOrError(env, request, url, "moneyle");
   if (resolved instanceof Response) return resolved;
@@ -262,7 +252,6 @@ export default {
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, request, url);
         if (url.pathname === "/api/moneyle/bonus") return await handleMoneyleBonus(env, request, url);
         if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env, request, url);
-        if (url.pathname === "/api/guide") return await handleGuide(env, url);
       } catch (err) {
         console.error("API error", err instanceof Error ? err.message : err);
         return json({ error: "Internal error" }, { status: 500 });

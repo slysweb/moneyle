@@ -1,5 +1,3 @@
-import type { GuideBootstrap, GuideGame } from "./gameGuide";
-
 export interface Category {
   slug: string;
   title: string;
@@ -95,12 +93,7 @@ export function fetchRanking(slug: string): Promise<RankingResponse> {
 declare global {
   interface Window {
     __RANKING__?: RankingResponse;
-    __GUIDE__?: GuideBootstrap;
   }
-}
-
-export function fetchGuide(game: GuideGame): Promise<GuideBootstrap> {
-  return getJson(`/api/guide?game=${encodeURIComponent(game)}`);
 }
 
 function dateQuery(date?: string | null): string {

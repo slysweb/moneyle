@@ -18,7 +18,6 @@
     "src/lib/articleHtml.ts",
     "src/lib/pageMeta.ts",
     "src/lib/sitemap.ts",
-    "src/lib/gameHtml.ts",
-    "src/lib/gameGuide.ts"
+    "src/lib/gameHtml.ts"
   ]
 }

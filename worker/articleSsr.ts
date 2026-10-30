@@ -8,10 +8,7 @@ import {
 } from "../src/lib/articleHtml";
 import { articleBySlug } from "../src/lib/articles";
 import { applyPageMeta, metaForPath } from "../src/lib/pageMeta";
-import { isGameSeoPath, renderGameHtml, gameJsonLd, injectAfterRoot } from "../src/lib/gameHtml";
-import { guideBootstrapScript, guideGameForPath, type GuideToday } from "../src/lib/gameGuide";
-import { denverDate } from "./denver";
-import { guideToday } from "./guide";
+import { isGameSeoPath, renderGameHtml, gameJsonLd } from "../src/lib/gameHtml";
 import { loadRanking } from "./rankings";
 
 interface ArticleEnv {
@@ -112,32 +109,16 @@ export async function handleGameHtml(
 ): Promise<Response | null> {
   const url = new URL(request.url);
   const path = normalizePath(url.pathname);
-  const game = guideGameForPath(path);
+  const inner = renderGameHtml(path);
   const page = metaForPath(path);
-  if (!game || !page) return null;
+  if (!inner || !page) return null;
 
-  let today: GuideToday | null = null;
-  try {
-    today = await guideToday(env.DB, game, denverDate());
-  } catch (err) {
-    console.error("game guide", err instanceof Error ? err.message : err);
-  }
-  const inner = renderGameHtml(path, today);
-  if (!inner) return null;
-
-  const index = await env.ASSETS.fetch(new URL("/index.html", request.url));
-  let html = await index.text();
+  let html = await loadShell(env, request);
   html = applyPageMeta(html, page, path);
   if (!html.includes("application/ld+json")) html = injectHead(html, gameJsonLd(page, path));
-  html = injectHead(html, guideBootstrapScript({ game, today }));
-  html = injectAfterRoot(html, inner);
 
-  const headers = {
+  return fillRoot(html, inner, {
     "content-type": "text/html; charset=utf-8",
-    "cache-control": "public, max-age=300",
-  };
-  if (request.method === "HEAD") {
-    return new Response(null, { status: 200, headers });
-  }
-  return new Response(html, { status: 200, headers });
+    "cache-control": "public, max-age=3600",
+  }, request.method);
 }

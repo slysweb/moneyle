@@ -18,7 +18,6 @@ import Register from "./pages/Register";
 import Me from "./pages/Me";
 import FeedbackModal from "./components/FeedbackModal";
 import HeaderAuth from "./components/HeaderAuth";
-import GameGuideFromRoute from "./components/GameGuide";
 import { FeedbackContext } from "./lib/feedback";
 import { AuthProvider } from "./lib/auth";
 
@@ -63,7 +62,6 @@ export default function App() {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/delete-account" element={<DeleteAccount />} />
           </Routes>
-          <GameGuideFromRoute />
           {feedbackOpen ? <FeedbackModal onClose={() => setFeedbackOpen(false)} /> : null}
         </div>
       </FeedbackContext.Provider>
