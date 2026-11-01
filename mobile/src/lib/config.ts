@@ -67,6 +67,8 @@ export function connectionRow(color: string): string {
 export const GUESSR_ROUNDS = 5;
 export const GUESSR_ROUND_MAX = 2;
 export const GUESSR_MAX = GUESSR_ROUNDS * GUESSR_ROUND_MAX;
+export const GUESSR_EXACT_PCT = 0.1;
+export const GUESSR_CLOSE_PCT = 10;
 export const GUESSR_NEAR_PCT = 20;
 export const MONEYLE_NOTE_MAX = 10;
 export const MONEYLE_POINTS = [10, 8, 6, 4, 2, 1] as const;
@@ -78,7 +80,8 @@ export const CONNECTIONS_MAX = CONNECTIONS_GROUPS * CONNECTIONS_PER_GROUP;
 export function guessrRoundPoints(pct: number, guessCents?: number, actualCents?: number): number {
   if (guessCents != null && actualCents != null && guessCents === actualCents) return GUESSR_ROUND_MAX;
   const abs = Math.abs(pct);
-  if (abs < 0.05) return GUESSR_ROUND_MAX;
+  if (abs < GUESSR_EXACT_PCT) return GUESSR_ROUND_MAX;
+  if (abs <= GUESSR_CLOSE_PCT) return 1.5;
   if (abs <= GUESSR_NEAR_PCT) return 1;
   return 0;
 }

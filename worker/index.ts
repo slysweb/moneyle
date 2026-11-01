@@ -10,7 +10,7 @@ import { handleFeedback } from "./feedback";
 import { handleAuth, sessionUser } from "./auth";
 import { handleProgress } from "./progress";
 import { buildMoneyleBonus } from "./bonus";
-import { closenessPct, findCurrency, formatRate, fxRates, FX_CURRENCIES } from "./moneyle";
+import { closenessPct, findCurrency, formatRate, fxRates, usdHowToExample, FX_CURRENCIES } from "./moneyle";
 import { handleArticleHtml, handleGameHtml, handleHomeHtml, isArticlePath, isGameHtmlPath, isHomePath } from "./articleSsr";
 import { handleRanking } from "./rankings";
 import { robotsTxt, sitemapXml } from "../src/lib/sitemap";
@@ -249,6 +249,10 @@ export default {
         if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env, request, url);
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env, request, url);
         if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env, request, url);
+        if (url.pathname === "/api/moneyle/example") {
+          const rows = await usdHowToExample();
+          return json({ rows }, { headers: { "cache-control": "public, max-age=3600" } });
+        }
         if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, request, url);
         if (url.pathname === "/api/moneyle/bonus") return await handleMoneyleBonus(env, request, url);
         if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env, request, url);

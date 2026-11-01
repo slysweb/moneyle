@@ -55,7 +55,7 @@ function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: 
 }
 
 export default function Moneyle() {
-  usePageMeta(GAME_PAGES.moneyle.title, GAME_PAGES.moneyle.description);
+  usePageMeta(GAME_PAGES.moneyle.title, GAME_PAGES.moneyle.description, GAME_PAGES.moneyle.image);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

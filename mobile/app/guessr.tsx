@@ -20,7 +20,7 @@ const ROUNDS = 5;
 const MEMORIZE_MS = 5000;
 const STACK_TILT = [-5, -2, 3, 6, -4, 2, 5, -3];
 const HELP =
-  "A pile of bills and coins appears for 5 seconds. Then type the total. Five piles: exact is 2 points, within 20% is 1. Same puzzle as the website, every Denver day.";
+  "A pile of bills and coins appears for 5 seconds. Then type the total. Five piles: exact is 2 points, within 10% is 1.5, within 20% is 1. Same puzzle as the website, every Denver day.";
 
 type Phase = "memorize" | "guess" | "reveal";
 
@@ -81,7 +81,7 @@ function formatMoney(minor: number, currency: GuessrCurrency): string {
 }
 
 function formatPct(pct: number): string {
-  if (Math.abs(pct) < 0.05) return "0.0%";
+  if (Math.abs(pct) < 0.1) return "0.0%";
   return `${pct > 0 ? "+" : "−"}${Math.abs(pct).toFixed(1)}%`;
 }
 
@@ -406,7 +406,7 @@ export default function GuessrScreen() {
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
           <ResultBlock
             score={formatScore(run.score, run.max)}
-            detail={`Exact is 2 pts, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
+            detail={`Exact is 2 pts, within 10% is 1.5, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
             current="guessr"
             archiveDate={puzzleDate}
             onShare={() => void Share.share({ message: shareText })}

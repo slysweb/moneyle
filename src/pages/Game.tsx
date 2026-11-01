@@ -111,7 +111,7 @@ function cardClass(
 }
 
 export default function Game() {
-  usePageMeta(GAME_PAGES.moreless.title, GAME_PAGES.moreless.description);
+  usePageMeta(GAME_PAGES.moreless.title, GAME_PAGES.moreless.description, GAME_PAGES.moreless.image);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

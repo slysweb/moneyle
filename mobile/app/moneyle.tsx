@@ -24,7 +24,7 @@ import { useArchiveGate } from "../src/lib/useArchiveGate";
 import { ArchiveBanner, ArchiveLocked, Button, ErrorView, GameHeader, HelpModal, LoadingView, MoreGames, NextPuzzleNote, Screen } from "../src/ui";
 
 const HELP =
-  "Guess the currency on the frosted banknote. You get 6 tries. Each miss thins the frost and shows a USD rate plus how close you are. ↑ means your guess is stronger than the hidden note; ↓ means weaker. After the note is revealed, an optional bonus asks about that country’s flag, GDP, population, and GDP per person. First try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.";
+  "Guess the currency on the frosted banknote. You get 6 tries. Each miss thins the frost and shows how many units of the hidden currency one unit of your guess is worth — a dollar rate when the note is US dollars — plus whether you are high or low. ↑ means your guess is stronger than the note; ↓ means weaker. The percentage is higher when the values are closer, on a logarithmic scale, so 50% is still about 5 times off. After the note is revealed, an optional bonus asks about that country’s flag, GDP, population, and GDP per person. First try is 10, then 8, 6, 4, 2, 1, plus 1 per bonus question.";
 
 interface HistoryRow {
   currency: MoneyleCurrency;

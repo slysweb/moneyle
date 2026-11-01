@@ -17,7 +17,7 @@ export const ARCHIVE_GAMES: ArchiveGame[] = [
   { id: "moneyle", name: "Moneyle", short: "Moneyle", path: "/moneyle", epoch: "2026-08-17" },
   {
     id: "connections",
-    name: "MoneyConnections",
+    name: "Money Connections",
     short: "Connections",
     path: "/connections",
     epoch: "2026-08-19",

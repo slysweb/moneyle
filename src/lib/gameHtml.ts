@@ -35,7 +35,7 @@ const GAME_SEO: GameSeo[] = [
     steps: [
       "A pile of photographed bills and coins appears for five seconds.",
       "Then type the total. Five piles a day.",
-      "Exact is 2 points; within 20% is 1.",
+      "Exact is 2 points, within 10% is 1.5, and within 20% is 1.",
     ],
     extra: "Each day uses one currency from the cash we have on file, including dollars, francs, dong, and others.",
     relatedHref: "/articles/world-currencies",
@@ -57,8 +57,8 @@ const GAME_SEO: GameSeo[] = [
   },
   {
     path: "/connections",
-    short: "MoneyConnections",
-    heading: "MoneyConnections",
+    short: "Money Connections",
+    heading: "Money Connections",
     lead: GAME_PAGES.connections.description,
     steps: [
       "Each country appears as four tiles: its flag, a bill or coin, a GDP figure, and a currency name.",

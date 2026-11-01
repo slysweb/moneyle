@@ -3,6 +3,8 @@ import InfoPage from "../components/InfoPage";
 import {
   CONNECTIONS_MAX,
   CONNECTIONS_PER_GROUP,
+  GUESSR_CLOSE_PCT,
+  GUESSR_EXACT_PCT,
   GUESSR_MAX,
   GUESSR_NEAR_PCT,
   GUESSR_ROUND_MAX,
@@ -17,7 +19,7 @@ export default function Scoring() {
   return (
     <InfoPage
       title="Scoring rules"
-      description="How MoneyGames scores each daily run — More/Less, Money Guessr, Moneyle, and MoneyConnections."
+      description="How MoneyGames scores each daily run — More/Less, Money Guessr, Moneyle, and Money Connections."
       updated="September 6, 2026"
     >
       <p>
@@ -83,8 +85,12 @@ export default function Scoring() {
           </thead>
           <tbody>
             <tr>
-              <td>Exact amount (or off by less than 0.05%)</td>
+              <td>Exact amount (or off by less than {GUESSR_EXACT_PCT}%)</td>
               <td>{GUESSR_ROUND_MAX}</td>
+            </tr>
+            <tr>
+              <td>Within {GUESSR_CLOSE_PCT}% of the real total</td>
+              <td>1.5</td>
             </tr>
             <tr>
               <td>Within {GUESSR_NEAR_PCT}% of the real total</td>
@@ -102,9 +108,11 @@ export default function Scoring() {
         </table>
       </div>
       <p>
-        “Within {GUESSR_NEAR_PCT}%” means the absolute error is at most{" "}
-        {GUESSR_NEAR_PCT}%. If the pile is $100, a guess from $80 to $120 scores 1
-        point; $100.00 scores {GUESSR_ROUND_MAX}. Over or under is treated the same.
+        “Within {GUESSR_CLOSE_PCT}%” means the absolute error is at most{" "}
+        {GUESSR_CLOSE_PCT}%, and “within {GUESSR_NEAR_PCT}%” means at most{" "}
+        {GUESSR_NEAR_PCT}%. If the pile is $100, a guess from $90 to $110 scores
+        1.5, and from $80 to $120 scores 1. $100.00 scores {GUESSR_ROUND_MAX}. Over
+        or under is treated the same.
       </p>
 
       <h2>
@@ -152,7 +160,7 @@ export default function Scoring() {
       </div>
 
       <h2>
-        <Link to="/connections">MoneyConnections</Link> — {CONNECTIONS_MAX} points
+        <Link to="/connections">Money Connections</Link> — {CONNECTIONS_MAX} points
       </h2>
       <p>
         Four countries are hidden in the grid. Each group you find is worth{" "}

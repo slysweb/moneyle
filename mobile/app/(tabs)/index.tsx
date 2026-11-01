@@ -60,7 +60,7 @@ const games = [
   },
   {
     href: "/connections",
-    title: "MoneyConnections",
+    title: "Money Connections",
     blurb: "Four tiles, one country.",
     mark: "▦",
     tint: "#efe8f8",

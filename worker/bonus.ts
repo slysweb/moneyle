@@ -1,6 +1,6 @@
 import { EUROZONE } from "./connections";
 import { formatUsd } from "./format";
-import { POPULATION } from "./population";
+import { POPULATION, POPULATION_YEAR } from "./population";
 import { pick, rngFor, shuffle, type Rng } from "./rng";
 
 export type BonusKind = "flag" | "gdp" | "population" | "gdppc";
@@ -43,6 +43,7 @@ interface CountryFact {
   popLabel: string;
   gdppc: number;
   gdppcLabel: string;
+  year: number;
 }
 
 /** Banknote currencies we can map onto a GDP/flag country. */
@@ -73,13 +74,16 @@ const SOLO: Record<string, { iso2: string; country: string }> = {
   SEK: { iso2: "se", country: "Sweden" },
 };
 
-function parseIso2(meta: string | null): string | null {
-  if (!meta) return null;
+function parseMeta(meta: string | null): { iso2: string | null; year: number | null } {
+  if (!meta) return { iso2: null, year: null };
   try {
-    const parsed = JSON.parse(meta) as { iso2?: string };
-    return parsed.iso2?.toLowerCase() ?? null;
+    const parsed = JSON.parse(meta) as { iso2?: string; year?: number };
+    return {
+      iso2: parsed.iso2?.toLowerCase() ?? null,
+      year: typeof parsed.year === "number" ? parsed.year : null,
+    };
   } catch {
-    return null;
+    return { iso2: null, year: null };
   }
 }
 
@@ -106,6 +110,14 @@ function nearbyWindow<T>(sorted: T[], index: number, isSelf: (item: T) => boolea
   return sorted.slice(lo, hi).filter((item) => !isSelf(item));
 }
 
+/** Each option’s value must differ from the correct one, and from the other options, by at least this much. */
+const MIN_OPTION_GAP = 0.01;
+
+function separated(value: number, chosen: number[], answerValue: number): boolean {
+  if (!(answerValue > 0)) return false;
+  return chosen.every((other) => Math.abs(value - other) / answerValue >= MIN_OPTION_GAP);
+}
+
 /** Prefer nearby countries, but never reuse a display label (5.61M and 5.65M both become “5.6 million”). */
 function pickDistinct(
   preferred: CountryFact[],
@@ -113,9 +125,12 @@ function pickDistinct(
   n: number,
   rand: Rng,
   labelOf: (fact: CountryFact) => string,
-  answerLabel: string
+  answerLabel: string,
+  answerValue?: number,
+  valueOf?: (fact: CountryFact) => number
 ): CountryFact[] {
   const used = new Set([answerLabel]);
+  const chosen = answerValue != null ? [answerValue] : [];
   const out: CountryFact[] = [];
   const seen = new Set<string>();
 
@@ -124,7 +139,10 @@ function pickDistinct(
       if (seen.has(item.iso2)) continue;
       const label = labelOf(item);
       if (used.has(label)) continue;
+      const value = valueOf?.(item);
+      if (value != null && answerValue != null && !separated(value, chosen, answerValue)) continue;
       used.add(label);
+      if (value != null) chosen.push(value);
       seen.add(item.iso2);
       out.push(item);
       if (out.length >= n) return;
@@ -174,7 +192,7 @@ async function loadFacts(db: D1Database): Promise<CountryFact[]> {
 
   const facts: CountryFact[] = [];
   for (const row of results) {
-    const iso2 = parseIso2(row.meta);
+    const { iso2, year } = parseMeta(row.meta);
     if (!iso2 || !row.image_url) continue;
     const population = POPULATION[iso2];
     if (!population || population <= 0 || !(row.value > 0)) continue;
@@ -189,6 +207,7 @@ async function loadFacts(db: D1Database): Promise<CountryFact[]> {
       popLabel: formatPeople(population),
       gdppc,
       gdppcLabel: formatGdpPc(gdppc),
+      year: year ?? POPULATION_YEAR,
     });
   }
   return facts;
@@ -239,7 +258,9 @@ export async function buildMoneyleBonus(
     3,
     rand,
     (f) => f.gdpLabel,
-    answer.gdpLabel
+    answer.gdpLabel,
+    answer.gdp,
+    (f) => f.gdp
   );
   const popOthers = pickDistinct(
     nearbyWindow(byPop, popIdx, self),
@@ -247,7 +268,9 @@ export async function buildMoneyleBonus(
     3,
     rand,
     (f) => f.popLabel,
-    answer.popLabel
+    answer.popLabel,
+    answer.population,
+    (f) => f.population
   );
   const pcOthers = pickDistinct(
     nearbyWindow(byPc, pcIdx, self),
@@ -255,10 +278,13 @@ export async function buildMoneyleBonus(
     3,
     rand,
     (f) => f.gdppcLabel,
-    answer.gdppcLabel
+    answer.gdppcLabel,
+    answer.gdppc,
+    (f) => f.gdppc
   );
 
   const name = target.country;
+  const gdpYear = answer.year;
   return {
     country: name.replace(/^the /, "").replace(/^The /, ""),
     currencyCode,
@@ -274,8 +300,8 @@ export async function buildMoneyleBonus(
       ),
       choiceRound(
         "gdp",
-        "GDP",
-        `What is ${name}’s GDP?`,
+        `GDP (${gdpYear})`,
+        `What is ${name}’s GDP in ${gdpYear}?`,
         answer,
         gdpOthers,
         rand,
@@ -283,8 +309,8 @@ export async function buildMoneyleBonus(
       ),
       choiceRound(
         "population",
-        "Population",
-        `About how many people live in ${name}?`,
+        `Population (${POPULATION_YEAR})`,
+        `About how many people lived in ${name} in ${POPULATION_YEAR}?`,
         answer,
         popOthers,
         rand,
@@ -292,8 +318,8 @@ export async function buildMoneyleBonus(
       ),
       choiceRound(
         "gdppc",
-        "GDP per person",
-        `What is ${name}’s GDP per person?`,
+        `GDP per person (${gdpYear})`,
+        `What is ${name}’s GDP per person in ${gdpYear}?`,
         answer,
         pcOthers,
         rand,

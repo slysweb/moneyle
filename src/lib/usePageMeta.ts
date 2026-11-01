@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { canonicalUrl } from "./pageMeta";
+import { canonicalUrl, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "./pageMeta";
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
   const selector = `meta[${attr}="${key}"]`;
@@ -13,6 +13,10 @@ function setMeta(attr: "name" | "property", key: string, content: string) {
   el.setAttribute("content", content);
 }
 
+function removeMeta(attr: "name" | "property", key: string) {
+  document.head.querySelector(`meta[${attr}="${key}"]`)?.remove();
+}
+
 function setCanonical(href: string) {
   let el = document.head.querySelector('link[rel="canonical"]');
   if (!el) {
@@ -23,7 +27,7 @@ function setCanonical(href: string) {
   el.setAttribute("href", href);
 }
 
-export function usePageMeta(title: string, description: string) {
+export function usePageMeta(title: string, description: string, image?: string) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -35,6 +39,23 @@ export function usePageMeta(title: string, description: string) {
     setMeta("property", "og:url", url);
     setMeta("name", "twitter:title", title);
     setMeta("name", "twitter:description", description);
+    if (image) {
+      setMeta("property", "og:image", image);
+      setMeta("property", "og:image:width", String(OG_IMAGE_WIDTH));
+      setMeta("property", "og:image:height", String(OG_IMAGE_HEIGHT));
+      setMeta("property", "og:image:alt", title);
+      setMeta("name", "twitter:card", "summary_large_image");
+      setMeta("name", "twitter:image", image);
+      setMeta("name", "twitter:image:alt", title);
+    } else {
+      removeMeta("property", "og:image");
+      removeMeta("property", "og:image:width");
+      removeMeta("property", "og:image:height");
+      removeMeta("property", "og:image:alt");
+      removeMeta("name", "twitter:image");
+      removeMeta("name", "twitter:image:alt");
+      setMeta("name", "twitter:card", "summary");
+    }
     setCanonical(url);
-  }, [title, description, pathname]);
+  }, [title, description, image, pathname]);
 }

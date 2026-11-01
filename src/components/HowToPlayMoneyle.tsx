@@ -1,18 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchMoneyleExample, type MoneyleExampleRow } from "../lib/api";
 
 interface HowToPlayMoneyleProps {
   onClose: () => void;
 }
 
-const EXAMPLE = [
-  { name: "Euro", code: "EUR", rate: "1.0850", stronger: true, closeness: 99, correct: false },
-  { name: "Japanese Yen", code: "JPY", rate: "0.006700", stronger: false, closeness: 25, correct: false },
-  { name: "Chinese Yuan", code: "CNY", rate: "0.14000", stronger: false, closeness: 71, correct: false },
+const EXAMPLE: MoneyleExampleRow[] = [
+  { name: "Euro", code: "EUR", rate: "1.0850", stronger: true, closeness: 97, correct: false },
+  { name: "Japanese Yen", code: "JPY", rate: "0.006700", stronger: false, closeness: 0, correct: false },
+  { name: "Chinese Yuan", code: "CNY", rate: "0.14000", stronger: false, closeness: 39, correct: false },
   { name: "US Dollar", code: "USD", rate: "—", stronger: false, closeness: 100, correct: true },
-] as const;
+];
 
 export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
+  const [rows, setRows] = useState(EXAMPLE);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -20,6 +23,22 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchMoneyleExample().then(
+      (data) => {
+        if (!cancelled && data.rows.length) setRows(data.rows);
+      },
+      () => undefined
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const euro = rows.find((row) => row.code === "EUR") ?? EXAMPLE[0];
+  const yen = rows.find((row) => row.code === "JPY") ?? EXAMPLE[1];
 
   return (
     <div className="howto-overlay" onClick={onClose} role="presentation">
@@ -43,7 +62,7 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
           <p className="howto-moneyle-caption">Example: a US $100 bill</p>
 
           <ul className="moneyle-history howto-moneyle-history">
-            {EXAMPLE.map((row) => (
+            {rows.map((row) => (
               <li key={row.code} className={row.correct ? "correct" : ""}>
                 <span className="moneyle-hist-name">
                   {row.name}
@@ -61,10 +80,17 @@ export default function HowToPlayMoneyle({ onClose }: HowToPlayMoneyleProps) {
           </ul>
 
           <p className="howto-moneyle-explain">
-            The number is a mid-market US dollar rate from around 00:00 UTC — how many
-            dollars one unit of that currency is worth. The percentage is how close that
-            value is to the hidden currency: higher means closer. ↑ means your guess is
-            stronger than the hidden note; ↓ means weaker.
+            As shown above, if today’s puzzle — the hidden currency — is the US dollar, each
+            guess shows its exchange rate against the dollar: how many dollars one unit of
+            your guess is worth, whether you are high or low, and how far off you are. The euro
+            at {euro.rate} is {euro.stronger ? "stronger" : "weaker"} than the dollar ({euro.stronger ? "↑" : "↓"}, {euro.closeness}%).
+            The yen at {yen.rate} is {yen.stronger ? "stronger" : "weaker"} ({yen.stronger ? "↑" : "↓"}, {yen.closeness}%).
+          </p>
+          <p className="howto-moneyle-explain">
+            On any other day the number is the same comparison against that day’s hidden
+            currency, not always the dollar. ↑ means your guess is stronger than the note;
+            ↓ means weaker. The percentage is higher when the two values are closer. It
+            falls off on a logarithmic scale, so 50% is still about 5 times off.
           </p>
 
           <ol className="guessr-howto-steps">

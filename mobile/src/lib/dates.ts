@@ -15,7 +15,7 @@ export const ARCHIVE_GAMES: ArchiveGame[] = [
   { id: "moreless", name: "More/Less", path: "/moreless", epoch: "2026-08-12" },
   { id: "guessr", name: "Money Guessr", path: "/guessr", epoch: "2026-08-17" },
   { id: "moneyle", name: "Moneyle", path: "/moneyle", epoch: "2026-08-17" },
-  { id: "connections", name: "MoneyConnections", path: "/connections", epoch: "2026-08-19" },
+  { id: "connections", name: "Money Connections", path: "/connections", epoch: "2026-08-19" },
 ];
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;

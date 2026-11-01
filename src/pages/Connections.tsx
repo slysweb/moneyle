@@ -59,7 +59,7 @@ function tilesOfGroup(tiles: ConnectionTile[], groupId: string): ConnectionTile[
 }
 
 export default function Connections() {
-  usePageMeta(GAME_PAGES.connections.title, GAME_PAGES.connections.description);
+  usePageMeta(GAME_PAGES.connections.title, GAME_PAGES.connections.description, GAME_PAGES.connections.image);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;
@@ -230,7 +230,7 @@ export default function Connections() {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load MoneyConnections. <Link to="/archive">Archive</Link>
+          Could not load Money Connections. <Link to="/archive">Archive</Link>
           {" · "}
           <Link to="/">Home</Link>
         </p>
@@ -251,8 +251,8 @@ export default function Connections() {
   const run = connectionsScore(solvedIds.length);
   const shareText = [
     number != null
-      ? `MoneyConnections #${number} — ${formatScore(run.score, run.max)}`
-      : `MoneyConnections — ${formatScore(run.score, run.max)}`,
+      ? `Money Connections #${number} — ${formatScore(run.score, run.max)}`
+      : `Money Connections — ${formatScore(run.score, run.max)}`,
     "",
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
@@ -270,9 +270,9 @@ export default function Connections() {
 
   return (
     <main className="game-page conn-page">
-      <ArchiveBanner title="MoneyConnections" path="/connections" puzzleDate={puzzleDate} />
+      <ArchiveBanner title="Money Connections" path="/connections" puzzleDate={puzzleDate} />
       <div className="game-topbar">
-        <h1 className="game-heading">MoneyConnections</h1>
+        <h1 className="game-heading">Money Connections</h1>
         <div className="topbar-right">
           <span className="round-chip">{score}</span>
           <button
@@ -361,7 +361,7 @@ export default function Connections() {
               }
             />
             <NextPuzzleCountdown
-              game="MoneyConnections"
+              game="Money Connections"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />

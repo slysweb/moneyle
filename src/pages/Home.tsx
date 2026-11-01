@@ -33,15 +33,15 @@ const games = [
   {
     to: "/connections",
     icon: "connections",
-    title: "MoneyConnections",
+    title: "Money Connections",
     blurb:
       "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
-    cta: "Play MoneyConnections →",
+    cta: "Play Money Connections →",
   },
 ] as const;
 
 export default function Home() {
-  usePageMeta(HOME_META.title, HOME_META.description);
+  usePageMeta(HOME_META.title, HOME_META.description, HOME_META.image);
 
   return (
     <main className="page">
@@ -52,10 +52,6 @@ export default function Home() {
           Quick, free browser games that test your intuition for the numbers
           behind wealth, economies and markets. New puzzles every day at
           midnight Denver time — the same ones for everyone.
-        </p>
-        <p className="hero-archive">
-          Missed a day? <Link to="/archive">Unlock the archive</Link> with a free
-          Google account.
         </p>
       </section>
 

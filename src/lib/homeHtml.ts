@@ -30,10 +30,10 @@ const GAMES = [
   {
     to: "/connections",
     icon: "connections",
-    title: "MoneyConnections",
+    title: "Money Connections",
     blurb:
       "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
-    cta: "Play MoneyConnections →",
+    cta: "Play Money Connections →",
   },
 ] as const;
 
@@ -66,5 +66,5 @@ export function renderHomeHtml(): string {
     (link) =>
       `<a href="${escapeHtml(link.href)}" target="_blank" rel="noreferrer">${escapeHtml(link.name)}</a>`
   ).join("");
-  return `<div class="app"><header class="site-header"><a href="/" class="logo"><span class="logo-mark">$</span> MoneyGames</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">MoneyGames</h1><p class="hero-tagline">Games about money.</p><p class="hero-sub">Quick, free browser games that test your intuition for the numbers behind wealth, economies and markets. New puzzles every day at midnight Denver time — the same ones for everyone.</p><p class="hero-archive">Missed a day? <a href="/archive">Unlock the archive</a> with a free Google account.</p></section><section class="game-grid">${cards}</section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneygames.cc — data from public sources, refreshed regularly.</p></footer></main></div>`;
+  return `<div class="app"><header class="site-header"><a href="/" class="logo"><span class="logo-mark">$</span> MoneyGames</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">MoneyGames</h1><p class="hero-tagline">Games about money.</p><p class="hero-sub">Quick, free browser games that test your intuition for the numbers behind wealth, economies and markets. New puzzles every day at midnight Denver time — the same ones for everyone.</p></section><section class="game-grid">${cards}</section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneygames.cc — data from public sources, refreshed regularly.</p></footer></main></div>`;
 }

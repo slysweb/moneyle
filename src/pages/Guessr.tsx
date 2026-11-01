@@ -88,7 +88,7 @@ function formatMoney(minor: number, currency: GuessrCurrency): string {
 }
 
 function formatPct(pct: number): string {
-  if (Math.abs(pct) < 0.05) return "0.0%";
+  if (Math.abs(pct) < 0.1) return "0.0%";
   const sign = pct > 0 ? "+" : "−";
   return `${sign}${Math.abs(pct).toFixed(1)}%`;
 }
@@ -254,7 +254,7 @@ function DenomStack({
 }
 
 export default function Guessr() {
-  usePageMeta(GAME_PAGES.guessr.title, GAME_PAGES.guessr.description);
+  usePageMeta(GAME_PAGES.guessr.title, GAME_PAGES.guessr.description, GAME_PAGES.guessr.image);
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;
@@ -463,7 +463,7 @@ export default function Guessr() {
           <GameScore
             score={run.score}
             max={run.max}
-            detail={`Exact is 2 pts, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
+            detail={`Exact is 2 pts, within 10% is 1.5, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
           />
           <ul className="review-levels">
             {results.map((row, i) => {

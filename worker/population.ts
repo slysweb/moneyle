@@ -1,4 +1,5 @@
-/** Headcount by ISO 3166-1 alpha-2. Source: World Bank SP.POP.TOTL. */
+/** Headcount by ISO 3166-1 alpha-2. Source: World Bank SP.POP.TOTL, most recent value. */
+export const POPULATION_YEAR = 2025;
 export const POPULATION: Record<string, number> = {
   ao: 39040039,
   ar: 45851378,

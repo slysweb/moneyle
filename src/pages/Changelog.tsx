@@ -2,32 +2,51 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "November 1, 2026",
+    iso: "2026-11-01",
+    items: [
+      "MoneyConnections is now written Money Connections.",
+      "The homepage and each game page now include a preview image when the link is shared.",
+    ],
+  },
+  {
+    date: "October 31, 2026",
+    iso: "2026-10-31",
+    items: [
+      "Money Guessr now scores 1.5 points for a guess within 10% of the real total. An exact guess still scores 2, and the exact band is anything off by less than 0.1%. Within 20% remains 1 point.",
+      "Moneyle bonus questions for GDP, population, and GDP per person now name the year of the figure. The flag question is unchanged.",
+      "Those three bonus questions also keep every choice at least 1% away from the right answer and from each other.",
+      "Moneyle’s How to play now says the rate is against the hidden currency. The dollar bill in the example is the special case where that rate is in US dollars, and those sample rates are recalculated from the current dollar rates.",
+      "Moneyle’s closeness percent now reaches 0% at a 25× gap, so 50% means about 5 times off. A guess within 5× still shares as yellow.",
+    ],
+  },
+  {
     date: "October 27, 2026",
     iso: "2026-10-27",
     items: [
-      "Money Guessr, Moneyle, and MoneyConnections now include Australian dollar, Indian rupee, Hong Kong dollar, Singapore dollar, and Swedish krona notes and coins.",
+      "Money Guessr, Moneyle, and Money Connections now include Australian dollar, Indian rupee, Hong Kong dollar, Singapore dollar, and Swedish krona notes and coins.",
     ],
   },
   {
     date: "September 19, 2026",
     iso: "2026-09-19",
     items: [
-      "Money Guessr, Moneyle, and MoneyConnections now include Swiss franc and Vietnamese dong notes and coins. Swiss notes stand upright, as they do in real life.",
+      "Money Guessr, Moneyle, and Money Connections now include Swiss franc and Vietnamese dong notes and coins. Swiss notes stand upright, as they do in real life.",
     ],
   },
   {
     date: "September 6, 2026",
     iso: "2026-09-06",
     items: [
-      "Me now shows per-game statistics for finished daily runs: days played, high score, average, streaks, and win rate on Moneyle and MoneyConnections.",
+      "Me now shows per-game statistics for finished daily runs: days played, high score, average, streaks, and win rate on Moneyle and Money Connections.",
     ],
   },
   {
     date: "September 4, 2026",
     iso: "2026-09-04",
     items: [
-      "Added Articles: rankings behind the games, including a live Forbes real-time top 100, plus GDP, market caps, athletes, movies, and notes on Guessr, Moneyle, and MoneyConnections.",
-      "Money Guessr, Moneyle, and MoneyConnections now include Belize dollar notes and coins.",
+      "Added Articles: rankings behind the games, including a live Forbes real-time top 100, plus GDP, market caps, athletes, movies, and notes on Guessr, Moneyle, and Money Connections.",
+      "Money Guessr, Moneyle, and Money Connections now include Belize dollar notes and coins.",
     ],
   },
   {
@@ -35,8 +54,8 @@ const entries = [
     iso: "2026-08-29",
     items: [
       "Money Guessr now opens How to play before the first pile. The five-second countdown starts after you close it, and later rounds keep the same shrinking timer bar as round one.",
-      "Money Guessr, Moneyle, and MoneyConnections now include British pound notes and coins. Mexican peso cash was recut for a clearer look, and the 5-peso coin was added.",
-      "Each game now has a score on the results screen: More/Less is 1 point per pick, Money Guessr is 2 per pile (1 if you’re within 20%), Moneyle is 10–1 by how fast you find the note plus 1 per bonus question, and MoneyConnections is 2 per group.",
+      "Money Guessr, Moneyle, and Money Connections now include British pound notes and coins. Mexican peso cash was recut for a clearer look, and the 5-peso coin was added.",
+      "Each game now has a score on the results screen: More/Less is 1 point per pick, Money Guessr is 2 per pile (1 if you’re within 20%), Moneyle is 10–1 by how fast you find the note plus 1 per bonus question, and Money Connections is 2 per group.",
       "Added a Scoring rules page that explains every game’s points, with a link from results and the footer.",
     ],
   },
@@ -54,7 +73,7 @@ const entries = [
     date: "August 27, 2026",
     iso: "2026-08-27",
     items: [
-      "Money Guessr, Moneyle, and MoneyConnections now include South African rand notes and coins. Ukrainian hryvnia coins were recut with transparent backgrounds.",
+      "Money Guessr, Moneyle, and Money Connections now include South African rand notes and coins. Ukrainian hryvnia coins were recut with transparent backgrounds.",
     ],
   },
   {
@@ -85,10 +104,10 @@ const entries = [
     date: "August 19, 2026",
     iso: "2026-08-19",
     items: [
-      "Launched MoneyConnections: a daily 4×4 grid of flags, cash, GDP, and currency names. Group four tiles that belong to the same country. Four mistakes, no custom puzzles, no infinity mode.",
+      "Launched Money Connections: a daily 4×4 grid of flags, cash, GDP, and currency names. Group four tiles that belong to the same country. Four mistakes, no custom puzzles, no infinity mode.",
       "Self-hosted the three UI fonts (Outfit, Space Grotesk, IBM Plex Mono) instead of loading Google Fonts at runtime.",
       "Converted game art to WebP and shrank the image bundle by about 70%.",
-      "Daily progress for More/Less, Money Guessr, Moneyle, and MoneyConnections now survives a closed tab.",
+      "Daily progress for More/Less, Money Guessr, Moneyle, and Money Connections now survives a closed tab.",
       "Layout respects iPhone notches and the home-indicator safe area.",
     ],
   },

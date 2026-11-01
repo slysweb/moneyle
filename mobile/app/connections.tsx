@@ -245,7 +245,7 @@ export default function ConnectionsScreen() {
   }
 
   if (error) {
-    return <ErrorView message="Could not load MoneyConnections." />;
+    return <ErrorView message="Could not load Money Connections." />;
   }
 
   if (!groups || !tiles) {
@@ -256,8 +256,8 @@ export default function ConnectionsScreen() {
   const run = connectionsScore(solvedIds.length);
   const shareText = [
     number != null
-      ? `MoneyConnections #${number} — ${formatScore(run.score, run.max)}`
-      : `MoneyConnections — ${formatScore(run.score, run.max)}`,
+      ? `Money Connections #${number} — ${formatScore(run.score, run.max)}`
+      : `Money Connections — ${formatScore(run.score, run.max)}`,
     "",
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
@@ -335,7 +335,7 @@ export default function ConnectionsScreen() {
                 : `Two points per group. You found ${solvedIds.length} of 4.`}
             </Text>
             <Button label="Share" onPress={() => void Share.share({ message: shareText })} />
-            <NextPuzzleNote game="MoneyConnections" puzzleDate={puzzleDate} />
+            <NextPuzzleNote game="Money Connections" puzzleDate={puzzleDate} />
             <MoreGames current="connections" date={puzzleDate} />
           </View>
         )}

@@ -20,10 +20,17 @@ if (!res.ok) throw new Error(`World Bank population ${res.status}`);
 const [, rows] = await res.json();
 
 const byIso2 = {};
+const years = new Set();
 for (const row of rows ?? []) {
   const iso2 = iso3ToIso2.get(row.countryiso3code);
   if (!iso2 || row.value == null) continue;
   byIso2[iso2] = Math.round(row.value);
+  if (row.date) years.add(String(row.date));
+}
+const yearList = [...years].sort();
+const year = yearList.length === 1 ? yearList[0] : yearList.at(-1) ?? "";
+if (yearList.length > 1) {
+  console.warn(`Population years differ (${yearList.join(", ")}); labeling questions with ${year}`);
 }
 
 fs.writeFileSync(outJson, JSON.stringify(byIso2, null, 2));
@@ -34,7 +41,8 @@ const lines = Object.entries(byIso2)
 
 fs.writeFileSync(
   outTs,
-  `/** Headcount by ISO 3166-1 alpha-2. Source: World Bank SP.POP.TOTL. */\n` +
+  `/** Headcount by ISO 3166-1 alpha-2. Source: World Bank SP.POP.TOTL, most recent value. */\n` +
+    `export const POPULATION_YEAR = ${year};\n` +
     `export const POPULATION: Record<string, number> = {\n${lines.join("\n")}\n};\n`
 );
 

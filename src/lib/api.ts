@@ -174,6 +174,19 @@ export function fetchMoneyleBonus(date?: string | null): Promise<MoneyleBonusRes
   return getJson(`/api/moneyle/bonus${dateQuery(date)}`);
 }
 
+export interface MoneyleExampleRow {
+  name: string;
+  code: string;
+  rate: string;
+  stronger: boolean;
+  closeness: number;
+  correct: boolean;
+}
+
+export function fetchMoneyleExample(): Promise<{ rows: MoneyleExampleRow[] }> {
+  return getJson("/api/moneyle/example");
+}
+
 export type ConnectionKind = "flag" | "money" | "gdp" | "currency";
 export type ConnectionColor = "yellow" | "green" | "blue" | "purple";
 

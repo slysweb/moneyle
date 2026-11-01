@@ -78,7 +78,8 @@ async function handleGetOne(env: AuthEnv, userId: number, game: GameId, date: st
 function guessrPoints(pct: number, guessCents?: number, actualCents?: number): number {
   if (guessCents != null && actualCents != null && guessCents === actualCents) return 2;
   const abs = Math.abs(pct);
-  if (abs < 0.05) return 2;
+  if (abs < 0.1) return 2;
+  if (abs <= 10) return 1.5;
   if (abs <= 20) return 1;
   return 0;
 }

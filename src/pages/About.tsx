@@ -36,7 +36,7 @@ export default function About() {
           mid-market exchange rates to home in on the hidden currency.
         </li>
         <li>
-          <Link to="/connections">MoneyConnections</Link> — a 4×4 grid of flags, bills
+          <Link to="/connections">Money Connections</Link> — a 4×4 grid of flags, bills
           or coins, GDP, and currency names. Group the four tiles that belong to the
           same country.
         </li>

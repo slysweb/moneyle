@@ -26,7 +26,7 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function Archive() {
   usePageMeta(
     "Archive — MoneyGames",
-    "Registered members can play any past MoneyGames daily puzzle. More/Less, Money Guessr, Moneyle, and MoneyConnections from launch day through today."
+    "Registered members can play any past MoneyGames daily puzzle. More/Less, Money Guessr, Moneyle, and Money Connections from launch day through today."
   );
 
   const { user, loading } = useAuth();

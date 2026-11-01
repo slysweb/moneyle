@@ -63,7 +63,7 @@ export const ARTICLES: Article[] = [
     slug: "largest-economies",
     title: "The world’s 100 largest economies",
     description:
-      "Country GDP rankings from the World Bank — the same economies that appear in More/Less and MoneyConnections.",
+      "Country GDP rankings from the World Bank — the same economies that appear in More/Less and Money Connections.",
     blurb: "Which countries have the biggest GDP? The More/Less and Connections list.",
     published: "2026-09-04",
     gameTo: "/moreless",
@@ -72,10 +72,10 @@ export const ARTICLES: Article[] = [
     rankingSlug: "country-gdp",
     metricLabel: "GDP",
     intros: [
-      "Gross domestic product is the headline size of an economy. More/Less asks which of two countries is larger; MoneyConnections uses GDP tiles next to flags and cash from the same country.",
+      "Gross domestic product is the headline size of an economy. More/Less asks which of two countries is larger; Money Connections uses GDP tiles next to flags and cash from the same country.",
       "The table below is the 100 largest economies in the MoneyGames database, using World Bank GDP in current US dollars. It is annual data, not a live ticker, and it can lag the latest official release.",
     ],
-    note: "Source: World Bank, GDP (current US$). Used in More/Less and MoneyConnections.",
+    note: "Source: World Bank, GDP (current US$). Used in More/Less and Money Connections.",
   },
   {
     slug: "biggest-companies",
@@ -185,7 +185,7 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Each day, Money Guessr picks one currency from the 27 we have photographed — US dollars, Japanese yen, euros, pounds, pesos, dong, and more — and builds five piles from it. Everyone plays the same five piles until midnight Denver time.",
           "The piles get harder as you go. Round one is three banknotes of a single kind, drawn from the cheaper end of that currency’s notes. By round five the table holds eight notes of up to three kinds and eleven coins of up to four kinds: nineteen pieces of cash, five seconds.",
-          "An exact answer is worth 2 points. Anything within 20% of the true total is worth 1. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
+          "An exact answer is worth 2 points. Within 10% of the true total is worth 1.5, and within 20% is worth 1. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
         ],
       },
       {
@@ -240,14 +240,14 @@ export const ARTICLES: Article[] = [
     slug: "four-tiles-one-country",
     title: "Four tiles, one country",
     description:
-      "How MoneyConnections mixes flags, cash, GDP, and currency names into a daily 4×4 grid.",
-    blurb: "The idea behind MoneyConnections: four clues that belong to the same country.",
+      "How Money Connections mixes flags, cash, GDP, and currency names into a daily 4×4 grid.",
+    blurb: "The idea behind Money Connections: four clues that belong to the same country.",
     published: "2026-09-04",
     gameTo: "/connections",
-    gameLabel: "MoneyConnections",
+    gameLabel: "Money Connections",
     kind: "essay",
     intros: [
-      "Each MoneyConnections group is one country told four ways: a flag, a photographed bill or coin, a GDP figure, and the currency’s name. Find all four groups before four mistakes.",
+      "Each Money Connections group is one country told four ways: a flag, a photographed bill or coin, a GDP figure, and the currency’s name. Find all four groups before four mistakes.",
     ],
     sections: [
       {
@@ -260,7 +260,7 @@ export const ARTICLES: Article[] = [
     ],
     related: [
       { href: "/articles/largest-economies", label: "The world’s largest economies" },
-      { href: "/connections", label: "MoneyConnections" },
+      { href: "/connections", label: "Money Connections" },
     ],
   },
 ];

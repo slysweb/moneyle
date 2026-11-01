@@ -189,10 +189,55 @@ export function formatRate(n: number): string {
   return n.toPrecision(4);
 }
 
-/** 100% at parity (rate=1), falling off on a log scale. */
+/** 0% once the two currencies differ by this many times. 50% is the square root, about 5×. */
+const CLOSENESS_FLOOR = 25;
+
+/** 100% at parity (rate=1), 0% at 25×, on a log scale. */
 export function closenessPct(unitsOfTargetPerGuess: number): number {
   const ln = Math.abs(Math.log(Math.max(unitsOfTargetPerGuess, 1e-12)));
-  return Math.max(0, Math.min(100, 100 * (1 - ln / Math.log(800))));
+  return Math.max(0, Math.min(100, 100 * (1 - ln / Math.log(CLOSENESS_FLOOR))));
+}
+
+const HOWTO_GUESSES = [
+  { code: "EUR", name: "Euro" },
+  { code: "JPY", name: "Japanese Yen" },
+  { code: "CNY", name: "Chinese Yuan" },
+] as const;
+
+export interface HowToRateRow {
+  name: string;
+  code: string;
+  rate: string;
+  stronger: boolean;
+  closeness: number;
+  correct: boolean;
+}
+
+/** Sample guesses against a hidden US dollar, using the same rates as a real USD day. */
+export async function usdHowToExample(): Promise<HowToRateRow[]> {
+  const rates = await fxRates("USD");
+  const rows: HowToRateRow[] = HOWTO_GUESSES.map((guess) => {
+    const perDollar = rates[guess.code];
+    if (perDollar == null || !(perDollar > 0)) throw new Error(`No USD rate for ${guess.code}`);
+    const dollars = 1 / perDollar;
+    return {
+      name: guess.name,
+      code: guess.code,
+      rate: formatRate(dollars),
+      stronger: dollars > 1,
+      closeness: Math.round(closenessPct(dollars)),
+      correct: false,
+    };
+  });
+  rows.push({
+    name: "US Dollar",
+    code: "USD",
+    rate: "—",
+    stronger: false,
+    closeness: 100,
+    correct: true,
+  });
+  return rows;
 }
 
 export function findCurrency(code: string): FxCurrency | undefined {
