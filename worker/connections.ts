@@ -70,6 +70,13 @@ const SOLO_CURRENCIES: { slug: string; iso2: string; country: string; shortName:
   { slug: "hkd", iso2: "hk", country: "Hong Kong", shortName: "Dollar" },
   { slug: "sgd", iso2: "sg", country: "Singapore", shortName: "Dollar" },
   { slug: "sek", iso2: "se", country: "Sweden", shortName: "Krona" },
+  { slug: "idr", iso2: "id", country: "Indonesia", shortName: "Rupiah" },
+  { slug: "sar", iso2: "sa", country: "Saudi Arabia", shortName: "Riyal" },
+  { slug: "ils", iso2: "il", country: "Israel", shortName: "Shekel" },
+  { slug: "nzd", iso2: "nz", country: "New Zealand", shortName: "New Zealand dollar" },
+  { slug: "dkk", iso2: "dk", country: "Denmark", shortName: "Danish krone" },
+  { slug: "myr", iso2: "my", country: "Malaysia", shortName: "Ringgit" },
+  { slug: "php", iso2: "ph", country: "Philippines", shortName: "Peso" },
 ];
 
 /** Euro is shared, so a puzzle never includes two eurozone countries. */

@@ -156,7 +156,7 @@ async function handleConnectionsToday(env: Env, request: Request, url: URL): Pro
 }
 
 async function handleMoneylePuzzle(env: Env, request: Request, url: URL): Promise<Response> {
-  const resolved = await puzzleDateOrError(env, request, url, "moneyle");
+  const resolved = await puzzleDateOrError(env, request, url, "banknotele");
   if (resolved instanceof Response) return resolved;
   const { date } = resolved;
   const puzzle = await ensureMoneyle(env.DB, date);
@@ -172,7 +172,7 @@ async function handleMoneylePuzzle(env: Env, request: Request, url: URL): Promis
 }
 
 async function handleMoneyleBonus(env: Env, request: Request, url: URL): Promise<Response> {
-  const resolved = await puzzleDateOrError(env, request, url, "moneyle");
+  const resolved = await puzzleDateOrError(env, request, url, "banknotele");
   if (resolved instanceof Response) return resolved;
   const { date } = resolved;
   const puzzle = await ensureMoneyle(env.DB, date);
@@ -187,7 +187,7 @@ async function handleMoneyleGuess(env: Env, request: Request, url: URL): Promise
   const guess = findCurrency(raw);
   if (!guess) return json({ error: "Unknown currency" }, { status: 400 });
 
-  const resolved = await puzzleDateOrError(env, request, url, "moneyle");
+  const resolved = await puzzleDateOrError(env, request, url, "banknotele");
   if (resolved instanceof Response) return resolved;
   const { date } = resolved;
   const puzzle = await ensureMoneyle(env.DB, date);
@@ -217,9 +217,20 @@ async function handleMoneyleGuess(env: Env, request: Request, url: URL): Promise
   );
 }
 
+const CANONICAL_ORIGIN = "https://moneyle.app";
+
+/** Fold www onto the apex. The old domain is not attached and is not redirected. */
+function redirectWww(url: URL, method: string): Response | null {
+  if (url.hostname.toLowerCase() !== "www.moneyle.app") return null;
+  if (method !== "GET" && method !== "HEAD") return null;
+  return Response.redirect(new URL(url.pathname + url.search, CANONICAL_ORIGIN).href, 301);
+}
+
 export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
+    const moved = redirectWww(url, request.method);
+    if (moved) return moved;
 
     const seo = handleSeoAsset(url.pathname, request.method);
     if (seo) return seo;
@@ -248,13 +259,13 @@ export default {
         }
         if (url.pathname === "/api/moreless/today") return await handleMorelessToday(env, request, url);
         if (url.pathname === "/api/guessr/today") return await handleGuessrToday(env, request, url);
-        if (url.pathname === "/api/moneyle/puzzle") return await handleMoneylePuzzle(env, request, url);
-        if (url.pathname === "/api/moneyle/example") {
+        if (url.pathname === "/api/banknotele/puzzle") return await handleMoneylePuzzle(env, request, url);
+        if (url.pathname === "/api/banknotele/example") {
           const rows = await usdHowToExample();
           return json({ rows }, { headers: { "cache-control": "public, max-age=3600" } });
         }
-        if (url.pathname === "/api/moneyle/guess") return await handleMoneyleGuess(env, request, url);
-        if (url.pathname === "/api/moneyle/bonus") return await handleMoneyleBonus(env, request, url);
+        if (url.pathname === "/api/banknotele/guess") return await handleMoneyleGuess(env, request, url);
+        if (url.pathname === "/api/banknotele/bonus") return await handleMoneyleBonus(env, request, url);
         if (url.pathname === "/api/connections/today") return await handleConnectionsToday(env, request, url);
       } catch (err) {
         console.error("API error", err instanceof Error ? err.message : err);

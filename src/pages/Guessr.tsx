@@ -416,7 +416,7 @@ export default function Guessr() {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load Money Guessr. <Link to="/archive">Archive</Link>
+          Could not load Worth Guessr. <Link to="/archive">Archive</Link>
           {" · "}
           <Link to="/">Home</Link>
         </p>
@@ -439,8 +439,8 @@ export default function Guessr() {
     const run = guessrScore(results);
     const shareText = [
       number != null
-        ? `Money Guessr #${number} — ${formatScore(run.score, run.max)}`
-        : `Money Guessr — ${formatScore(run.score, run.max)}`,
+        ? `Worth Guessr #${number} — ${formatScore(run.score, run.max)}`
+        : `Worth Guessr — ${formatScore(run.score, run.max)}`,
       "",
       ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
       "",
@@ -457,7 +457,7 @@ export default function Guessr() {
 
     return (
       <main className="game-page">
-        <ArchiveBanner title="Money Guessr" path="/guessr" puzzleDate={puzzleDate} />
+        <ArchiveBanner title="Worth Guessr" path="/guessr" puzzleDate={puzzleDate} />
         <div className="review-screen guessr-review">
           <h1>Run complete</h1>
           <GameScore
@@ -486,7 +486,7 @@ export default function Guessr() {
           </ul>
           <div className="overlay-actions">
             <NextPuzzleCountdown
-              game="Money Guessr"
+              game="Worth Guessr"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />
@@ -508,9 +508,9 @@ export default function Guessr() {
 
   return (
     <main className="game-page guessr-page">
-      <ArchiveBanner title="Money Guessr" path="/guessr" puzzleDate={puzzleDate} />
+      <ArchiveBanner title="Worth Guessr" path="/guessr" puzzleDate={puzzleDate} />
       <div className="game-topbar">
-        <h1 className="game-heading">Money Guessr</h1>
+        <h1 className="game-heading">Worth Guessr</h1>
         <div className="topbar-right">
           <span className="round-chip">{currency.code}</span>
           <span className="round-chip">

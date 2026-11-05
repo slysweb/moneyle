@@ -6,11 +6,11 @@ export default function Terms() {
   return (
     <InfoPage
       title="Terms of Service"
-      description="Terms of Service for moneygames.cc — free browser games about money."
-      updated="September 6, 2026"
+      description="Terms of Service for moneyle.app — free browser games about money."
+      updated="November 4, 2026"
     >
       <p>
-        These terms govern your use of MoneyGames at moneygames.cc and the MoneyGames
+        These terms govern your use of MoneyGames at moneyle.app and the MoneyGames
         Android app (together, the “service”). By using the service, you agree to them. If
         you do not agree, do not use it.
       </p>
@@ -27,7 +27,7 @@ export default function Terms() {
       <p>
         The site is for entertainment. Net worths, market caps, salaries, box-office figures,
         GDP numbers, and exchange rates are approximate, may be delayed, and can be wrong.
-        They are not offers, valuations, or advice. Moneyle rates are a daily mid-market
+        They are not offers, valuations, or advice. Banknotele rates are a daily mid-market
         snapshot (around 00:00 UTC) and can differ from live quotes. Do not rely on anything
         here to make financial decisions.
       </p>

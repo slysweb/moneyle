@@ -19,7 +19,7 @@ export default function Scoring() {
   return (
     <InfoPage
       title="Scoring rules"
-      description="How MoneyGames scores each daily run — More/Less, Money Guessr, Moneyle, and Money Connections."
+      description="How MoneyGames scores each daily run — More/Less, Worth Guessr, Banknotele, and Connections."
       updated="September 6, 2026"
     >
       <p>
@@ -68,7 +68,7 @@ export default function Scoring() {
       </div>
 
       <h2>
-        <Link to="/guessr">Money Guessr</Link> — {GUESSR_MAX} points
+        <Link to="/guessr">Worth Guessr</Link> — {GUESSR_MAX} points
       </h2>
       <p>
         Five piles. Each pile is worth up to {GUESSR_ROUND_MAX} points, scored by
@@ -116,7 +116,7 @@ export default function Scoring() {
       </p>
 
       <h2>
-        <Link to="/moneyle">Moneyle</Link> — {MONEYLE_MAX} points
+        <Link to="/banknotele">Banknotele</Link> — {MONEYLE_MAX} points
       </h2>
       <p>
         You have six guesses to name the hidden currency. Faster is better, up to{" "}
@@ -160,7 +160,7 @@ export default function Scoring() {
       </div>
 
       <h2>
-        <Link to="/connections">Money Connections</Link> — {CONNECTIONS_MAX} points
+        <Link to="/connections">Connections</Link> — {CONNECTIONS_MAX} points
       </h2>
       <p>
         Four countries are hidden in the grid. Each group you find is worth{" "}

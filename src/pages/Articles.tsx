@@ -4,7 +4,7 @@ import { ARTICLES, ARTICLES_INDEX, articlePath, formatArticleDate } from "../lib
 import { usePageMeta } from "../lib/usePageMeta";
 
 export default function Articles() {
-  usePageMeta(`${ARTICLES_INDEX.title} — MoneyGames`, ARTICLES_INDEX.description);
+  usePageMeta(`${ARTICLES_INDEX.title} — Moneyle`, ARTICLES_INDEX.description);
 
   return (
     <main className="page article-index">

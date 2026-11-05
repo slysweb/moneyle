@@ -29,8 +29,8 @@ const GAME_SEO: GameSeo[] = [
   },
   {
     path: "/guessr",
-    short: "Money Guessr",
-    heading: "Money Guessr",
+    short: "Worth Guessr",
+    heading: "Worth Guessr",
     lead: GAME_PAGES.guessr.description,
     steps: [
       "A pile of photographed bills and coins appears for five seconds.",
@@ -39,12 +39,12 @@ const GAME_SEO: GameSeo[] = [
     ],
     extra: "Each day uses one currency from the cash we have on file, including dollars, francs, dong, and others.",
     relatedHref: "/articles/world-currencies",
-    relatedLabel: "Banknotes and coins in MoneyGames",
+    relatedLabel: "Banknotes and coins on Moneyle",
   },
   {
-    path: "/moneyle",
-    short: "Moneyle",
-    heading: "Moneyle",
+    path: "/banknotele",
+    short: "Banknotele",
+    heading: "Banknotele",
     lead: GAME_PAGES.moneyle.description,
     steps: [
       "One frosted banknote. Six guesses.",
@@ -53,12 +53,12 @@ const GAME_SEO: GameSeo[] = [
     ],
     extra: "Search the guess list by name, country, or ISO code.",
     relatedHref: "/articles/world-currencies",
-    relatedLabel: "Banknotes and coins in MoneyGames",
+    relatedLabel: "Banknotes and coins on Moneyle",
   },
   {
     path: "/connections",
-    short: "Money Connections",
-    heading: "Money Connections",
+    short: "Connections",
+    heading: "Connections",
     lead: GAME_PAGES.connections.description,
     steps: [
       "Each country appears as four tiles: its flag, a bill or coin, a GDP figure, and a currency name.",
@@ -77,7 +77,7 @@ function jsonLd(data: unknown): string {
 }
 
 function footer(): string {
-  return `<footer class="site-footer"><nav class="site-footer-nav" aria-label="Site"><a href="/">Home</a><a href="/articles">Articles</a><a href="/about">About us</a></nav><p>moneygames.cc — data from public sources, refreshed regularly.</p></footer>`;
+  return `<footer class="site-footer"><nav class="site-footer-nav" aria-label="Site"><a href="/">Home</a><a href="/articles">Articles</a><a href="/about">About us</a></nav><p>moneyle.app — data from public sources, refreshed regularly.</p></footer>`;
 }
 
 export function gameSeoForPath(pathname: string): GameSeo | null {

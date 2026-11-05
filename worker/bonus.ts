@@ -72,6 +72,13 @@ const SOLO: Record<string, { iso2: string; country: string }> = {
   HKD: { iso2: "hk", country: "Hong Kong" },
   SGD: { iso2: "sg", country: "Singapore" },
   SEK: { iso2: "se", country: "Sweden" },
+  IDR: { iso2: "id", country: "Indonesia" },
+  SAR: { iso2: "sa", country: "Saudi Arabia" },
+  ILS: { iso2: "il", country: "Israel" },
+  NZD: { iso2: "nz", country: "New Zealand" },
+  DKK: { iso2: "dk", country: "Denmark" },
+  MYR: { iso2: "my", country: "Malaysia" },
+  PHP: { iso2: "ph", country: "the Philippines" },
 };
 
 function parseMeta(meta: string | null): { iso2: string | null; year: number | null } {
@@ -235,7 +242,7 @@ export async function buildMoneyleBonus(
   const facts = await loadFacts(db);
   if (facts.length < 8) return null;
 
-  const rand = rngFor(`${date}:moneyle:bonus`);
+  const rand = rngFor(`${date}:banknotele:bonus`);
   const target = resolveCountry(currencyCode, facts, rand);
   if (!target) return null;
 

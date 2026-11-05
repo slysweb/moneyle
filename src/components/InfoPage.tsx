@@ -7,11 +7,18 @@ interface InfoPageProps {
   title: string;
   description: string;
   updated?: string;
+  siteName?: string;
   children: ReactNode;
 }
 
-export default function InfoPage({ title, description, updated, children }: InfoPageProps) {
-  usePageMeta(`${title} — MoneyGames`, description);
+export default function InfoPage({
+  title,
+  description,
+  updated,
+  siteName = "MoneyGames",
+  children,
+}: InfoPageProps) {
+  usePageMeta(`${title} — ${siteName}`, description);
 
   return (
     <main className="page info-page">

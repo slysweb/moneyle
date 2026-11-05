@@ -34,9 +34,9 @@ function useGoHome() {
 
 const GAMES = [
   { href: "/moreless", title: "More/Less", mark: "↕", tint: "#e7f4ec", ink: "#1b7a4c" },
-  { href: "/guessr", title: "Money Guessr", mark: "$", tint: "#e7eef8", ink: "#1d5fa8" },
-  { href: "/moneyle", title: "Moneyle", mark: "?", tint: "#f7f0df", ink: "#9a7209" },
-  { href: "/connections", title: "Money Connections", mark: "▦", tint: "#efe8f8", ink: "#6b45b0" },
+  { href: "/guessr", title: "Worth Guessr", mark: "$", tint: "#e7eef8", ink: "#1d5fa8" },
+  { href: "/moneyle", title: "Banknotele", mark: "?", tint: "#f7f0df", ink: "#9a7209" },
+  { href: "/connections", title: "Connections", mark: "▦", tint: "#efe8f8", ink: "#6b45b0" },
 ] as const;
 
 export function NextPuzzleNote({

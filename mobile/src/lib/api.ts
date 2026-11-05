@@ -203,7 +203,7 @@ export interface MoneyleGuessResult {
 }
 
 export async function fetchMoneylePuzzle(date?: string | null): Promise<MoneylePuzzleResponse> {
-  const data = await getJson<MoneylePuzzleResponse>(`/api/moneyle/puzzle${dateQuery(date)}`);
+  const data = await getJson<MoneylePuzzleResponse>(`/api/banknotele/puzzle${dateQuery(date)}`);
   return { ...data, imageUrl: assetUrl(data.imageUrl) ?? data.imageUrl };
 }
 
@@ -215,7 +215,7 @@ export function fetchMoneyleGuess(
   const params = new URLSearchParams({ code });
   if (attempt != null) params.set("attempt", String(attempt));
   if (date) params.set("date", date);
-  return getJson(`/api/moneyle/guess?${params.toString()}`);
+  return getJson(`/api/banknotele/guess?${params.toString()}`);
 }
 
 export type BonusKind = "flag" | "gdp" | "population" | "gdppc";
@@ -243,7 +243,7 @@ export interface MoneyleBonusResponse {
 }
 
 export async function fetchMoneyleBonus(date?: string | null): Promise<MoneyleBonusResponse> {
-  const data = await getJson<MoneyleBonusResponse>(`/api/moneyle/bonus${dateQuery(date)}`);
+  const data = await getJson<MoneyleBonusResponse>(`/api/banknotele/bonus${dateQuery(date)}`);
   if (!data.rounds) return data;
   return {
     ...data,

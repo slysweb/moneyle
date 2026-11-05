@@ -1,4 +1,4 @@
-export const API_ORIGIN = "https://moneygames.cc";
+export const API_ORIGIN = "https://moneyle.app";
 export const SITE_EPOCH = "2026-08-12";
 export const PUZZLE_TZ = "America/Denver";
 

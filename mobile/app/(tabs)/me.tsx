@@ -56,7 +56,7 @@ function GameCard({ card }: { card: GameStatCard }) {
       </View>
       {winGame ? (
         <Text style={styles.extra}>
-          {card.id === "moneyle"
+          {card.id === "banknotele"
             ? `Wins ${card.wins ?? 0} · Avg guesses ${formatAverage(card.avgGuesses)} · Perfect ${card.perfects} · Note score`
             : `Wins ${card.wins ?? 0} · Perfect ${card.perfects}`}
         </Text>

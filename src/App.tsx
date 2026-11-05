@@ -31,7 +31,7 @@ export default function App() {
         <div className="app">
           <header className="site-header">
             <Link to="/" className="logo">
-              <span className="logo-mark">$</span> MoneyGames
+              <img className="logo-mark" src="/icon.png" alt="" width={28} height={28} /> Moneyle
             </Link>
             <div className="header-actions">
               <NavLink to="/archive" className="header-archive">
@@ -51,7 +51,7 @@ export default function App() {
             <Route path="/moreless" element={<Game />} />
             <Route path="/moreless/:slug" element={<Navigate to="/moreless" replace />} />
             <Route path="/guessr" element={<Guessr />} />
-            <Route path="/moneyle" element={<Moneyle />} />
+            <Route path="/banknotele" element={<Moneyle />} />
             <Route path="/connections" element={<Connections />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:slug" element={<ArticlePage />} />

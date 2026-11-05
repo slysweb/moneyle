@@ -1,7 +1,9 @@
+import { SITE_ORIGIN } from "./pageMeta";
+
 export const PUZZLE_TZ = "America/Denver";
 export const SITE_EPOCH = "2026-08-12";
 
-export type ArchiveGameId = "moreless" | "guessr" | "moneyle" | "connections";
+export type ArchiveGameId = "moreless" | "guessr" | "banknotele" | "connections";
 
 export interface ArchiveGame {
   id: ArchiveGameId;
@@ -13,11 +15,11 @@ export interface ArchiveGame {
 
 export const ARCHIVE_GAMES: ArchiveGame[] = [
   { id: "moreless", name: "More/Less", short: "More/Less", path: "/moreless", epoch: "2026-08-12" },
-  { id: "guessr", name: "Money Guessr", short: "Guessr", path: "/guessr", epoch: "2026-08-17" },
-  { id: "moneyle", name: "Moneyle", short: "Moneyle", path: "/moneyle", epoch: "2026-08-17" },
+  { id: "guessr", name: "Worth Guessr", short: "Guessr", path: "/guessr", epoch: "2026-08-17" },
+  { id: "banknotele", name: "Banknotele", short: "Banknotele", path: "/banknotele", epoch: "2026-08-17" },
   {
     id: "connections",
-    name: "Money Connections",
+    name: "Connections",
     short: "Connections",
     path: "/connections",
     epoch: "2026-08-19",
@@ -100,7 +102,7 @@ export function playPath(path: string, date: string | null, today: string): stri
 }
 
 export function absolutePlayUrl(path: string, date: string | null, today: string): string {
-  return `https://moneygames.cc${playPath(path, date, today)}`;
+  return `${SITE_ORIGIN}${playPath(path, date, today)}`;
 }
 
 export function sharePlayLine(path: string, date: string | null, today: string): string {

@@ -216,9 +216,9 @@ export default function ArchiveScreen() {
           })}
         </View>
 
-        {available.some((game) => game.id === "moneyle") ? (
+        {available.some((game) => game.id === "banknotele") ? (
           <Text style={styles.note}>
-            Moneyle clues use today’s mid-market rates, not a historical snapshot.
+            Banknotele clues use today’s mid-market rates, not a historical snapshot.
           </Text>
         ) : null}
       </ScrollView>

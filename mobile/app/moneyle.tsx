@@ -79,7 +79,7 @@ export default function MoneyleScreen() {
   const frost = frostFor(history.length, revealed);
 
   const restore = useCallback(async (date: string) => {
-    const saved = await loadSyncedProgress<SavedRun>("moneyle", date);
+    const saved = await loadSyncedProgress<SavedRun>("banknotele", date);
     if (!saved?.history?.length) return;
     const loaded = saved.history.slice(0, MONEYLE_MAX_GUESSES);
     const solved = loaded.some((row) => row.correct);
@@ -125,7 +125,7 @@ export default function MoneyleScreen() {
 
   useEffect(() => {
     if (history.length === 0) return;
-    void saveProgress<SavedRun>("moneyle", puzzleDate, {
+    void saveProgress<SavedRun>("banknotele", puzzleDate, {
       history,
       answer,
       bonusPicks,
@@ -219,7 +219,7 @@ export default function MoneyleScreen() {
     bonusRounds && bonusPicks.length >= bonusRounds.length ? bonusCorrect : null;
   const number = puzzleDate ? dailyPuzzleNumber(puzzleDate) : null;
   const shareText = [
-    number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
+    number != null ? `Banknotele #${number} — ${score}` : `Banknotele — ${score}`,
     "",
     ...history.map((row) => {
       const sq = closenessSquare(row.closeness, row.correct);
@@ -237,7 +237,7 @@ export default function MoneyleScreen() {
         ]
       : []),
     "",
-    sharePlayLine("/moneyle", puzzleDate),
+    sharePlayLine("/banknotele", puzzleDate),
   ].join("\n");
 
   if (archiveGate.locked) {
@@ -249,7 +249,7 @@ export default function MoneyleScreen() {
   }
 
   if (error) {
-    return <ErrorView message="Could not load Moneyle." />;
+    return <ErrorView message="Could not load Banknotele." />;
   }
 
   if (!imageUrl) {
@@ -259,7 +259,7 @@ export default function MoneyleScreen() {
   return (
     <Screen>
       <GameHeader
-        title="Moneyle"
+        title="Banknotele"
         meta={`${history.length}/${MONEYLE_MAX_GUESSES}`}
         onHelp={() => setHelp(true)}
         archiveDate={puzzleDate}
@@ -366,7 +366,7 @@ export default function MoneyleScreen() {
               ghost={Boolean(bonusRounds && bonusPicks.length < bonusRounds.length)}
               onPress={() => void Share.share({ message: shareText })}
             />
-            <NextPuzzleNote game="Moneyle" puzzleDate={puzzleDate} />
+            <NextPuzzleNote game="Banknotele" puzzleDate={puzzleDate} />
             <MoreGames current="moneyle" date={puzzleDate} />
           </View>
         )}

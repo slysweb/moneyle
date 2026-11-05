@@ -28,7 +28,7 @@ export default function SiteFooter() {
         </button>
       </nav>
       <SocialLinks />
-      <p>moneygames.cc — data from public sources, refreshed regularly.</p>
+      <p>moneyle.app — data from public sources, refreshed regularly.</p>
     </footer>
   );
 }

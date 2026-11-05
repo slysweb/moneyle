@@ -85,7 +85,7 @@ export default function Moneyle() {
   const frost = frostFor(history.length, revealed);
 
   const restore = useCallback(async (date: string) => {
-    const saved = await loadSyncedProgress<SavedRun>("moneyle", date);
+    const saved = await loadSyncedProgress<SavedRun>("banknotele", date);
     if (!saved?.history?.length) return;
     const history = saved.history.slice(0, MAX_GUESSES);
     const solved = history.some((row) => row.correct);
@@ -132,7 +132,7 @@ export default function Moneyle() {
 
   useEffect(() => {
     if (history.length === 0) return;
-    saveProgress<SavedRun>("moneyle", puzzleDate, {
+    saveProgress<SavedRun>("banknotele", puzzleDate, {
       history,
       answer,
       bonusPicks,
@@ -228,7 +228,7 @@ export default function Moneyle() {
   const bonusScore =
     bonusRounds && bonusPicks.length >= bonusRounds.length ? bonusCorrect : null;
   const shareText = [
-    number != null ? `Moneyle #${number} — ${score}` : `Moneyle — ${score}`,
+    number != null ? `Banknotele #${number} — ${score}` : `Banknotele — ${score}`,
     "",
     ...history.map((row) => {
       const sq = closenessSquare(row.closeness, row.correct);
@@ -244,7 +244,7 @@ export default function Moneyle() {
         ]
       : []),
     "",
-    sharePlayLine("/moneyle", puzzleDate, denverDate()),
+    sharePlayLine("/banknotele", puzzleDate, denverDate()),
   ].join("\n");
 
   const share = async () => {
@@ -263,7 +263,7 @@ export default function Moneyle() {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load Moneyle. <Link to="/archive">Archive</Link>
+          Could not load Banknotele. <Link to="/archive">Archive</Link>
           {" · "}
           <Link to="/">Home</Link>
         </p>
@@ -281,9 +281,9 @@ export default function Moneyle() {
 
   return (
     <main className="game-page moneyle-page">
-      <ArchiveBanner title="Moneyle" path="/moneyle" puzzleDate={puzzleDate} />
+      <ArchiveBanner title="Banknotele" path="/banknotele" puzzleDate={puzzleDate} />
       <div className="game-topbar">
-        <h1 className="game-heading">Moneyle</h1>
+        <h1 className="game-heading">Banknotele</h1>
         <div className="topbar-right">
           <span className="round-chip">
             {history.length}/{MAX_GUESSES}
@@ -431,7 +431,7 @@ export default function Moneyle() {
             }
           />
           <NextPuzzleCountdown
-            game="Moneyle"
+            game="Banknotele"
             puzzleDate={puzzleDate}
             autoAdvance={!requestedDate || requestedDate === denverDate()}
           />
@@ -452,7 +452,7 @@ export default function Moneyle() {
           <Link className="btn ghost" to="/">
             Home
           </Link>
-          <MoreGames current="/moneyle" date={puzzleDate} />
+          <MoreGames current="/banknotele" date={puzzleDate} />
         </div>
       )}
 

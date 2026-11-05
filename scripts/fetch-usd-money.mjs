@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = path.join(root, "public", "money", "usd");
 
-const UA = { "User-Agent": "MoneyGames/1.0 (https://moneygames.cc; currency image script)" };
+const UA = { "User-Agent": "MoneyGames/1.0 (https://moneyle.app; currency image script)" };
 
 const BILLS = [
   {

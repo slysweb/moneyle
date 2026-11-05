@@ -132,7 +132,7 @@ export interface MoneyleGuessResult {
 }
 
 export function fetchMoneylePuzzle(date?: string | null): Promise<MoneylePuzzleResponse> {
-  return getJson(`/api/moneyle/puzzle${dateQuery(date)}`);
+  return getJson(`/api/banknotele/puzzle${dateQuery(date)}`);
 }
 
 export function fetchMoneyleGuess(
@@ -143,7 +143,7 @@ export function fetchMoneyleGuess(
   const params = new URLSearchParams({ code });
   if (attempt != null) params.set("attempt", String(attempt));
   if (date) params.set("date", date);
-  return getJson(`/api/moneyle/guess?${params.toString()}`);
+  return getJson(`/api/banknotele/guess?${params.toString()}`);
 }
 
 export type BonusKind = "flag" | "gdp" | "population" | "gdppc";
@@ -171,7 +171,7 @@ export interface MoneyleBonusResponse {
 }
 
 export function fetchMoneyleBonus(date?: string | null): Promise<MoneyleBonusResponse> {
-  return getJson(`/api/moneyle/bonus${dateQuery(date)}`);
+  return getJson(`/api/banknotele/bonus${dateQuery(date)}`);
 }
 
 export interface MoneyleExampleRow {
@@ -184,7 +184,7 @@ export interface MoneyleExampleRow {
 }
 
 export function fetchMoneyleExample(): Promise<{ rows: MoneyleExampleRow[] }> {
-  return getJson("/api/moneyle/example");
+  return getJson("/api/banknotele/example");
 }
 
 export type ConnectionKind = "flag" | "money" | "gdp" | "currency";

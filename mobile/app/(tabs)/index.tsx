@@ -44,7 +44,7 @@ const games = [
   },
   {
     href: "/guessr",
-    title: "Money Guessr",
+    title: "Worth Guessr",
     blurb: "A pile flashes for five seconds.",
     mark: "$",
     tint: "#e7eef8",
@@ -52,7 +52,7 @@ const games = [
   },
   {
     href: "/moneyle",
-    title: "Moneyle",
+    title: "Banknotele",
     blurb: "Guess the frosted banknote.",
     mark: "?",
     tint: "#f7f0df",
@@ -60,7 +60,7 @@ const games = [
   },
   {
     href: "/connections",
-    title: "Money Connections",
+    title: "Connections",
     blurb: "Four tiles, one country.",
     mark: "▦",
     tint: "#efe8f8",
@@ -78,7 +78,7 @@ export default function DailyScreen() {
           <AccountChip />
         </View>
         <Text style={styles.title}>MoneyGames</Text>
-        <Text style={styles.sub}>The same daily puzzles as moneygames.cc</Text>
+        <Text style={styles.sub}>The same daily puzzles as moneyle.app</Text>
 
         <View style={styles.stack}>
           {games.map((game) => (

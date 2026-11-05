@@ -380,7 +380,7 @@ export default function GuessrScreen() {
   }
 
   if (error) {
-    return <ErrorView message="Could not load Money Guessr." />;
+    return <ErrorView message="Could not load Worth Guessr." />;
   }
 
   if (!puzzles || !currency) {
@@ -393,8 +393,8 @@ export default function GuessrScreen() {
     const run = guessrScore(results);
     const shareText = [
       number != null
-        ? `Money Guessr #${number} — ${formatScore(run.score, run.max)}`
-        : `Money Guessr — ${formatScore(run.score, run.max)}`,
+        ? `Worth Guessr #${number} — ${formatScore(run.score, run.max)}`
+        : `Worth Guessr — ${formatScore(run.score, run.max)}`,
       "",
       ...results.map((row, i) => `Round ${i + 1} ${errorSquare(row.pct)} ${formatPct(row.pct)}`),
       "",
@@ -442,7 +442,7 @@ export default function GuessrScreen() {
   return (
     <Screen>
       <GameHeader
-        title="Money Guessr"
+        title="Worth Guessr"
         meta={`${currency.code}  ·  ${round + 1}/${ROUNDS}`}
         onHelp={() => setHelp(true)}
         archiveDate={puzzleDate}

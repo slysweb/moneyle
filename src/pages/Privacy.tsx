@@ -7,10 +7,10 @@ export default function Privacy() {
     <InfoPage
       title="Privacy Policy"
       description="How MoneyGames handles information — optional Google accounts, no ads, no sale of personal data."
-      updated="September 6, 2026"
+      updated="November 4, 2026"
     >
       <p>
-        MoneyGames (“we”) runs free games at moneygames.cc. This policy explains what
+        MoneyGames (“we”) runs free games at moneyle.app. This policy explains what
         information is involved when you play. We do not sell personal data and we do not
         run advertising.
       </p>
@@ -75,7 +75,7 @@ export default function Privacy() {
           .
         </li>
         <li>
-          <strong>ExchangeRate-API</strong> — daily mid-market FX used by Moneyle. When you
+          <strong>ExchangeRate-API</strong> — daily mid-market FX used by Banknotele. When you
           guess a currency, our server fetches a rate from that provider. See{" "}
           <a href="https://www.exchangerate-api.com" rel="noreferrer">
             exchangerate-api.com

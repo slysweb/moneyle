@@ -230,7 +230,7 @@ export default function Connections() {
     return (
       <main className="page">
         <p className="status-msg">
-          Could not load Money Connections. <Link to="/archive">Archive</Link>
+          Could not load Connections. <Link to="/archive">Archive</Link>
           {" · "}
           <Link to="/">Home</Link>
         </p>
@@ -251,8 +251,8 @@ export default function Connections() {
   const run = connectionsScore(solvedIds.length);
   const shareText = [
     number != null
-      ? `Money Connections #${number} — ${formatScore(run.score, run.max)}`
-      : `Money Connections — ${formatScore(run.score, run.max)}`,
+      ? `Connections #${number} — ${formatScore(run.score, run.max)}`
+      : `Connections — ${formatScore(run.score, run.max)}`,
     "",
     ...solvedGroups.map((g) => connectionRow(g.color)),
     ...(won ? [] : leftoverGroups.map(() => "⬜⬜⬜⬜")),
@@ -270,9 +270,9 @@ export default function Connections() {
 
   return (
     <main className="game-page conn-page">
-      <ArchiveBanner title="Money Connections" path="/connections" puzzleDate={puzzleDate} />
+      <ArchiveBanner title="Connections" path="/connections" puzzleDate={puzzleDate} />
       <div className="game-topbar">
-        <h1 className="game-heading">Money Connections</h1>
+        <h1 className="game-heading">Connections</h1>
         <div className="topbar-right">
           <span className="round-chip">{score}</span>
           <button
@@ -361,7 +361,7 @@ export default function Connections() {
               }
             />
             <NextPuzzleCountdown
-              game="Money Connections"
+              game="Connections"
               puzzleDate={puzzleDate}
               autoAdvance={!requestedDate || requestedDate === denverDate()}
             />

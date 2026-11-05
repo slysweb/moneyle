@@ -37,7 +37,7 @@ export interface GameStatCard {
 }
 
 const GAMES = new Set<string>(ARCHIVE_GAMES.map((game) => game.id));
-const WIN_GAMES = new Set<ArchiveGameId>(["moneyle", "connections"]);
+const WIN_GAMES = new Set<ArchiveGameId>(["banknotele", "connections"]);
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   return value && typeof value === "object" ? (value as Record<string, unknown>) : null;
@@ -71,7 +71,7 @@ export function summarizeRun(game: string, date: string, state: unknown): RunSum
       const run = guessrScore(results);
       return { game, date, score: run.score, max: GUESSR_MAX, won: null, perfect: run.score >= GUESSR_MAX };
     }
-    case "moneyle": {
+    case "banknotele": {
       if (!Array.isArray(rec.history) || rec.history.length === 0) return null;
       const won = rec.history.some((row) => asRecord(row)?.correct === true);
       if (!won && rec.history.length < 6) return null;
@@ -155,7 +155,7 @@ export function aggregateGameStats(runs: RunSummary[], today: string): GameStatC
           ? MORELESS_MAX
           : game.id === "guessr"
             ? GUESSR_MAX
-            : game.id === "moneyle"
+            : game.id === "banknotele"
               ? MONEYLE_NOTE_MAX
               : CONNECTIONS_MAX,
       average: mean(scores),

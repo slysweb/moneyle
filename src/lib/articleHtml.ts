@@ -43,7 +43,7 @@ function figure(fig: ArticleFigure): string {
 }
 
 function footer(): string {
-  return `<footer class="site-footer"><nav class="site-footer-nav" aria-label="Site"><a href="/">Home</a><a href="/articles">Articles</a><a href="/about">About us</a></nav><p>moneygames.cc — data from public sources, refreshed regularly.</p></footer>`;
+  return `<footer class="site-footer"><nav class="site-footer-nav" aria-label="Site"><a href="/">Home</a><a href="/articles">Articles</a><a href="/about">About us</a></nav><p>moneyle.app — data from public sources, refreshed regularly.</p></footer>`;
 }
 
 function moreArticles(current: string): string {
@@ -69,7 +69,7 @@ function rankingTable(article: Article, ranking: RankingHtml): string {
     })
     .join("");
   const metric = escapeHtml(article.metricLabel ?? ranking.metricLabel);
-  const kind = ranking.live ? "Forbes real-time list" : "From the MoneyGames database";
+  const kind = ranking.live ? "Forbes real-time list" : "From the Moneyle database";
   const count = `${ranking.items.length} ${ranking.items.length === 1 ? "entry" : "entries"}`;
   return `<p class="article-fetched">${kind} · ${count} · <time datetime="${fetched}">${escapeHtml(fetched)}</time>${source}</p><div class="rank-table-wrap"><table class="rank-table"><thead><tr><th scope="col">#</th><th scope="col">Name</th><th scope="col">${metric}</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
@@ -117,10 +117,10 @@ export function articlesIndexJsonLd(): string {
   return jsonLd({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${ARTICLES_INDEX.title} — MoneyGames`,
+    name: `${ARTICLES_INDEX.title} — Moneyle`,
     description: ARTICLES_INDEX.description,
     url: canonicalUrl("/articles"),
-    publisher: { "@type": "Organization", name: "MoneyGames", url: SITE_ORIGIN },
+    publisher: { "@type": "Organization", name: "Moneyle", url: SITE_ORIGIN },
   });
 }
 
@@ -135,8 +135,8 @@ export function articleJsonLd(article: Article): string {
     dateModified: article.published,
     mainEntityOfPage: url,
     url,
-    author: { "@type": "Organization", name: "MoneyGames", url: SITE_ORIGIN },
-    publisher: { "@type": "Organization", name: "MoneyGames", url: SITE_ORIGIN },
+    author: { "@type": "Organization", name: "Moneyle", url: SITE_ORIGIN },
+    publisher: { "@type": "Organization", name: "Moneyle", url: SITE_ORIGIN },
   });
 }
 

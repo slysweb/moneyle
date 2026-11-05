@@ -1,6 +1,6 @@
 import { formatUsd } from "./format";
 
-const UA = "MoneyGames/1.0 (https://moneygames.cc)";
+const UA = "MoneyGames/1.0 (https://moneyle.app)";
 
 export interface IncomingItem {
   name: string;

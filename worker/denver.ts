@@ -3,7 +3,7 @@ export const PUZZLE_TZ = "America/Denver";
 export const GAME_EPOCHS = {
   moreless: "2026-08-12",
   guessr: "2026-08-17",
-  moneyle: "2026-08-17",
+  banknotele: "2026-08-17",
   connections: "2026-08-19",
 } as const;
 

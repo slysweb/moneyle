@@ -12,7 +12,7 @@ import { FX_CURRENCIES, type FxCurrency } from "./moneyle";
 import { generateConnections, type ConnectionsDailyPayload } from "./connections";
 import { refreshLiveStats } from "./refresh";
 
-export type DailyGame = "moreless" | "guessr" | "moneyle" | "connections";
+export type DailyGame = "moreless" | "guessr" | "banknotele" | "connections";
 
 export interface MorelessDailyPayload {
   levels: MorelessLevelPuzzle[];
@@ -154,7 +154,7 @@ async function generateGuessr(db: D1Database, date: string): Promise<GuessrDaily
 }
 
 async function generateMoneyle(db: D1Database, date: string): Promise<MoneyleDailyPayload> {
-  const rand = rngFor(`${date}:moneyle`);
+  const rand = rngFor(`${date}:banknotele`);
   const { results } = await db
     .prepare(
       `SELECT c.code, c.name, c.country, d.image_url
@@ -196,7 +196,7 @@ export async function ensureGuessr(db: D1Database, date: string): Promise<Guessr
 }
 
 export async function ensureMoneyle(db: D1Database, date: string): Promise<MoneyleDailyPayload> {
-  return ensureGame(db, "moneyle", date, () => generateMoneyle(db, date));
+  return ensureGame(db, "banknotele", date, () => generateMoneyle(db, date));
 }
 
 export async function ensureConnections(db: D1Database, date: string): Promise<ConnectionsDailyPayload> {

@@ -1,4 +1,4 @@
-export const SUPPORT_EMAIL = "support@moneygames.cc";
+export const SUPPORT_EMAIL = "support@moneyle.app";
 
 export const SOCIAL_LINKS = [
   { name: "TikTok", href: "https://www.tiktok.com/@moneygamescc", icon: "tiktok" },

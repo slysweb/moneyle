@@ -48,8 +48,34 @@ function textBlock(lines, x, y) {
 }
 
 async function logo(height) {
-  return sharp("public/brand/moneygames-logo.png")
-    .resize({ height })
+  const icon = await sharp("public/icon.png").resize({ height }).png().toBuffer();
+  const iconW = (await sharp(icon).metadata()).width ?? height;
+  const gap = Math.round(height * 0.28);
+  const fontSize = Math.round(height * 0.58);
+  const text = "Moneyle";
+  const textW = Math.round(fontSize * text.length * 0.62);
+  const width = iconW + gap + textW;
+  const baseline = Math.round(height * 0.72);
+  const svg = Buffer.from(`<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <style>
+        @font-face { font-family: "Card"; src: url("${FONT_BOLD}"); font-weight: 700; }
+      </style>
+    </defs>
+    <text x="${iconW + gap}" y="${baseline}" fill="#14241c" font-family="Card, Segoe UI, sans-serif" font-size="${fontSize}" font-weight="700">${text}</text>
+  </svg>`);
+  return sharp({
+    create: {
+      width,
+      height,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    },
+  })
+    .composite([
+      { input: icon, left: 0, top: 0 },
+      { input: svg, left: 0, top: 0 },
+    ])
     .png()
     .toBuffer();
 }
@@ -77,7 +103,7 @@ async function writeCard(name, body, layers) {
 
 async function home() {
   const mark = await logo(86);
-  const games = ["More/Less", "Money Guessr", "Moneyle", "Money Connections"];
+  const games = ["More/Less", "Worth Guessr", "Banknotele", "Connections"];
   const lines = games
     .map(
       (name, i) =>
@@ -86,7 +112,7 @@ async function home() {
     .join("");
   const body = `${textBlock(
     [
-      { text: "Games about money.", fill: "#5d7266", size: 32, weight: 400, gap: 0 },
+      { text: "Daily puzzles for your financial & economic intuition.", fill: "#5d7266", size: 28, weight: 400, gap: 0 },
     ],
     96,
     210
@@ -103,7 +129,7 @@ async function game(name, title, subtitle, shotFile) {
     [
       { text: title, fill: "#14241c", size: 64, weight: 700, gap: 0 },
       { text: subtitle, fill: "#5d7266", size: 28, weight: 400, gap: 56 },
-      { text: "moneygames.cc", fill: "#0a8f58", size: 24, weight: 700, gap: 112 },
+      { text: "moneyle.app", fill: "#0a8f58", size: 24, weight: 700, gap: 112 },
     ],
     72,
     250
@@ -117,6 +143,6 @@ async function game(name, title, subtitle, shotFile) {
 fs.mkdirSync(OUT, { recursive: true });
 await home();
 await game("moreless", "More/Less", "Tap the higher value.", SHOTS.moreless);
-await game("guessr", "Money Guessr", "Five seconds. Name the total.", SHOTS.guessr);
-await game("moneyle", "Moneyle", "Name the frosted banknote.", SHOTS.moneyle);
-await game("connections", "Money Connections", "Four tiles, one country.", SHOTS.connections);
+await game("guessr", "Worth Guessr", "Five seconds. Name the total.", SHOTS.guessr);
+await game("moneyle", "Banknotele", "Name the frosted banknote.", SHOTS.moneyle);
+await game("connections", "Connections", "Four tiles, one country.", SHOTS.connections);

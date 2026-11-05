@@ -14,26 +14,26 @@ const GAMES = [
   {
     to: "/guessr",
     icon: "guessr",
-    title: "Money Guessr",
+    title: "Worth Guessr",
     blurb:
       "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
-    cta: "Play Money Guessr →",
+    cta: "Play Worth Guessr →",
   },
   {
-    to: "/moneyle",
+    to: "/banknotele",
     icon: "moneyle",
-    title: "Moneyle",
+    title: "Banknotele",
     blurb:
       "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
-    cta: "Play Moneyle →",
+    cta: "Play Banknotele →",
   },
   {
     to: "/connections",
     icon: "connections",
-    title: "Money Connections",
+    title: "Connections",
     blurb:
       "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
-    cta: "Play Money Connections →",
+    cta: "Play Connections →",
   },
 ] as const;
 
@@ -66,5 +66,5 @@ export function renderHomeHtml(): string {
     (link) =>
       `<a href="${escapeHtml(link.href)}" target="_blank" rel="noreferrer">${escapeHtml(link.name)}</a>`
   ).join("");
-  return `<div class="app"><header class="site-header"><a href="/" class="logo"><span class="logo-mark">$</span> MoneyGames</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">MoneyGames</h1><p class="hero-tagline">Games about money.</p><p class="hero-sub">Quick, free browser games that test your intuition for the numbers behind wealth, economies and markets. New puzzles every day at midnight Denver time — the same ones for everyone.</p></section><section class="game-grid">${cards}</section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneygames.cc — data from public sources, refreshed regularly.</p></footer></main></div>`;
+  return `<div class="app"><header class="site-header"><a href="/" class="logo"><img class="logo-mark" src="/icon.png" alt="" width="28" height="28" /> Moneyle</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">Moneyle</h1><p class="hero-tagline">Daily puzzles for your financial &amp; economic intuition.</p><p class="hero-sub">New puzzles every day at midnight Denver time — the same for everyone.</p></section><section class="game-grid">${cards}</section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneyle.app — data from public sources, refreshed regularly.</p></footer></main></div>`;
 }

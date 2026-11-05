@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "moneygames",
+	"name": "moneyle",
 	"main": "worker/index.ts",
 	"compatibility_date": "2026-08-01",
 	"assets": {
@@ -15,7 +15,7 @@
 			"/articles/*",
 			"/moreless",
 			"/guessr",
-			"/moneyle",
+			"/banknotele",
 			"/connections",
 			"/sitemap.xml",
 			"/sitemap.xml/",
@@ -33,8 +33,8 @@
 		]
 	},
 	"routes": [
-		{ "pattern": "moneygames.cc", "custom_domain": true },
-		{ "pattern": "www.moneygames.cc", "custom_domain": true }
+		{ "pattern": "moneyle.app", "custom_domain": true },
+		{ "pattern": "www.moneyle.app", "custom_domain": true }
 	],
 	"d1_databases": [
 		{

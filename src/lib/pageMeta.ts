@@ -7,7 +7,7 @@ export interface PageMeta {
   image?: string;
 }
 
-export const SITE_ORIGIN = "https://moneygames.cc";
+export const SITE_ORIGIN = "https://moneyle.app";
 
 export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
@@ -17,9 +17,9 @@ export function ogImageUrl(file: string): string {
 }
 
 export const HOME_META: PageMeta = {
-  title: "MoneyGames - Games about money",
+  title: "Moneyle — Daily Financial & Economic Puzzles",
   description:
-    "Free browser games about money. Play More/Less, Money Guessr, Moneyle, and Money Connections — test your intuition for wealth, cash, and currencies.",
+    "Free browser games about money. Play More/Less, Worth Guessr, Banknotele, and Connections — test your intuition for wealth, cash, and currencies.",
   image: ogImageUrl("home.png"),
 };
 
@@ -33,21 +33,21 @@ export const GAME_PAGES = {
   },
   guessr: {
     path: "/guessr",
-    title: "Money Guessr - A daily money amount guessing game.",
+    title: "Worth Guessr - A daily money amount guessing game.",
     description:
       "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
     image: ogImageUrl("guessr.png"),
   },
   moneyle: {
-    path: "/moneyle",
-    title: "Moneyle - A daily currency guessing game.",
+    path: "/banknotele",
+    title: "Banknotele - A daily currency guessing game.",
     description:
       "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
     image: ogImageUrl("moneyle.png"),
   },
   connections: {
     path: "/connections",
-    title: "Money Connections - A daily money connections game.",
+    title: "Connections - A daily money connections game.",
     description:
       "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
     image: ogImageUrl("connections.png"),
@@ -59,12 +59,12 @@ export function crawlerPages(): (PageMeta & { path: string })[] {
     ...Object.values(GAME_PAGES),
     {
       path: "/articles",
-      title: `${ARTICLES_INDEX.title} — MoneyGames`,
+      title: `${ARTICLES_INDEX.title} — Moneyle`,
       description: ARTICLES_INDEX.description,
     },
     ...ARTICLES.map((article) => ({
       path: `/articles/${article.slug}`,
-      title: `${article.title} — MoneyGames`,
+      title: `${article.title} — Moneyle`,
       description: article.description,
     })),
   ];

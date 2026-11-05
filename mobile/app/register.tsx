@@ -69,8 +69,8 @@ export default function RegisterScreen() {
             </Pressable>
             <Text style={styles.legal}>
               Need to leave? Delete your account from the Me tab, or on the web at{" "}
-              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneygames.cc/delete-account")}>
-                moneygames.cc/delete-account
+              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneyle.app/delete-account")}>
+                moneyle.app/delete-account
               </Text>
               .
             </Text>
@@ -95,11 +95,11 @@ export default function RegisterScreen() {
             </Pressable>
             <Text style={styles.legal}>
               By continuing you agree to the{" "}
-              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneygames.cc/terms")}>
+              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneyle.app/terms")}>
                 Terms
               </Text>{" "}
               and{" "}
-              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneygames.cc/privacy")}>
+              <Text style={styles.link} onPress={() => void Linking.openURL("https://moneyle.app/privacy")}>
                 Privacy Policy
               </Text>
               .

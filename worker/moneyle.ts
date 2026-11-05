@@ -36,7 +36,7 @@ export const FX_CURRENCIES: FxCurrency[] = [
   { code: "PHP", name: "Philippine Peso", country: "Philippines" },
   { code: "CZK", name: "Czech Koruna", country: "Czechia" },
   { code: "HUF", name: "Hungarian Forint", country: "Hungary" },
-  { code: "ILS", name: "Israeli Shekel", country: "Israel" },
+  { code: "ILS", name: "Israeli New Shekel", country: "Israel" },
   { code: "CLP", name: "Chilean Peso", country: "Chile" },
   { code: "ARS", name: "Argentine Peso", country: "Argentina" },
   { code: "COP", name: "Colombian Peso", country: "Colombia" },
@@ -171,7 +171,7 @@ export async function fxRates(base: string): Promise<Record<string, number>> {
     return rateCache.rates;
   }
   const res = await fetch(`https://open.er-api.com/v6/latest/${encodeURIComponent(code)}`, {
-    headers: { "user-agent": "MoneyGames/1.0 (https://moneygames.cc)" },
+    headers: { "user-agent": "MoneyGames/1.0 (https://moneyle.app)" },
   });
   if (!res.ok) throw new Error(`FX HTTP ${res.status}`);
   const data = (await res.json()) as { result?: string; rates?: Record<string, number> };

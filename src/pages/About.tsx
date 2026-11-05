@@ -10,11 +10,12 @@ export default function About() {
   return (
     <InfoPage
       title="About us"
-      description="MoneyGames is a small collection of free browser games about money, wealth, and currencies."
-      updated="September 6, 2026"
+      description="Moneyle is a small collection of free browser games about money, wealth, and currencies."
+      updated="November 4, 2026"
+      siteName="Moneyle"
     >
       <p>
-        MoneyGames is a free site of short browser games about money. No paywalls — just a
+        Moneyle is a free site of short browser games about money. No paywalls — just a
         daily puzzle for everyone, one run a day, resetting at midnight Denver time. You can play as a
         guest, or <Link to="/register">register with Google</Link> to unlock the{" "}
         <Link to="/archive">archive</Link> of past daily puzzles, sync progress across
@@ -28,15 +29,15 @@ export default function About() {
           market caps, salaries, box office, and GDP. Pick the higher number each round.
         </li>
         <li>
-          <Link to="/guessr">Money Guessr</Link> — a pile of bills and coins flashes for five
+          <Link to="/guessr">Worth Guessr</Link> — a pile of bills and coins flashes for five
           seconds. Guess the total. Five rounds, scored by how close you are.
         </li>
         <li>
-          <Link to="/moneyle">Moneyle</Link> — a frosted banknote and six guesses. Use
+          <Link to="/banknotele">Banknotele</Link> — a frosted banknote and six guesses. Use
           mid-market exchange rates to home in on the hidden currency.
         </li>
         <li>
-          <Link to="/connections">Money Connections</Link> — a 4×4 grid of flags, bills
+          <Link to="/connections">Connections</Link> — a 4×4 grid of flags, bills
           or coins, GDP, and currency names. Group the four tiles that belong to the
           same country.
         </li>
@@ -71,7 +72,7 @@ export default function About() {
       <h2>How it&apos;s built</h2>
       <p>
         The site is a React app on Cloudflare Workers and D1, at{" "}
-        <a href="https://moneygames.cc">moneygames.cc</a>. Source is on{" "}
+        <a href="https://moneyle.app">moneyle.app</a>. Source is on{" "}
         <a href="https://github.com/slysweb/moneygames" rel="noreferrer">
           GitHub
         </a>

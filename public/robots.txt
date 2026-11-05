@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://moneygames.cc/sitemap.xml
+Sitemap: https://moneyle.app/sitemap.xml

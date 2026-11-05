@@ -17,26 +17,26 @@ const games = [
   {
     to: "/guessr",
     icon: "guessr",
-    title: "Money Guessr",
+    title: "Worth Guessr",
     blurb:
       "A pile of bills and coins flashes for five seconds. How much was it? Five rounds, scored by how close your guess is.",
-    cta: "Play Money Guessr →",
+    cta: "Play Worth Guessr →",
   },
   {
-    to: "/moneyle",
+    to: "/banknotele",
     icon: "moneyle",
-    title: "Moneyle",
+    title: "Banknotele",
     blurb:
       "A frosted banknote and six guesses. Use exchange-rate clues and the note’s blurred outline to deduce the hidden currency.",
-    cta: "Play Moneyle →",
+    cta: "Play Banknotele →",
   },
   {
     to: "/connections",
     icon: "connections",
-    title: "Money Connections",
+    title: "Connections",
     blurb:
       "A 4×4 grid of flags, cash, GDP figures, and currency names. Find the four tiles that belong to the same country.",
-    cta: "Play Money Connections →",
+    cta: "Play Connections →",
   },
 ] as const;
 
@@ -46,12 +46,10 @@ export default function Home() {
   return (
     <main className="page">
       <section className="hero">
-        <h1 className="brand-hero">MoneyGames</h1>
-        <p className="hero-tagline">Games about money.</p>
+        <h1 className="brand-hero">Moneyle</h1>
+        <p className="hero-tagline">Daily puzzles for your financial & economic intuition.</p>
         <p className="hero-sub">
-          Quick, free browser games that test your intuition for the numbers
-          behind wealth, economies and markets. New puzzles every day at
-          midnight Denver time — the same ones for everyone.
+          New puzzles every day at midnight Denver time — the same for everyone.
         </p>
       </section>
 

@@ -43,7 +43,7 @@ function GameStatsCard({ card }: { card: GameStatCard }) {
       </div>
       {winGame ? (
         <p className="me-game-extra">
-          {card.id === "moneyle"
+          {card.id === "banknotele"
             ? `Wins ${card.wins ?? 0} · Avg guesses ${formatAverage(card.avgGuesses)} · Perfect ${card.perfects} · Note score`
             : `Wins ${card.wins ?? 0} · Perfect ${card.perfects}`}
         </p>

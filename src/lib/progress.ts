@@ -48,7 +48,7 @@ export function isStateFinished(game: ArchiveGameId, state: unknown): boolean {
       return Array.isArray(rec.answers) && rec.answers.length >= MORELESS_TOTAL_ANSWERS;
     case "guessr":
       return Array.isArray(rec.results) && rec.results.length >= GUESSR_ROUNDS;
-    case "moneyle": {
+    case "banknotele": {
       if (!Array.isArray(rec.history)) return false;
       if (rec.history.length >= MONEYLE_MAX_GUESSES) return true;
       return rec.history.some((row) => asRecord(row)?.correct === true);
@@ -66,7 +66,7 @@ function progressRank(game: string, state: unknown): number {
       return Array.isArray(rec.answers) ? rec.answers.length : 0;
     case "guessr":
       return Array.isArray(rec.results) ? rec.results.length : 0;
-    case "moneyle": {
+    case "banknotele": {
       const history = Array.isArray(rec.history) ? rec.history.length : 0;
       const bonus = Array.isArray(rec.bonusPicks) ? rec.bonusPicks.length : 0;
       const won = rec.history && Array.isArray(rec.history) && rec.history.some((row) => asRecord(row)?.correct === true);

@@ -26,7 +26,7 @@ const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function Archive() {
   usePageMeta(
     "Archive — MoneyGames",
-    "Registered members can play any past MoneyGames daily puzzle. More/Less, Money Guessr, Moneyle, and Money Connections from launch day through today."
+    "Registered members can play any past MoneyGames daily puzzle. More/Less, Worth Guessr, Banknotele, and Connections from launch day through today."
   );
 
   const { user, loading } = useAuth();
@@ -250,9 +250,9 @@ export default function Archive() {
             );
           })}
         </ul>
-        {available.some((g) => g.id === "moneyle") ? (
+        {available.some((g) => g.id === "banknotele") ? (
           <p className="archive-note">
-            Moneyle clues use today’s mid-market rates, not a historical snapshot.
+            Banknotele clues use today’s mid-market rates, not a historical snapshot.
           </p>
         ) : null}
       </section>

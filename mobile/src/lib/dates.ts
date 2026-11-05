@@ -2,7 +2,7 @@ import { PUZZLE_TZ, SITE_EPOCH, denverDate } from "./config";
 
 export { SITE_EPOCH };
 
-export type ArchiveGameId = "moreless" | "guessr" | "moneyle" | "connections";
+export type ArchiveGameId = "moreless" | "guessr" | "banknotele" | "connections";
 
 export interface ArchiveGame {
   id: ArchiveGameId;
@@ -13,9 +13,9 @@ export interface ArchiveGame {
 
 export const ARCHIVE_GAMES: ArchiveGame[] = [
   { id: "moreless", name: "More/Less", path: "/moreless", epoch: "2026-08-12" },
-  { id: "guessr", name: "Money Guessr", path: "/guessr", epoch: "2026-08-17" },
-  { id: "moneyle", name: "Moneyle", path: "/moneyle", epoch: "2026-08-17" },
-  { id: "connections", name: "Money Connections", path: "/connections", epoch: "2026-08-19" },
+  { id: "guessr", name: "Worth Guessr", path: "/guessr", epoch: "2026-08-17" },
+  { id: "banknotele", name: "Banknotele", path: "/moneyle", epoch: "2026-08-17" },
+  { id: "connections", name: "Connections", path: "/connections", epoch: "2026-08-19" },
 ];
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;

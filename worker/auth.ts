@@ -110,7 +110,7 @@ function isPrivateHost(host: string): boolean {
   return false;
 }
 
-/** Deep link back into the Expo app after Google finishes on moneygames.cc. */
+/** Deep link back into the Expo app after Google finishes on moneyle.app. */
 function safeAppRedirect(raw: string | null | undefined): string | null {
   if (!raw) return null;
   let parsed: URL;

@@ -24,7 +24,7 @@ export default function ArticlePage() {
 }
 
 function ArticleBody({ article }: { article: Article }) {
-  usePageMeta(`${article.title} — MoneyGames`, article.description);
+  usePageMeta(`${article.title} — Moneyle`, article.description);
 
   return (
     <main className={`page article-page${article.kind === "ranking" ? " ranking" : ""}`}>
@@ -135,7 +135,7 @@ function RankingBlock({ article, slug }: { article: Article; slug: string }) {
   return (
     <>
       <p className="article-fetched">
-        {data.live ? "Forbes real-time list" : "From the MoneyGames database"} · {data.items.length}{" "}
+        {data.live ? "Forbes real-time list" : "From the Moneyle database"} · {data.items.length}{" "}
         {data.items.length === 1 ? "entry" : "entries"} · {fetchedLabel}
         {data.sourceUrl && data.sourceName ? (
           <>

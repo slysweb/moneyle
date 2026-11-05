@@ -25,7 +25,7 @@ export function isProgressFinished(game: GameId, state: unknown): boolean {
       return Array.isArray(rec.answers) && rec.answers.length >= 25;
     case "guessr":
       return Array.isArray(rec.results) && rec.results.length >= 5;
-    case "moneyle": {
+    case "banknotele": {
       if (!Array.isArray(rec.history)) return false;
       if (rec.history.length >= 6) return true;
       return rec.history.some((row) => asRecord(row)?.correct === true);
@@ -127,7 +127,7 @@ function summarizeRun(
       }, 0);
       return { game, date, score, max: 10, won: null, perfect: score >= 10 };
     }
-    case "moneyle": {
+    case "banknotele": {
       const history = Array.isArray(rec.history) ? rec.history : [];
       const won = history.some((row) => asRecord(row)?.correct === true);
       const guesses = history.length;
