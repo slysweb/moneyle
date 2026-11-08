@@ -79,8 +79,9 @@ function guessrPoints(pct: number, guessCents?: number, actualCents?: number): n
   if (guessCents != null && actualCents != null && guessCents === actualCents) return 2;
   const abs = Math.abs(pct);
   if (abs < 0.1) return 2;
-  if (abs <= 10) return 1.5;
-  if (abs <= 20) return 1;
+  if (abs <= 5) return 1.5;
+  if (abs <= 10) return 1;
+  if (abs <= 20) return 0.5;
   return 0;
 }
 

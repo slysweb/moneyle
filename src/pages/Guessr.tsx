@@ -463,7 +463,7 @@ export default function Guessr() {
           <GameScore
             score={run.score}
             max={run.max}
-            detail={`Exact is 2 pts, within 10% is 1.5, within 20% is 1. Average error ${avgAbs.toFixed(1)}%.`}
+            detail={`Exact is 2 pts, within 5% is 1.5, within 10% is 1, within 20% is 0.5. Average error ${avgAbs.toFixed(1)}%.`}
           />
           <ul className="review-levels">
             {results.map((row, i) => {

@@ -19,7 +19,7 @@ export function ogImageUrl(file: string): string {
 export const HOME_META: PageMeta = {
   title: "Moneyle — Daily Financial & Economic Puzzles",
   description:
-    "Free browser games about money. Play More/Less, Worth Guessr, Banknotele, and Connections — test your intuition for wealth, cash, and currencies.",
+    "Daily puzzle games about money. Play More/Less, Worth Guessr, Banknotele, and Connections — test your intuition for wealth, cash, and currencies.",
   image: ogImageUrl("home.png"),
 };
 

@@ -68,6 +68,7 @@ export const GUESSR_ROUNDS = 5;
 export const GUESSR_ROUND_MAX = 2;
 export const GUESSR_MAX = GUESSR_ROUNDS * GUESSR_ROUND_MAX;
 export const GUESSR_EXACT_PCT = 0.1;
+export const GUESSR_TIGHT_PCT = 5;
 export const GUESSR_CLOSE_PCT = 10;
 export const GUESSR_NEAR_PCT = 20;
 export const MONEYLE_NOTE_MAX = 10;
@@ -81,8 +82,9 @@ export function guessrRoundPoints(pct: number, guessCents?: number, actualCents?
   if (guessCents != null && actualCents != null && guessCents === actualCents) return GUESSR_ROUND_MAX;
   const abs = Math.abs(pct);
   if (abs < GUESSR_EXACT_PCT) return GUESSR_ROUND_MAX;
-  if (abs <= GUESSR_CLOSE_PCT) return 1.5;
-  if (abs <= GUESSR_NEAR_PCT) return 1;
+  if (abs <= GUESSR_TIGHT_PCT) return 1.5;
+  if (abs <= GUESSR_CLOSE_PCT) return 1;
+  if (abs <= GUESSR_NEAR_PCT) return 0.5;
   return 0;
 }
 

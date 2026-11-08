@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "MoneyGames",
+    "name": "Moneyle",
     "slug": "moneygames",
     "scheme": "moneygames",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

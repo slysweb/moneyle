@@ -78,7 +78,7 @@ export default function RegisterScreen() {
         ) : (
           <>
             <Text style={styles.copy}>
-              Sign in with Google to create a MoneyGames account. First time here? That creates
+              Sign in with Google to create a Moneyle account. First time here? That creates
               it. Already registered? Same button signs you back in.
             </Text>
             <Text style={styles.dim}>

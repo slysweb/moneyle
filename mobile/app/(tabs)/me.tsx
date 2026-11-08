@@ -92,7 +92,7 @@ export default function MeScreen() {
   function confirmDelete() {
     Alert.alert(
       "Delete account?",
-      "This permanently deletes your MoneyGames account and synced progress. Guest games on this phone stay.",
+      "This permanently deletes your Moneyle account and synced progress. Guest games on this phone stay.",
       [
         { text: "Cancel", style: "cancel" },
         {

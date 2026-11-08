@@ -6,11 +6,12 @@ export default function Privacy() {
   return (
     <InfoPage
       title="Privacy Policy"
-      description="How MoneyGames handles information — optional Google accounts, no ads, no sale of personal data."
+      siteName="Moneyle"
+      description="How Moneyle handles information — optional Google accounts, no ads, no sale of personal data."
       updated="November 4, 2026"
     >
       <p>
-        MoneyGames (“we”) runs free games at moneyle.app. This policy explains what
+        Moneyle (“we”) runs free games at moneyle.app. This policy explains what
         information is involved when you play. We do not sell personal data and we do not
         run advertising.
       </p>
@@ -117,7 +118,7 @@ export default function Privacy() {
 
       <h2>Delete your account</h2>
       <p>
-        You can delete your MoneyGames account at any time from{" "}
+        You can delete your Moneyle account at any time from{" "}
         <Link to="/me">Me</Link> or the{" "}
         <Link to="/delete-account">Delete your account</Link> page, or in the Android app
         under Me. That removes the Google sign-in record we stored and any synced daily

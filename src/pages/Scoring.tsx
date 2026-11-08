@@ -7,6 +7,7 @@ import {
   GUESSR_EXACT_PCT,
   GUESSR_MAX,
   GUESSR_NEAR_PCT,
+  GUESSR_TIGHT_PCT,
   GUESSR_ROUND_MAX,
   MONEYLE_BONUS_MAX,
   MONEYLE_MAX,
@@ -20,7 +21,7 @@ export default function Scoring() {
     <InfoPage
       title="Scoring rules"
       description="How MoneyGames scores each daily run — More/Less, Worth Guessr, Banknotele, and Connections."
-      updated="September 6, 2026"
+      updated="November 7, 2026"
     >
       <p>
         Each game has its own score. When you finish a run, the results screen shows{" "}
@@ -89,12 +90,16 @@ export default function Scoring() {
               <td>{GUESSR_ROUND_MAX}</td>
             </tr>
             <tr>
-              <td>Within {GUESSR_CLOSE_PCT}% of the real total</td>
+              <td>Within {GUESSR_TIGHT_PCT}% of the real total</td>
               <td>1.5</td>
             </tr>
             <tr>
-              <td>Within {GUESSR_NEAR_PCT}% of the real total</td>
+              <td>Within {GUESSR_CLOSE_PCT}% of the real total</td>
               <td>1</td>
+            </tr>
+            <tr>
+              <td>Within {GUESSR_NEAR_PCT}% of the real total</td>
+              <td>0.5</td>
             </tr>
             <tr>
               <td>More than {GUESSR_NEAR_PCT}% away</td>
@@ -108,11 +113,12 @@ export default function Scoring() {
         </table>
       </div>
       <p>
-        “Within {GUESSR_CLOSE_PCT}%” means the absolute error is at most{" "}
+        “Within {GUESSR_TIGHT_PCT}%” means the absolute error is at most{" "}
+        {GUESSR_TIGHT_PCT}%, “within {GUESSR_CLOSE_PCT}%” means at most{" "}
         {GUESSR_CLOSE_PCT}%, and “within {GUESSR_NEAR_PCT}%” means at most{" "}
-        {GUESSR_NEAR_PCT}%. If the pile is $100, a guess from $90 to $110 scores
-        1.5, and from $80 to $120 scores 1. $100.00 scores {GUESSR_ROUND_MAX}. Over
-        or under is treated the same.
+        {GUESSR_NEAR_PCT}%. If the pile is $100, a guess from $95 to $105 scores
+        1.5, from $90 to $110 scores 1, and from $80 to $120 scores 0.5. $100.00
+        scores {GUESSR_ROUND_MAX}. Over or under is treated the same.
       </p>
 
       <h2>

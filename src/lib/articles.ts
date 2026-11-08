@@ -185,7 +185,7 @@ export const ARTICLES: Article[] = [
         paragraphs: [
           "Each day, Worth Guessr picks one currency from the 34 we have photographed — US dollars, Japanese yen, euros, pounds, pesos, dong, and more — and builds five piles from it. Everyone plays the same five piles until midnight Denver time.",
           "The piles get harder as you go. Round one is three banknotes of a single kind, drawn from the cheaper end of that currency’s notes. By round five the table holds eight notes of up to three kinds and eleven coins of up to four kinds: nineteen pieces of cash, five seconds.",
-          "An exact answer is worth 2 points. Within 10% of the true total is worth 1.5, and within 20% is worth 1. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
+          "An exact answer is worth 2 points. Within 5% of the true total is worth 1.5, within 10% is worth 1, and within 20% is worth 0.5. Five rounds, ten points at most. You do not have to name every coin — you need a good number.",
         ],
       },
       {

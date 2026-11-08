@@ -89,7 +89,7 @@ export default function About() {
         . Daily boards and clips also go out on{" "}
         {SOCIAL_LINKS.map((link, i) => (
           <span key={link.href}>
-            {i > 0 ? (i === SOCIAL_LINKS.length - 1 ? ", and " : ", ") : null}
+            {i > 0 ? (i === SOCIAL_LINKS.length - 1 ? (SOCIAL_LINKS.length > 2 ? ", and " : " and ") : ", ") : null}
             <a href={link.href} rel="noreferrer">
               {link.name}
             </a>

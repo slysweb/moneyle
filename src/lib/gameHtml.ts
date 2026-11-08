@@ -35,7 +35,7 @@ const GAME_SEO: GameSeo[] = [
     steps: [
       "A pile of photographed bills and coins appears for five seconds.",
       "Then type the total. Five piles a day.",
-      "Exact is 2 points, within 10% is 1.5, and within 20% is 1.",
+      "Exact is 2 points, within 5% is 1.5, within 10% is 1, and within 20% is 0.5.",
     ],
     extra: "Each day uses one currency from the cash we have on file, including dollars, francs, dong, and others.",
     relatedHref: "/articles/world-currencies",

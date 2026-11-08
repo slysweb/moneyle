@@ -2,6 +2,13 @@ import InfoPage from "../components/InfoPage";
 
 const entries = [
   {
+    date: "November 7, 2026",
+    iso: "2026-11-07",
+    items: [
+      "Worth Guessr now scores 1.5 points within 5% of the real total, 1 point within 10%, and 0.5 within 20%. An exact guess still scores 2.",
+    ],
+  },
+  {
     date: "November 2, 2026",
     iso: "2026-11-02",
     items: [
@@ -87,7 +94,7 @@ const entries = [
     iso: "2026-08-23",
     items: [
       "Banknotele How to play now walks through a US $100 example with euro, yen, yuan, and dollar guesses, and explains the rate numbers and closeness percent.",
-      "Footer and About now link to Moneyle on TikTok, X, and YouTube.",
+      "Footer and About now link to Moneyle on X and YouTube.",
       "New More/Less days no longer pair two items that show the same compact figure, such as two movies both listed as $1.24B. Archived days are unchanged.",
     ],
   },

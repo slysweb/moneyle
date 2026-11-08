@@ -6,18 +6,19 @@ export default function Terms() {
   return (
     <InfoPage
       title="Terms of Service"
+      siteName="Moneyle"
       description="Terms of Service for moneyle.app — free browser games about money."
       updated="November 4, 2026"
     >
       <p>
-        These terms govern your use of MoneyGames at moneyle.app and the MoneyGames
+        These terms govern your use of Moneyle at moneyle.app and the Moneyle
         Android app (together, the “service”). By using the service, you agree to them. If
         you do not agree, do not use it.
       </p>
 
       <h2>The service</h2>
       <p>
-        MoneyGames offers free, recreational browser games about money, wealth, and
+        Moneyle offers free, recreational browser games about money, wealth, and
         currencies. Today’s puzzles are free without an account. Register with Google to
         unlock the archive of past daily puzzles and sync your progress across devices. We
         may add, change, or remove games or features at any time.
@@ -36,7 +37,7 @@ export default function Terms() {
       <p>
         Registration is optional and currently only via Google. You are responsible for the
         Google account you use. We may suspend an account that is used to abuse the service.
-        You can delete your MoneyGames account at any time from{" "}
+        You can delete your Moneyle account at any time from{" "}
         <Link to="/delete-account">Delete your account</Link>. That removes the record we
         stored and synced progress; it does not delete your Google account.
       </p>
@@ -52,7 +53,7 @@ export default function Terms() {
 
       <h2>Intellectual property</h2>
       <p>
-        The MoneyGames name, layout, and original game design are provided by the site
+        The Moneyle name, layout, and original game design are provided by the site
         operator. You may play the games and share your results. You may not copy the site
         as a competing product, or reuse our original assets, without permission.
       </p>

@@ -77,7 +77,7 @@ export default function DailyScreen() {
           <Text style={styles.kicker}>TODAY</Text>
           <AccountChip />
         </View>
-        <Text style={styles.title}>MoneyGames</Text>
+        <Text style={styles.title}>Moneyle</Text>
         <Text style={styles.sub}>The same daily puzzles as moneyle.app</Text>
 
         <View style={styles.stack}>
