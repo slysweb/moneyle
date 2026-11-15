@@ -7,7 +7,7 @@ import HowToPlay from "../components/HowToPlay";
 import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
-import { usePageMeta } from "../lib/usePageMeta";
+import { useAlldleVerify, usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, resultSquares } from "../lib/share";
@@ -112,6 +112,7 @@ function cardClass(
 
 export default function Game() {
   usePageMeta(GAME_PAGES.moreless.title, GAME_PAGES.moreless.description, GAME_PAGES.moreless.image);
+  useAlldleVerify("/moreless");
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

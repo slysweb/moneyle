@@ -7,7 +7,7 @@ import HowToPlayGuessr from "../components/HowToPlayGuessr";
 import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
-import { usePageMeta } from "../lib/usePageMeta";
+import { useAlldleVerify, usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { copyText, dailyPuzzleNumber, errorSquare } from "../lib/share";
@@ -255,6 +255,7 @@ function DenomStack({
 
 export default function Guessr() {
   usePageMeta(GAME_PAGES.guessr.title, GAME_PAGES.guessr.description, GAME_PAGES.guessr.image);
+  useAlldleVerify("/guessr");
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

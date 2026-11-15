@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { canonicalUrl, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "./pageMeta";
+import {
+  ALLDLE_VERIFY_BY_PATH,
+  ALLDLE_VERIFY_NAME,
+  canonicalUrl,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+} from "./pageMeta";
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
   const selector = `meta[${attr}="${key}"]`;
@@ -25,6 +31,22 @@ function setCanonical(href: string) {
     document.head.appendChild(el);
   }
   el.setAttribute("href", href);
+}
+
+export function useAlldleVerify(pathname: string) {
+  const content = ALLDLE_VERIFY_BY_PATH[pathname];
+  useEffect(() => {
+    if (!content) return;
+    const selector = `meta[name="${ALLDLE_VERIFY_NAME}"]`;
+    let el = document.head.querySelector(selector);
+    if (!el) {
+      el = document.createElement("meta");
+      el.setAttribute("name", ALLDLE_VERIFY_NAME);
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", content);
+    return () => document.head.querySelector(selector)?.remove();
+  }, [content]);
 }
 
 export function usePageMeta(title: string, description: string, image?: string) {

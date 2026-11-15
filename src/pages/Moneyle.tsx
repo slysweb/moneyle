@@ -15,7 +15,7 @@ import MoneyleBonus, { MoneyleBonusRecap } from "../components/MoneyleBonus";
 import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
-import { usePageMeta } from "../lib/usePageMeta";
+import { useAlldleVerify, usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { closenessSquare, copyText, dailyPuzzleNumber } from "../lib/share";
@@ -56,6 +56,7 @@ function frostFor(guessCount: number, revealed: boolean): { blur: number; tint: 
 
 export default function Moneyle() {
   usePageMeta(GAME_PAGES.moneyle.title, GAME_PAGES.moneyle.description, GAME_PAGES.moneyle.image);
+  useAlldleVerify("/banknotele");
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;

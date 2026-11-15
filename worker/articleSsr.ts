@@ -8,8 +8,8 @@ import {
   renderArticlesIndexHtml,
 } from "../src/lib/articleHtml";
 import { articleBySlug } from "../src/lib/articles";
-import { applyPageMeta, metaForPath } from "../src/lib/pageMeta";
-import { isGameSeoPath, renderGameHtml, gameJsonLd } from "../src/lib/gameHtml";
+import { ALLDLE_VERIFY_BY_PATH, ALLDLE_VERIFY_NAME, applyPageMeta, metaForPath } from "../src/lib/pageMeta";
+import { isGameSeoPath, withGameDocument } from "../src/lib/gameHtml";
 import { renderHomeHtml } from "../src/lib/homeHtml";
 import { loadRanking } from "./rankings";
 
@@ -126,16 +126,28 @@ export async function handleGameHtml(
 ): Promise<Response | null> {
   const url = new URL(request.url);
   const path = normalizePath(url.pathname);
-  const inner = renderGameHtml(path);
   const page = metaForPath(path);
-  if (!inner || !page) return null;
+  if (!isGameSeoPath(path) || !page) return null;
 
-  let html = await loadShell(env, request);
-  html = applyPageMeta(html, page, path);
-  if (!html.includes("application/ld+json")) html = injectHead(html, gameJsonLd(page, path));
+  // Always start from the SPA shell. Fetching the request URL would return
+  // moreless/index.html, whose #root is already the how-to article.
+  const shell = await env.ASSETS.fetch(new URL("/index.html", request.url));
+  let html = applyPageMeta(await shell.text(), page, path);
+  const alldleVerify = ALLDLE_VERIFY_BY_PATH[path];
+  if (alldleVerify) {
+    html = injectHead(
+      html,
+      `<meta name="${ALLDLE_VERIFY_NAME}" content="${alldleVerify}" />`
+    );
+  }
+  html = withGameDocument(html, path, page);
 
-  return fillRoot(html, inner, {
+  const headers = {
     "content-type": "text/html; charset=utf-8",
-    "cache-control": "public, max-age=3600",
-  }, request.method);
+    // Don't keep a rewritten document for an hour. A stale copy is what made
+    // Chrome stay on the how-to page until a later reload.
+    "cache-control": "public, max-age=0, must-revalidate",
+  };
+  if (request.method === "HEAD") return new Response(null, { status: 200, headers });
+  return new Response(html, { status: 200, headers });
 }

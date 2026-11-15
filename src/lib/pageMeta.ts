@@ -9,6 +9,15 @@ export interface PageMeta {
 
 export const SITE_ORIGIN = "https://moneyle.app";
 
+/** Ownership checks for alldle.net listings. A name-only meta tag, one token per game. */
+export const ALLDLE_VERIFY_NAME = "alldle-verify";
+export const ALLDLE_VERIFY_BY_PATH: Record<string, string> = {
+  "/moreless": "Fnuxa0Bd6dAfhdP_OHlyrxvEuVfRDFdu",
+  "/guessr": "GlqtJxMbj7p7bGct01cowLfJAe2pDzdD",
+  "/banknotele": "ugwzs95wiSWjuXqO8j1NC_ShlsU_SOyQ",
+  "/connections": "A_-sb__-L7amK6qB1GVFyYgw4UQwH7W5",
+};
+
 export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
 

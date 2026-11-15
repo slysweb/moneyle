@@ -1,4 +1,4 @@
-import { escapeHtml, injectHead, injectIntoRoot } from "./articleHtml";
+import { escapeHtml, injectHead } from "./articleHtml";
 import { GAME_PAGES, SITE_ORIGIN, canonicalUrl, type PageMeta } from "./pageMeta";
 
 interface GameSeo {
@@ -118,5 +118,11 @@ export function gameJsonLd(page: PageMeta, pathname: string): string {
 export function withGameDocument(html: string, pathname: string, page: PageMeta): string {
   const inner = renderGameHtml(pathname);
   if (!inner) return html;
-  return injectHead(injectIntoRoot(html, inner), gameJsonLd(page, pathname));
+  // Keep #root empty. The how-to page is only for browsers with JavaScript off.
+  // Putting it in #root paints the article first, then React swaps in the game.
+  let next = html.includes("application/ld+json") ? html : injectHead(html, gameJsonLd(page, pathname));
+  if (!next.includes("<noscript>")) {
+    next = next.replace("</body>", `<noscript>${inner}</noscript></body>`);
+  }
+  return next;
 }

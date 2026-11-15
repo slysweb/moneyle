@@ -11,7 +11,7 @@ import HowToPlayConnections from "../components/HowToPlayConnections";
 import MoreGames from "../components/MoreGames";
 import NextPuzzleCountdown from "../components/NextPuzzleCountdown";
 import { GAME_PAGES } from "../lib/pageMeta";
-import { usePageMeta } from "../lib/usePageMeta";
+import { useAlldleVerify, usePageMeta } from "../lib/usePageMeta";
 import { denverDate, sharePlayLine } from "../lib/dates";
 import { useArchiveGate } from "../lib/useArchiveGate";
 import { connectionRow, copyText, dailyPuzzleNumber } from "../lib/share";
@@ -60,6 +60,7 @@ function tilesOfGroup(tiles: ConnectionTile[], groupId: string): ConnectionTile[
 
 export default function Connections() {
   usePageMeta(GAME_PAGES.connections.title, GAME_PAGES.connections.description, GAME_PAGES.connections.image);
+  useAlldleVerify("/connections");
 
   const archiveGate = useArchiveGate();
   const requestedDate = archiveGate.requestedDate;
