@@ -1,6 +1,7 @@
 import { escapeHtml } from "./articleHtml";
 import { ARTICLES, articlePath } from "./articles";
 import { SOCIAL_LINKS } from "./contact";
+import { HOME_FAQ } from "./homeFaq";
 
 const GAMES = [
   {
@@ -53,6 +54,19 @@ export function renderHomeHtml(): string {
     (game) =>
       `<a href="${game.to}" class="game-card playable"><div class="game-card-head"><span class="game-card-icon ${game.icon}" aria-hidden="true"></span><div class="game-card-badge">Play now</div></div><h2>${escapeHtml(game.title)}</h2><p>${escapeHtml(game.blurb)}</p><span class="game-card-cta">${escapeHtml(game.cta)}</span></a>`
   ).join("");
+  const faq = HOME_FAQ.map((item) => {
+    let body = escapeHtml(item.answer);
+    if (item.link) {
+      const at = item.answer.indexOf(item.link.label);
+      if (at >= 0) {
+        body =
+          escapeHtml(item.answer.slice(0, at)) +
+          `<a href="${escapeHtml(item.link.href)}" target="_blank" rel="noreferrer">${escapeHtml(item.link.label)}</a>` +
+          escapeHtml(item.answer.slice(at + item.link.label.length));
+      }
+    }
+    return `<article><h3>${escapeHtml(item.question)}</h3><p>${body}</p></article>`;
+  }).join("");
   const articles = ARTICLES.slice(0, 3)
     .map((article) => {
       const live = article.live ? `<span class="article-live">Live</span>` : "";
@@ -66,5 +80,5 @@ export function renderHomeHtml(): string {
     (link) =>
       `<a href="${escapeHtml(link.href)}" target="_blank" rel="noreferrer">${escapeHtml(link.name)}</a>`
   ).join("");
-  return `<div class="app"><header class="site-header"><a href="/" class="logo"><img class="logo-mark" src="/icon.png" alt="" width="28" height="28" /> Moneyle</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">Moneyle</h1><p class="hero-tagline">Daily puzzles for your financial &amp; economic intuition.</p><p class="hero-sub">New puzzles every day at midnight Denver time — the same for everyone.</p></section><section class="game-grid">${cards}</section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneyle.app — data from public sources, refreshed regularly.</p></footer></main></div>`;
+  return `<div class="app"><header class="site-header"><a href="/" class="logo"><img class="logo-mark" src="/icon.png" alt="" width="28" height="28" /> Moneyle</a><div class="header-actions"><a href="/archive" class="header-archive">Archive</a><a href="/me" class="header-archive">Me</a></div></header><main class="page"><section class="hero"><h1 class="brand-hero">Moneyle</h1><p class="hero-tagline">Daily puzzles for your financial &amp; economic intuition.</p><p class="hero-sub">New puzzles every day at midnight Denver time — the same for everyone.</p></section><section class="game-grid">${cards}</section><section class="home-faq" aria-labelledby="home-faq-title"><h2 id="home-faq-title">Questions</h2><div class="home-faq-list">${faq}</div></section><section class="article-teaser"><div class="article-teaser-head"><h2>Articles</h2><a href="/articles">All articles →</a></div><ul>${articles}</ul></section><footer class="site-footer"><nav class="site-footer-nav" aria-label="Site">${footerNav}</nav><nav class="social-links" aria-label="Social">${social}</nav><p>moneyle.app — data from public sources, refreshed regularly.</p></footer></main></div>`;
 }

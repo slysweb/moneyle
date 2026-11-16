@@ -814,6 +814,47 @@ a {
   font-size: 0.8rem;
 }
 
+.home-faq {
+  margin: 0 0 48px;
+}
+
+.home-faq h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
+}
+
+.home-faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.home-faq-list article {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.home-faq-list h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.home-faq-list p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.home-faq-list a {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
 .article-teaser {
   margin: 0 0 48px;
 }

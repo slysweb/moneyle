@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
 import SiteFooter from "../components/SiteFooter";
 import { ARTICLES, articlePath } from "../lib/articles";
+import { HOME_FAQ } from "../lib/homeFaq";
 import { HOME_META } from "../lib/pageMeta";
 import { usePageMeta } from "../lib/usePageMeta";
 
@@ -67,6 +68,30 @@ export default function Home() {
             <span className="game-card-cta">{game.cta}</span>
           </Link>
         ))}
+      </section>
+
+      <section className="home-faq" aria-labelledby="home-faq-title">
+        <h2 id="home-faq-title">Questions</h2>
+        <div className="home-faq-list">
+          {HOME_FAQ.map((item) => (
+            <article key={item.question}>
+              <h3>{item.question}</h3>
+              <p>
+                {item.link ? (
+                  <>
+                    {item.answer.slice(0, item.answer.indexOf(item.link.label))}
+                    <a href={item.link.href} target="_blank" rel="noreferrer">
+                      {item.link.label}
+                    </a>
+                    {item.answer.slice(item.answer.indexOf(item.link.label) + item.link.label.length)}
+                  </>
+                ) : (
+                  item.answer
+                )}
+              </p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="article-teaser">
